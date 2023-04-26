@@ -1,12 +1,25 @@
 //bcrypt es una libreria que se utiliza para encriptar y desencritpar contraseñas o texto
 const bcrypt = require('bcrypt');
-const axios = require('axios');
+//Aun no existe, esperando para continuar con esta sección
 const {userSave} = require('../database/controllers/userSave');
 const {checkUserExists} = require('../database/helper/checkUserExists');
 
 
 const getAllUsers = (req, res) => {
 
+    try{
+
+        const users = getAllUsers();
+
+        if (users){
+            return res.status(200).json({msg: 'Usuarios traidos con exito', users: users});
+        }
+
+        return res.status(404).json({msg: 'Error 404, not found '});
+
+    } catch (err){
+        return res.status(500).json({error: err, msg: 'Error en la solicitud de la base de datos'})
+    }
 }
 
 const getUserById = (req, res) => {
@@ -14,10 +27,10 @@ const getUserById = (req, res) => {
     const {id} = req.query;
 
     try{
-        const response = getUser(id);
+        const user = getUser(id);
 
-        if (response.data){
-           return res.status(200).json({msg: 'Usuario traido con exito', user: response.data});
+        if (user){
+           return res.status(200).json({msg: 'Usuario traido con exito', user: user});
         } 
 
         return res.status(404).json({msg: 'Error 404, not found '});
@@ -41,4 +54,4 @@ const postNewUser = (req, res) => {
 
 }
 
-module.exports = {getAllUsers, getUserById}
+module.exports = {getAllUsers, getUserById, postNewUser}
