@@ -1,7 +1,13 @@
-const Product = require("../mongoose");
+const { Product } = require("../mongoose");
+const { User } = require("../mongoose")
 
 const productSave = async (product, idUser) => {
     const newProduct = new Product(product)
-    const idVendor = await User.findOneAndUpdate(idUser, { $push: { products: newProduct._id } }).exec()
-
+    uploadproduct = await User.findOneAndUpdate(idUser, { $push: { products: newProduct._id } }).exec()
+    const updatedVendor = await User.findOne({ _id: idUser }).populate('products')
+    newProduct.user = idUser
+    newProduct.save()
+    return newProduct
 }
+
+module.exports = productSave
