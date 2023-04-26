@@ -27,6 +27,8 @@ const subCategorySchema = new Schema({
         type: String,
         required: true,
         validate: {
+
+            // FALTA ADMINISTRACION DE ERRORES
             validator: async function (value) {
                 const subCategory = this.parent();
                 const categoryIndex = subCategory.subCategories.findIndex(

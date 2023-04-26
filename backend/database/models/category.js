@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const mainCategorySchema = require("../schemas/categorySchema");
 
 // Instanciacion de categorias principales y secundarias
+//FALTA ADMINISTRACION DE ERROR
 
 const Category = mongoose.model("Category", mainCategorySchema)
 
@@ -84,7 +85,14 @@ const createMainCategories = async () => {
     })
 
     const LibrosFisicos = new Category({
-        name: "Libros fisicos"
+        name: "Libros fisicos",
+        subCategories: [
+            { name: "Novela" },
+            { name: "Cuentos" },
+            { name: "Libros infantiles" },
+            { name: "Comics" },
+            { name: "Otros" },
+        ]
     })
     const Electrodomesticos = new Category({
         name: "Electrodomesticos",
