@@ -14,7 +14,7 @@ const getUserById = (req, res) => {
     const {id} = req.query;
 
     try{
-        const response = await axios.get(getUser(id));
+        const response = axios.get(getUser(id));
 
         if (response.data){
            return res.status(200).json({msg: 'Usuario traido con exito', user: response.data});
@@ -39,7 +39,6 @@ const postNewUser = (req, res) => {
     userData.password = bcrypt.hashSync(userData.password, 10);
     userData.calification = 0;
 
-    const user = 
 }
 
 module.exports = {getAllUsers, getUserById}
