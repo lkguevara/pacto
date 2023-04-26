@@ -14,7 +14,7 @@ const getUserById = (req, res) => {
     const {id} = req.query;
 
     try{
-        const response = axios.get(getUser(id));
+        const response = getUser(id);
 
         if (response.data){
            return res.status(200).json({msg: 'Usuario traido con exito', user: response.data});
@@ -36,7 +36,7 @@ const postNewUser = (req, res) => {
         Cuantas mas iteraciones se hagan, mas segura sera la contraseña (mas dificil de desencriptar) pero a su vez se sacrifica rendimiento.
         Un total de 10 iteraciones son las recomendadas  para hashear una password
     */
-    userData.password = bcrypt.hashSync(userData.password, 10);
+    userData.passwordgit = bcrypt.hashSync(userData.password, 10);
     userData.calification = 0;
 
 }
