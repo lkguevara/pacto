@@ -10,4 +10,6 @@ const checkUserExists = async (idUser) => {
     else return false
 }
 
-module.exports = checkUserExist
+
+module.exports = checkUserExists
+
