@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+
 const { createMainCategories } = require("./models/category");
 const DBProductGetCategory = require("./controllers/products/DBProductGetCategory");
+
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/marketplace');
