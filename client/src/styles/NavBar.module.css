@@ -126,6 +126,7 @@
         display: flex;
         margin-bottom: .5rem;
         flex: 1;
+        cursor: pointer;
     }
 }
   

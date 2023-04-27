@@ -2,9 +2,20 @@ import style from '../styles/NavBar.module.css';
 import Image from 'next/image';
 import SearchBar from './searchbar';
 import Link from 'next/link';
+import { useSelector ,useDispatch } from 'react-redux';
+import { openMenu } from '@/redux/features/menu/menuSlice';
 
 
 export default function NavBar(){
+
+    const { isOpen } = useSelector(state => state.menu);
+    const dispatch = useDispatch();
+
+    
+
+    const handlerOpenMenu = () => {
+        dispatch(openMenu()); 
+    };
 
     return (
         <nav className={style.container}>
@@ -12,7 +23,7 @@ export default function NavBar(){
                 <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
             </div>
 
-            <div className={style.menu}>
+            <div className={style.menu} onClick={handlerOpenMenu}>
                 <Image priority src="/image/menu.svg" alt="logo" width="30" height="30" />
             </div>
 
@@ -20,13 +31,16 @@ export default function NavBar(){
                 <div>
                     <SearchBar />
                 </div>
-                <div className={style.links}>
+                    {
+                    !isOpen && 
+                    <div className={style.links}>
                     <button className={style.btn}>Nosotros</button>
                     <button className={style.btn}>Categorias</button>
                     <button className={style.btn}>Ofertas</button>
-                    <button className={style.btn}>Formas de pago</button>
+                    <button className={style.btn}>Vender</button>
                     <button className={style.btn}>¿Necesitas ayuda?</button>
-                </div>
+                    </div>
+                    }
             </div>
 
             <div className={style.user}>
