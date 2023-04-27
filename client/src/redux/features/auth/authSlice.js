@@ -10,9 +10,7 @@ const initialState = {
 }
 
 export const signUpUser = createAsyncThunk('signupuser',async(body)=>{
-   const respuesta =  await axios.post("http://localhost:3000/api/users",body);
-   const data = respuesta.data
-   console.log(data);
+   const respuesta =  await axios.post("http://localhost:3000/api/signup",body);
    return respuesta.data
 })
 
@@ -20,7 +18,7 @@ const authSlice = createSlice({
     name:"auth",
     initialState,
     reducers:{
-
+      
     },
     //reducer async
     extraReducers:{
@@ -42,4 +40,6 @@ const authSlice = createSlice({
     }
 })
 
+
+// export const {addToken,addUser,logout} = authSlice.actions
 export default authSlice.reducer;
