@@ -11,10 +11,6 @@ export default function Home() {
       <Layout title="Home">
         <EnConstruccion />
       </Layout>
-
-
-
-
     </>
   )
 }
