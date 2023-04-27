@@ -43,9 +43,12 @@
     align-self: flex-end;
 }
 
+
+
 .user button {
     border: none;
     background: none;
+    
     
     cursor: pointer;
     transition: .3s ease;
@@ -116,6 +119,7 @@
 
     .user{
         padding-bottom: 0;
+        gap: .5rem;
     }
 
     .navigation{
@@ -128,5 +132,22 @@
         flex: 1;
         cursor: pointer;
     }
+}
+
+@media (max-width: 450px){
+    
+    .red {
+        display: none;
+    }
+
+    .menu{
+        display: flex;
+        margin-bottom: .5rem;
+        margin-left: -20px;
+        flex: 1;
+        cursor: pointer;
+    }
+
+    
 }
   

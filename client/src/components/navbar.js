@@ -44,7 +44,7 @@ export default function NavBar(){
             </div>
 
             <div className={style.user}>
-                <button>
+                <button className={style.red}>
                     <Link href="/login">
                         <Image priority src="/image/user.svg" alt="user" width="35" height="35"/>
                     </Link>
