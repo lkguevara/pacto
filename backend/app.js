@@ -4,9 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+//RUTAS!!!
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products.js');
+
+//CONEXION A LA DB!!!
+const mongoose = require('./database/mongoose');
 
 
 const app = express();
