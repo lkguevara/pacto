@@ -9,7 +9,7 @@ export default function login({title}){
     return (
         <div className= {style.login}>
             <Head>
-                <title>LOGIN {title? `| ${title}` : ""}</title>
+                <title>PACTO | Login</title>
                 <meta name="description" content="PACTO" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/pacto-logo.png" />
