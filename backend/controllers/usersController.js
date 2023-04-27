@@ -52,7 +52,7 @@ const postNewUser = (req, res) => {
         Cuantas mas iteraciones se hagan, mas segura sera la contraseña (mas dificil de desencriptar) pero a su vez se sacrifica rendimiento.
         Un total de 10 iteraciones son las recomendadas  para hashear una password
     */
-    userData.passwordgit = bcrypt.hashSync(userData.password, 10);
+    userData.password = bcrypt.hashSync(userData.password, 10);
     userData.calification = 0;
 
     const newUser = createUser(userData);
