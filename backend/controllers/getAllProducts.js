@@ -16,7 +16,7 @@ const getAllProducts = (req, res) =>{
 
         return res.json({
                 error : err,
-                message :`¡Error al traer los productos!`
+                msg :`¡Error al traer los productos!`
         });
     };
 }
