@@ -1,21 +1,50 @@
-import EnConstruccion from "@/components/enConstruccion"
 import Head from "next/head"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import style from "../styles/Login.module.css"
 
-export default function signup(){
+
+export default function login(){
+
     return (
-        <>
+        <div className= {style.login}>
             <Head>
-                <title>PACTO | Sign Up</title>
+                <title>PACTO | Registro</title>
                 <meta name="description" content="PACTO" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/pacto-logo.png" />
             </Head>
-            <Link href="/">
-                <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
-            </Link>
-            <EnConstruccion/>
-        </>
+
+            <div className= {style.containerLogin}>
+                <div>
+                    <Link href="/">
+                        <Image className= {style.logo} priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                    </Link>
+                    <h3>Crea tu cuenta</h3>
+                    <div className={style.sign}>
+                        <p>¿Ya tienes una cuenta?</p>
+                        <Link href="/login">
+                            <span>Inicia Sesión</span>
+                        </Link>
+                    </div>
+                </div>
+
+                
+                    <form className={style.form__Login}>
+                        <label>Email:</label>
+                        <input type="email" placeholder="Email" />
+
+                        <label>Contraseña:</label>
+                        <input type="password" placeholder="Ingresa tu contraseña" />
+
+                        <label>Contraseña:</label>
+                        <input type="password" placeholder="Repite tu contraseña" />
+
+                        <button>Registrate</button>
+                    </form>
+                
+            </div>
+
+        </div>
     )
 }
