@@ -1,15 +1,16 @@
 //bcrypt es una libreria que se utiliza para encriptar y desencritpar contraseñas o texto
 const bcrypt = require('bcrypt');
 //Aun no existe, esperando para continuar con esta sección
-const {userSave} = require('../database/controllers/userSave');
+const {createUser} = require('../database/controllers/createUser')
 const {checkUserExists} = require('../database/helper/checkUserExists');
 
 
 const getAllUsers = (req, res) => {
 
+    
     try{
 
-        const users = getAllUsers();
+        const users = "Aca va la función de traer todos los usuarios";
 
         if (users){
             return res.status(200).json({msg: 'Usuarios traidos con exito', users: users});
@@ -40,6 +41,8 @@ const getUserById = (req, res) => {
 
 }
 
+
+//Si el nuevo usuario se postea esta funcion retornará al usuario en si, si no retorna false
 const postNewUser = (req, res) => {
 
     const userData = req.body;
@@ -51,6 +54,14 @@ const postNewUser = (req, res) => {
     */
     userData.passwordgit = bcrypt.hashSync(userData.password, 10);
     userData.calification = 0;
+
+    const newUser = createUser(userData);
+
+    if (newUser){
+        return newUser
+    }
+
+    return false;
 
 }
 
