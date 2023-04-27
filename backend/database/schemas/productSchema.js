@@ -4,9 +4,15 @@ const productSchema = new Schema({
     name: String,
     image: String,
     description: String,
-    state: Boolean,
+    state: {
+        type:String,
+        enum: ['Nuevo (en caja original)', 'Como nuevo', 'Muy bueno', 'Bueno', 'Regular', 'Malo', 'Para piezas']
+    },
     price: Number,
-    active: Boolean,
+    active: {
+        type:Boolean,
+        default: true
+    },
     label: String,
     stock: Number,
     user: { type: Schema.Types.ObjectId, ref: "User" },
