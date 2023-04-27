@@ -1,4 +1,17 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import img1 from '@/public/image/products/p1_1.jpg';
+import img2 from '@/public/image/products/p1_2.jpg';
+import img3 from '@/public/image/products/p1_3.jpg';
+import img4 from '@/public/image/products/p1_4.jpg';
+import img5 from '@/public/image/products/p2_1.jpg';
+import img6 from '@/public/image/products/p2_2.jpg';
+import img7 from '@/public/image/products/p2_3.jpg';
+import img8 from '@/public/image/products/p2_4.jpg';
+import img9 from '@/public/image/products/p3_1.jpg';
+import img10 from '@/public/image/products/p3_2.jpg';
+import img11 from '@/public/image/products/p3_3.jpg';
+import img12 from '@/public/image/products/p3_4.jpg';
+
 
 export default function handler(req, res) {
   res.status(200).json(
@@ -9,10 +22,7 @@ export default function handler(req, res) {
           "id": 1,
           "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
           "images": [
-            "https://i.ebayimg.com/images/g/MQcAAOSwA91iMGOB/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/eWoAAOSw99ViMGOC/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/ut4AAOSwjK9jK27S/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/9QYAAOSwvqNiMGOJ/s-l1600.jpg"
+            img1,img2,img3,img4
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -30,10 +40,7 @@ export default function handler(req, res) {
           "id": 2,
           "name": "Smartphone Samsung Galaxy Ace 3 Blanco 4GB Desbloqueado Android Pantalla Táctil 1GB RAM",
           "images": [
-            "https://i.ebayimg.com/images/g/L6AAAOSwVGdhSY5K/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/SLMAAOSwcrlhSY5P/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/rkoAAOSwbChhSY5W/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/QgMAAOSwSaFhSY5b/s-l1600.jpg"
+            img5,img6,img7,img8
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -51,10 +58,7 @@ export default function handler(req, res) {
           "id": 3,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
-            "https://i.ebayimg.com/images/g/L8YAAOSwaIJkHD3q/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/JgoAAOSwzmJkHD3s/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/ljUAAOSw9XtkHD3v/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/8EQAAOSwVr9kHD3y/s-l1600.jpg"
+            img9,img10,img11,img12
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -72,10 +76,7 @@ export default function handler(req, res) {
           "id": 4,
           "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
           "images": [
-            "https://i.ebayimg.com/images/g/MQcAAOSwA91iMGOB/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/eWoAAOSw99ViMGOC/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/ut4AAOSwjK9jK27S/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/9QYAAOSwvqNiMGOJ/s-l1600.jpg"
+            img1,img2,img3,img4
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -93,10 +94,7 @@ export default function handler(req, res) {
           "id": 5,
           "name": "Smartphone Samsung Galaxy Ace 3 Blanco 4GB Desbloqueado Android Pantalla Táctil 1GB RAM",
           "images": [
-            "https://i.ebayimg.com/images/g/L6AAAOSwVGdhSY5K/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/SLMAAOSwcrlhSY5P/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/rkoAAOSwbChhSY5W/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/QgMAAOSwSaFhSY5b/s-l1600.jpg"
+            img5,img6,img7,img8
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -114,10 +112,7 @@ export default function handler(req, res) {
           "id": 6,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
-            "https://i.ebayimg.com/images/g/L8YAAOSwaIJkHD3q/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/JgoAAOSwzmJkHD3s/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/ljUAAOSw9XtkHD3v/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/8EQAAOSwVr9kHD3y/s-l1600.jpg"
+            img9,img10,img11,img12
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -132,13 +127,10 @@ export default function handler(req, res) {
           "reviews": null
         },
         {
-          "id": 6,
+          "id": 7,
           "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
           "images": [
-            "https://i.ebayimg.com/images/g/MQcAAOSwA91iMGOB/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/eWoAAOSw99ViMGOC/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/ut4AAOSwjK9jK27S/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/9QYAAOSwvqNiMGOJ/s-l1600.jpg"
+            img1,img2,img3,img4
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -156,10 +148,7 @@ export default function handler(req, res) {
           "id": 8,
           "name": "Smartphone Samsung Galaxy Ace 3 Blanco 4GB Desbloqueado Android Pantalla Táctil 1GB RAM",
           "images": [
-            "https://i.ebayimg.com/images/g/L6AAAOSwVGdhSY5K/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/SLMAAOSwcrlhSY5P/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/rkoAAOSwbChhSY5W/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/QgMAAOSwSaFhSY5b/s-l1600.jpg"
+            img5,img6,img7,img8
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -177,10 +166,7 @@ export default function handler(req, res) {
           "id": 9,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
-            "https://i.ebayimg.com/images/g/L8YAAOSwaIJkHD3q/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/JgoAAOSwzmJkHD3s/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/ljUAAOSw9XtkHD3v/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/8EQAAOSwVr9kHD3y/s-l1600.jpg"
+            img9,img10,img11,img12
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -198,10 +184,7 @@ export default function handler(req, res) {
           "id": 10,
           "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
           "images": [
-            "https://i.ebayimg.com/images/g/MQcAAOSwA91iMGOB/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/eWoAAOSw99ViMGOC/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/ut4AAOSwjK9jK27S/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/9QYAAOSwvqNiMGOJ/s-l1600.jpg"
+            img1,img2,img3,img4
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -219,10 +202,7 @@ export default function handler(req, res) {
           "id": 11,
           "name": "Smartphone Samsung Galaxy Ace 3 Blanco 4GB Desbloqueado Android Pantalla Táctil 1GB RAM",
           "images": [
-            "https://i.ebayimg.com/images/g/L6AAAOSwVGdhSY5K/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/SLMAAOSwcrlhSY5P/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/rkoAAOSwbChhSY5W/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/QgMAAOSwSaFhSY5b/s-l1600.jpg"
+            img5,img6,img7,img8
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -240,10 +220,7 @@ export default function handler(req, res) {
           "id": 12,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
-            "https://i.ebayimg.com/images/g/L8YAAOSwaIJkHD3q/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/JgoAAOSwzmJkHD3s/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/ljUAAOSw9XtkHD3v/s-l1600.jpg",
-            "https://i.ebayimg.com/images/g/8EQAAOSwVr9kHD3y/s-l1600.jpg"
+            img9,img10,img11,img12
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
