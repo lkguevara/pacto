@@ -2,9 +2,39 @@ import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
 import style from "../styles/Login.module.css"
-
+import { useState   } from "react"
+import { useDispatch } from "react-redux"
+import { signUpUser } from "@/redux/features/auth/authSlice"
 
 export default function login(){
+    const dispatch = useDispatch()
+    const [signUp,setSignup] = useState({
+        email:'',
+        password:'',
+        confirmarPass:''
+
+    });
+
+    const handleChange = (event)=>{
+        const {name, value} = event.target;
+        setSignup({
+            ...signUp,
+            [name]:value
+        })
+    }
+
+    const handleSubmit = (event)=>{
+        event.preventDefault();
+        setSignup({
+            ...signUp,
+            email:'',
+            password:'',
+            confirmarPass:''
+        })
+        dispatch(signUpUser(signUp))
+    }
+
+
 
     return (
         <div className= {style.login}>
@@ -30,17 +60,17 @@ export default function login(){
                 </div>
 
                 
-                    <form className={style.form__Login}>
+                    <form className={style.form__Login} onSubmit={handleSubmit}>
                         <label>Email:</label>
-                        <input type="email" placeholder="Email" />
+                        <input value={signUp.email} name={"email"} type="email" placeholder="Email" onChange={(e)=> handleChange(e)}/>
 
                         <label>Contraseña:</label>
-                        <input type="password" placeholder="Ingresa tu contraseña" />
+                        <input value={signUp.password} name={"password"} type="password" placeholder="Ingresa tu contraseña" onChange={(e)=> handleChange(e)}/>
 
                         <label>Contraseña:</label>
-                        <input type="password" placeholder="Repite tu contraseña" />
+                        <input value={signUp.confirmarPass} name={"confirmarPass"} type="password" placeholder="Repite tu contraseña" onChange={(e)=> handleChange(e)}/>
 
-                        <button>Registrate</button>
+                        <button type="submit">Registrate</button>
                     </form>
                 
             </div>
