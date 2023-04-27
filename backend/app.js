@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
-
+//All routes of the users!!!
 app.use(usersRouter);
 
 
