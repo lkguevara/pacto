@@ -4,12 +4,12 @@ import Image from "next/image"
 import style from "../styles/Login.module.css"
 
 
-export default function forgotpass(){
+export default function changepassword(){
 
     return (
         <div className= {style.login}>
             <Head>
-                <title>PACTO | Recuperar Contraseña</title>
+                <title>PACTO | Cambio de contraseña</title>
                 <meta name="description" content="PACTO" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/pacto-logo.png" />
@@ -20,8 +20,7 @@ export default function forgotpass(){
                     <Link href="/">
                         <Image className= {style.logo} priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
                     </Link>
-                    <h3>Recuperar contraseña</h3>
-                    <p>Recibirás enlace de confirmación para el respectivo cambio</p>
+                    <h3>Cambiar tu contraseña</h3>
                     <div className={style.sign}>
                         <p>¿Ya tienes una cuenta?</p>
                         <Link href="/login">
@@ -35,7 +34,13 @@ export default function forgotpass(){
                         <label>Email:</label>
                         <input type="email" placeholder="Email" />
 
-                        <button>Enviar</button>
+                        <label>Contraseña:</label>
+                        <input type="password" placeholder="Ingresa tu contraseña" />
+
+                        <label>Contraseña:</label>
+                        <input type="password" placeholder="Repite tu contraseña" />
+
+                        <button>Cambiar contraseña</button>
                     </form>
                 
             </div>
