@@ -1,9 +1,10 @@
-const {getProductsAll} = require('../database/controllers/productsGet.js')
+const getProductsAll = require('../database/controllers/productsGet.js')
 
-const getAllProducts = (req, res) =>{
+const getAllProducts = async (req, res) =>{
   
     try{ 
-       const products = getProductsAll();
+        
+       const products =  await getProductsAll();
 
        if (products){
         return res.status(200).json(products);
@@ -15,8 +16,10 @@ const getAllProducts = (req, res) =>{
         res.status(500);
 
         return res.json({
-                error : err,
-                message :`¡Error al traer los productos!`
+                error : err.message,
+                msg :`¡Error al traer los productos!`
         });
     };
 }
+
+module.exports = {getAllProducts}

@@ -7,8 +7,8 @@ router.get('/users', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-// GET user by ID
-router.get('/user', (req, res) => {getAllUsers(req, res)})
+// GET all users
+router.get('/users', (req, res) => {getAllUsers(req, res)})
 
 // POST new user
 router.post('/user', (req, res) => {postNewUser(req, res)})
