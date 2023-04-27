@@ -4,12 +4,12 @@ import Image from "next/image"
 import style from "../styles/Login.module.css"
 
 
-export default function login(){
+export default function forgotpass(){
 
     return (
         <div className= {style.login}>
             <Head>
-                <title>PACTO | Login</title>
+                <title>PACTO | Recuperar Contraseña</title>
                 <meta name="description" content="PACTO" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/pacto-logo.png" />
@@ -20,11 +20,12 @@ export default function login(){
                     <Link href="/">
                         <Image className= {style.logo} priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
                     </Link>
-                    <h3>¡Hola! Para seguir, ingresa tu email y contraseña</h3>
+                    <h3>Recuperar contraseña</h3>
+                    <p>Recibirás enlace de confirmación para el respectivo cambio</p>
                     <div className={style.sign}>
-                        <p>¿Nuevo usuario?</p>
-                        <Link href="/signup">
-                            <span>Registrate</span>
+                        <p>¿Ya tienes una cuenta?</p>
+                        <Link href="/login">
+                            <span>Inicia Sesión</span>
                         </Link>
                     </div>
                 </div>
@@ -34,15 +35,9 @@ export default function login(){
                         <label>Email:</label>
                         <input type="email" placeholder="Email" />
 
-                        <label>Contraseña:</label>
-                        <input type="password" placeholder="Contraseña" />
-
-                        <button>Iniciar Sesión</button>
+                        <button>Enviar</button>
                     </form>
-                    <Link href="/forgotpass">
-                        <span className={style.forgetPass}>¿Olvidaste tu contraseña?</span>
-                    </Link>
-              
+                
             </div>
 
         </div>
