@@ -4,7 +4,7 @@ import Image from "next/image"
 import style from "../styles/Login.module.css"
 
 
-export default function login({title}){
+export default function login(){
 
     return (
         <div className= {style.login}>
