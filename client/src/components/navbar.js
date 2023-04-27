@@ -1,6 +1,7 @@
 import style from '../styles/NavBar.module.css';
 import Image from 'next/image';
 import SearchBar from './searchbar';
+import Link from 'next/link';
 
 
 export default function NavBar(){
@@ -25,7 +26,9 @@ export default function NavBar(){
 
             <div className={style.user}>
                 <button>
-                    <Image priority src="/image/user.svg" alt="user" width="30" height="30"/>
+                    <Link href="/login">
+                        <Image priority src="/image/user.svg" alt="user" width="30" height="30"/>
+                    </Link>
                 </button>
                 <button>
                     <Image priority src="/image/cart.svg" alt="cart" width="30" height="30"/>
