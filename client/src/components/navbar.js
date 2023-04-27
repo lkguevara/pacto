@@ -24,7 +24,7 @@ export default function NavBar(){
                     <button className={style.btn}>Nosotros</button>
                     <button className={style.btn}>Categorias</button>
                     <button className={style.btn}>Ofertas</button>
-                    <button className={style.btn}>Formas de pago</button>
+                    <button className={style.btn}>Vender</button>
                     <button className={style.btn}>¿Necesitas ayuda?</button>
                 </div>
             </div>
