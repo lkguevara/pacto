@@ -8,13 +8,13 @@ const productSchema = new Schema({
         type:String,
         enum: ['Nuevo (en caja original)', 'Como nuevo', 'Muy bueno', 'Bueno', 'Regular', 'Malo', 'Para piezas']
     },
-    price: Float64Array,
+    price: Number,
     active: {
         type:Boolean,
         default: true
     },
     label: String,
-    stock: Float64Array,
+    stock: Number,
     user: { type: Schema.Types.ObjectId, ref: "User" },
     //send: { type: Schema.Types.ObjectId, ref: "Send" },
     //category: { type: Schema.Types.ObjectId, ref: "Category" },

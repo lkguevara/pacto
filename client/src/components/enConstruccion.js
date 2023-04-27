@@ -7,7 +7,7 @@ const EnConstruccion = () => {
         <div className={styles.container}>
             <h1>Página en Construcción</h1>
             <div className={styles.imgContainer}>
-            <Image src={ilustracion} alt=""/>
+            <Image priority src={ilustracion} alt="construction"/>
             </div>
         </div>
     )
