@@ -1,9 +1,22 @@
 const mongoose = require('mongoose')
 
 const userSchema = mongoose.Schema({
-    name: String,
-    calification: Number,
-    email: String,
+    id: mongoose.Schema.Types.ObjectId,
+    name:
+    {
+        type: String,
+        required: true
+    },
+    calification: {
+        type: Number,
+        cont: Number,
+    },
+    email:
+    {
+        type: String,
+        unique: true,
+        required: true,
+    },
     state: Boolean,
     phone: Number,
     password: String,
@@ -11,15 +24,11 @@ const userSchema = mongoose.Schema({
     //reviewReceived: { type: Schema.Types.ObjectId, ref: "Review" },
     //reviewPost: { type: Schema.Types.ObjectId, ref: "Review" },
     //questions: { type: Schema.Types.ObjectId, ref: "Question" },
-    products: { type: Schema.Types.ObjectId, ref: "Product" },
+    products: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
     //wallet: { type: Schema.Types.ObjectId, ref: "Wallet" }
 
 })
 
-const User = mongoose.model("User", userSchema);
 
-module.exports = {
-    userSchema,
-    User
-}
+module.exports = userSchema
 

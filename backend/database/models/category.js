@@ -9,7 +9,8 @@ const Category = mongoose.model("Category", mainCategorySchema)
 const createMainCategories = async () => {
 
     const stateCategories = await Category.find()
-    if (stateCategories != null) return
+
+    if (stateCategories.length != 0) return
 
     const Audio = new Category({
         name: "Audio",
@@ -215,3 +216,4 @@ const createMainCategories = async () => {
 
 }
 
+module.exports = createMainCategories
