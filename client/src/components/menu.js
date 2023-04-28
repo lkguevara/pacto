@@ -2,6 +2,7 @@ import style from '../styles/Menu.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { openMenu } from '@/redux/features/menu/menuSlice';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 export default function Menu(){
