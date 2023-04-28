@@ -4,6 +4,7 @@ const {getAllProducts} = require('../controllers/product/APIgetAllProducts')
 const {getProductById} = require('../controllers/product/APIgetProductById');
 const {deleteProductById} = require('../controllers/product/APIdeleteProduct');
 const {postNewProduct} = require('../controllers/product/APIpostNewProduct');
+const getProductByName = require('../controllers/product/APIgetProductByName');
 
 // GET all products
 router.get('/products', (req, res, next) => getAllProducts(req, res))
@@ -17,6 +18,8 @@ router.delete('/product', (req, res, next) => deleteProductById(req, res))
 // POST new user
 router.post('/product', (req, res) => postNewProduct(req, res))
 
+//GET Product by name
+router.get('/product', (req, res, next) => getProductByName(req, res));
 
 
 module.exports = router;
