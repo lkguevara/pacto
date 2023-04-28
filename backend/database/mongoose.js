@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const { createMainCategories } = require("./models/category");
-const DBProductGetCategory = require("./controllers/products/DBProductGetCategory");
+const DBProductGetCategory = require("./controllers/products/productGet/DBProductGetCategory");
 
 
 
