@@ -1,4 +1,4 @@
-const getProductsAll = require('../../database/controllers/DBProductsGet.js')
+const getProductsAll = require('../../database/controllers/products/productGet/DBProductsGet')
 
 const getAllProducts = async (req, res) =>{
   

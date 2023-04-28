@@ -1,11 +1,11 @@
 const DBCategoryGetAll = require("../../database/controllers/products/categoriesGet/DBCategoryGetAll");
 
-const getAllCategorys = async (req, res) => {
+const getAllCategories = async (req, res) => {
   try {
-    const categorys = await DBCategoryGetAll();
+    const categories = await DBCategoryGetAll();
 
-    if (categorys) {
-      return res.status(200).json(categorys);
+    if (categories) {
+      return res.status(200).json(categories);
     }
 
     return res.status(404).json({ msg: "Error 404, not found" });
@@ -17,4 +17,4 @@ const getAllCategorys = async (req, res) => {
   }
 };
 
-module.exports = getAllCategorys;
+module.exports = getAllCategories;

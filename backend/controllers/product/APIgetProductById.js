@@ -1,11 +1,11 @@
-const getProductId = require('../../database/controllers/DBProductGetId');
+const DBProductGetId = require('../../database/controllers/products/productGet/DBProductGetId');
 
 const getProductById = async (req, res) => {
     try{
         const id = req.query.id;
 
         if (id){
-            const product = await getProductId(id);
+            const product = await DBProductGetId (id);
 
             return res.status(200).json(product);
         }

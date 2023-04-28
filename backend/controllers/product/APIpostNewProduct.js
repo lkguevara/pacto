@@ -1,4 +1,4 @@
-const productSave = require('../../database/controllers/DBProductSave');
+const productSave = require('../../database/controllers/products/productPost/DBProductSave');
 const checkUserExists = require('../../database/helper/DBcheckUserExists');
 
 const postNewProduct = async (req, res) => {
