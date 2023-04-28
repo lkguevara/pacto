@@ -56,7 +56,7 @@ export default function SearchBar() {
         type="text"
         name="text"
         className={style.input}
-        placeholder="Buscar produtos, marcas y más..."
+        placeholder="Buscar productos, marcas y más..."
       />
       <button onClick={handleSubmit} className={style.search__btn}>
         <svg

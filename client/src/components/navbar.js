@@ -20,7 +20,9 @@ export default function NavBar(){
     return (
         <nav className={style.container}>
             <div className={style.logo}>
-                <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                <Link href={"/"}>
+                    <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                </Link>
             </div>
 
             <div className={style.menu} onClick={handlerOpenMenu}>
@@ -34,13 +36,21 @@ export default function NavBar(){
                     {
                     !isOpen && 
                     <div className={style.links}>
-                    <button className={style.btn}>Nosotros</button>
-                    <button className={style.btn}>Categorias</button>
-                    <button className={style.btn}>Ofertas</button>
-                    <Link href="/sellProduct">
-                        <button className={style.btn}>Vender</button>
-                    </Link>
-                    <button className={style.btn}>¿Necesitas ayuda?</button>
+                        <Link href="/nosotros">
+                            <button className={style.btn}>Nosotros</button>
+                        </Link>
+                        <Link href="/categorias">
+                            <button className={style.btn}>Categorias</button>
+                        </Link>
+                        <Link href="/ofertas">
+                            <button className={style.btn}>Ofertas</button>
+                        </Link>
+                        <Link href="/sellProduct">
+                            <button className={style.btn}>Vender</button>
+                        </Link>
+                        <Link href="/faqs">
+                            <button className={style.btn}>¿Necesitas ayuda?</button>
+                        </Link>
                     </div>
                     }
             </div>
@@ -52,7 +62,9 @@ export default function NavBar(){
                     </Link>
                 </button>
                 <button>
-                    <Image priority src="/image/cart.svg" alt="cart" width="35" height="35"/>
+                    <Link href="/cart">
+                        <Image priority src="/image/cart.svg" alt="cart" width="35" height="35"/>
+                    </Link>
                 </button>
             </div>
 
