@@ -4,11 +4,13 @@ import { useSelector,useDispatch } from "react-redux";
 import { filterProducts } from "@/redux/features/products/productsSlice";
 import { filterName } from "./filters/filterName";
 import { filterCategory } from "./filters/filterCategory";
+import { useRouter } from "next/router";
 
 export default function SearchBar() {
   const products = useSelector((state) => state.products);
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+
 
 
   const dispatch = useDispatch()
@@ -35,15 +37,15 @@ export default function SearchBar() {
 
   const handleSubmit = (event) => {
     event.preventDefault;
-   dispatch(filterProducts((filterName(products.copyItems, input))))
+    dispatch(filterProducts((filterName(products.copyItems, input))))
   };
-
+  
+  const router = useRouter()
   const handleClick = (category)=>{
 
    dispatch(filterProducts((filterCategory(products.copyItems,category))))
-
+   router.push('/productos')
   }
-
 
   return (
     <div className={style.container}>
