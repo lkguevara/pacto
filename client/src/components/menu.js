@@ -24,7 +24,9 @@ export default function Menu(){
                     <button className={style.btn}>Nosotros {'>'}</button>
                     <button className={style.btn}>Categorias {'>'}</button>
                     <button className={style.btn}>Ofertas {'>'}</button>
-                    <button className={style.btn}>Vender {'>'}</button>
+                    <Link href="/sellProduct">
+                        <button className={style.btn}>Vender {'>'}</button>
+                    </Link>
                     <button className={style.btn}>¿Necesitas ayuda? {'>'}</button>
             </div>
             <div className={style.logo}>
