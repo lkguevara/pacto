@@ -18,7 +18,7 @@ const ProductoCard = ({ producto = hardProduct }) => {
                 </div>
                 <p>{`$ ${producto.price}`}</p>
                 {/* HARDCODEO DE LINK PARA EL BORRADOR INICIAL */}
-                <Link href={"/"} className={styles.link}>
+                <Link href={`productos/${producto.id}`} className={styles.link}>
                     Ver Producto
                 </Link>
             </div>
