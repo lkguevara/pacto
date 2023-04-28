@@ -22,13 +22,21 @@ export default function Menu(){
             <button className={style.close} onClick={handlerOpenMenu}>Close</button>
 
             <div className={style.links}>
-                    <button className={style.btn}>Nosotros {'>'}</button>
-                    <button className={style.btn}>Categorias {'>'}</button>
-                    <button className={style.btn}>Ofertas {'>'}</button>
+                    <Link href="/nosotros">
+                        <button className={style.btn}>Nosotros {'>'}</button>
+                    </Link>
+                    <Link href="/categorias">
+                        <button className={style.btn}>Categorias {'>'}</button>
+                    </Link>
+                    <Link href="/ofertas">
+                        <button className={style.btn}>Ofertas {'>'}</button>
+                    </Link>
                     <Link href="/sellProduct">
                         <button className={style.btn}>Vender {'>'}</button>
                     </Link>
-                    <button className={style.btn}>¿Necesitas ayuda? {'>'}</button>
+                    <Link href="/faqs">
+                        <button className={style.btn}>¿Necesitas ayuda? {'>'}</button>
+                    </Link>
             </div>
             <div className={style.logo}>
                 <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
