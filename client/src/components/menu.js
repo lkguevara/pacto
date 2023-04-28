@@ -2,6 +2,7 @@ import style from '../styles/Menu.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { openMenu } from '@/redux/features/menu/menuSlice';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 export default function Menu(){
@@ -24,7 +25,9 @@ export default function Menu(){
                     <button className={style.btn}>Nosotros {'>'}</button>
                     <button className={style.btn}>Categorias {'>'}</button>
                     <button className={style.btn}>Ofertas {'>'}</button>
-                    <button className={style.btn}>Vender {'>'}</button>
+                    <Link href="/sellProduct">
+                        <button className={style.btn}>Vender {'>'}</button>
+                    </Link>
                     <button className={style.btn}>¿Necesitas ayuda? {'>'}</button>
             </div>
             <div className={style.logo}>

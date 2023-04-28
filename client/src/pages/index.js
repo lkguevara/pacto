@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addProducts } from "@/redux/features/products/productsSlice";
+import Boletin from '@/components/boletin';
 
 
 
@@ -27,6 +28,7 @@ export default function Home() {
       <Layout title="Home">
         <Slider />
         <Destacados />
+        <Boletin />
       </Layout>
     </>
   )
