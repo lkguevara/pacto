@@ -1,5 +1,6 @@
 import styles from "../styles/Destacados.module.css";
 import Image from "next/image";
+import Link from "next/link";
 import DestacadoCard from '@/components/destacadoCard';
 
 // HARD CODEO EL PRODUCTO PARA PROBAR EL COMPONENTE
@@ -31,7 +32,9 @@ const Destacados = () => {
     return (
         <div className={styles.container}>
             <h2>Destacados</h2>
-            <button className={styles.verTodosButton}>Ver todos</button>
+            <Link href="/productos">
+                <button className={styles.verTodosButton}>Ver todos</button>
+            </Link>
             <div className={styles.cardsContainer}>
                 <DestacadoCard producto={producto} />
                 <DestacadoCard producto={producto} />
