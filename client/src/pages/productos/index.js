@@ -12,11 +12,11 @@ export default function Productos() {
   const state = useSelector(state => state.products.items);
   console.log(state);
  
- useEffect(()=>{
-     fetch("http://localhost:3000/api/items")
-     .then(response => response.json())
-     .then(data=> dispatch(addProducts(data.products)))
- },[])
+//  useEffect(()=>{
+//      fetch("http://localhost:3000/api/items")
+//      .then(response => response.json())
+//      .then(data=> dispatch(addProducts(data.products)))
+//  },[])
   // LÓGICA DEL COMPONENTE
   // Se obtienen los productos del store
   // const productos = useSelector((state) => state.productos);
