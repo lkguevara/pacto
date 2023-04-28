@@ -53,8 +53,8 @@
 
 
   .suggestions {
-    position: fixed; /* Usamos position: fixed en lugar de absolute */
-    top: 55px; /* Ajustamos la posición en la página */
+    position: absolute; 
+    top: 55px; 
     z-index: 1;
     width:  377px;
     max-height: 100%;
