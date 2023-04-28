@@ -10,7 +10,7 @@ export default function handler(req, res) {
           "id": 1,
           "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -28,7 +28,7 @@ export default function handler(req, res) {
           "id": 2,
           "name": "Smartphone Samsung Galaxy Ace 3 Blanco 4GB Desbloqueado Android Pantalla Táctil 1GB RAM",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -46,7 +46,7 @@ export default function handler(req, res) {
           "id": 3,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -64,7 +64,7 @@ export default function handler(req, res) {
           "id": 4,
           "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -82,7 +82,7 @@ export default function handler(req, res) {
           "id": 5,
           "name": "Smartphone Samsung Galaxy Ace 3 Blanco 4GB Desbloqueado Android Pantalla Táctil 1GB RAM",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -100,7 +100,7 @@ export default function handler(req, res) {
           "id": 6,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -118,7 +118,7 @@ export default function handler(req, res) {
           "id": 7,
           "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -136,7 +136,7 @@ export default function handler(req, res) {
           "id": 8,
           "name": "Smartphone Samsung Galaxy Ace 3 Blanco 4GB Desbloqueado Android Pantalla Táctil 1GB RAM",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -154,7 +154,7 @@ export default function handler(req, res) {
           "id": 9,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -172,7 +172,7 @@ export default function handler(req, res) {
           "id": 10,
           "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p1_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -190,7 +190,7 @@ export default function handler(req, res) {
           "id": 11,
           "name": "Smartphone Samsung Galaxy Ace 3 Blanco 4GB Desbloqueado Android Pantalla Táctil 1GB RAM",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p2_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -208,7 +208,7 @@ export default function handler(req, res) {
           "id": 12,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
-            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg","https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+            "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
@@ -222,9 +222,37 @@ export default function handler(req, res) {
           "questions": null,
           "reviews": null
         },
-        
+
       ]
     }
   )
   // Agregar Productos
+
+  //Computación = 3
+  //Portátiles y accesorios
+  //Otros
+
+  //Consolas y videojuegos = 1
+  //Videojuegos
+
+  //Video = 1
+  //Otros
+
+  //Belleza y cuidado personal = 2
+  //Otros
+
+  //Instrumentos musicales = 1
+  //Instrumentos de cuerda
+
+  //Celulares y telefonos = 2
+  //"Smartwatches y accesorios"
+  //Otros
+
+  // IDS USERS A USAR PARA CARGAR PRODUCTOS
+
+  //Fito Paez = 644c29a4aaff7bf57c2a0a06
+  // Julian Alvarez =644c29a4aaff7bf57c2a0a07
+  //Charly Garcia = 644c29a4aaff7bf57c2a0a08
+  // Carlos Gardel = 644c29a4aaff7bf57c2a0a09
+  //Lionel Messi = 644c29a4aaff7bf57c2a0a0a
 }

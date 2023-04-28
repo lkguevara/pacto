@@ -1,0 +1,153 @@
+{
+  "products": [
+    {
+      "name": "Smartwatch Apple Watch Series 7 44mm GPS - Aluminio Azul Eléctrico",
+      "images": [
+        "https://picsum.photos/id/1019/300/200",
+        "https://picsum.photos/id/1020/300/200",
+        "https://picsum.photos/id/1021/300/200"
+      ],
+      "description": "El Apple Watch Series 7 con pantalla más grande y resistencia mejorada.",
+      "state": "Nuevo (en caja original)",
+      "price": 400000,
+      "active": true,
+      "Brand": "Apple",
+      "stock": 10,
+      "category": "Celulares y Telefonos",
+      "subcategory": "Smartwatches y accesorios"
+    },
+    {
+      "name": "TV LG OLED CX 55'' 4K Ultra HD Smart TV",
+      "images": [
+        "https://picsum.photos/id/1022/300/200"
+      ],
+      "description": "Televisor OLED de LG, con un panel 4K Ultra HD de 55 pulgadas y la tecnología Smart TV.",
+      "state": "Nuevo (en caja original)",
+      "price": 4200000,
+      "active": true,
+      "Brand": "LG",
+      "stock": 5,
+      "category": "Video",
+      "subcategory": "Otros"
+    },
+    {
+      "name": "Consola PlayStation 5 1TB Disco Duro",
+      "images": [
+        "https://picsum.photos/id/1023/300/200"
+      ],
+      "description": "La última consola de Sony con un disco duro de 1TB, una CPU AMD Zen 2 y una GPU AMD RDNA 2.",
+      "state": "Nuevo (en caja original)",
+      "price": 3500000,
+      "active": true,
+      "Brand": "Sony",
+      "stock": 3,
+      "category": "Consolas y videojuegos",
+      "subcategory": "Videojuegos"
+    },
+    {
+      "name": "MacBook Pro 13'' M1 Chip 8 Core 8GB RAM 256GB SSD",
+      "images": [
+        "https://picsum.photos/id/1024/300/200"
+      ],
+      "description": "La MacBook Pro 13'' con el procesador M1 de Apple, 8 núcleos de CPU, 8GB de RAM y 256GB de almacenamiento SSD.",
+      "state": "Nuevo (en caja original)",
+      "price": 3500000,
+      "active": true,
+      "Brand": "Apple",
+      "stock": 7,
+      "category": "Computación",
+      "subcategory": "Portátiles y accesorios"
+    },
+    {
+      "name": "Reloj Casio G-Shock Resistente al Agua",
+      "images": [
+        "https://picsum.photos/id/1025/400/300",
+        "https://picsum.photos/id/1035/400/300"
+      ],
+      "description": "Este reloj de la marca Casio es resistente al agua hasta 200 metros de profundidad. Además, cuenta con varias funciones como cronómetro, alarma y hora mundial.",
+      "state": "Nuevo (en caja original)",
+      "price": 500000,
+      "active": true,
+      "Brand": "Casio",
+      "stock": 10,
+      "category": "Celulares y Telefonos",
+      "subcategory": "Otros"
+    },
+    {
+      "name": "Guitarra Eléctrica Gibson Les Paul",
+      "images": [
+        "https://picsum.photos/id/1068/400/300"
+      ],
+      "description": "Esta guitarra eléctrica de la marca Gibson es el modelo Les Paul. Cuenta con pastillas humbucker y un cuerpo de caoba. Viene con un estuche rígido.",
+      "state": "Como nuevo",
+      "price": 2000000,
+      "active": true,
+      "Brand": "Gibson",
+      "stock": 5,
+      "category": "Instrumentos musicales",
+      "subcategory": "Instrumentos de cuerda"
+    },
+    {
+      "name": "Silla Ergonómica para Oficina",
+      "images": [
+        "https://picsum.photos/id/1070/400/300",
+        "https://picsum.photos/id/1071/400/300"
+      ],
+      "description": "Esta silla ergonómica es perfecta para usar en la oficina. Tiene ajuste de altura, respaldo reclinable y apoyabrazos ajustables. Además, su diseño moderno la hace lucir muy elegante.",
+      "state": "Bueno",
+      "price": 400000,
+      "active": true,
+      "Brand": "DxRacer",
+      "stock": 20,
+      "category": "Computación",
+      "subcategory": "Otros"
+    },
+    {
+      "name": "Camiseta Adidas Originals",
+      "images": [
+        "https://picsum.photos/id/1041/500/500",
+        "https://picsum.photos/id/1042/500/500",
+        "https://picsum.photos/id/1043/500/500",
+        "https://picsum.photos/id/1044/500/500"
+      ],
+      "description": "Camiseta Adidas Originals de color negro y diseño clásico, hecha con materiales de alta calidad para garantizar durabilidad y comodidad.",
+      "state": "Nuevo (en caja original)",
+      "price": 45000,
+      "active": true,
+      "Brand": "Adidas",
+      "stock": 20,
+      "category": "Belleza y cuidado personal",
+      "subcategory": "Otros"
+    },
+    {
+      "name": "Laptop Dell Inspiron 15",
+      "images": [
+        "https://picsum.photos/id/1018/500/500"
+      ],
+      "description": "Laptop Dell Inspiron 15 con procesador Intel Core i5, 8GB de RAM y disco duro de 512GB. Perfecta para trabajos de oficina y uso personal.",
+      "state": "Nuevo (en caja original)",
+      "price": 1200000,
+      "active": true,
+      "Brand": "Dell",
+      "stock": 5,
+      "category": "Computación",
+      "subcategory": "Portátiles y accesorios"
+    },
+    {
+      "name": "Zapatos Puma RS-2K",
+      "images": [
+        "https://picsum.photos/id/1051/500/500",
+        "https://picsum.photos/id/1052/500/500",
+        "https://picsum.photos/id/1053/500/500"
+      ],
+      "description": "Zapatos Puma RS-2K de color gris y diseño deportivo, con suela de goma antideslizante y materiales resistentes para mayor durabilidad.",
+      "state": "Nuevo (en caja original)",
+      "price": 99000,
+      "active": true,
+      "Brand": "Puma",
+      "stock": 10,
+      "category": "Belleza y cuidado personal",
+      "subcategory": "Otros"
+    }
+  ]
+}
