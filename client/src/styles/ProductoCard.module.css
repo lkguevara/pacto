@@ -4,9 +4,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 230px;
   height: 100%;
-  max-height: 400px;
+  max-height: 330px;
   margin: 1.5rem;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
@@ -20,8 +20,8 @@
   justify-content: center;
   align-items: center;
   /* width: 100%; */
-  width: 250px; /*Cambiar a min-width*/
-  height: 266px; /*Cambiar a min-height*/
+  width: 200px; /*Cambiar a min-width*/
+  height: 200px; /*Cambiar a min-height*/
   overflow: hidden;
   border-radius: 12.5px;
   filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.25));
@@ -40,7 +40,7 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  max-width: 250px;
+  max-width: 200px;
   max-height: 110px;
   border-radius: 5px;
   background-color: white;
