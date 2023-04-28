@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addProducts } from "@/redux/features/products/productsSlice";
 import Boletin from '@/components/boletin';
+import Rewiews from '@/components/rewiews';
 
 
 
@@ -29,6 +30,7 @@ export default function Home() {
         <Slider />
         <Destacados />
         <Boletin />
+        <Rewiews/>
       </Layout>
     </>
   )
