@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     },
     calification: {
         type: Number,
-        cont: Number,
+        // cont: Number,
     },
     email:
     {
@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
     //reviewReceived: { type: Schema.Types.ObjectId, ref: "Review" },
     //reviewPost: { type: Schema.Types.ObjectId, ref: "Review" },
     //questions: { type: Schema.Types.ObjectId, ref: "Question" },
-    products: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
     //wallet: { type: Schema.Types.ObjectId, ref: "Wallet" }
 
 })
