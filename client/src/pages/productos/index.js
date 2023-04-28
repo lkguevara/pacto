@@ -1,43 +1,39 @@
-import styles from '@/styles/Productos.module.css';
-import Layout from '@/components/layout';
-import Link from 'next/link';
-import ProductoCard from '@/components/productoCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { addProducts } from '@/redux/features/products/productsSlice';
-import { useEffect } from 'react';
-
+import styles from "@/styles/Productos.module.css";
+import Layout from "@/components/layout";
+import Link from "next/link";
+import ProductoCard from "@/components/productoCard";
+import { useDispatch, useSelector } from "react-redux";
+import { addProducts } from "@/redux/features/products/productsSlice";
+import { useEffect, useState } from "react";
+import { filterPrice } from "@/components/filters/filterPrice";
+import { filterProducts } from "@/redux/features/products/productsSlice";
 
 export default function Productos() {
-  const dispatch = useDispatch()
-  const state = useSelector(state => state.products.items);
-  console.log(state);
- 
-//  useEffect(()=>{
-//      fetch("http://localhost:3000/api/items")
-//      .then(response => response.json())
-//      .then(data=> dispatch(addProducts(data.products)))
-//  },[])
-  // LÓGICA DEL COMPONENTE
-  // Se obtienen los productos del store
-  // const productos = useSelector((state) => state.productos);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products);
 
-  // array de productos de prueba
-  // const productos = [
-  //   {name: "Iphone 1", price: 130000},
-  //   {name: "Iphone 2", price: 129000},
-  //   {name: "Iphone 3", price: 101000},
-  //   {name: "Iphone 4", price: 125000},
-  //   {name: "Iphone 5", price: 125000},
-  //   {name: "Iphone 6", price: 125000},
-  //   {name: "Iphone 7", price: 125000},
-  //   {name: "Iphone 8", price: 125000},
-  //   {name: "Iphone 9", price: 125000},
-  //   {name: "Iphone 10", price: 125000},
-  //   {name: "Iphone 11", price: 125000},
-  //   {name: "Iphone 12", price: 125000},
-  // ];
+  const [price, setPrice] = useState({
+    minimo: "",
+    maximo: "",
+  });
 
+  const handlePriceChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setPrice({
+      ...price,
+      [name]: value,
+    });
+  };
 
+  const handleSubmitFilterPrice = () => {
+    dispatch(filterProducts(filterPrice(products.copyItems, price)));
+    setPrice({
+      ...price,
+      minimo: "",
+      maximo: "",
+    });
+  };
 
   // RENDERIZADO DEL COMPONENTE
   return (
@@ -48,18 +44,37 @@ export default function Productos() {
           <div className={styles.container}>
             <div className={styles.filterPanel}>
               <h3>FilterPanel</h3>
+              <div>
+                <p>Precio</p>
+                <input
+                  name={"minimo"}
+                  value={price.minimo}
+                  type="text"
+                  id="min-value"
+                  placeholder="mínimo"
+                  onChange={handlePriceChange}
+                />
+                <input
+                  value={price.maximo}
+                  name={"maximo"}
+                  type="text"
+                  id="max-value"
+                  placeholder="máximo"
+                  onChange={handlePriceChange}
+                />
+                <button onClick={handleSubmitFilterPrice} type="submit">
+                  search
+                </button>
+              </div>
             </div>
             <div className={styles.listContainer}>
-              {
-                state?.map((prod, index) => (
-                    <ProductoCard key={index} producto={prod} />
-                ))
-              }
+              {products.items?.map((prod, index) => (
+                <ProductoCard key={index} producto={prod} />
+              ))}
             </div>
           </div>
-
         </div>
       </Layout>
     </>
-  )
+  );
 }
