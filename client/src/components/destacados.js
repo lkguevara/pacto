@@ -3,13 +3,13 @@ import Image from "next/image";
 import DestacadoCard from '@/components/destacadoCard';
 
 // HARD CODEO EL PRODUCTO PARA PROBAR EL COMPONENTE
-import img1 from '../../public/image/products/p1_1.jpg';
-import img2 from '../../public/image/products/p1_2.jpg';
-import img3 from '../../public/image/products/p1_3.jpg';
-import img4 from '../../public/image/products/p1_4.jpg';
+import img1 from '../../public/image/products/p4_1.png';
+import img2 from '../../public/image/products/p4_2.png';
+import img3 from '../../public/image/products/p4_3.png';
+import img4 from '../../public/image/products/p4_4.png';
 const producto = {
     "id": 1,
-    "name": "Smartphone Samsung Galaxy S3 Desbloqueado 16GB Blanco Android 8MP Cámara 1GB RAM",
+    "name": "Apple iPhone SE (2da generación) 256 GB",
     "images": [
         img1, img2, img3, img4
     ],

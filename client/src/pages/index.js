@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Login from '@/pages/login';
 import EnConstruccion from '@/components/enConstruccion';
 import Slider from '@/components/slider';
+import Destacados from "@/components/destacados";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -25,6 +26,7 @@ export default function Home() {
     <>
       <Layout title="Home">
         <Slider />
+        <Destacados />
       </Layout>
     </>
   )
