@@ -164,7 +164,7 @@ export default function handler(req, res) {
           "stock": 1,
           "user": "María Gómez",
           "send": null,
-          "category": "Celulares",
+          "category": "Ropa",
           "questions": null,
           "reviews": null
         },
@@ -200,7 +200,7 @@ export default function handler(req, res) {
           "stock": 1,
           "user": "María Gómez",
           "send": null,
-          "category": "Celulares",
+          "category": "Belleza",
           "questions": null,
           "reviews": null
         },
@@ -218,10 +218,11 @@ export default function handler(req, res) {
           "stock": 1,
           "user": "María Gómez",
           "send": null,
-          "category": "Celulares",
+          "category": "Libros",
           "questions": null,
           "reviews": null
-        }
+        },
+        
       ]
     }
   )
