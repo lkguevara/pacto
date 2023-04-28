@@ -1,6 +1,7 @@
 import Head from "next/head"
 import NavBar from "./navbar"
 import Menu from "./menu"
+import Footer from "./footer"
 // import style from "../styles/Layout.module.css";
 
 
@@ -20,7 +21,9 @@ export default function Layout({ children, title}){
 
             <NavBar/>
 
-            <div>{children}</div>
+            <div>{children}</div>   
+
+            <Footer/>
 
         </>
     )
