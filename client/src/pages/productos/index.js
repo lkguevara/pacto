@@ -10,6 +10,14 @@ import { filterProducts } from "@/redux/features/products/productsSlice";
 
 export default function Productos() {
   const dispatch = useDispatch();
+ 
+ useEffect(()=>{
+     fetch("http://localhost:3000/api/items")
+     .then(response => response.json())
+     .then(data=> dispatch(addProducts(data.products)))
+ },[])
+
+
   const products = useSelector((state) => state.products);
 
   const [price, setPrice] = useState({
@@ -44,9 +52,10 @@ export default function Productos() {
           <div className={styles.container}>
             <div className={styles.filterPanel}>
               <h3>FilterPanel</h3>
-              <div>
-                <p>Precio</p>
+              <p>Precio</p>
+              <div className={styles.filterPrice}>
                 <input
+                 className={styles.priceInput}
                   name={"minimo"}
                   value={price.minimo}
                   type="text"
@@ -55,6 +64,7 @@ export default function Productos() {
                   onChange={handlePriceChange}
                 />
                 <input
+                 className={styles.priceInput}
                   value={price.maximo}
                   name={"maximo"}
                   type="text"
@@ -62,8 +72,12 @@ export default function Productos() {
                   placeholder="máximo"
                   onChange={handlePriceChange}
                 />
-                <button onClick={handleSubmitFilterPrice} type="submit">
-                  search
+               <button
+                  className={styles.searchButton}
+                  onClick={handleSubmitFilterPrice}
+                  type="submit"
+                >
+                  Buscar
                 </button>
               </div>
             </div>
