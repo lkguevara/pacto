@@ -10,6 +10,14 @@ import { filterProducts } from "@/redux/features/products/productsSlice";
 
 export default function Productos() {
   const dispatch = useDispatch();
+ 
+ useEffect(()=>{
+     fetch("http://localhost:3000/api/items")
+     .then(response => response.json())
+     .then(data=> dispatch(addProducts(data.products)))
+ },[])
+
+
   const products = useSelector((state) => state.products);
 
   const [price, setPrice] = useState({

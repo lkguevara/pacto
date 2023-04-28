@@ -14,7 +14,7 @@ export default function handler(req, res) {
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Bueno",
-          "price": 250000,
+          "price": 232005,
           "active": true,
           "label": "Oferta",
           "stock": 1,
