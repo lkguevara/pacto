@@ -7,7 +7,8 @@ const logger = require('morgan');
 //RUTAS!!!
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const productsRouter = require('./routes/products.js');
+const productsRouter = require('./routes/products');
+const categorysRouter = require('./routes/categorys');
 
 //CONEXION A LA DB!!!
 const mongoose = require('./database/mongoose');
@@ -33,6 +34,9 @@ app.use(usersRouter);
 
 //All routes of the products!!
 app.use(productsRouter)
+
+//All routes of the categorys!!
+app.use(categorysRouter)
 
 
 // catch 404 and forward to error handler
