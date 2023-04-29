@@ -1,90 +1,69 @@
 import styles from "@/styles/Productos.module.css";
 import Layout from "@/components/layout";
-import Link from "next/link";
+
+
 import ProductoCard from "@/components/productoCard";
+import FilterPanel from "@/components/filterPanel";
+import SortComponent from "@/components/sortComponent";
+import Paginado from "@/components/paginado";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "@/redux/features/products/productsSlice";
-import { useEffect, useState } from "react";
-import { filterPrice } from "@/components/filters/filterPrice";
-import { filterProducts } from "@/redux/features/products/productsSlice";
+import { useEffect } from "react";
+
+
 
 export default function Productos() {
   const dispatch = useDispatch();
  
- useEffect(()=>{
-     fetch("http://localhost:3000/api/items")
-     .then(response => response.json())
-     .then(data=> dispatch(addProducts(data.products)))
- },[])
-
+  useEffect(()=>{
+      fetch("http://localhost:3000/api/items")
+      .then(response => response.json())
+      .then(data=> dispatch(addProducts(data.products)))
+  },[])
 
   const products = useSelector((state) => state.products);
 
-  const [price, setPrice] = useState({
-    minimo: "",
-    maximo: "",
-  });
-
-  const handlePriceChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setPrice({
-      ...price,
-      [name]: value,
-    });
-  };
-
-  const handleSubmitFilterPrice = () => {
-    dispatch(filterProducts(filterPrice(products.copyItems, price)));
-    setPrice({
-      ...price,
-      minimo: "",
-      maximo: "",
-    });
-  };
+  
 
   // RENDERIZADO DEL COMPONENTE
   return (
     <>
       <Layout title="Productos">
-        <div className={styles.main}>
+
+        <div className={styles.container}>
+          {/* Sección superior que sólo aparece en mobile */}
+          <div className={styles.mobileControllers}>
+            <button className={styles.mobileFiltersButton}>Filtros</button>
+          </div>
+
+          {/* Sección para el título de la página de la página */}
           <h1 className={styles.title}>Productos</h1>
-          <div className={styles.container}>
-            <div className={styles.filterPanel}>
-              <h3>FilterPanel</h3>
-              <p>Precio</p>
-              <div className={styles.filterPrice}>
-                <input
-                 className={styles.priceInput}
-                  name={"minimo"}
-                  value={price.minimo}
-                  type="text"
-                  id="min-value"
-                  placeholder="mínimo"
-                  onChange={handlePriceChange}
-                />
-                <input
-                 className={styles.priceInput}
-                  value={price.maximo}
-                  name={"maximo"}
-                  type="text"
-                  id="max-value"
-                  placeholder="máximo"
-                  onChange={handlePriceChange}
-                />
-               <button
-                  className={styles.searchButton}
-                  onClick={handleSubmitFilterPrice}
-                  type="submit"
-                >
-                  Buscar
-                </button>
+          
+          {/* Sección para el contenido ppal de la página */}
+          <div className={styles.main}>
+
+            {/* Panel de filtrado */}
+            <FilterPanel />
+              
+            {/* Contenedor de la info de los productos */}
+            <div className={styles.productsContainer}>
+
+              {/* Header del contenedor de la  info de los productos */}
+              <div className={styles.prodContainerHeader}>
+                <p className={styles.totalProducts}>xxxx</p>
+                <SortComponent />
               </div>
-            </div>
-            <div className={styles.listContainer}>
-              {products.items?.map((prod, index) => (
-                <ProductoCard key={index} producto={prod} />
-              ))}
+
+              {/* Contenedor para la lista de productos */}
+              <div className={styles.productsList}>
+                {products.items?.map((prod, index) => (
+                  <ProductoCard key={index} producto={prod} />
+                ))}
+              </div>
+
+              <div className={styles.prodContainerFooter}>
+                <Paginado />
+              </div>
             </div>
           </div>
         </div>
