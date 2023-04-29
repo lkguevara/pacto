@@ -1,4 +1,4 @@
-const DBCategoryGetAll = require("../../database/controllers/products/categoriesGet/DBCategoryGetAll");
+const DBCategoryGetAll = require("../../database/controllers/categories/categoriesGet/DBCategoryGetAll");
 
 const getAllCategories = async (req, res) => {
   try {
