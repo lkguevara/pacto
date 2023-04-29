@@ -1,5 +1,5 @@
 const productSave = require('../../database/controllers/products/productPost/DBProductSave');
-const checkUserExists = require('../../database/helper/DBcheckUserExists');
+const checkProductExists = require('../../database/helper/DBCheckProductExists');
 
 const postNewProduct = async (req, res) => {
 
@@ -9,9 +9,9 @@ const postNewProduct = async (req, res) => {
 
         if (idUser && product){
             const newProd = await productSave(product, idUser);
-
+  
             //Checkeo que el producto fue creado en la db
-            if (checkUserExists(newProd.id)){
+            if (checkProductExists(newProd._id.toString())){
                 return res.status(200).json(newProd);
             }
 

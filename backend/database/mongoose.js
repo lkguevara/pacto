@@ -17,10 +17,12 @@ mongoose.connection.on("error", (error) => {
 });
 
 const load = async () => {
+
   await userTest();
   await createMainCategories();
   await productTest();
 };
+
 
 load();
 
