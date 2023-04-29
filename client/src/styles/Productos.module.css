@@ -1,11 +1,11 @@
-.main {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   min-width: 100%;
   min-height: 80vh;
-
+  background-color: bisque;
 }
 
 .title {
@@ -14,29 +14,34 @@
   color: var(--rosa);
 }
 
-.container {
-
+.main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 2rem;
   min-height: 80vh;
   min-width: 100%;
+  background-color: aquamarine;
 }
 
-.filterPanel {
+.productsContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 380px;
-  padding: 2rem;
-  min-height: 80vh;
-  margin-right: 2rem;
-  background-color: var(--gris-claro);
+  width: 100%;
+  background-color: darkgoldenrod;
 }
 
-.listContainer {
+.prodContainerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: blueviolet;
+}
+
+.productsList {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -44,23 +49,6 @@
   width: 100%;
 }
 
-.filterPrice {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.priceInput {
-  width: 5rem;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.searchButton {
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: none;
-  background-color: #0070f3;
-  color: #fff;
+.mobileControllers {
+  display: none;
 }
