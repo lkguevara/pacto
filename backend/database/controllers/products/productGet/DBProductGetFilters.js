@@ -29,6 +29,6 @@ const DBPRoductFilters = async (filters) => {
         return response
 
     } catch (error) {
-
+        throw Error(error.message)
     }
 }
