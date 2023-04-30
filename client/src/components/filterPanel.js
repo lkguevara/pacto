@@ -16,21 +16,17 @@ const MAX = 1000000;
 
 
 const FilterPanel = () => {
-  const dispatch = useDispatch()
+  
+    const dispatch = useDispatch()
+    const filters = useSelector(state => state.products.filters)
+
     // LÓGICA DEL COMPONENTE
     const [price, setPrice] = useState({
         minimo: MIN,
         maximo: MAX,
       });
     
-      const handlePriceChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setPrice({
-          ...price,
-          [name]: value,
-        });
-      };
+      
     
       const handleSubmitFilterPrice = () => {
         dispatch(filterProducts(filterPrice(products.copyItems, price)));
@@ -42,13 +38,39 @@ const FilterPanel = () => {
       };
 
 
-      function handleCategoriaSelect(eventKey, event) {
+      const handleCategoriaSelect = (eventKey, event) => {
         const {text,dataset} = event.target
-        const   obj = {value:{categoria:dataset.categoria, subcategoria:text}}
-        dispatch(setFilters(obj))
-
-        // Aquí puedes agregar la lógica que necesites utilizando los valores de la categoría y subcategoría seleccionadas
+        
+        dispatch(setFilters({
+          ...filters,
+          categorias: {categoria: dataset.categoria, subcategoria: text}
+        }));
       }
+
+      const handlerFilterStatus = (e) => {
+        const {value, checked} = e.target;
+        if(checked){
+            
+            dispatch(setFilters({...filters, status: [...filters.status, value]}));
+        } else{
+            
+            dispatch(setFilters({...filters, status: filters.status.filter(state => state !== value)}));
+        };
+    }
+
+      const handlePriceChange = (newValue) => {
+        //falta hacer el settimeout
+        dispatch(setFilters({
+          ...filters,
+          price: {
+            min: newValue[0],
+            max: newValue[1]
+          }
+        })) 
+      }
+
+
+
     // RENDERIZADO DEL COMPONENTE
     return (
         <div className={styles.container}>
@@ -67,109 +89,109 @@ const FilterPanel = () => {
                   {/* audio */}
                   <DropdownButton id="categorias" title="Audio" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                     {AUDIO.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Audio" >{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Audio" >{subcategoria.name}</Dropdown.Item>
                       )}
                   </DropdownButton>
                     {/* video */}
                     <DropdownButton id="categorias" title="Video" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                     {VIDEO.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Video">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Video">{subcategoria.name}</Dropdown.Item>
                       )}
                     </DropdownButton>
                     {/* computacion */}
                     <DropdownButton id="categorias" title="Computacion" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                       {COMPUTACION.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Computacion">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Computacion">{subcategoria.name}</Dropdown.Item>
                       )}
                     </DropdownButton>
                   {/* telefonos */}
                   <DropdownButton id="categorias" title="Celulares y Telefonos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                     {CELULARES.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Celulares y Telefonos">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Celulares y Telefonos">{subcategoria.name}</Dropdown.Item>
                       )}
                   </DropdownButton>
                   {/* libros */}
                   <DropdownButton id="categorias" title="Libros físicos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                     {LIBROS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Libros físicos">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Libros físicos">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Electrodomesticos */}
                 <DropdownButton id="categorias" title="Electrodomésticos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {ELECTRODOMESTICOS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Electrodomésticos">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Electrodomésticos">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* BellezayCuidado */}
                 <DropdownButton id="categorias" title="Belleza y cuidado personal" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {BELLEZA.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Belleza y cuidado personal">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Belleza y cuidado personal">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* AccesoriosVehiculo */}
                 <DropdownButton id="categorias" title="Accesorios para vehiculos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {ACCESORIOSVEHICULOS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Accesorios para vehiculos">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Accesorios para vehiculos">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Agro */}
                 <DropdownButton id="categorias" title="Agro" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {AGRO.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Agro">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Agro">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Antiguedades y colecciones */}
                 <DropdownButton id="categorias" title="Antiguedades y colecciones" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {ANTIGUEDADESYCOLECCIONES.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Antiguedades y colecciones">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Antiguedades y colecciones">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Papeleria y mobiliario de negocio */}
                 <DropdownButton id="categorias" title="Papeleria y mobiliario de negocio" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {PAPELERIA.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Papeleria y mobiliario de negocio">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Papeleria y mobiliario de negocio">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Consolas y videojuegos */}
                 <DropdownButton id="categorias" title="Consolas y videojuegos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {CONSOLAS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Consolas y videojuegos">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Consolas y videojuegos">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Herramientas, Audio y video */}
                 <DropdownButton id="categorias" title="Herramientas, Audio y video" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {HERAMIENTAS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Herramientas, Audio y video">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Herramientas, Audio y video">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Instrumentos musicales */}
                 <DropdownButton id="categorias" title="Instrumentos musicales" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {INSTRUMENTOS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Instrumentos musicales">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Instrumentos musicales">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Juegos y juguetes*/}
                 <DropdownButton id="categorias" title="Juegos y juguetes" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {JUEGOS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Juegos y juguetes">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Juegos y juguetes">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Fiestas y piñatas*/}
                 <DropdownButton id="categorias" title="Fiestas y piñatas" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {FIESTAS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Fiestas y piñatas">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Fiestas y piñatas">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Fiestas y piñatas*/}
                 <DropdownButton id="categorias" title="Fiestas y piñatas" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {FIESTAS.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Fiestas y piñatas">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name}href="#" data-categoria="Fiestas y piñatas">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Salud y equipamento medico*/}
                 <DropdownButton id="categorias" title="Salud y equipamento medico" className={styles.selectItem} onSelect={handleCategoriaSelect}>
                   {SALUD.map(subcategoria =>
-                      <Dropdown.Item href="#" data-categoria="Salud y equipamento medico">{subcategoria.name}</Dropdown.Item>
+                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Salud y equipamento medico">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                   </Accordion.Body>
@@ -182,17 +204,17 @@ const FilterPanel = () => {
                     <Accordion.Header>Estado</Accordion.Header>
                     <Accordion.Body>
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" name="" id="" className={styles.checkItem} />
+                        <input type="checkbox" id='Nuevo' value='Nuevo' onChange={handlerFilterStatus} className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Nuevo</label>
                       </div>
 
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" name="" id="" className={styles.checkItem} />
+                        <input type="checkbox" id='Usado' value='Usado' onChange={handlerFilterStatus}  className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Usado</label>
                       </div>
 
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" name="" id="" className={styles.checkItem} />
+                        <input type="checkbox" id='Reacondicionado' value='Reacondicionado' onChange={handlerFilterStatus}  className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Reacondicionado</label>
                       </div>
                         
@@ -210,16 +232,17 @@ const FilterPanel = () => {
                       <Slider
                         className={styles.priceSlider}
                         thumbClassName={styles.thumb}
-                        defaultValue={[price.minimo, price.maximo]}
+                        defaultValue={[filters.price.min, filters.price.max]}
                         renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
                         pearling
                         minDistance={10}
-                        value={[price.minimo, price.maximo]}
-                        onChange={(value, index) => {setPrice(value)}}
+                        
+                        value={[filters.price.min, filters.price.max]}
+                        onChange={(newValue) => {handlePriceChange(newValue)}}
                       />
 
                       {/* Inputs para el rango de precios */}
-                      <div className={styles.sectionItem}>
+                      {/* {<div className={styles.sectionItem}>
                         <input
                           className={styles.priceInput}
                             name={"minimo"}
@@ -245,7 +268,7 @@ const FilterPanel = () => {
                         >
                           B
                         </button>
-                      </div> 
+                      </div> } */}
                     </Accordion.Body>
                   </Accordion.Item>
               </Accordion>

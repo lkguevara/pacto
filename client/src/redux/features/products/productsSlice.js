@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  filters: {},
+  filters: {
+    categorias: {},
+    status: [],
+    price: { min: 0, max: 100}
+  },
   orderBy: "default",
   page: 1,
 };
