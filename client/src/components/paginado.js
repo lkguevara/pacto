@@ -1,31 +1,34 @@
 import styles from "../styles/Paginado.module.css";
 import Pagination from 'react-bootstrap/Pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { useSelector, useDispatch } from "react-redux";
+import { setPage } from "@/redux/features/products/productsSlice";
 
 const Paginado = () => {
     // LÓGICA DEL COMPONENTE
+
+    const { page } = useSelector(state => state.products);
+    const dispatch = useDispatch();
+
+    const handleCurrentPage = (e) => {
+        const { name } = e.target;
+
+        if(name === 'prev' & page > 1){
+            dispatch(setPage(page - 1));
+        };
+        if(name === 'next'){
+            dispatch(setPage(page + 1));
+        };
+    }
 
 
     // RENDERIZADO DEL COMPONENTE
     return (
         <div className={styles.container}>
             <Pagination className={styles.pagination}>
-                <Pagination.First />
-                <Pagination.Prev />
-                <Pagination.Item>{1}</Pagination.Item>
-                <Pagination.Ellipsis />
-
-                <Pagination.Item>{10}</Pagination.Item>
-                <Pagination.Item>{11}</Pagination.Item>
-                <Pagination.Item active>{12}</Pagination.Item>
-                <Pagination.Item>{13}</Pagination.Item>
-                <Pagination.Item disabled>{14}</Pagination.Item>
-
-                <Pagination.Ellipsis />
-                <Pagination.Item>{20}</Pagination.Item>
-                <Pagination.Next />
-                <Pagination.Last />
+                <Pagination.Prev name='prev' onClick={handleCurrentPage} />
+                <Pagination.Item active>{page}</Pagination.Item>
+                <Pagination.Next name='next' onClick={handleCurrentPage} />
             </Pagination>
         </div>
     );
