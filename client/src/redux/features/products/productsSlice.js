@@ -1,31 +1,27 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  items: [],
-  copyItems:[]
+  filters: {},
+  orderBy: "default",
+  page: 1,
 };
-
-// esta funcion la intente con el modulo thunk
-export const fetchProducts =  async () => {
-  
-}
 
 const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    addProducts: (state, action) => {
-       state.items = action.payload;
-       state.copyItems =action.payload
+    setFilters: (state, action) => {
+      state.filters = action.payload;
     },
-    filterProducts:(state,action)=>{
-      state.items = action.payload
-    }
-
-    //actions
+    setOrderBy: (state, action) => {
+      state.orderBy = action.payload;
+    },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
   },
 });
 
-//actions
-export const { addProducts, filterProducts} = productsSlice.actions;
+export const { setFilters, setOrderBy, setPage } = productsSlice.actions;
+
 export default productsSlice.reducer;
