@@ -24,6 +24,6 @@ const load = async () => {
 };
 
 
-load();
+//load();
 
 module.exports = mongoose.connection;
