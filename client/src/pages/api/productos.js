@@ -8,7 +8,6 @@ export default function handler(req, res) {
 
       if(categoria === 'undefined' && priceMin === '0' && priceMax === '100' &&  !status && sort_by === 'default' && page === '1'){
         res.status(200).json({productos:[`Devuelve todos los productos: 150`]});
-
     }
   
       if (categoria !== 'undefined' ) {

@@ -26,11 +26,12 @@ export default function ProductList() {
     
         const newSearch = new URLSearchParams(newQueryParams).toString();
         router.push(`/productos?${newSearch}`, undefined, { shallow: true });
-        return router.asPath
+        return `/productos?${newSearch}`
     };
 
     useEffect(() => {
 
+        const url  = updateURL(filters, orderBy, page)
         
 
         // const filters = {};
@@ -42,10 +43,9 @@ export default function ProductList() {
         // dispatch(setOrderBy(orderBy));
         // dispatch(setPage(page));
 
-        const obj = {filters,orderBy,page};
-        dispatch(fetchProductsAsync(updateURL(filters, orderBy, page)));
+        dispatch(fetchProductsAsync(url));
 
-        }, [filters,orderBy, page]);
+        }, [filters,orderBy,page]);
     
     return (
         <h1>PRODUCTLIST</h1>
