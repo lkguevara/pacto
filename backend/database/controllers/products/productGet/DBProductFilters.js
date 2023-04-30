@@ -25,6 +25,7 @@ const DBPRoductFilters = async (filters) => {
                     if (filters.price.min) response.where(price).gte(filters.price.min)
                     if (filters.price.max) response.where(price).lte(filters.price.max)
                     const products = await response.exec()
+                    return products
                 }
 
 
