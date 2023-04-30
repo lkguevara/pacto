@@ -22,8 +22,8 @@ const DBPRoductFilters = async (filters) => {
                     response.setOptions({ lean: true })
                     response.collection(Product.collection)
                     if (filters.status.length != 0) response.or(filters.status)
-                    if (filters.price.min) response.where(price).gt(filters.price.min)
-                    if (filters.price.max) response.where(price).lt(filters.price.max)
+                    if (filters.price.min) response.where(price).gte(filters.price.min)
+                    if (filters.price.max) response.where(price).lte(filters.price.max)
                     const products = await response.exec()
                 }
 
