@@ -25,13 +25,13 @@ export default function ProductList() {
         };
     
         const newSearch = new URLSearchParams(newQueryParams).toString();
-    
         router.push(`/productos?${newSearch}`, undefined, { shallow: true });
+        return router.asPath
     };
 
     useEffect(() => {
 
-        updateURL(filters, orderBy, page);
+        
 
         // const filters = {};
         // const orderBy = query.sort_by || 'default';
@@ -42,7 +42,8 @@ export default function ProductList() {
         // dispatch(setOrderBy(orderBy));
         // dispatch(setPage(page));
 
-        dispatch(fetchProductsAsync(filters, orderBy, page));
+        const obj = {filters,orderBy,page};
+        dispatch(fetchProductsAsync(updateURL(filters, orderBy, page)));
 
         }, [filters,orderBy, page]);
     
