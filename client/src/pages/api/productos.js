@@ -1,5 +1,7 @@
+const API_URL = "http://localhost:3000/api";
+import axios from "axios";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     try {
       const { categoria, subcategoria, priceMin, priceMax, status, sort_by, page } = req.query;
       let productosFiltrados = [];
@@ -7,7 +9,10 @@ export default function handler(req, res) {
 
 
       if(categoria === 'undefined' && priceMin === '0' && priceMax === '100' &&  !status && sort_by === 'default' && page === '1'){
-        res.status(200).json({productos:[`Devuelve todos los productos: 150`]});
+        const  response  = await fetch(`${API_URL}/items`)
+        const data = await response.json();
+        const cantidad = data.products.length
+        res.status(200).json({productos:[...data.products],cantidad:cantidad});
     }
   
       if (categoria !== 'undefined' ) {

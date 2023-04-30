@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilters, setOrderBy, setPage, fetchProductsAsync } from '../redux/features/products/productsSlice';
+import ProductoCard from './productoCard';
 
 
 export default function ProductList() {
@@ -10,6 +11,8 @@ export default function ProductList() {
     const { query } = router;
 
     const { filters, orderBy, page} = useSelector(state => state.products);
+    const { productList } = useSelector(state => state.products);
+    
     const dispatch = useDispatch();
 
     const updateURL = (newFilters, newOrderBy, newPage) => {
@@ -30,10 +33,7 @@ export default function ProductList() {
     };
 
     useEffect(() => {
-
         const url  = updateURL(filters, orderBy, page)
-        
-
         // const filters = {};
         // const orderBy = query.sort_by || 'default';
         // const page = parseInt(query.page) || 1;
@@ -48,6 +48,15 @@ export default function ProductList() {
         }, [filters,orderBy,page]);
     
     return (
+
+        <>
         <h1>PRODUCTLIST</h1>
+        {productList?.productos?.map(producto=>{
+            return(
+                <ProductoCard key={producto.id} producto={producto}/>
+            )
+        })}
+
+        </>
     )
 }
