@@ -42,9 +42,9 @@ export default function ProductList() {
         // dispatch(setOrderBy(orderBy));
         // dispatch(setPage(page));
 
-        // dispatch(fetchProductsAsync(filters, orderBy, page));
+         dispatch(fetchProductsAsync(filters, orderBy, page));
 
-        }, [updateURL]);
+        }, [filters,orderBy, page]);
     
     return (
         <h1>PRODUCTLIST</h1>

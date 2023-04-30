@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 //HACE LAS PETICIONES AL BACK:
 export const fetchProducts = async (filters, orderBy, page) => {
+  console.log(filters,orderBy,page);
   const params = {
     ...filters,
     orderBy,

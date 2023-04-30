@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchProducts } from '@/utils/api';
+
 
 const initialState = {
   filters: {
