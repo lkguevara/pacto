@@ -15,11 +15,11 @@ import { useEffect } from "react";
 export default function Productos() {
   const dispatch = useDispatch();
  
-  useEffect(()=>{
-      fetch("http://localhost:3000/api/items")
-      .then(response => response.json())
-      .then(data=> dispatch(addProducts(data.products)))
-  },[])
+  // useEffect(()=>{
+  //     fetch("http://localhost:3000/api/items")
+  //     .then(response => response.json())
+  //     .then(data=> dispatch(addProducts(data.products)))
+  // },[])
 
   const products = useSelector((state) => state.products);
 

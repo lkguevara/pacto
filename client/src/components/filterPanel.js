@@ -9,12 +9,13 @@ import { addProducts } from "@/redux/features/products/productsSlice";
 import { useEffect, useState } from "react";
 import { filterPrice } from "@/components/filters/filterPrice";
 import { filterProducts } from "@/redux/features/products/productsSlice";
-
+import { setFilters } from "@/redux/features/products/productsSlice";
 const MIN = 0;
 const MAX = 1000000;
 
 
 const FilterPanel = () => {
+  const dispatch = useDispatch()
     // LÓGICA DEL COMPONENTE
     const [price, setPrice] = useState({
         minimo: MIN,
@@ -40,6 +41,17 @@ const FilterPanel = () => {
       };
 
 
+      function handleCategoriaSelect(eventKey, event) {
+        const categoria = event.target.getAttribute("data-categoria");
+        const subcategoria = event.target.getAttribute("data-subcategoria");
+        const   obj = {value:{categoria:categoria, subcategoria:subcategoria}}
+
+        dispatch(setFilters(obj))
+
+
+        console.log(obj);
+        // Aquí puedes agregar la lógica que necesites utilizando los valores de la categoría y subcategoría seleccionadas
+      }
     // RENDERIZADO DEL COMPONENTE
     return (
         <div className={styles.container}>
@@ -53,22 +65,58 @@ const FilterPanel = () => {
             {/* Contenedor para los criterios de filtrado */}
             <div className={styles.panelBody}>
 
+
+      
+
               {/* Sección para el filtrado por categorías */}
               <Accordion className={styles.panelSection}>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Categorías</Accordion.Header>
                   <Accordion.Body>
-                    <DropdownButton id="categorias" title="Categoría" className={styles.selectItem} >
-                      <Dropdown.Item href="#/action-1">Categoría 1</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">Categoría 2</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">Categoría 3</Dropdown.Item>
+                  {/* audio */}
+                  <DropdownButton id="categorias" title="Audio" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="parlantes">Parlantes</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="audifonos">Audífonos</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="tocadiscos">Tocadiscos y accesorios</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="home-theaters">Home theaters</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="microfonos-amplificadores">Micrófonos y amplificadores</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="audio-portatil-accesorios">Audio portátil y accesorios</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="tocadiscos-accesorios">Tocadiscos y accesorios</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="equipos-de-dj-accesorios">Equipos de DJ y accesorios</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="amplificadores-receivers">Amplificadores y receivers</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="asistentes-virtuales">Asistentes virtuales</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="drivers-cornetas-diafragmas">Drivers, cornetas y diafragmas</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="estudios-de-grabacion">Estudios de grabación</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="grabadores">Grabadores</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="megafonos">Megáfonos</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="minicomponentes">Minicomponentes</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="torres-de-sonido">Torres de sonido</Dropdown.Item>
+                    <Dropdown.Item href="#" data-categoria="Audio" data-subcategoria="otros-de-audio">Otros de audio</Dropdown.Item>
+                  </DropdownButton>
+                    
+
+                    {/* video */}
+                    <DropdownButton id="categorias" title="Video" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="video-beams-pantallas">Video Beams y pantallas</Dropdown.Item>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="camaras-accesorios">Cámaras y accesorios</Dropdown.Item>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="camaras-fotografia">Cámaras de fotografía</Dropdown.Item>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="accesorios-camaras">Accesorios para cámaras</Dropdown.Item>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="drones">Drones</Dropdown.Item>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="cables-camaras">Cables para cámaras</Dropdown.Item>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="instrumentos-opticos">Instrumentos ópticos</Dropdown.Item>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="lentes-camaras">Lentes para cámaras</Dropdown.Item>
+                      <Dropdown.Item href="#" data-categoria="Video" data-subcategoria="otros-video">Otros</Dropdown.Item>
                     </DropdownButton>
 
-                    <DropdownButton id="subcategorias" title="Sub-categoría" className={styles.selectItem} >
+
+
+
+
+                    {/* <DropdownButton id="subcategorias" title="Sub-categoría" className={styles.selectItem} >
                       <Dropdown.Item href="#/action-1">Sub-categoría 1</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">Sub-categoría 2</Dropdown.Item>
                       <Dropdown.Item href="#/action-3">Sub-categoría 3</Dropdown.Item>
-                    </DropdownButton>
+                    </DropdownButton> */}
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
