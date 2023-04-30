@@ -22,6 +22,8 @@ const productsSlice = createSlice({
   },
 });
 
+//hola soy edward
+
 export const { setFilters, setOrderBy, setPage } = productsSlice.actions;
 
 export default productsSlice.reducer;
