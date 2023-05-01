@@ -100,7 +100,7 @@ const getProductsByFilters = async (req, res) => {
             });
         }
     
-        return res.status(200).json(products);
+        return res.status(404).json({msg: "Error 404, not found"});
     } catch (err){
         return res.status(500).json({error: err.message,
                                     msg: "Error al buscar los productos"});
