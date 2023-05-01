@@ -9,6 +9,7 @@ const initialState = {
     categorias: {},
     status: [],
     price: { min: 0, max: 100 },
+    name:"",
   },
   orderBy: "default",
   page: 1,

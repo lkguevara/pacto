@@ -20,6 +20,7 @@ export default function ProductList() {
         const newQueryParams = {
             categoria: newFilters.categorias.categoria,
             subcategoria: newFilters.categorias.subcategoria,
+            name: newFilters.name,
             priceMin: newFilters.price.min,
             priceMax: newFilters.price.max,
             status: newFilters.status,
