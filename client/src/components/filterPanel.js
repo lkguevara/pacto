@@ -13,6 +13,7 @@ import { setFilters } from "@/redux/features/products/productsSlice";
 import {AUDIO,BELLEZA,SALUD,FIESTAS,JUEGOS,HERAMIENTAS,INSTRUMENTOS,CONSOLAS,PAPELERIA,AGRO,ANTIGUEDADESYCOLECCIONES,ACCESORIOSVEHICULOS,ELECTRODOMESTICOS,LIBROS,CELULARES,COMPUTACION,VIDEO } from "@/utils/subcategoria";
 import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from "next/dist/shared/lib/constants";
 import debounce from "@/utils/debounce";
+import { resetState } from "@/redux/features/products/productsSlice";
 const MIN = 0;
 const MAX = 1000000;
 
@@ -34,6 +35,13 @@ const FilterPanel = () => {
       }
 
   const debouncedhandleCategoriaSelect = debounce(handleCategoriaSelect, 1000);
+
+  const handleReset = ()=>{
+    dispatch(resetState())
+
+
+  }
+
 
 
       const handlerFilterStatus = (e) => {
@@ -71,7 +79,7 @@ const FilterPanel = () => {
             {/* Header del panel de filtrado */}
             <div className={styles.panelHeader}>
               <h3>FilterPanel</h3>
-              <button className={styles.clearFiltersButton}>Borrar</button>
+              <button onClick={handleReset} className={styles.clearFiltersButton}>Borrar</button>
             </div>
             {/* Contenedor para los criterios de filtrado */}
             <div className={styles.panelBody}>

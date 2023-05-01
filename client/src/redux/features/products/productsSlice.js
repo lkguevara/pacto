@@ -38,6 +38,19 @@ const productsSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
+    resetState:(state,action)=>{
+      state.filters =  {
+        categorias: {},
+        status: [],
+        price: { min: 0, max: 100 },
+        name:"",
+      },
+      state.orderBy = "default",
+      state.page = 1,
+      state.productList = [],
+      state.status = "idle",
+      state.error = null
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -57,6 +70,6 @@ const productsSlice = createSlice({
 
 //hola soy edward
 
-export const { setFilters, setOrderBy, setPage } = productsSlice.actions;
+export const { setFilters, setOrderBy, setPage, resetState } = productsSlice.actions;
 
 export default productsSlice.reducer;

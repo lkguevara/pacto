@@ -24,15 +24,13 @@ const Paginado = () => {
 
 
     const handleCurrentPage = (e) => {
-
         const { name,text } = e.target;
-
-        if(name === 'prev' & paginate > 1){
+        if(name === 'prev' && paginate > 1){
             console.log('prev');
             setPaginate(paginate - 1)
             // dispatch(setPage(page - 1));
         };
-        if(name === 'next'){
+        if(name === 'next' && paginate < numOfPages){
             console.log('next');
             setPaginate(paginate + 1)
             // dispatch(setPage(page + 1));
@@ -54,7 +52,7 @@ const Paginado = () => {
                 {array.map(pageNum=>{
                     const isActive = pageNum === page;
                     return <Pagination.Item  name={'page'} key={pageNum} onClick={(e)=> debouncedhandleCurrentPage(e)} active={isActive}>{pageNum}</Pagination.Item>
-                })}
+                })}         
                 <Pagination.Next name='next'  onClick={handleCurrentPage} />
             </Pagination>
         </div>
