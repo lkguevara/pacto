@@ -1,0 +1,266 @@
+.containerDetail{
+    margin: 30px
+}
+
+.detailTitle{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin: 30px 20px;
+}
+
+.informationProduct{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.imageProduct{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.infoProduct{
+    margin: 0 auto;
+    margin-top: 20px;
+    box-shadow: 0px 0px 2px 0px rgba(92, 91, 91, 0.75);
+    padding: 20px;
+}
+
+.infoProduct h3{
+    font-size: 16px;
+    text-align: left;
+    font-weight: normal;
+}
+
+.price{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.priceButton{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--verde);
+    color: var(--blanco);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.gastoEnvio {
+    font-size: 14px;
+    text-align: center;
+    font-weight: normal;
+    margin:0;
+    color: var(--gris);
+}
+
+.informationAditional{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 20px;
+    justify-items: center;
+
+}
+
+.containerInfo{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+    box-shadow: 0px 0px 2px 0px var(--rosa);
+    padding: 20px;
+    width: 40%;
+}
+
+.containerInfo p{
+    font-size: 16px;
+    text-align: center;
+    font-weight: normal;
+    display: block;
+    width: 100%;
+}
+
+.containerInfo p span{
+    font-weight: bold;
+    color: var(--rosa);
+}
+
+.truck{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.infoEnvio{
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    margin: 10px;
+    color: var(--gris);
+}
+
+.stock p{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.stock p span{
+    font-weight: medium;
+    color: var(--verde);
+}
+
+.stock label{
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.buttons{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+}
+
+.buttonAdd{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--rosa);
+    color: var(--blanco);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    margin: 0 10px;
+}
+
+.buttonSell{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #e55b5150;
+    color: var(--rosa);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    margin: 0 10px;
+}
+
+.descriptionProduct{
+    margin: 0 auto;
+    margin-top: 20px;
+    box-shadow: 0px 0px 2px 0px rgba(92, 91, 91, 0.75);
+    padding: 20px;
+}
+
+.containerPregunta h4{
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.containerPregunta input{
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--blanco);
+    color: var(--gris);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+    border: 1px solid var(--gris);
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.buttonAsk{
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    background: var(--rosa);
+    color: var(--blanco);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.ask{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    box-shadow: 0px 0px 2px 0px rgba(92, 91, 91, 0.75);
+    justify-items: left;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.ask span{
+    margin: 5px;
+    font-weight: bold;
+}
+
+.ask p{
+    margin: 5px 0 5px 15px;
+    font-weight: normal;
+    color: var(--gris);
+
+}
+
+/* media queries */
+@media (min-width: 768px) { 
+    .informationProduct{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        align-items: center;
+    }
+
+    .imageProduct{
+        width: 300px;
+        height: auto;
+    }
+
+    .infoProduct h3{
+        font-size: 20px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .informationAditional{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+
+    .containerInfo{
+        padding: 10px;
+        width: 80%;
+    }
+
+    .descriptionProduct{
+        width: 70%;
+    }
+
+    .ask{
+        width: 70%;
+    }
+}
+
+@media (min-width: 1024px) { 
+    .informationProduct{
+        width: 80%;
+        margin: 0 auto;
+    }
+}
