@@ -5,23 +5,30 @@
   align-items: center;
   min-width: 100%;
   min-height: 80vh;
-  background-color: bisque;
+  margin: 0rem 0 5rem 0;
+  background-color: var(--blanco);
+  position: relative;
+  top: 0;
 }
 
 .title {
+  font-size: 1.5rem;
+  font-weight: bold;
   text-align: center;
   text-transform: uppercase;
   color: var(--rosa);
+  margin: 2rem 0;
+  padding: 0 2rem;
 }
 
 .main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 2rem;
-  min-height: 80vh;
-  min-width: 100%;
-  background-color: aquamarine;
+  padding: 0 2rem;
+  margin: 0;
+  min-height: 50vh;
+  width: 100%;
 }
 
 .productsContainer {
@@ -30,25 +37,71 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  background-color: darkgoldenrod;
+  max-width: 1540px;
+  padding: 0 2rem 0 1rem;
+  margin: 0;
 }
 
 .prodContainerHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  background-color: blueviolet;
+  padding: 0 2rem;
+  margin: 0;
+}
+.prodContainerHeader .totalProducts {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
 }
 
 .productsList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.prodContainerFooter {
+  display: flex;
+  justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 0;
+  margin: 2rem 0;
 }
 
 .mobileControllers {
   display: none;
+}
+
+.mobileControllers .mobileFiltersButton {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.5rem;
+}
+
+@media screen and (max-width: 980px) {
+  .mobileControllers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--verde);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .mobileControllers:hover {
+    background-color: #3ec591;
+  }
 }
