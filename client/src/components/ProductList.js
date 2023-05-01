@@ -51,11 +51,11 @@ export default function ProductList() {
 
         <>
         <h1>PRODUCTLIST</h1>
-        {productList?.productos?.map(producto=>{
+        {/* {productList?.productos?.map(producto=>{
             return(
                 <ProductoCard key={producto.id} producto={producto}/>
             )
-        })}
+        })} */}
 
         </>
     )

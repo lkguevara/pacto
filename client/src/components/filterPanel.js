@@ -11,6 +11,7 @@ import { filterPrice } from "@/components/filters/filterPrice";
 import { filterProducts } from "@/redux/features/products/productsSlice";
 import { setFilters } from "@/redux/features/products/productsSlice";
 import {AUDIO,BELLEZA,SALUD,FIESTAS,JUEGOS,HERAMIENTAS,INSTRUMENTOS,CONSOLAS,PAPELERIA,AGRO,ANTIGUEDADESYCOLECCIONES,ACCESORIOSVEHICULOS,ELECTRODOMESTICOS,LIBROS,CELULARES,COMPUTACION,VIDEO } from "@/utils/subcategoria";
+import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from "next/dist/shared/lib/constants";
 const MIN = 0;
 const MAX = 1000000;
 
@@ -19,25 +20,9 @@ const FilterPanel = () => {
   
     const dispatch = useDispatch()
     const filters = useSelector(state => state.products.filters)
+    let timeoutId
 
     // LÓGICA DEL COMPONENTE
-    const [price, setPrice] = useState({
-        minimo: MIN,
-        maximo: MAX,
-      });
-    
-      
-    
-      const handleSubmitFilterPrice = () => {
-        dispatch(filterProducts(filterPrice(products.copyItems, price)));
-        setPrice({
-          ...price,
-          minimo: "",
-          maximo: "",
-        });
-      };
-
-
       const handleCategoriaSelect = (eventKey, event) => {
         const {text,dataset} = event.target
         
@@ -48,26 +33,30 @@ const FilterPanel = () => {
       }
 
       const handlerFilterStatus = (e) => {
-        const {value, checked} = e.target;
-        if(checked){
-            
-            dispatch(setFilters({...filters, status: [...filters.status, value]}));
-        } else{
-            
-            dispatch(setFilters({...filters, status: filters.status.filter(state => state !== value)}));
-        };
-    }
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          const { value, checked } = e.target;
+          if (checked && !filters.status.includes(value)) {
+            dispatch(setFilters({ ...filters, status: [...filters.status, value] }));
+          } else if(!checked) {
+            dispatch(setFilters({ ...filters, status: filters.status.filter(state => state !== value) }));
+          }
+        }, 1000); 
+      }
 
-      const handlePriceChange = (newValue) => {
-        //falta hacer el settimeout
+    
+    const handlePriceChange = (newValue) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
         dispatch(setFilters({
           ...filters,
           price: {
             min: newValue[0],
             max: newValue[1]
           }
-        })) 
-      }
+        }))
+      }, 1000); 
+    }
 
 
 
