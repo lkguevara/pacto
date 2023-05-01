@@ -8,9 +8,10 @@ const {getProductsByFilters} = require('../controllers/product/APIgetProductByFi
 const getProductByName = require('../controllers/product/APIgetProductByName');
 
 // GET all products
-router.get('/products', (req, res, next) => getAllProducts(req, res));
+//router.get('/products', (req, res, next) => getAllProducts(req, res));
 
-router.get('/productsPage', (req, res, next) => getProductsByFilters(req, res))
+//La funcion getProductsByFilters trae todos los productos si se manda un query por defecto
+router.get('/products', (req, res, next) => getProductsByFilters(req, res))
 
 //GET Product by id
 router.get('/product', (req, res, next) => getProductById(req, res));
