@@ -22,7 +22,7 @@ router.delete('/product', (req, res, next) => deleteProductById(req, res))
 router.post('/product', (req, res) => postNewProduct(req, res))
 
 //GET Product by name
-router.get('/product', (req, res, next) => getProductByName(req, res));
+router.get('/productsname', (req, res, next) => getProductByName(req, res));
 
 
 module.exports = router;
