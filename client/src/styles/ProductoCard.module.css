@@ -21,6 +21,7 @@
   border-radius: 12.5px;
   filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.25));
   background-color: var(--verde);
+  cursor: pointer;
 }
 
 .imgContainer img {

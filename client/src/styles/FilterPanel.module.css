@@ -5,8 +5,9 @@
   align-items: center;
   width: 100%;
   max-width: 250px;
-  min-height: 80vh;
-  background-color: var(--gris-claro);
+  min-height: 100vh;
+  margin-right: 1rem;
+  background-color: var(--blanco);
 }
 
 .panelHeader {
@@ -14,20 +15,27 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: var(--rosa);
+  margin: 0;
+  padding: 1rem;
+  padding-top: 0.25rem;
 }
 
 .panelHeader h3 {
   margin: 0;
-  padding: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--rosa);
 }
 
 .clearFiltersButton {
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   border-radius: 4px;
   border: none;
-  background-color: #0070f3;
-  color: #fff;
+  background-color: transparent;
+  color: var(--gris-oscuro);
+}
+.clearFiltersButton:hover {
+  color: var(--rosa);
 }
 
 .panelBody {
@@ -37,48 +45,56 @@
   align-items: center;
   width: 100%;
   max-width: 250px;
+  margin: 1rem 0;
 }
 
 .panelSection {
   min-width: 100%;
-}
-
-.sectionHeaderButton {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
   border: none;
 }
 
-.sectionItem {
+.panelSection .sectionItem {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  background-color: #fff;
+  padding: 0.25em;
 }
 
-.itemInput {
-  margin: 0;
+.panelSection .sectionItem .selectItem {
+  min-width: 100%;
   padding: 0.5rem;
-  border: none;
-  background-color: chartreuse;
-}
-
-.itemLabel {
   margin: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.panelSection .sectionItem .checkItem {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  accent-color: var(--verde);
+  margin-right: 0.5rem;
+}
+
+.panelSection .sectionItem .priceInput {
+  width: 5rem;
+  margin-right: 0.5rem;
+  border: rgba(0, 0, 0, 0.125) 1px solid;
+  font-size: 14px;
   padding: 0.5rem;
-  border: none;
-  background-color: darkkhaki;
 }
 
-.priceInput {
-  width: 3rem;
-}
-
-.searchButton {
+.panelSection .sectionItem .searchButton {
   border: none;
+  background-color: var(--verde);
+  color: white;
+}
+.searchButton:hover {
+  background-color: #3ec591;
 }
 
 .priceSlider {
@@ -96,4 +112,43 @@
   border-radius: 50%;
   border: 4px solid var(--verde);
   top: -7px;
+}
+
+.mobilePanelFooter {
+  display: none;
+}
+
+@media screen and (max-width: 980px) {
+  .container {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    z-index: 2;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+    padding-top: 2rem;
+  }
+
+  .mobilePanelFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 2rem 0;
+    background-color: blanchedalmond;
+  }
+
+  .mobilePanelFooter .closePanelButton {
+    margin: 0;
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    color: white;
+    background-color: var(--verde);
+  }
+  .closePanelButton:hover {
+    background-color: #3ec591;
+  }
 }
