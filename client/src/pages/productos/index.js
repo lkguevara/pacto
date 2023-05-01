@@ -16,10 +16,7 @@ import ProductList from "@/components/ProductList";
 
 
 export default function Productos() {
-
-  // const { filters, orderBy, page} = useSelector(state => state.products);
-
-
+   const { cantidad } = useSelector(state => state.products.productList);
 
   // RENDERIZADO DEL COMPONENTE
   return (
@@ -46,7 +43,7 @@ export default function Productos() {
 
               {/* Header del contenedor de la  info de los productos */}
               <div className={styles.prodContainerHeader}>
-                <p className={styles.totalProducts}>xxxx</p>
+                <p className={styles.totalProducts}>Total Productos: {cantidad}</p>
                 <SortComponent />
               </div>
 
