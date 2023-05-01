@@ -12,6 +12,7 @@ import { filterProducts } from "@/redux/features/products/productsSlice";
 import { setFilters } from "@/redux/features/products/productsSlice";
 import {AUDIO,BELLEZA,SALUD,FIESTAS,JUEGOS,HERAMIENTAS,INSTRUMENTOS,CONSOLAS,PAPELERIA,AGRO,ANTIGUEDADESYCOLECCIONES,ACCESORIOSVEHICULOS,ELECTRODOMESTICOS,LIBROS,CELULARES,COMPUTACION,VIDEO } from "@/utils/subcategoria";
 import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from "next/dist/shared/lib/constants";
+import debounce from "@/utils/debounce";
 const MIN = 0;
 const MAX = 1000000;
 
@@ -31,6 +32,9 @@ const FilterPanel = () => {
           categorias: {categoria: dataset.categoria, subcategoria: text}
         }));
       }
+
+  const debouncedhandleCategoriaSelect = debounce(handleCategoriaSelect, 1000);
+
 
       const handlerFilterStatus = (e) => {
         clearTimeout(timeoutId);
@@ -58,6 +62,7 @@ const FilterPanel = () => {
       }, 1000); 
     }
 
+    
 
 
     // RENDERIZADO DEL COMPONENTE
@@ -76,109 +81,109 @@ const FilterPanel = () => {
                   <Accordion.Header>Categorías</Accordion.Header>
                   <Accordion.Body>
                   {/* audio */}
-                  <DropdownButton id="categorias" title="Audio" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                  <DropdownButton id="categorias" title="Audio" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                     {AUDIO.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Audio" >{subcategoria.name}</Dropdown.Item>
                       )}
                   </DropdownButton>
                     {/* video */}
-                    <DropdownButton id="categorias" title="Video" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                    <DropdownButton id="categorias" title="Video" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                     {VIDEO.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Video">{subcategoria.name}</Dropdown.Item>
                       )}
                     </DropdownButton>
                     {/* computacion */}
-                    <DropdownButton id="categorias" title="Computacion" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                    <DropdownButton id="categorias" title="Computacion" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                       {COMPUTACION.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Computacion">{subcategoria.name}</Dropdown.Item>
                       )}
                     </DropdownButton>
                   {/* telefonos */}
-                  <DropdownButton id="categorias" title="Celulares y Telefonos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                  <DropdownButton id="categorias" title="Celulares y Telefonos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                     {CELULARES.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Celulares y Telefonos">{subcategoria.name}</Dropdown.Item>
                       )}
                   </DropdownButton>
                   {/* libros */}
-                  <DropdownButton id="categorias" title="Libros físicos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                  <DropdownButton id="categorias" title="Libros físicos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                     {LIBROS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Libros físicos">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Electrodomesticos */}
-                <DropdownButton id="categorias" title="Electrodomésticos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Electrodomésticos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {ELECTRODOMESTICOS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Electrodomésticos">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* BellezayCuidado */}
-                <DropdownButton id="categorias" title="Belleza y cuidado personal" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Belleza y cuidado personal" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {BELLEZA.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Belleza y cuidado personal">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* AccesoriosVehiculo */}
-                <DropdownButton id="categorias" title="Accesorios para vehiculos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Accesorios para vehiculos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {ACCESORIOSVEHICULOS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Accesorios para vehiculos">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Agro */}
-                <DropdownButton id="categorias" title="Agro" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Agro" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {AGRO.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Agro">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Antiguedades y colecciones */}
-                <DropdownButton id="categorias" title="Antiguedades y colecciones" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Antiguedades y colecciones" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {ANTIGUEDADESYCOLECCIONES.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Antiguedades y colecciones">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Papeleria y mobiliario de negocio */}
-                <DropdownButton id="categorias" title="Papeleria y mobiliario de negocio" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Papeleria y mobiliario de negocio" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {PAPELERIA.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Papeleria y mobiliario de negocio">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Consolas y videojuegos */}
-                <DropdownButton id="categorias" title="Consolas y videojuegos" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Consolas y videojuegos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {CONSOLAS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Consolas y videojuegos">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/* Herramientas, Audio y video */}
-                <DropdownButton id="categorias" title="Herramientas, Audio y video" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Herramientas, Audio y video" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {HERAMIENTAS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Herramientas, Audio y video">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Instrumentos musicales */}
-                <DropdownButton id="categorias" title="Instrumentos musicales" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Instrumentos musicales" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {INSTRUMENTOS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Instrumentos musicales">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Juegos y juguetes*/}
-                <DropdownButton id="categorias" title="Juegos y juguetes" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Juegos y juguetes" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {JUEGOS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Juegos y juguetes">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Fiestas y piñatas*/}
-                <DropdownButton id="categorias" title="Fiestas y piñatas" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Fiestas y piñatas" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {FIESTAS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Fiestas y piñatas">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Fiestas y piñatas*/}
-                <DropdownButton id="categorias" title="Fiestas y piñatas" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Fiestas y piñatas" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {FIESTAS.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name}href="#" data-categoria="Fiestas y piñatas">{subcategoria.name}</Dropdown.Item>
                       )}
                 </DropdownButton>
                 {/*Salud y equipamento medico*/}
-                <DropdownButton id="categorias" title="Salud y equipamento medico" className={styles.selectItem} onSelect={handleCategoriaSelect}>
+                <DropdownButton id="categorias" title="Salud y equipamento medico" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
                   {SALUD.map(subcategoria =>
                       <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Salud y equipamento medico">{subcategoria.name}</Dropdown.Item>
                       )}
