@@ -3,12 +3,12 @@ import axios from "axios";
 
 export default async function handler(req, res) {
     try {
-      const { categoria, subcategoria, priceMin, priceMax, name, status, sort_by, page } = req.query;
+      const { categoria, subcategoria, priceMin, priceMax, name, status, sort_by, page, all } = req.query;
       let productosFiltrados = [];
-      console.log(req.query);
+  
 
 
-      if(categoria === 'undefined' && priceMin === '0' && priceMax === '100' &&  !status && sort_by === 'default' && page === '1' && !name){
+      if(all){
         const  response  = await fetch(`${API_URL}/items`)
         const data = await response.json();
         const cantidad = data.products.length

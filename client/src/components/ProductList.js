@@ -14,23 +14,42 @@ export default function ProductList() {
     const { productList } = useSelector(state => state.products);
     
     const dispatch = useDispatch();
-
-    const updateURL = (newFilters, newOrderBy, newPage) => {
-
-        const newQueryParams = {
-            categoria: newFilters.categorias.categoria,
-            subcategoria: newFilters.categorias.subcategoria,
-            name: newFilters.name,
-            priceMin: newFilters.price.min,
-            priceMax: newFilters.price.max,
-            status: newFilters.status,
-            sort_by: newOrderBy,
-            page: newPage,
-        };
     
-        const newSearch = new URLSearchParams(newQueryParams).toString();
-        router.push(`/productos?${newSearch}`, undefined, { shallow: true });
-        return `/productos?${newSearch}`
+    const updateURL = (newFilters, newOrderBy, newPage) => {
+        const values = Object.values(newFilters);
+
+        //categorias
+        const keysCategoria = Object.values(values[0]);
+        //estado
+        const keysEstado  = Object.values(values[1]);
+        //precio
+        const keysPrecio  = Object.values(values[2]);
+        //name
+        const name  = values[3];
+
+        if(keysCategoria.length === 0 && keysEstado.length === 0 && keysPrecio[0] === 0 ){
+            router.push(`/productos?all`, undefined, { shallow: true });
+            return `/productos?all=all`
+        }
+
+
+        else{
+            const newQueryParams = {
+                categoria: newFilters.categorias.categoria,
+                subcategoria: newFilters.categorias.subcategoria,
+                name: newFilters.name,
+                priceMin: newFilters.price.min,
+                priceMax: newFilters.price.max,
+                status: newFilters.status,
+                sort_by: newOrderBy,
+                page: newPage,
+            };
+        
+            const newSearch = new URLSearchParams(newQueryParams).toString();
+            router.push(`/productos?${newSearch}`, undefined, { shallow: true });
+            return `/productos?${newSearch}`
+
+        }
     };
 
     useEffect(() => {
