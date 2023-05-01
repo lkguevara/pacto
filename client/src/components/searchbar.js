@@ -5,60 +5,69 @@ import { filterProducts } from "@/redux/features/products/productsSlice";
 import { filterName } from "./filters/filterName";
 import { filterCategory } from "./filters/filterCategory";
 import { useRouter } from "next/router";
+import debounce from "@/utils/debounce";
+import { setFilters } from "@/redux/features/products/productsSlice";
 
 export default function SearchBar() {
-  const products = useSelector((state) => state.products);
+  const filters = useSelector(state => state.products.filters)
+
   const [input, setInput] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  // const [suggestions, setSuggestions] = useState([]);
 
 
 
   const dispatch = useDispatch()
-  const handleChangeInput = (event) => {
+  // const handleChangeInput = (event) => {
+  //   const { value } = event.target;
+  //   setInput(value);
+  //   if (!value) setSuggestions([]);
+  //   else {
+  //     const filteredProducts = products.copyItems.filter((product) =>
+  //       product.category.toLowerCase().includes(value.toLowerCase())
+  //     );
+  //     const categories = [];
+  //     const uniqueCategories = [];
+  //     filteredProducts.forEach((product) => {
+  //       if (!categories.includes(product.category)) {
+  //         // si la categoría aún no está en el array
+  //         categories.push(product.category);
+  //         uniqueCategories.push(product);
+  //       }
+  //     });
+  //     setSuggestions(uniqueCategories.slice(0, 4));
+  //   }
+  // };
+
+
+  const handleChangeInput = (event) =>{
     const { value } = event.target;
-    setInput(value);
-    if (!value) setSuggestions([]);
-    else {
-      const filteredProducts = products.copyItems.filter((product) =>
-        product.category.toLowerCase().includes(value.toLowerCase())
-      );
-      const categories = [];
-      const uniqueCategories = [];
-      filteredProducts.forEach((product) => {
-        if (!categories.includes(product.category)) {
-          // si la categoría aún no está en el array
-          categories.push(product.category);
-          uniqueCategories.push(product);
-        }
-      });
-      setSuggestions(uniqueCategories.slice(0, 4));
-    }
-  };
+    setInput(value)
+
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault;
-    dispatch(filterProducts((filterName(products.copyItems, input))))
+    dispatch(setFilters({
+      ...filters,
+      name: input
+    }));
   };
-  
-  const router = useRouter()
-  const handleClick = (category)=>{
 
-   dispatch(filterProducts((filterCategory(products.copyItems,category))))
-   router.push('/productos')
-  }
+  const debouncedHandleSubmit = debounce(handleSubmit, 1000);
+  
 
   return (
     <div className={style.container}>
       <input
         onChange={(e) => handleChangeInput(e)}
-        value={input}
         autoComplete="off"
         type="text"
         name="text"
         className={style.input}
         placeholder="Buscar productos, marcas y más..."
+        value={input}
       />
-      <button onClick={handleSubmit} className={style.search__btn}>
+      <button onClick={debouncedHandleSubmit} className={style.search__btn}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -71,13 +80,13 @@ export default function SearchBar() {
           ></path>
         </svg>
       </button>
-      {suggestions.length > 0 && (
+      {/* {suggestions.length > 0 && (
         <ul className={style.suggestions}>  
           {suggestions.map((product) => (
             <li onClick={() => handleClick(product.category)} name={product.category} key={product.id}>{product.category}</li>
           ))}
         </ul>
-      )}
+      )} */}
     </div>
   );
 }

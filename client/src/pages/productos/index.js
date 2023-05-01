@@ -9,21 +9,14 @@ import Paginado from "@/components/paginado";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "@/redux/features/products/productsSlice";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { setFilters, setOrderBy, setPage } from "@/redux/features/products/productsSlice";
+import ProductList from "@/components/ProductList";
 
 
 
 export default function Productos() {
-  const dispatch = useDispatch();
- 
-  useEffect(()=>{
-      fetch("http://localhost:3000/api/items")
-      .then(response => response.json())
-      .then(data=> dispatch(addProducts(data.products)))
-  },[])
-
-  const products = useSelector((state) => state.products);
-
-  
+   const { cantidad } = useSelector(state => state.products.productList);
 
   // RENDERIZADO DEL COMPONENTE
   return (
@@ -50,15 +43,18 @@ export default function Productos() {
 
               {/* Header del contenedor de la  info de los productos */}
               <div className={styles.prodContainerHeader}>
-                <p className={styles.totalProducts}>xxxx</p>
+                <p className={styles.totalProducts}>Total Productos: {cantidad}</p>
                 <SortComponent />
               </div>
 
               {/* Contenedor para la lista de productos */}
-              <div className={styles.productsList}>
+              {/* {<div className={styles.productsList}>
                 {products.items?.map((prod, index) => (
                   <ProductoCard key={index} producto={prod} />
                 ))}
+              </div>} */}
+              <div>
+                <ProductList/>
               </div>
 
               <div className={styles.prodContainerFooter}>
