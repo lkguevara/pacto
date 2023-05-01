@@ -26,17 +26,17 @@ const Paginado = () => {
     const handleCurrentPage = (e) => {
         const { name,text } = e.target;
         if(name === 'prev' && paginate > 1){
-            console.log('prev');
+            // console.log('prev');
             setPaginate(paginate - 1)
             // dispatch(setPage(page - 1));
         };
         if(name === 'next' && paginate < numOfPages){
-            console.log('next');
+            // console.log('next');
             setPaginate(paginate + 1)
             // dispatch(setPage(page + 1));
         };
         if(name === "page"){
-            console.log('page');
+            // console.log('page');
             setPaginate(parseInt(text))
 
         }
