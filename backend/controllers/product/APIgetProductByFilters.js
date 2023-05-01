@@ -1,14 +1,15 @@
-const DBProductFilters = require('../../database/controllers/products/productGet/DBProductFilters');
+const DBProductsFilters = require('../../database/controllers/products/productGet/DBProductGetFilters');
 
-const getProductsByFilters = (req, res) => {
+const getProductsByFilters = async (req, res) => {
 
     try{
         const {filters, order, page} = req.body;
-        const products = DBProductFilters(filters);
+        const products = await DBProductsFilters(filters);
         const amountXPage = 24;
-    
+      
         if (products){
             const amountProd = products.length;
+      
             const indexLastProd = page * amountXPage
             const indexFirstProd = indexLastProd - amountXPage
             const prodsXPage = products.slice(indexFirstProd, indexLastProd);

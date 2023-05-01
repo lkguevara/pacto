@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const { createMainCategories } = require("./models/category");
-const DBProductGetCategory = require("./controllers/products/productGet/DBProductGetCategory");
+const DBProductGetCategory = require("./controllers/products/productGet/handlers/DBProductGetCategory");
 const { userTest, productTest } = require("./mockData/testData");
 
 const uri = "mongodb://127.0.0.1:27017/marketplace";
