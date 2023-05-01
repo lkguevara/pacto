@@ -4,10 +4,13 @@ const {getAllProducts} = require('../controllers/product/APIgetAllProducts')
 const {getProductById} = require('../controllers/product/APIgetProductById');
 const {deleteProductById} = require('../controllers/product/APIdeleteProduct');
 const {postNewProduct} = require('../controllers/product/APIpostNewProduct');
+const {getProductsByFilters} = require('../controllers/product/APIgetProductByFilters');
 const getProductByName = require('../controllers/product/APIgetProductByName');
 
 // GET all products
-router.get('/products', (req, res, next) => getAllProducts(req, res))
+router.get('/products', (req, res, next) => getAllProducts(req, res));
+
+router.get('/productsPage', (req, res, next) => getProductsByFilters(req, res))
 
 //GET Product by id
 router.get('/product', (req, res, next) => getProductById(req, res));

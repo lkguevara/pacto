@@ -1,22 +1,26 @@
 const Product = require("../../../models/product");
-const DBProductGetCategory = require("./DBProductGetCategory");
-const handlerFilters = require("./Handlers/handlerFilters");
-const getProductsAll = require("./Handlers/handlergetall");
+const DBProductGetCategory = require('../productGet/handlers/DBProductGetCategory')
+const handlerFilters = require("./handlers/handlerFilters");
+const getProductsAll = require("./handlers/handlerGetAll");
 
 //filters = {price: {min: 20, max: 100}, categorias:{categoria: audio, subcategoria: audifonos} , status: [bueno, muy bueno]}
 
-const DBPRoductFilters = async (filters) => {
+const DBProductsFilters = async (filters) => {
     try {
         let response = {}
 
+     
+       
         switch (true) {
-            case (!filters.price && !filters.categorias && !filters.status):
+           
+            case (!filters.price && !filters.categories && !filters.status):
+           
                 response = await getProductsAll()
                 break
 
-            case (filters.categorias):
+            case (filters.categories):
                 if (!filters.price && !filters.status) {
-                    response = await DBProductGetCategory(filters.categorias.categoria, filters.categorias.subcategoria)
+                    response = await DBProductGetCategory(filters.categories.category, filters.categories.subcategory)
                 } else {
                     response = await handlerFilters(filters)
                 }
@@ -25,10 +29,12 @@ const DBPRoductFilters = async (filters) => {
             default:
                 response = await handlerFilters(filters)
         }
-
+     
         return response
 
     } catch (error) {
         throw Error(error.message)
     }
 }
+
+module.exports = DBProductsFilters

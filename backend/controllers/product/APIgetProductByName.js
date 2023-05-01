@@ -2,6 +2,7 @@ const DBProductGetName = require("../../database/controllers/products/productGet
 
 const getProductByName = async (req, res) => {
   try {
+    
     const name = req.query.name;
 
     if (name) {
