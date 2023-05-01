@@ -27,7 +27,7 @@ export default function ProductList() {
         //name
         const name  = values[3];
 
-        if(keysCategoria.length === 0 && keysEstado.length === 0 && keysPrecio[0] === 0 ){
+        if(keysCategoria.length === 0 && keysEstado.length === 0 && keysPrecio[0] === 0 && !name){
             router.push(`/productos?all`, undefined, { shallow: true });
             return `/productos?all=all`
         }
