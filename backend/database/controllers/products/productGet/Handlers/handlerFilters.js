@@ -9,11 +9,12 @@ const handlerFilters = async (filters) => {
         if (filters.categories.subcategory !== null) searchproduct.where({"subcategory" : filters.categories.subcategory})
     }
     if (filters.status) searchproduct.or({"state" : filters.status})
-    if (filters.price.min) searchproduct.where("price").gte(filters.price.min)
-    if (filters.price.max) searchproduct.where("price").lte(filters.price.max)
+    if (filters.price){
+        if (filters.price.min) searchproduct.where("price").gte(filters.price.min)
+        if (filters.price.max) searchproduct.where("price").lte(filters.price.max)
+    }
+    
     const products = await searchproduct.exec()
-
-    console.log("Desde el handler", products)
     
     return products
 }

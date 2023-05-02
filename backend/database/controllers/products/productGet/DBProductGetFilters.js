@@ -8,9 +8,7 @@ const getProductsAll = require("./handlers/handlerGetAll");
 const DBProductsFilters = async (filters) => {
     try {
         let response = {}
-
-     
-       
+    
         switch (true) {
            
             case (!filters.price && !filters.categories && !filters.status):
