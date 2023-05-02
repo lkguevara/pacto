@@ -223,7 +223,7 @@ export default function handler(req, res) {
           "reviews": null
         },
         {
-          "id": 12,
+          "id": 13,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
             "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
@@ -241,7 +241,7 @@ export default function handler(req, res) {
           "reviews": null
         },
         {
-          "id": 12,
+          "id": 15,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
             "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
@@ -259,14 +259,14 @@ export default function handler(req, res) {
           "reviews": null
         },
         {
-          "id": 12,
+          "id": 15,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
             "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
           ],
           "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
           "state": "Reacondicionado",
-          "price": 9,
+          "price": 16,
           "active": true,
           "label": "Oferta",
           "stock": 1,
@@ -277,7 +277,7 @@ export default function handler(req, res) {
           "reviews": null
         },
         {
-          "id": 12,
+          "id": 17,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
             "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
@@ -295,7 +295,7 @@ export default function handler(req, res) {
           "reviews": null
         },
         {
-          "id": 12,
+          "id": 18,
           "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
           "images": [
             "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"

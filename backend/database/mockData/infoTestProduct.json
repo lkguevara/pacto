@@ -8,8 +8,8 @@
         "https://picsum.photos/id/1021/300/200"
       ],
       "description": "El Apple Watch Series 7 con pantalla más grande y resistencia mejorada.",
-      "state": "Nuevo (en caja original)",
-      "price": 400000,
+      "state": "Nuevo",
+      "price": 5,
       "active": true,
       "Brand": "Apple",
       "stock": 10,
@@ -22,8 +22,8 @@
         "https://picsum.photos/id/1022/300/200"
       ],
       "description": "Televisor OLED de LG, con un panel 4K Ultra HD de 55 pulgadas y la tecnología Smart TV.",
-      "state": "Nuevo (en caja original)",
-      "price": 4200000,
+      "state": "Nuevo",
+      "price": 100,
       "active": true,
       "Brand": "LG",
       "stock": 5,
@@ -31,13 +31,30 @@
       "subcategory": "Otros"
     },
     {
+      "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
+      "images": [
+        "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+      ],
+      "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
+      "state": "Reacondicionado",
+      "price": 78,
+      "active": true,
+      "label": "Oferta",
+      "stock": 1,
+      "user": "María Gómez",
+      "send": null,
+      "category": "Salud y equipamento medico",
+      "questions": null,
+      "reviews": null
+    },
+    {
       "name": "Consola PlayStation 5 1TB Disco Duro",
       "images": [
         "https://picsum.photos/id/1023/300/200"
       ],
       "description": "La última consola de Sony con un disco duro de 1TB, una CPU AMD Zen 2 y una GPU AMD RDNA 2.",
-      "state": "Nuevo (en caja original)",
-      "price": 3500000,
+      "state": "Usado",
+      "price": 100,
       "active": true,
       "Brand": "Sony",
       "stock": 3,
@@ -50,8 +67,8 @@
         "https://picsum.photos/id/1024/300/200"
       ],
       "description": "La MacBook Pro 13'' con el procesador M1 de Apple, 8 núcleos de CPU, 8GB de RAM y 256GB de almacenamiento SSD.",
-      "state": "Nuevo (en caja original)",
-      "price": 3500000,
+      "state": "Nuevo",
+      "price": 65,
       "active": true,
       "Brand": "Apple",
       "stock": 7,
@@ -65,8 +82,8 @@
         "https://picsum.photos/id/1035/400/300"
       ],
       "description": "Este reloj de la marca Casio es resistente al agua hasta 200 metros de profundidad. Además, cuenta con varias funciones como cronómetro, alarma y hora mundial.",
-      "state": "Nuevo (en caja original)",
-      "price": 500000,
+      "state": "Nuevo",
+      "price": 89,
       "active": true,
       "Brand": "Casio",
       "stock": 10,
@@ -79,8 +96,8 @@
         "https://picsum.photos/id/1068/400/300"
       ],
       "description": "Esta guitarra eléctrica de la marca Gibson es el modelo Les Paul. Cuenta con pastillas humbucker y un cuerpo de caoba. Viene con un estuche rígido.",
-      "state": "Como nuevo",
-      "price": 2000000,
+      "state": "Usado",
+      "price": 11,
       "active": true,
       "Brand": "Gibson",
       "stock": 5,
@@ -94,8 +111,8 @@
         "https://picsum.photos/id/1071/400/300"
       ],
       "description": "Esta silla ergonómica es perfecta para usar en la oficina. Tiene ajuste de altura, respaldo reclinable y apoyabrazos ajustables. Además, su diseño moderno la hace lucir muy elegante.",
-      "state": "Bueno",
-      "price": 400000,
+      "state": "Reacondicionado",
+      "price": 7,
       "active": true,
       "Brand": "DxRacer",
       "stock": 20,
@@ -111,8 +128,8 @@
         "https://picsum.photos/id/1044/500/500"
       ],
       "description": "Camiseta Adidas Originals de color negro y diseño clásico, hecha con materiales de alta calidad para garantizar durabilidad y comodidad.",
-      "state": "Nuevo (en caja original)",
-      "price": 45000,
+      "state": "Nuevo",
+      "price": 6,
       "active": true,
       "Brand": "Adidas",
       "stock": 20,
@@ -125,8 +142,8 @@
         "https://picsum.photos/id/1018/500/500"
       ],
       "description": "Laptop Dell Inspiron 15 con procesador Intel Core i5, 8GB de RAM y disco duro de 512GB. Perfecta para trabajos de oficina y uso personal.",
-      "state": "Nuevo (en caja original)",
-      "price": 1200000,
+      "state": "Nuevo",
+      "price": 8,
       "active": true,
       "Brand": "Dell",
       "stock": 5,
@@ -141,13 +158,78 @@
         "https://picsum.photos/id/1053/500/500"
       ],
       "description": "Zapatos Puma RS-2K de color gris y diseño deportivo, con suela de goma antideslizante y materiales resistentes para mayor durabilidad.",
-      "state": "Nuevo (en caja original)",
-      "price": 99000,
+      "state": "Nuevo",
+      "price": 4,
       "active": true,
       "Brand": "Puma",
       "stock": 10,
       "category": "Belleza y cuidado personal",
       "subcategory": "Otros"
+    },
+    {
+      "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
+      "images": [
+        "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+      ],
+      "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
+      "state": "Nuevo",
+      "price": 66,
+      "active": true,
+      "Brand": "Puma",
+      "stock": 1,
+      "category": "Fiestas y piñatas"
+    },
+    {
+      "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
+      "images": [
+        "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+      ],
+      "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
+      "state": "Reacondicionado",
+      "price": 16,
+      "active": true,
+      "stock": 1,
+      "user": "María Gómez",
+      "category": "Juegos y juguetes"
+    },
+    {
+      "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
+      "images": [
+        "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+      ],
+      "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
+      "state": "Reacondicionado",
+      "price": 8,
+      "active": true,
+      "stock": 1,
+      "user": "María Gómez",
+      "category": "Instrumentos musicales"
+    },
+    {
+      "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
+      "images": [
+        "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+      ],
+      "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
+      "state": "Reacondicionado",
+      "price": 20,
+      "active": true,
+      "stock": 1,
+      "user": "María Gómez",
+      "category": "Herramientas, Audio y video"
+    },
+    {
+      "name": "Samsung Galaxy Xcover 4s 32 GB Black Desbloqueado",
+      "images": [
+        "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_1.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_2.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_3.jpg", "https://raw.githubusercontent.com/CodeFusionPF/pacto/developer/client/public/image/products/p3_4.jpg"
+      ],
+      "description": "El dispositivo está en perfecto estado de funcionamiento, aunque tiene algunos detalles. Por favor observa con detenimiento las fotografías antes de comprar.\nRed\n--------------\nEste dispositivo está desbloqueado para trabajar con todas las redes de Colombia. Verifica la compatibilidad si compras fuera de Colombia.",
+      "state": "Usado",
+      "price": 65,
+      "active": true,
+      "stock": 1,
+      "user": "María Gómez",
+      "category": "Consolas y videojuegos"
     }
   ]
 }
