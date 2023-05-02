@@ -14,10 +14,10 @@ const SortComponent = () => {
     // const { orderBy } = useSelector(state => state.products);
     const dispatch = useDispatch();
 
-    const handleOrderBy = (eventKey , event) => {
-        const { name } = event.target;
+    const handleOrderBy = (event) => {
+        const { value } = event.target;
 
-        dispatch(setOrderBy(name));
+        dispatch(setOrderBy(value));
     };
 
   const debouncedhandleOrderBy = debounce(handleOrderBy, 1000);
@@ -27,11 +27,11 @@ const SortComponent = () => {
     return (
         <div className={styles.container}>
             <label htmlFor="orderBy" className={styles.label}>Ordenar por:</label>
-            <select name="orderBy" id="orderBy" onSelect={debouncedhandleOrderBy} className={styles.sortProducts}>
-                <option value="" name='Asc-Name'>Nombre A-Z</option>
-                <option value="" name='Des-Name'>Nombre Z-A</option>
-                <option value="" name='Asc-Price'>Menor Precio</option>
-                <option value="" name='Des-Price'>Mayor Precio</option>
+            <select name="orderBy" id="orderBy" onChange={debouncedhandleOrderBy} className={styles.sortProducts}>
+                <option value="Nombre A-Z" name='Asc-Name'>Nombre A-Z</option>
+                <option value="Nombre Z-A" name='Des-Name'>Nombre Z-A</option>
+                <option value="Menor Precio" name='Asc-Price'>Menor Precio</option>
+                <option value="Mayor Precio" name='Des-Price'>Mayor Precio</option>
             </select>
         </div>
     );

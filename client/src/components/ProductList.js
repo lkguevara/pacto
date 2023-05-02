@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,9 +28,9 @@ export default function ProductList() {
         //name
         const name  = values[3];
 
-        if(keysCategoria.length === 0 && keysEstado.length === 0 && keysPrecio[0] === 0 && !name){
+        if(keysCategoria.length === 0 && keysEstado.length === 0 && keysPrecio[0] === 0 && !name && newOrderBy === 'default' ){
             router.push(`/productos?all`, undefined, { shallow: true });
-            return `/productos?all=all`
+            return `products?all=all`
         }
 
 
@@ -47,7 +48,7 @@ export default function ProductList() {
         
             const newSearch = new URLSearchParams(newQueryParams).toString();
             router.push(`/productos?${newSearch}`, undefined, { shallow: true });
-            return `/productos?${newSearch}`
+            return `/products?${newSearch}`
 
         }
     };
@@ -71,11 +72,11 @@ export default function ProductList() {
 
         <>
         <h1>PRODUCTLIST</h1>
-        {/* {productList?.productos?.map(producto=>{
+        {productList?.products?.map(producto=>{
             return(
                 <ProductoCard key={producto.id} producto={producto}/>
             )
-        })} */}
+        })}
 
         </>
     )

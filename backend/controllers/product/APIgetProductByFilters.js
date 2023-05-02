@@ -16,9 +16,19 @@ const getProductsByFilters = async (req, res) => {
     //Va a recibir por QUERY los filtros y adicionalmente tambien recibirá el name para buscar
     try{
       
-        const {categoria, subcategoria, status, priceMin, priceMax, orderBy, order, page, search} = req.query;
+        const {categoria, subcategoria, status, priceMin, priceMax, orderBy, order, page, search, all} = req.query;
        
         const amountXPage = 24;
+
+        if(all){
+            const obj = {productos: 'all'}
+            let products = await DBProductsFilters(obj);
+            const amountProd = products.length;
+            return res.status(200).json({
+                cantidad: amountProd,
+                products : products
+            });
+        }
        
         const filters = {
             categories : categoria != conditions.isUndefined || categoria === undefined ? {

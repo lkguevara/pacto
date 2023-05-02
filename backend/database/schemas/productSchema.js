@@ -6,7 +6,8 @@ const productSchema = new Schema({
     description: String,
     state: {
         type: String,
-        enum: ['Nuevo (en caja original)', 'Como nuevo', 'Muy bueno', 'Bueno', 'Regular', 'Malo', 'Para piezas']
+        enum: ['Nuevo', 'Usado', 'Reacondicionado']
+        // enum: ['Nuevo (en caja original)', 'Como nuevo', 'Muy bueno', 'Bueno', 'Regular', 'Malo', 'Para piezas']
     },
     price: Number,
     active: {
