@@ -29,9 +29,9 @@ const SortComponent = () => {
             <label htmlFor="orderBy" className={styles.label}>Ordenar por:</label>
             <select name="orderBy" id="orderBy" onChange={debouncedhandleOrderBy} className={styles.sortProducts}>
                 <option value="asc-name" name='Asc-Name'>Nombre A-Z</option>
-                <option value="des-name" name='Des-Name'>Nombre Z-A</option>
+                <option value="desc-name" name='Des-Name'>Nombre Z-A</option>
                 <option value="asc-price" name='Asc-Price'>Menor Precio</option>
-                <option value="des-price" name='Des-Price'>Mayor Precio</option>
+                <option value="desc-price" name='Des-Price'>Mayor Precio</option>
             </select>
         </div>
     );

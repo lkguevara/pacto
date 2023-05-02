@@ -1,7 +1,7 @@
 const Product = require("../../../models/product");
-const DBProductGetCategory = require('../productGet/handlers/DBProductGetCategory')
-const handlerFilters = require('./handlers/handlerFilters');
+const DBProductGetCategory = require('../productGet/handlers/DBProductGetCategory');
 const getProductsAll = require("./handlers/handlerGetAll");
+const {handlerFilters} = require('./handlers/handlerFilters.js')
 
 //filters = {price: {min: 20, max: 100}, categorias:{categoria: audio, subcategoria: audifonos} , status: [bueno, muy bueno]}
 
@@ -26,7 +26,7 @@ const DBProductsFilters = async (filters) => {
                 break
                 
                 default:
-                    // response = await handlerFilters(filters)
+            
                     response = await getProductsAll()
         }
      
