@@ -1,4 +1,4 @@
-
+import styles from '../styles/ProductList.module.css'
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
@@ -48,7 +48,7 @@ export default function ProductList() {
         
             const newSearch = new URLSearchParams(newQueryParams).toString();
             router.push(`/productos?${newSearch}`, undefined, { shallow: true });
-            return `/products?${newSearch}`
+            return `products?${newSearch}`
 
         }
     };
@@ -70,14 +70,12 @@ export default function ProductList() {
     
     return (
 
-        <>
-        <h1>PRODUCTLIST</h1>
+        <div className={styles.container}>
         {productList?.products?.map(producto=>{
             return(
                 <ProductoCard key={producto.id} producto={producto}/>
             )
         })}
-
-        </>
+        </div>
     )
 }
