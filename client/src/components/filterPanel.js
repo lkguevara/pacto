@@ -23,17 +23,19 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
     let timeoutId
 
     // LÓGICA DEL COMPONENTE
-      const handleCategoriaSelect = (eventKey, event) => {
+      const handleCategoriaSelect = (event) => {
+        const {name,value} = event.target
+        console.log(name,value);
         const {text,dataset} = event.target
         
         dispatch(setFilters({
           ...filters,
-          categorias: {categoria: dataset.categoria, subcategoria: text}
+          categorias: {categoria: name, subcategoria: value}
         }));
       }
 
   const debouncedhandleCategoriaSelect = debounce(handleCategoriaSelect, 1000);
-
+  
   const handleReset = ()=>{
     dispatch(resetState())
 
@@ -43,17 +45,18 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
 
       const handlerFilterStatus = (e) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          const { value, checked } = e.target;
-          if (checked && !filters.status.includes(value)) {
-            dispatch(setFilters({ ...filters, status: [...filters.status, value] }));
-          } else if(!checked) {
-            dispatch(setFilters({ ...filters, status: filters.status.filter(state => state !== value) }));
-          }
-        }, 1000); 
+        const { value, checked } = e.target;
+
+        if (checked && !filters.status.includes(value)) {
+              dispatch(setFilters({ ...filters, status: [...filters.status, value] }));
+            } else if(!checked) {
+              dispatch(setFilters({ ...filters, status: filters.status.filter(state => state !== value) }));
+            }
+
+     
       }
 
+       const debouncedhandlerFilterStatus = debounce(handlerFilterStatus, 1000);
     
     const handlePriceChange = (newValue) => {
       clearTimeout(timeoutId);
@@ -89,7 +92,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                   <Accordion.Header>Categorías</Accordion.Header>
                   <Accordion.Body>
                     {/* audio */}
-                    <select name="Audio" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Audio" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                       <option disabled selected value="default" >Audio</option>
                       {
                         AUDIO.map(subcategoria =>
@@ -98,7 +101,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
 
                     {/* video */}
-                    <select name="Video" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Video" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                       <option disabled selected value="default" >Video</option>
                       {
                         VIDEO.map(subcategoria =>
@@ -107,7 +110,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
                    
                     {/* computacion */}
-                    <select name="Computacion" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Computacion" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                       <option disabled selected value="default" >Computación</option>
                       {
                         COMPUTACION.map(subcategoria =>
@@ -116,7 +119,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
                   
                     {/* telefonos */}
-                    <select name="Celulares y Telefonos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Celulares y Telefonos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                       <option disabled selected value="default" >Celulares y Teléfonos</option>
                       {
                         CELULARES.map(subcategoria =>
@@ -125,7 +128,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
 
                     {/* libros */}
-                    <select name="Libros físicos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Libros físicos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                       <option disabled selected value="default" >Libros físicos</option>
                       {
                         LIBROS.map(subcategoria =>
@@ -134,7 +137,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
                     
                     {/* Electrodomesticos */}
-                    <select name="Electrodomésticos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Electrodomésticos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Electrodomésticos</option>
                         {
                           ELECTRODOMESTICOS.map(subcategoria =>
@@ -143,7 +146,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
 
                     {/* BellezayCuidado */}
-                    <select name="Belleza y cuidado personal" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Belleza y cuidado personal" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Belleza y cuidado personal</option>
                         {
                           BELLEZA.map(subcategoria =>
@@ -152,7 +155,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
                     
                     {/* AccesoriosVehiculo */}
-                    <select name="Accesorios para vehiculos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Accesorios para vehiculos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Accesorios para vehículos</option>
                         {
                           ACCESORIOSVEHICULOS.map(subcategoria =>
@@ -161,7 +164,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
 
                     {/* Agro */}
-                    <select name="Agro" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Agro" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Agro</option>
                         {
                           AGRO.map(subcategoria =>
@@ -170,7 +173,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
 
                     {/* Antiguedades y colecciones */}
-                    <select name="Antiguedades y colecciones" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Antiguedades y colecciones" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Antiguedades y colecciones</option>
                         {
                           ANTIGUEDADESYCOLECCIONES.map(subcategoria =>
@@ -179,7 +182,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
                 
                     {/* Papeleria y mobiliario de negocio */}
-                    <select name="Papeleria y mobiliario de negocio" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Papeleria y mobiliario de negocio" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Papeleria y mobiliario de negocio</option>
                         {
                           PAPELERIA.map(subcategoria =>
@@ -188,7 +191,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
                     
                     {/* Consolas y videojuegos */}
-                    <select name="Consolas y videojuegos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Consolas y videojuegos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Consolas y videojuegos</option>
                         {
                           CONSOLAS.map(subcategoria =>
@@ -197,7 +200,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
                     
                     {/* Herramientas, Audio y video */}
-                    <select name="Herramientas, Audio y video" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Herramientas, Audio y video" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Herramientas, Audio y video</option>
                         {
                           HERAMIENTAS.map(subcategoria =>
@@ -206,7 +209,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
 
                     {/*Instrumentos musicales */}
-                    <select name="Instrumentos musicales" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Instrumentos musicales" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Instrumentos musicales</option>
                         {
                           INSTRUMENTOS.map(subcategoria =>
@@ -215,7 +218,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
 
                     {/*Juegos y juguetes*/}
-                    <select name="Juegos y juguetes" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Juegos y juguetes" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Juegos y juguetes</option>
                         {
                           JUEGOS.map(subcategoria =>
@@ -224,7 +227,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
 
                     {/*Fiestas y piñatas*/}
-                    <select name="Fiestas y piñatas" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Fiestas y piñatas" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Fiestas y piñatas</option>
                         {
                           FIESTAS.map(subcategoria =>
@@ -233,7 +236,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     </select>
                     
                     {/*Salud y equipamento medico*/}
-                    <select name="Salud y equipamento medico" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                    <select name="Salud y equipamento medico" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
                         <option disabled selected value="default" >Salud y equipamento médico</option>
                         {
                           SALUD.map(subcategoria =>
@@ -250,17 +253,17 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     <Accordion.Header>Estado</Accordion.Header>
                     <Accordion.Body>
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" id='Nuevo' value='Nuevo' onChange={handlerFilterStatus} className={styles.checkItem} />
+                        <input type="checkbox" id='Nuevo' value='Nuevo' onChange={debouncedhandlerFilterStatus} className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Nuevo</label>
                       </div>
 
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" id='Usado' value='Usado' onChange={handlerFilterStatus}  className={styles.checkItem} />
+                        <input type="checkbox" id='Usado' value='Usado' onChange={debouncedhandlerFilterStatus}  className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Usado</label>
                       </div>
 
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" id='Reacondicionado' value='Reacondicionado' onChange={handlerFilterStatus}  className={styles.checkItem} />
+                        <input type="checkbox" id='Reacondicionado' value='Reacondicionado' onChange={debouncedhandlerFilterStatus}  className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Reacondicionado</label>
                       </div>
                         
