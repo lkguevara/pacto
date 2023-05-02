@@ -4,7 +4,7 @@ const handlerFilters = async (filters) => {
     searchproduct = Product.find()
     searchproduct.setOptions({ lean: true })
     searchproduct.collection(Product.collection)
-
+  
     if (filters.categories !== null) {
         searchproduct.where({"category" : filters.categories.category})
         if (filters.categories.subcategory !== null) searchproduct.where({"subcategory" : filters.categories.subcategory})

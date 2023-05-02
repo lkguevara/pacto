@@ -33,18 +33,18 @@ const getProductsByFilters = async (req, res) => {
         const amountXPage = 24;
 
         const filters = {
-            categories : categoria  ? {
+            categories : categoria && !(categoria === conditions.isUndefined) ? {
                 category :  categoria,
-                subcategory : subcategoria  ? subcategoria : null
+                subcategory : subcategoria && !(subcategoria === conditions.isUndefined)? subcategoria : null
             } : null,
             status : status ? status : null,
-            price : priceMin  && priceMax ? {
+            //El codigo priceMin !== '0' && priceMax !== '100' está hardcodeado, se debe acomodar usando datos enviados por el front
+            price : priceMin  && priceMax  && priceMin !== '0' && priceMax !== '100' ? {
                 min : priceMin ? priceMin : null,
                 max : priceMax ? priceMax : null
             } : null
         }
 
-        console.log(filters.categories);
 
         let products = await DBProductsFilters(filters);
   
