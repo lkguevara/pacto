@@ -1,4 +1,4 @@
-
+import styles from '../styles/ProductList.module.css'
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
@@ -70,14 +70,13 @@ export default function ProductList() {
     
     return (
 
-        <>
+        <div className={styles.container}>
         <h1>PRODUCTLIST</h1>
         {productList?.products?.map(producto=>{
             return(
                 <ProductoCard key={producto.id} producto={producto}/>
             )
         })}
-
-        </>
+        </div>
     )
 }
