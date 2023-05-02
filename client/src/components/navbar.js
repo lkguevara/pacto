@@ -36,19 +36,19 @@ export default function NavBar(){
                     {
                     !isOpen && 
                     <div className={style.links}>
-                        <Link href="/nosotros">
+                        <Link href="/nosotros" className={style.link}>
                             <button className={style.btn}>Nosotros</button>
                         </Link>
-                        <Link href="/productos">
+                        <Link href="/productos" className={style.link}>
                             <button className={style.btn}>Categorias</button>
                         </Link>
-                        <Link href="/ofertas">
+                        <Link href="/ofertas" className={style.link}>
                             <button className={style.btn}>Ofertas</button>
                         </Link>
-                        <Link href="/sellProduct">
+                        <Link href="/sellProduct" className={style.link}>
                             <button className={style.btn}>Vender</button>
                         </Link>
-                        <Link href="/faqs">
+                        <Link href="/faqs" className={style.link}>
                             <button className={style.btn}>¿Necesitas ayuda?</button>
                         </Link>
                     </div>
