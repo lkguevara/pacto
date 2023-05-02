@@ -1,6 +1,8 @@
 import styles from "@/styles/Productos.module.css";
 import Layout from "@/components/layout";
 
+import Image from "next/image";
+import filtersIcon from "../../../public/image/filtersIcon.png";
 
 import ProductoCard from "@/components/productoCard";
 import FilterPanel from "@/components/filterPanel";
@@ -8,7 +10,7 @@ import SortComponent from "@/components/sortComponent";
 import Paginado from "@/components/paginado";
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts } from "@/redux/features/products/productsSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { setFilters, setOrderBy, setPage } from "@/redux/features/products/productsSlice";
 import ProductList from "@/components/ProductList";
@@ -16,7 +18,17 @@ import ProductList from "@/components/ProductList";
 
 
 export default function Productos() {
+  // LÓGICA DEL COMPONENTE
    const { cantidad } = useSelector(state => state.products.productList);
+
+  // Estado local para manejar la visibilidad del panel de filtros en mobile
+  const [showFilters, setShowFilters] = useState(false);
+
+  // Función para cambiar la visibilidad del panel de filtros en mobile
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
+  };
+
 
   // RENDERIZADO DEL COMPONENTE
   return (
@@ -26,8 +38,14 @@ export default function Productos() {
         <div className={styles.container}>
           {/* Sección superior que sólo aparece en mobile */}
           <div className={styles.mobileControllers}>
-            <button className={styles.mobileFiltersButton}>Filtros</button>
+            <button className={styles.mobileFiltersButton} onClick={toggleFilters} >
+              <span>
+                <Image src={filtersIcon} alt="Icono de filtros" className={styles.filtersIcon} />
+              </span> 
+              Filtros 
+            </button>
           </div>
+          
 
           {/* Sección para el título de la página de la página */}
           <h1 className={styles.title}>Productos</h1>
@@ -36,7 +54,8 @@ export default function Productos() {
           <div className={styles.main}>
 
             {/* Panel de filtrado */}
-            <FilterPanel />
+            {/* Por props se pasa el estado local vinculado y la función para modificarlo */}
+            <FilterPanel isVisible={ showFilters } setVisibility={ toggleFilters } />
               
             {/* Contenedor de la info de los productos */}
             <div className={styles.productsContainer}>
@@ -54,7 +73,7 @@ export default function Productos() {
                 ))}
               </div>} */}
               <div>
-                <ProductList/>
+                <ProductList />
               </div>
 
               <div className={styles.prodContainerFooter}>
