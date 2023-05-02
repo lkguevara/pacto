@@ -1,6 +1,6 @@
 const Product = require("../../../models/product");
 const DBProductGetCategory = require('../productGet/handlers/DBProductGetCategory')
-const handlerFilters = require("./handlers/handlerFilters");
+const handlerFilters = require('./handlers/handlerFilters');
 const getProductsAll = require("./handlers/handlerGetAll");
 
 //filters = {price: {min: 20, max: 100}, categorias:{categoria: audio, subcategoria: audifonos} , status: [bueno, muy bueno]}
