@@ -1,9 +1,9 @@
 import rew from "@/pages/api/rewiew";
 import { Button, Card, Carousel } from 'react-bootstrap';
 import { useState } from 'react';
-import style from '../styles/Rewiews.module.css';
+import style from '../styles/Reviews.module.css';
 
-export default function Rewiews() {
+export default function Reviews() {
 
     const [index, setIndex] = useState(0);
 
@@ -12,13 +12,13 @@ export default function Rewiews() {
     }
 
     return (
-        <div className={style.rewiews}>
+        <div className={style.reviews}>
 
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 {rew.map((item) => (
                     <Carousel.Item key={item.id}>
                         <Card>
-                            <Card.Title className={style.title}><h1>Rewiews</h1></Card.Title>
+                            <Card.Title className={style.title}><h1>Reviews</h1></Card.Title>
                             <Card.Img src={item.image} className={style.image}/>
                             <Card.Body>
                                 <Card.Title className={style.title}><h2>{item.name}</h2></Card.Title>

@@ -1,7 +1,5 @@
 import styles from "../styles/FilterPanel.module.css";
 import Accordion from 'react-bootstrap/Accordion';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Slider from "react-slider";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +16,7 @@ const MIN = 0;
 const MAX = 1000000;
 
 
-const FilterPanel = () => {
+const FilterPanel = ({ isVisible, setVisibility }) => {
   
     const dispatch = useDispatch()
     const filters = useSelector(state => state.products.filters)
@@ -75,10 +73,12 @@ const FilterPanel = () => {
 
     // RENDERIZADO DEL COMPONENTE
     return (
-        <div className={styles.container}>
+        <div className={
+            isVisible ? `${styles.container} ${styles.panelVisible}` : styles.container
+          }>
             {/* Header del panel de filtrado */}
             <div className={styles.panelHeader}>
-              <h3>FilterPanel</h3>
+              <h3>Filtros</h3>
               <button onClick={handleReset} className={styles.clearFiltersButton}>Borrar</button>
             </div>
             {/* Contenedor para los criterios de filtrado */}
@@ -322,7 +322,7 @@ const FilterPanel = () => {
 
             {/* Footer del panel de filtrado */}
             <div className={styles.mobilePanelFooter}>
-              <button className={styles.closePanelButton}>Ver resultados</button>
+              <button className={styles.closePanelButton} onClick={setVisibility} >Ver resultados</button>
             </div>
         </div>
     );

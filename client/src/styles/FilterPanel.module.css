@@ -123,9 +123,11 @@
     position: fixed;
     top: 0;
     left: -300px;
-    z-index: 2;
+    z-index: 100;
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
     padding-top: 2rem;
+    max-height: 100vh;
+    overflow-y: auto;
   }
 
   .mobilePanelFooter {

@@ -24,10 +24,12 @@
 
 .links {
   width: 55vw;
-
   margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
+}
+.links .link {
+  text-decoration: none;
 }
 
 .user {
