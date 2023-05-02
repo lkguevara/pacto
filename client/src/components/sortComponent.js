@@ -26,12 +26,13 @@ const SortComponent = () => {
     // RENDERIZADO DEL COMPONENTE
     return (
         <div className={styles.container}>
-            <DropdownButton id="categorias" title="Ordenar Productos" onSelect={debouncedhandleOrderBy} className={styles.sortProducts} >
-            <Dropdown.Item name='Asc-Name'>Por Nombre A-Z</Dropdown.Item>
-            <Dropdown.Item name='Des-Name'>Por Nombre Z-A</Dropdown.Item>
-            <Dropdown.Item name='Asc-Price'>Menor Precio</Dropdown.Item>
-            <Dropdown.Item name='Des-Price'>Mayor Precio</Dropdown.Item>
-            </DropdownButton>
+            <label htmlFor="orderBy" className={styles.label}>Ordenar por:</label>
+            <select name="orderBy" id="orderBy" onSelect={debouncedhandleOrderBy} className={styles.sortProducts}>
+                <option value="" name='Asc-Name'>Nombre A-Z</option>
+                <option value="" name='Des-Name'>Nombre Z-A</option>
+                <option value="" name='Asc-Price'>Menor Precio</option>
+                <option value="" name='Des-Price'>Mayor Precio</option>
+            </select>
         </div>
     );
 };

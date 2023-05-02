@@ -88,114 +88,158 @@ const FilterPanel = () => {
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Categorías</Accordion.Header>
                   <Accordion.Body>
-                  {/* audio */}
-                  <DropdownButton id="categorias" title="Audio" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                    {AUDIO.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Audio" >{subcategoria.name}</Dropdown.Item>
-                      )}
-                  </DropdownButton>
+                    {/* audio */}
+                    <select name="Audio" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                      <option disabled selected value="default" >Audio</option>
+                      {
+                        AUDIO.map(subcategoria =>
+                          <option key={subcategoria.name} href="#" data-categoria="Audio" >{subcategoria.name}</option>)
+                      }
+                    </select>
+
                     {/* video */}
-                    <DropdownButton id="categorias" title="Video" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                    {VIDEO.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Video">{subcategoria.name}</Dropdown.Item>
-                      )}
-                    </DropdownButton>
+                    <select name="Video" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                      <option disabled selected value="default" >Video</option>
+                      {
+                        VIDEO.map(subcategoria =>
+                          <option key={subcategoria.name} href="#" data-categoria="Video" >{subcategoria.name}</option>)
+                      }
+                    </select>
+                   
                     {/* computacion */}
-                    <DropdownButton id="categorias" title="Computacion" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                      {COMPUTACION.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Computacion">{subcategoria.name}</Dropdown.Item>
-                      )}
-                    </DropdownButton>
-                  {/* telefonos */}
-                  <DropdownButton id="categorias" title="Celulares y Telefonos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                    {CELULARES.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Celulares y Telefonos">{subcategoria.name}</Dropdown.Item>
-                      )}
-                  </DropdownButton>
-                  {/* libros */}
-                  <DropdownButton id="categorias" title="Libros físicos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                    {LIBROS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Libros físicos">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/* Electrodomesticos */}
-                <DropdownButton id="categorias" title="Electrodomésticos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {ELECTRODOMESTICOS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Electrodomésticos">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/* BellezayCuidado */}
-                <DropdownButton id="categorias" title="Belleza y cuidado personal" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {BELLEZA.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Belleza y cuidado personal">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/* AccesoriosVehiculo */}
-                <DropdownButton id="categorias" title="Accesorios para vehiculos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {ACCESORIOSVEHICULOS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Accesorios para vehiculos">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/* Agro */}
-                <DropdownButton id="categorias" title="Agro" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {AGRO.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Agro">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/* Antiguedades y colecciones */}
-                <DropdownButton id="categorias" title="Antiguedades y colecciones" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {ANTIGUEDADESYCOLECCIONES.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Antiguedades y colecciones">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/* Papeleria y mobiliario de negocio */}
-                <DropdownButton id="categorias" title="Papeleria y mobiliario de negocio" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {PAPELERIA.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Papeleria y mobiliario de negocio">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/* Consolas y videojuegos */}
-                <DropdownButton id="categorias" title="Consolas y videojuegos" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {CONSOLAS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Consolas y videojuegos">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/* Herramientas, Audio y video */}
-                <DropdownButton id="categorias" title="Herramientas, Audio y video" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {HERAMIENTAS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Herramientas, Audio y video">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/*Instrumentos musicales */}
-                <DropdownButton id="categorias" title="Instrumentos musicales" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {INSTRUMENTOS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Instrumentos musicales">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/*Juegos y juguetes*/}
-                <DropdownButton id="categorias" title="Juegos y juguetes" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {JUEGOS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Juegos y juguetes">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/*Fiestas y piñatas*/}
-                <DropdownButton id="categorias" title="Fiestas y piñatas" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {FIESTAS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Fiestas y piñatas">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/*Fiestas y piñatas*/}
-                <DropdownButton id="categorias" title="Fiestas y piñatas" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {FIESTAS.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name}href="#" data-categoria="Fiestas y piñatas">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
-                {/*Salud y equipamento medico*/}
-                <DropdownButton id="categorias" title="Salud y equipamento medico" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
-                  {SALUD.map(subcategoria =>
-                      <Dropdown.Item key={subcategoria.name} href="#" data-categoria="Salud y equipamento medico">{subcategoria.name}</Dropdown.Item>
-                      )}
-                </DropdownButton>
+                    <select name="Computacion" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                      <option disabled selected value="default" >Computación</option>
+                      {
+                        COMPUTACION.map(subcategoria =>
+                          <option key={subcategoria.name} href="#" data-categoria="Computacion" >{subcategoria.name}</option>)
+                      }
+                    </select>
+                  
+                    {/* telefonos */}
+                    <select name="Celulares y Telefonos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                      <option disabled selected value="default" >Celulares y Teléfonos</option>
+                      {
+                        CELULARES.map(subcategoria =>
+                          <option key={subcategoria.name} href="#" data-categoria="Celulares y Telefonos" >{subcategoria.name}</option>)
+                      }
+                    </select>
+
+                    {/* libros */}
+                    <select name="Libros físicos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                      <option disabled selected value="default" >Libros físicos</option>
+                      {
+                        LIBROS.map(subcategoria =>
+                          <option key={subcategoria.name} href="#" data-categoria="Libros físicos" >{subcategoria.name}</option>)
+                      }
+                    </select>
+                    
+                    {/* Electrodomesticos */}
+                    <select name="Electrodomésticos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Electrodomésticos</option>
+                        {
+                          ELECTRODOMESTICOS.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Electrodomésticos" >{subcategoria.name}</option>)
+                        }
+                    </select>
+
+                    {/* BellezayCuidado */}
+                    <select name="Belleza y cuidado personal" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Belleza y cuidado personal</option>
+                        {
+                          BELLEZA.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Belleza y cuidado personal" >{subcategoria.name}</option>)
+                        }
+                    </select>
+                    
+                    {/* AccesoriosVehiculo */}
+                    <select name="Accesorios para vehiculos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Accesorios para vehículos</option>
+                        {
+                          ACCESORIOSVEHICULOS.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Accesorios para vehiculos" >{subcategoria.name}</option>)
+                        }
+                    </select>
+
+                    {/* Agro */}
+                    <select name="Agro" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Agro</option>
+                        {
+                          AGRO.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Agro" >{subcategoria.name}</option>)
+                        }
+                    </select>
+
+                    {/* Antiguedades y colecciones */}
+                    <select name="Antiguedades y colecciones" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Antiguedades y colecciones</option>
+                        {
+                          ANTIGUEDADESYCOLECCIONES.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Antiguedades y colecciones" >{subcategoria.name}</option>)
+                        }
+                    </select>
+                
+                    {/* Papeleria y mobiliario de negocio */}
+                    <select name="Papeleria y mobiliario de negocio" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Papeleria y mobiliario de negocio</option>
+                        {
+                          PAPELERIA.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Papeleria y mobiliario de negocio" >{subcategoria.name}</option>)
+                        }
+                    </select>
+                    
+                    {/* Consolas y videojuegos */}
+                    <select name="Consolas y videojuegos" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Consolas y videojuegos</option>
+                        {
+                          CONSOLAS.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Consolas y videojuegos" >{subcategoria.name}</option>)
+                        }
+                    </select>
+                    
+                    {/* Herramientas, Audio y video */}
+                    <select name="Herramientas, Audio y video" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Herramientas, Audio y video</option>
+                        {
+                          HERAMIENTAS.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Herramientas, Audio y video" >{subcategoria.name}</option>)
+                        }
+                    </select>
+
+                    {/*Instrumentos musicales */}
+                    <select name="Instrumentos musicales" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Instrumentos musicales</option>
+                        {
+                          INSTRUMENTOS.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Instrumentos musicales" >{subcategoria.name}</option>)
+                        }
+                    </select>
+
+                    {/*Juegos y juguetes*/}
+                    <select name="Juegos y juguetes" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Juegos y juguetes</option>
+                        {
+                          JUEGOS.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Juegos y juguetes" >{subcategoria.name}</option>)
+                        }
+                    </select>
+
+                    {/*Fiestas y piñatas*/}
+                    <select name="Fiestas y piñatas" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Fiestas y piñatas</option>
+                        {
+                          FIESTAS.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Fiestas y piñatas" >{subcategoria.name}</option>)
+                        }
+                    </select>
+                    
+                    {/*Salud y equipamento medico*/}
+                    <select name="Salud y equipamento medico" id="categorias" defaultValue="default" className={styles.selectItem} onSelect={debouncedhandleCategoriaSelect}>
+                        <option disabled selected value="default" >Salud y equipamento médico</option>
+                        {
+                          SALUD.map(subcategoria =>
+                            <option key={subcategoria.name} href="#" data-categoria="Salud y equipamento medico" >{subcategoria.name}</option>)
+                        }
+                    </select>
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>

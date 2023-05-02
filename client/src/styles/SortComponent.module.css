@@ -6,5 +6,13 @@
   padding: 0;
 }
 
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  color: var(--rosa);
+}
 .sortProducts {
+  border: none;
+  background-color: var(--blanco);
 }
