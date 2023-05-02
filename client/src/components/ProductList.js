@@ -46,7 +46,7 @@ export default function ProductList() {
             };
         
             const newSearch = new URLSearchParams(newQueryParams).toString();
-            router.push(`/products?${newSearch}`, undefined, { shallow: true });
+            router.push(`/productos?${newSearch}`, undefined, { shallow: true });
             return `/products?${newSearch}`
 
         }
