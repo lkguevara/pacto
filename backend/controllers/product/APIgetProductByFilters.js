@@ -16,8 +16,22 @@ const getProductsByFilters = async (req, res) => {
     //Va a recibir por QUERY los filtros y adicionalmente tambien recibirá el name para buscar
     try{
       
-        const {categoria, subcategoria, status, priceMin, priceMax, orderBy, order, page, search, all} = req.query;
+        const {categoria, subcategoria, status, priceMin, priceMax, order, page, name, all,sort_by} = req.query;
+
+        const filtersOrdenPagePrice = {
+            categoria,
+            subcategoria,
+            status,
+            priceMax,
+            priceMin,
+            sort_by,
+            order,
+            page,
+            name,
+            all
+        }
        
+        console.log(filtersOrdenPagePrice);
         const amountXPage = 24;
 
         if(all){
