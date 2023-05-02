@@ -44,6 +44,7 @@
 
 .prodContainerHeader {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
@@ -103,5 +104,23 @@
   }
   .mobileControllers:hover {
     background-color: #3ec591;
+  }
+
+  .productsContainer {
+    padding: 0;
+  }
+
+  .prodContainerHeader {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .prodContainerHeader {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
   }
 }
