@@ -29,7 +29,7 @@ export default function ProductList() {
 
         if(keysCategoria.length === 0 && keysEstado.length === 0 && keysPrecio[0] === 0 && !name){
             router.push(`/productos?all`, undefined, { shallow: true });
-            return `/productos?all=all`
+            return `products?all=all`
         }
 
 
@@ -46,8 +46,8 @@ export default function ProductList() {
             };
         
             const newSearch = new URLSearchParams(newQueryParams).toString();
-            router.push(`/productos?${newSearch}`, undefined, { shallow: true });
-            return `/productos?${newSearch}`
+            router.push(`/products?${newSearch}`, undefined, { shallow: true });
+            return `/products?${newSearch}`
 
         }
     };
@@ -71,11 +71,11 @@ export default function ProductList() {
 
         <>
         <h1>PRODUCTLIST</h1>
-        {/* {productList?.productos?.map(producto=>{
+        {productList?.products?.map(producto=>{
             return(
                 <ProductoCard key={producto.id} producto={producto}/>
             )
-        })} */}
+        })}
 
         </>
     )

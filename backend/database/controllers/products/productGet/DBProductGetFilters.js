@@ -11,11 +11,12 @@ const DBProductsFilters = async (filters) => {
     
         switch (true) {
            
+            // case (!filters.price && !filters.categories && !filters.status):
             case (!filters.price && !filters.categories && !filters.status):
            
                 response = await getProductsAll()
                 break
-
+                
             case (filters.categories):
                 if (!filters.price && !filters.status) {
                     response = await DBProductGetCategory(filters.categories.category, filters.categories.subcategory)
@@ -23,9 +24,10 @@ const DBProductsFilters = async (filters) => {
                     response = await handlerFilters(filters)
                 }
                 break
-
-            default:
-                response = await handlerFilters(filters)
+                
+                default:
+                    // response = await handlerFilters(filters)
+                    response = await getProductsAll()
         }
      
         return response
