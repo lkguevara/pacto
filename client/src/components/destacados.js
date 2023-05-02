@@ -32,7 +32,7 @@ const Destacados = () => {
     return (
         <div className={styles.container}>
             <h2>Destacados</h2>
-            <Link href="/productos">
+            <Link href="/ofertas">
                 <button className={styles.verTodosButton}>Ver todos</button>
             </Link>
             <div className={styles.cardsContainer}>
