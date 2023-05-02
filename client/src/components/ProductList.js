@@ -71,7 +71,6 @@ export default function ProductList() {
     return (
 
         <div className={styles.container}>
-        <h1>PRODUCTLIST</h1>
         {productList?.products?.map(producto=>{
             return(
                 <ProductoCard key={producto.id} producto={producto}/>
