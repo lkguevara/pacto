@@ -42,8 +42,8 @@ export default function NavBar(){
                         <Link href="/productos" className={style.link}>
                             <button className={style.btn}>Categorias</button>
                         </Link>
-                        <Link href="/ofertas" className={style.link}>
-                            <button className={style.btn}>Ofertas</button>
+                        <Link href="/destacados" className={style.link}>
+                            <button className={style.btn}>Destacados</button>
                         </Link>
                         <Link href="/sellProduct" className={style.link}>
                             <button className={style.btn}>Vender</button>
