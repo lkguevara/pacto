@@ -9,22 +9,22 @@ const DBProductsFilters = async (filters) => {
     try {
         let response = {}
 
-        console.log(filters)
-    
         switch (true) {
            
-            case (!filters.price && !filters.categories && !filters.status):
+            case (filters.price === null && filters.categories === null && filters.status === null):
            
                 response = await getProductsAll()
                 break
 
-            case (filters.categories):
-                if (!filters.price && !filters.status) {
+            /*
+            case (filters.categories !== null):
+                if (filters.price === null && filters.status === null) {
                     response = await DBProductGetCategory(filters.categories.category, filters.categories.subcategory)
                 } else {
-                    response = await handlerFilters(filters)
-                }
-                break
+
+                response = await handlerFilters(filters)
+                
+                break*/
 
             default:
                 response = await handlerFilters(filters)
