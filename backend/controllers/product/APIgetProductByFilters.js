@@ -109,7 +109,7 @@ const getProductsByFilters = async (req, res) => {
             const prodsXPage = products.slice(indexFirstProd, indexLastProd);
     
             return res.status(200).json({
-                amount: amountProd,
+                cantidad: amountProd,
                 products : prodsXPage
             });
         }
