@@ -1,14 +1,14 @@
 const sgMail = require('@sendgrid/mail');
-const SENDGRID_API_KEY = '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'
+const SENDGRID_API_KEY = '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'
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 
 function sendWelcomeEmail(email) {
   const msg = {
-    to: email,
-    from: 'edwardraga.1998@gmail.com',
-    templateId: 'd-61957ae9ff9d42999572262281303bcf',
+    to: 'edwardraga@icloud.com',
+    from: 'pactopf@gmail.com',
+    templateId: 'd-5f799592b02c46a185266acad27eb024',
     dynamic_template_data: {
       name: "Nombre del usuario registrado",
       product_name: 'Nombre del producto que se está promocionando',
@@ -19,4 +19,4 @@ function sendWelcomeEmail(email) {
   sgMail.send(msg);
 }
 
-sendWelcomeEmail('martafagundez.dev@gmail.com,liann.guevara@gmail.com,sumerlost@gmail.com,edwardraga@icloud.com,nestorriascos74@gmail.com,alexbv2615@gmail.com,mauriciogiaco@gmail.com')
+sendWelcomeEmail()
