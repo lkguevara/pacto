@@ -3,33 +3,64 @@ import Link from "next/link"
 import Image from "next/image"
 import style from "../styles/sellProduct.module.css"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { fetchAddProductsAsync } from "@/redux/features/products/productsSlice"
 
 
 export default function sellProduct(){
+    const dispatch = useDispatch()
+
+
     const [product,setProduct] = useState({
         name:"",
         description:"",
         category:"",
-        status:"",
+        state:"",
         price:"",
-        //image":[]
+        image:[]
 
     })
 
 
     const handleChange = (event)=>{
-        const {name, value} = event.target;
-        console.log(name,value);
+        const {name, value,files} = event.target;
         setProduct({
             ...product,
             [name]:value,
         })
 
+        if(name === 'image'){
+            console.log(1);
+            setProduct({
+                ...product,
+                [name]:[...product.image,files[0]]
+            })
+        }
     }
 
     const handleSubmit = (event)=>{
-        event.preventDefault()
-        console.log(product);
+        event.preventDefault();
+        const form = new FormData();
+        form.append("name", product.name);
+        form.append("description", product.description);
+        form.append("category", product.category);
+        form.append("state", product.state);
+        form.append("price", product.price);
+        product.image.forEach((image) => {
+            form.append('images', image);
+          });
+
+
+        //   const entries = form.entries();
+        //   for(let pair of entries) {
+        //       console.log(pair[0]+ ', ' + pair[1]); 
+        //   }
+
+
+          dispatch(fetchAddProductsAsync(form))
+
+          
+    
     }
 
     return (
@@ -71,7 +102,7 @@ export default function sellProduct(){
                         </select>
 
                         <label htmlFor="status">Estado del producto</label>
-                        <select id="status" name="status" value={product.status} onChange={handleChange}>
+                        <select id="status" name="state" value={product.status} onChange={handleChange}>
                             <option value="select">selecciona una opción</option>
                             <option value="value1">Nuevo</option>
                             <option value="nuevo" selected>Como nuevo</option>
@@ -88,15 +119,13 @@ export default function sellProduct(){
 
                     <h3>Cargar Fotos</h3>
                     <label htmlFor="image">Selecciona los archivos necesarios</label>
-                    <input className={style.photo} type="file" id="image" name="image[]" placeholder="Ej: 10" multiple />
+                    <input className={style.photo} type="file" id="image" name="image" placeholder="Ej: 10" accept="image/*" onChange={handleChange} multiple />
 
                     <div className={style.buttons}>
                         <button className={style.buttonSubmit} type="submit">Publicar</button>
                         <button className={style.buttonCancel} type="reset">Cancelar</button>
                     </div>
                 </form>
-
-                    
             </div>
 
         </div>

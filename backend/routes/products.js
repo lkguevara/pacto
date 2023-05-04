@@ -6,6 +6,7 @@ const {deleteProductById} = require('../controllers/product/APIdeleteProduct');
 const {postNewProduct} = require('../controllers/product/APIpostNewProduct');
 const {getProductsByFilters} = require('../controllers/product/APIgetProductByFilters');
 const getProductByName = require('../controllers/product/APIgetProductByName');
+const middlewarePostNewProduct = require('../middlewares/productMiddleware')
 
 // GET all products
 //router.get('/products', (req, res, next) => getAllProducts(req, res));
@@ -20,7 +21,7 @@ router.get('/product', (req, res, next) => getProductById(req, res));
 router.delete('/product', (req, res, next) => deleteProductById(req, res))
 
 // POST new user
-router.post('/product', (req, res) => postNewProduct(req, res))
+router.post('/product',middlewarePostNewProduct, (req, res) => postNewProduct(req, res))
 
 //GET Product by name
 router.get('/productsname', (req, res, next) => getProductByName(req, res));
