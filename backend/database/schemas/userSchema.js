@@ -2,8 +2,12 @@ const mongoose = require('mongoose')
 
 const userSchema = mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
-    name:
+    firstname:
     {
+        type: String,
+        required: true
+    },
+    lastname: {
         type: String,
         required: true
     },
@@ -18,9 +22,19 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     state: Boolean,
-    phone: Number,
-    password: String,
-    address: String,
+    verified: Boolean,
+    phone: {
+        type: Number,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
     //reviewReceived: { type: Schema.Types.ObjectId, ref: "Review" },
     //reviewPost: { type: Schema.Types.ObjectId, ref: "Review" },
     //questions: { type: Schema.Types.ObjectId, ref: "Question" },

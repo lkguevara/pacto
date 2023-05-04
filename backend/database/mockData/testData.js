@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const productSave = require('../controllers/products/productPost/DBProductSave');
-const createUser = require('../controllers/DBUserCreate');
+const createUser = require('../controllers/users/userPost/DBUserCreate');
 const User = require('../models/user');
 
 
