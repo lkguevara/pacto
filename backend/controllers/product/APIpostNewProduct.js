@@ -20,7 +20,7 @@ const postNewProduct = async (req, res) => {
                 return res.status(200).json(newProd);
             }
 
-            return res.status(404).json({msg: "No se pudo cargar el nuevo producto, intentlo de nuevo"});
+            return res.status(404).json({msg: "No se pudo cargar el nuevo producto, intentelo de nuevo"});
         }
     } catch (err){
         return res.status(500).json({error: err.message, msg: "Error al cargar el producto"});
