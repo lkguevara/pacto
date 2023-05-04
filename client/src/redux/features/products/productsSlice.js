@@ -13,17 +13,20 @@ const initialState = {
   },
   orderBy: "default",
   page: 1,
-  productList: [],
+  productList: {
+    cantidad: 0,
+    products: []
+  },
   status: "idle",
   error: null,
 };
 
 export const fetchProductsAsync = createAsyncThunk("products/fetchProducts",async (path) => {
-  console.log(`${API_URL}${path}`);
+  // console.log(`${API_URL}${path}`);
   const response = await axios.get(`${API_URL}${path}`);
 
   const data = await response.data;
-  console.log(data);
+  // console.log(data);
   return data;
   }
 );
@@ -50,7 +53,10 @@ const productsSlice = createSlice({
       },
       state.orderBy = "default",
       state.page = 1,
-      state.productList = [],
+      state.productList = {
+        cantidad: 0,
+        products: []
+      },
       state.status = "idle",
       state.error = null
     }

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilters, setOrderBy, setPage, fetchProductsAsync } from '../redux/features/products/productsSlice';
 import ProductoCard from './productoCard';
+import NotFound from './notFound';
 
 
 export default function ProductList() {
@@ -76,6 +77,9 @@ export default function ProductList() {
                 <ProductoCard key={producto.id} producto={producto}/>
             )
         })}
+        {
+            productList.products.length === 0 && <NotFound/>
+        }
         </div>
     )
 }
