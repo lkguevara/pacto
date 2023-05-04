@@ -1,11 +1,11 @@
 const {checkUserExists} = require('../../database/helper/DBcheckUserExists');
 
-const getUserById = (req, res) => {
+const getUserById = async (req, res) => {
 
     const {id} = req.query;
 
     try{
-        const user = getUser(id);
+        const user = await getUser(id);
 
         if (user){
            return res.status(200).json({msg: 'Usuario traido con exito', user: user});

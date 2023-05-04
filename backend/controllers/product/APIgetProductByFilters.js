@@ -49,7 +49,7 @@ const getProductsByFilters = async (req, res) => {
         let products = await DBProductsFilters(filters);
   
         if (products){
-            console.log(products, " Soy un product")
+           
             const amountProd = products.length;
       
             const indexLastProd = page * amountXPage
