@@ -25,11 +25,11 @@ export const fetchProductsAsync = createAsyncThunk("products/fetchProducts",asyn
   }
 );
 
-
-
-
-
-
+export const fetchAddProductsAsync = createAsyncThunk("products/addProducts",async (product)=> {
+  const response = await axios.post('http://localhost:3001/product',product);
+ const data = await response.data;
+ return data;
+})
 
 const productsSlice = createSlice({
   name: "products",
