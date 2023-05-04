@@ -5,7 +5,7 @@ const getProductById = async (req, res) => {
         const id = req.query.id;
 
         if (id){
-            const product = await DBProductGetId (id);
+            const product = await DBProductGetId(id);
 
             return res.status(200).json(product);
         }
