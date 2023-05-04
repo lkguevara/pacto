@@ -7,6 +7,11 @@ const postNewProduct = async (req, res) => {
         //En el req.body debo recibir un json con las propiedades iduser y product
         const {idUser, product} = req.body;
 
+        //producto con todos los datos
+        const { newProduct } = req;
+        //Solo para probar si se agrega el producto al tolkit
+        res.status(200).json(newProduct)
+
         if (idUser && product){
             const newProd = await productSave(product, idUser);
   
