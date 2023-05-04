@@ -8,12 +8,12 @@
   padding: 2rem;
 }
 
-.container h2 {
+.title {
   color: var(--rosa);
   text-transform: uppercase;
   font-size: 24px;
   font-weight: bold;
-  margin: 3rem auto 0 auto;
+  margin: 2rem auto;
 }
 
 .cardsContainer {

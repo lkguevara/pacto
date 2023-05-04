@@ -29,7 +29,9 @@
 
 .imgContainer img {
   width: 100%;
+  min-width: 400px;
   height: auto;
+  min-height: 285px;
 }
 
 .infoContainer {
@@ -38,7 +40,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  width: 90%;
   max-width: 332px;
   max-height: 110px;
   border-radius: 5px;
@@ -54,14 +56,16 @@
 
 .infoContainer p {
   font-size: 18px;
-  padding: 0 0.5rem 0.5rem 0.5rem;
+  padding: 0 0.5rem;
   margin: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.125rem;
 }
 
 .nameContainer {
   width: 100%;
   min-width: 0; /* Necesario para que funcione ellipsis en el nombre */
+  padding: 0;
+  margin: 0;
 }
 
 .nameContainer p {
@@ -70,8 +74,8 @@
   text-overflow: ellipsis;
   font-size: 18px;
   font-weight: 600;
-  padding: 0.5rem;
-  margin: 1rem 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem;
+  margin: 0.5rem 0.5rem 0 0.5rem;
 }
 
 .buyNowButton {
@@ -82,7 +86,7 @@
   text-transform: uppercase;
   font-size: 1rem;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   margin: 0.5rem;
   filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
   transition: all 0.2s ease-in-out;
