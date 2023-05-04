@@ -19,14 +19,17 @@ const initialState = {
 };
 
 export const fetchProductsAsync = createAsyncThunk("products/fetchProducts",async (path) => {
-  console.log(`${API_URL}${path}`);
   const response = await axios.get(`${API_URL}${path}`);
-
   const data = await response.data;
-  console.log(data);
   return data;
   }
 );
+
+export const fetchAddProductsAsync = createAsyncThunk("products/addProducts",async (product)=> {
+  const response = await axios.post('http://localhost:3001/product',product);
+ const data = await response.data;
+ return data;
+})
 
 const productsSlice = createSlice({
   name: "products",
@@ -55,20 +58,34 @@ const productsSlice = createSlice({
       state.error = null
     }
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchProductsAsync.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchProductsAsync.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.productList =action.payload;
-      })
-      .addCase(fetchProductsAsync.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      });
-  },
+    extraReducers: (builder) => {
+      builder
+        .addCase(fetchProductsAsync.pending, (state) => {
+          state.status = "loading";
+        })
+        .addCase(fetchProductsAsync.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          state.productList =action.payload;
+        })
+        .addCase(fetchProductsAsync.rejected, (state, action) => {
+          state.status = "failed";
+          state.error = action.error.message;
+        })
+
+        // **** ADD PRODUCST ****
+        .addCase(fetchAddProductsAsync.pending, (state) => {
+          state.status = "loading";
+        })
+        .addCase(fetchAddProductsAsync.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          state.productList.products.push(action.payload);
+          state.productList.cantidad++
+        })
+        .addCase(fetchAddProductsAsync.rejected, (state, action) => {
+          state.status = "failed";
+          state.error = action.error.message;
+        })
+    },
 });
 
 //hola soy edward
