@@ -78,6 +78,15 @@
   margin: 0.5rem 0.5rem 0 0.5rem;
 }
 
+.link {
+  text-decoration: none;
+  color: var(--rosa);
+}
+.link:hover {
+  text-decoration: underline;
+  color: var(--rosa);
+}
+
 .buyNowButton {
   background-color: var(--rosa);
   color: var(--blanco);

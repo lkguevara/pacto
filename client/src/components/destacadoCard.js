@@ -13,7 +13,9 @@ const DestacadoCard = ({ producto }) => {
             </div>
             <div className={styles.infoContainer}>
                 <div className={styles.nameContainer}>
-                    <p>{producto.name}</p>
+                    <Link href={`productos/${producto.name}`} className={styles.link}>
+                        <p>{producto.name}</p>
+                    </Link>
                 </div>
                 <p>{`$ ${producto.price}`}</p>
             </div>
