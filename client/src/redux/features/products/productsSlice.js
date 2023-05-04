@@ -13,23 +13,23 @@ const initialState = {
   },
   orderBy: "default",
   page: 1,
-  productList: {
-    cantidad: 0,
-    products: []
-  },
+  productList: { cantidad: 0, products: [] },
   status: "idle",
   error: null,
 };
 
 export const fetchProductsAsync = createAsyncThunk("products/fetchProducts",async (path) => {
-  // console.log(`${API_URL}${path}`);
   const response = await axios.get(`${API_URL}${path}`);
-
   const data = await response.data;
-  // console.log(data);
   return data;
   }
 );
+
+
+
+
+
+
 
 const productsSlice = createSlice({
   name: "products",
