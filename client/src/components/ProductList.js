@@ -74,7 +74,7 @@ export default function ProductList() {
         <div className={styles.container}>
         {productList?.products?.map(producto=>{
             return(
-                <ProductoCard key={producto.id} producto={producto}/>
+                <ProductoCard key={producto._id} producto={producto}/>
             )
         })}
         {

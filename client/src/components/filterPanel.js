@@ -25,8 +25,6 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
     // LÓGICA DEL COMPONENTE
       const handleCategoriaSelect = (event) => {
         const {name,value} = event.target
-        console.log(name,value);
-        const {text,dataset} = event.target
         
         dispatch(setFilters({
           ...filters,
@@ -93,7 +91,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                   <Accordion.Body>
                     {/* audio */}
                     <select name="Audio" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                      <option disabled selected value="default" >Audio</option>
+                      <option disabled defaultValue value="default" >Audio</option>
                       {
                         AUDIO.map(subcategoria =>
                           <option key={subcategoria.name} href="#" data-categoria="Audio" >{subcategoria.name}</option>)
@@ -102,7 +100,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
                     {/* video */}
                     <select name="Video" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                      <option disabled selected value="default" >Video</option>
+                      <option disabled defaultValue value="default" >Video</option>
                       {
                         VIDEO.map(subcategoria =>
                           <option key={subcategoria.name} href="#" data-categoria="Video" >{subcategoria.name}</option>)
@@ -111,7 +109,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                    
                     {/* computacion */}
                     <select name="Computacion" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                      <option disabled selected value="default" >Computación</option>
+                      <option disabled defaultValue value="default" >Computación</option>
                       {
                         COMPUTACION.map(subcategoria =>
                           <option key={subcategoria.name} href="#" data-categoria="Computacion" >{subcategoria.name}</option>)
@@ -120,7 +118,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                   
                     {/* telefonos */}
                     <select name="Celulares y Telefonos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                      <option disabled selected value="default" >Celulares y Teléfonos</option>
+                      <option disabled defaultValue value="default" >Celulares y Teléfonos</option>
                       {
                         CELULARES.map(subcategoria =>
                           <option key={subcategoria.name} href="#" data-categoria="Celulares y Telefonos" >{subcategoria.name}</option>)
@@ -129,7 +127,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
                     {/* libros */}
                     <select name="Libros físicos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                      <option disabled selected value="default" >Libros físicos</option>
+                      <option disabled defaultValue value="default" >Libros físicos</option>
                       {
                         LIBROS.map(subcategoria =>
                           <option key={subcategoria.name} href="#" data-categoria="Libros físicos" >{subcategoria.name}</option>)
@@ -138,7 +136,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     
                     {/* Electrodomesticos */}
                     <select name="Electrodomésticos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Electrodomésticos</option>
+                        <option disabled defaultValue value="default" >Electrodomésticos</option>
                         {
                           ELECTRODOMESTICOS.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Electrodomésticos" >{subcategoria.name}</option>)
@@ -147,7 +145,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
                     {/* BellezayCuidado */}
                     <select name="Belleza y cuidado personal" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Belleza y cuidado personal</option>
+                        <option disabled defaultValue value="default" >Belleza y cuidado personal</option>
                         {
                           BELLEZA.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Belleza y cuidado personal" >{subcategoria.name}</option>)
@@ -156,7 +154,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     
                     {/* AccesoriosVehiculo */}
                     <select name="Accesorios para vehiculos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Accesorios para vehículos</option>
+                        <option disabled defaultValue value="default" >Accesorios para vehículos</option>
                         {
                           ACCESORIOSVEHICULOS.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Accesorios para vehiculos" >{subcategoria.name}</option>)
@@ -165,7 +163,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
                     {/* Agro */}
                     <select name="Agro" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Agro</option>
+                        <option disabled defaultValue value="default" >Agro</option>
                         {
                           AGRO.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Agro" >{subcategoria.name}</option>)
@@ -174,7 +172,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
                     {/* Antiguedades y colecciones */}
                     <select name="Antiguedades y colecciones" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Antiguedades y colecciones</option>
+                        <option disabled defaultValue value="default" >Antiguedades y colecciones</option>
                         {
                           ANTIGUEDADESYCOLECCIONES.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Antiguedades y colecciones" >{subcategoria.name}</option>)
@@ -183,7 +181,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                 
                     {/* Papeleria y mobiliario de negocio */}
                     <select name="Papeleria y mobiliario de negocio" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Papeleria y mobiliario de negocio</option>
+                        <option disabled defaultValue value="default" >Papeleria y mobiliario de negocio</option>
                         {
                           PAPELERIA.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Papeleria y mobiliario de negocio" >{subcategoria.name}</option>)
@@ -192,7 +190,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     
                     {/* Consolas y videojuegos */}
                     <select name="Consolas y videojuegos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Consolas y videojuegos</option>
+                        <option disabled defaultValue value="default" >Consolas y videojuegos</option>
                         {
                           CONSOLAS.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Consolas y videojuegos" >{subcategoria.name}</option>)
@@ -201,7 +199,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     
                     {/* Herramientas, Audio y video */}
                     <select name="Herramientas, Audio y video" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Herramientas, Audio y video</option>
+                        <option disabled defaultValue value="default" >Herramientas, Audio y video</option>
                         {
                           HERAMIENTAS.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Herramientas, Audio y video" >{subcategoria.name}</option>)
@@ -210,7 +208,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
                     {/*Instrumentos musicales */}
                     <select name="Instrumentos musicales" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Instrumentos musicales</option>
+                        <option disabled defaultValue value="default" >Instrumentos musicales</option>
                         {
                           INSTRUMENTOS.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Instrumentos musicales" >{subcategoria.name}</option>)
@@ -219,7 +217,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
                     {/*Juegos y juguetes*/}
                     <select name="Juegos y juguetes" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Juegos y juguetes</option>
+                        <option disabled defaultValue value="default" >Juegos y juguetes</option>
                         {
                           JUEGOS.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Juegos y juguetes" >{subcategoria.name}</option>)
@@ -228,7 +226,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
                     {/*Fiestas y piñatas*/}
                     <select name="Fiestas y piñatas" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Fiestas y piñatas</option>
+                        <option disabled defaultValue value="default" >Fiestas y piñatas</option>
                         {
                           FIESTAS.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Fiestas y piñatas" >{subcategoria.name}</option>)
@@ -237,7 +235,7 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     
                     {/*Salud y equipamento medico*/}
                     <select name="Salud y equipamento medico" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                        <option disabled selected value="default" >Salud y equipamento médico</option>
+                        <option disabled defaultValue value="default" >Salud y equipamento médico</option>
                         {
                           SALUD.map(subcategoria =>
                             <option key={subcategoria.name} href="#" data-categoria="Salud y equipamento medico" >{subcategoria.name}</option>)

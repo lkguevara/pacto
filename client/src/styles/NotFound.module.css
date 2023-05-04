@@ -13,3 +13,14 @@
     padding-left: 2rem;
     color: var(--gris-oscuro);
 }
+
+@media (max-width: 420px) {
+    .container img {
+        width: 30rem;
+    }
+
+    .container h2 {
+        font-size: medium;
+        padding-left: 0;
+    }
+}
