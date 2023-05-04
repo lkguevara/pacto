@@ -13,7 +13,7 @@ const initialState = {
   },
   orderBy: "default",
   page: 1,
-  productList: [],
+  productList: { cantidad: 0, products: [] },
   status: "idle",
   error: null,
 };
@@ -53,7 +53,10 @@ const productsSlice = createSlice({
       },
       state.orderBy = "default",
       state.page = 1,
-      state.productList = [],
+      state.productList = {
+        cantidad: 0,
+        products: []
+      },
       state.status = "idle",
       state.error = null
     }
