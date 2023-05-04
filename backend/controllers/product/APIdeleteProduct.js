@@ -1,4 +1,4 @@
-const deleteProduct = require('../../database/controllers/DBProductDelete');
+const deleteProduct = require('../../database/controllers/products/productDelete/DBProductDelete');
 
 const deleteProductById = async (req, res) =>{
     try{
