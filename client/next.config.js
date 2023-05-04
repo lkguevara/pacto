@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost', "picsum.photos"],
+    domains: ['localhost', "picsum.photos", "raw.githubusercontent.com"],
     remotePatterns: [
       {
         protocol: 'https',
@@ -15,6 +15,12 @@ const nextConfig = {
         hostname: 'picsum.photos',
         port: '',
         pathname: '/id/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+        port: '',
+        pathname: '/CodeFusionPF/**',
       },
     ],
   },
