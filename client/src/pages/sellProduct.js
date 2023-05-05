@@ -45,8 +45,8 @@ export default function sellProduct(){
         form.append("description", product.description);
         form.append("category", product.category);
 
-        //El nuevo esta hardcodeado!!! Al hacer submit del input agarra el valor "value1", "value2" etc.
-        form.append("state", 'Nuevo');
+        //Al hacer submit del input agarra el valor "value1", "value2" etc, se debe modificar.
+        form.append("state", product.state);
         form.append("price", product.price);
 
         if (product.subCategory) form.append("subCategory", product.subCategory);
