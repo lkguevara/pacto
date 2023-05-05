@@ -7,7 +7,8 @@ import { setFilters } from "@/redux/features/products/productsSlice";
 import {AUDIO,BELLEZA,SALUD,FIESTAS,JUEGOS,HERAMIENTAS,INSTRUMENTOS,CONSOLAS,PAPELERIA,AGRO,ANTIGUEDADESYCOLECCIONES,ACCESORIOSVEHICULOS,ELECTRODOMESTICOS,LIBROS,CELULARES,COMPUTACION,VIDEO } from "@/utils/subcategoria";
 import debounce from "@/utils/debounce";
 import { resetState } from "@/redux/features/products/productsSlice";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import LabelFilter from "./labelFilters";
 
 
 const FilterPanel = ({ isVisible, setVisibility }) => {
@@ -18,6 +19,13 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
 
     const [stateValue, setStateValue] = useState("default");
+
+    //sirve para quitar el check del checkbox
+    const [status, setStatus] = useState(filters.status)
+
+    useEffect(() => {
+      setStatus(filters.status);
+    }, [filters.status]);
     
     // LÓGICA DEL COMPONENTE
       const handleCategoriaSelect = (event) => {
@@ -44,19 +52,17 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
 
 
 
-      const handlerFilterStatus = (e) => {
-        const { value, checked } = e.target;
+  const handlerFilterStatus = (e) => {
+    const { value, checked } = e.target;
+    const newStatusFilters = checked
+        ? [...filters.status, value]
+        : filters.status.filter(status => status !== value);
 
-        if (checked && !filters.status.includes(value)) {
-              dispatch(setFilters({ ...filters, status: [...filters.status, value] }));
-            } else if(!checked) {
-              dispatch(setFilters({ ...filters, status: filters.status.filter(state => state !== value) }));
-            }
+    dispatch(setFilters({ ...filters, status: newStatusFilters }));
+  }
 
-     
-      }
-
-       const debouncedhandlerFilterStatus = debounce(handlerFilterStatus, 1000);
+  // POR EL MOMENTO NO USAMOS EL DEBOUNCED
+  // const debouncedhandlerFilterStatus = debounce(handlerFilterStatus, 800);
     
     const handlePriceChange = (newValue) => {
       clearTimeout(timeoutId);
@@ -71,7 +77,10 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
       }, 1000); 
     }
 
-    
+  //filters.categorias = { categoria, subcategoria}  {}
+  //filters.status= [0, 1, 2]  []
+  //filters.price= { min, max}  {min= 0, max=100}  
+  //filters.name = 'algo' ""
 
 
     // RENDERIZADO DEL COMPONENTE
@@ -83,6 +92,18 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
             <div className={styles.panelHeader}>
               <h3>Filtros</h3>
               <button onClick={handleReset} className={styles.clearFiltersButton}>Borrar</button>
+            </div>
+            {/* Contenedor de las etiquetas de Filtrado*/}
+            <div className={styles.labelsFilters}>
+              {
+                filters.categorias.categoria && <LabelFilter filter={filters.categorias} by='categorias'/>
+              }
+              {
+                filters.status.length !== 0 && <LabelFilter filter={filters.status} by='status'/>
+              }
+              {
+                (filters.price.min !== 0 || filters.price.max !== 100) && <LabelFilter filter={filters.price} by='price'/>
+              }
             </div>
             {/* Contenedor para los criterios de filtrado */}
             <div className={styles.panelBody}>
@@ -256,17 +277,17 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                     <Accordion.Header>Estado</Accordion.Header>
                     <Accordion.Body>
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" id='Nuevo' value='Nuevo' onChange={debouncedhandlerFilterStatus} className={styles.checkItem} />
+                      <input type="checkbox" id='Nuevo' value='Nuevo' checked={status.includes('Nuevo')} onChange={handlerFilterStatus} className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Nuevo</label>
                       </div>
 
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" id='Usado' value='Usado' onChange={debouncedhandlerFilterStatus}  className={styles.checkItem} />
+                      <input type="checkbox" id='Usado' value='Usado' checked={status.includes('Usado')} onChange={handlerFilterStatus} className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Usado</label>
                       </div>
 
                       <div className={styles.sectionItem}>
-                        <input type="checkbox" id='Reacondicionado' value='Reacondicionado' onChange={debouncedhandlerFilterStatus}  className={styles.checkItem} />
+                      <input type="checkbox" id='Reacondicionado' value='Reacondicionado' checked={status.includes('Reacondicionado')} onChange={handlerFilterStatus} className={styles.checkItem} />
                         <label htmlFor="" className={styles.labelItem} >Reacondicionado</label>
                       </div>
                         

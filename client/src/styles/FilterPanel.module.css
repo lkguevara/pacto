@@ -118,6 +118,14 @@
   display: none;
 }
 
+.labelsFilters{
+  /* border: 2px solid blue; */
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 @media screen and (max-width: 980px) {
   .container {
     position: fixed;
