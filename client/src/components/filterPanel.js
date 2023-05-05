@@ -3,17 +3,11 @@ import Accordion from 'react-bootstrap/Accordion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Slider from "react-slider";
 import { useDispatch, useSelector } from "react-redux";
-import { addProducts } from "@/redux/features/products/productsSlice";
-import { useEffect, useState } from "react";
-import { filterPrice } from "@/components/filters/filterPrice";
-import { filterProducts } from "@/redux/features/products/productsSlice";
 import { setFilters } from "@/redux/features/products/productsSlice";
 import {AUDIO,BELLEZA,SALUD,FIESTAS,JUEGOS,HERAMIENTAS,INSTRUMENTOS,CONSOLAS,PAPELERIA,AGRO,ANTIGUEDADESYCOLECCIONES,ACCESORIOSVEHICULOS,ELECTRODOMESTICOS,LIBROS,CELULARES,COMPUTACION,VIDEO } from "@/utils/subcategoria";
-import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from "next/dist/shared/lib/constants";
 import debounce from "@/utils/debounce";
 import { resetState } from "@/redux/features/products/productsSlice";
-const MIN = 0;
-const MAX = 1000000;
+import React, { useState } from "react";
 
 
 const FilterPanel = ({ isVisible, setVisibility }) => {
@@ -22,17 +16,25 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
     const filters = useSelector(state => state.products.filters)
     let timeoutId
 
+
+    const [stateValue, setStateValue] = useState("default");
+    
     // LÓGICA DEL COMPONENTE
       const handleCategoriaSelect = (event) => {
-        const {name,value} = event.target
-        
+        const selectedOption = event.target.options[event.target.selectedIndex];
+        const name = selectedOption.dataset.categoria;
+        const value = selectedOption.value;
+  
+        // console.log(`Categoría seleccionada: ${name}`);
+        // console.log(`Valor seleccionado: ${value}`);
         dispatch(setFilters({
           ...filters,
           categorias: {categoria: name, subcategoria: value}
         }));
       }
 
-  const debouncedhandleCategoriaSelect = debounce(handleCategoriaSelect, 1000);
+      // POR EL MOMENTO NO SE USA:
+      // const debouncedhandleCategoriaSelect = debounce(handleCategoriaSelect, 1000);
   
   const handleReset = ()=>{
     dispatch(resetState())
@@ -90,155 +92,158 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                   <Accordion.Header>Categorías</Accordion.Header>
                   <Accordion.Body>
                     {/* audio */}
-                    <select name="Audio" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                      <option disabled defaultValue value="default" >Audio</option>
+                    <select name="Audio" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
+                      <option disabled value="default">Audio</option>
                       {
-                        AUDIO.map(subcategoria =>
-                          <option key={subcategoria.name} href="#" data-categoria="Audio" >{subcategoria.name}</option>)
+                        AUDIO.map(subcategoria => (
+                          <option key={subcategoria.name} value={subcategoria.name} data-categoria="Audio">
+                            {subcategoria.name}
+                          </option>
+                        ))
                       }
                     </select>
 
                     {/* video */}
-                    <select name="Video" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
-                      <option disabled defaultValue value="default" >Video</option>
+                    <select name="Video" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
+                      <option disabled value="default" >Video</option>
                       {
                         VIDEO.map(subcategoria =>
-                          <option key={subcategoria.name} href="#" data-categoria="Video" >{subcategoria.name}</option>)
+                          <option key={subcategoria.name} value={subcategoria.name} data-categoria="Video" >{subcategoria.name}</option>)
                       }
                     </select>
                    
                     {/* computacion */}
-                    <select name="Computacion" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Computacion" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                       <option disabled defaultValue value="default" >Computación</option>
                       {
                         COMPUTACION.map(subcategoria =>
-                          <option key={subcategoria.name} href="#" data-categoria="Computacion" >{subcategoria.name}</option>)
+                          <option key={subcategoria.name} value={subcategoria.name} data-categoria="Computacion" >{subcategoria.name}</option>)
                       }
                     </select>
                   
                     {/* telefonos */}
-                    <select name="Celulares y Telefonos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Celulares y Telefonos" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                       <option disabled defaultValue value="default" >Celulares y Teléfonos</option>
                       {
                         CELULARES.map(subcategoria =>
-                          <option key={subcategoria.name} href="#" data-categoria="Celulares y Telefonos" >{subcategoria.name}</option>)
+                          <option key={subcategoria.name} value={subcategoria.name} data-categoria="Celulares y Telefonos" >{subcategoria.name}</option>)
                       }
                     </select>
 
                     {/* libros */}
-                    <select name="Libros físicos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Libros físicos" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                       <option disabled defaultValue value="default" >Libros físicos</option>
                       {
                         LIBROS.map(subcategoria =>
-                          <option key={subcategoria.name} href="#" data-categoria="Libros físicos" >{subcategoria.name}</option>)
+                          <option key={subcategoria.name} value={subcategoria.name} data-categoria="Libros físicos" >{subcategoria.name}</option>)
                       }
                     </select>
                     
                     {/* Electrodomesticos */}
-                    <select name="Electrodomésticos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Electrodomésticos" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Electrodomésticos</option>
                         {
                           ELECTRODOMESTICOS.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Electrodomésticos" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Electrodomésticos" >{subcategoria.name}</option>)
                         }
                     </select>
 
                     {/* BellezayCuidado */}
-                    <select name="Belleza y cuidado personal" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Belleza y cuidado personal" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Belleza y cuidado personal</option>
                         {
                           BELLEZA.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Belleza y cuidado personal" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Belleza y cuidado personal" >{subcategoria.name}</option>)
                         }
                     </select>
                     
                     {/* AccesoriosVehiculo */}
-                    <select name="Accesorios para vehiculos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Accesorios para vehiculos" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Accesorios para vehículos</option>
                         {
                           ACCESORIOSVEHICULOS.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Accesorios para vehiculos" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Accesorios para vehiculos" >{subcategoria.name}</option>)
                         }
                     </select>
 
                     {/* Agro */}
-                    <select name="Agro" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Agro" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Agro</option>
                         {
                           AGRO.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Agro" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Agro" >{subcategoria.name}</option>)
                         }
                     </select>
 
                     {/* Antiguedades y colecciones */}
-                    <select name="Antiguedades y colecciones" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Antiguedades y colecciones" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Antiguedades y colecciones</option>
                         {
                           ANTIGUEDADESYCOLECCIONES.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Antiguedades y colecciones" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Antiguedades y colecciones" >{subcategoria.name}</option>)
                         }
                     </select>
                 
                     {/* Papeleria y mobiliario de negocio */}
-                    <select name="Papeleria y mobiliario de negocio" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Papeleria y mobiliario de negocio" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Papeleria y mobiliario de negocio</option>
                         {
                           PAPELERIA.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Papeleria y mobiliario de negocio" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Papeleria y mobiliario de negocio" >{subcategoria.name}</option>)
                         }
                     </select>
                     
                     {/* Consolas y videojuegos */}
-                    <select name="Consolas y videojuegos" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Consolas y videojuegos" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Consolas y videojuegos</option>
                         {
                           CONSOLAS.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Consolas y videojuegos" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Consolas y videojuegos" >{subcategoria.name}</option>)
                         }
                     </select>
                     
                     {/* Herramientas, Audio y video */}
-                    <select name="Herramientas, Audio y video" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Herramientas, Audio y video" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Herramientas, Audio y video</option>
                         {
                           HERAMIENTAS.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Herramientas, Audio y video" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Herramientas, Audio y video" >{subcategoria.name}</option>)
                         }
                     </select>
 
                     {/*Instrumentos musicales */}
-                    <select name="Instrumentos musicales" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Instrumentos musicales" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Instrumentos musicales</option>
                         {
                           INSTRUMENTOS.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Instrumentos musicales" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Instrumentos musicales" >{subcategoria.name}</option>)
                         }
                     </select>
 
                     {/*Juegos y juguetes*/}
-                    <select name="Juegos y juguetes" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Juegos y juguetes" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Juegos y juguetes</option>
                         {
                           JUEGOS.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Juegos y juguetes" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Juegos y juguetes" >{subcategoria.name}</option>)
                         }
                     </select>
 
                     {/*Fiestas y piñatas*/}
-                    <select name="Fiestas y piñatas" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Fiestas y piñatas" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Fiestas y piñatas</option>
                         {
                           FIESTAS.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Fiestas y piñatas" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Fiestas y piñatas" >{subcategoria.name}</option>)
                         }
                     </select>
                     
                     {/*Salud y equipamento medico*/}
-                    <select name="Salud y equipamento medico" id="categorias" defaultValue="default" className={styles.selectItem} onChange={debouncedhandleCategoriaSelect}>
+                    <select name="Salud y equipamento medico" id="categorias" value={stateValue} className={styles.selectItem} onChange={handleCategoriaSelect}>
                         <option disabled defaultValue value="default" >Salud y equipamento médico</option>
                         {
                           SALUD.map(subcategoria =>
-                            <option key={subcategoria.name} href="#" data-categoria="Salud y equipamento medico" >{subcategoria.name}</option>)
+                            <option key={subcategoria.name} value={subcategoria.name} data-categoria="Salud y equipamento medico" >{subcategoria.name}</option>)
                         }
                     </select>
                   </Accordion.Body>
@@ -288,34 +293,6 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                         onChange={(newValue) => {handlePriceChange(newValue)}}
                       />
 
-                      {/* Inputs para el rango de precios */}
-                      {/* {<div className={styles.sectionItem}>
-                        <input
-                          className={styles.priceInput}
-                            name={"minimo"}
-                            value={price.minimo}
-                            type="text"
-                            id="min-value"
-                            placeholder="mínimo"
-                            onChange={handlePriceChange}
-                        />
-                        <input
-                          className={styles.priceInput}
-                            value={price.maximo}
-                            name={"maximo"}
-                            type="text"
-                            id="max-value"
-                            placeholder="máximo"
-                            onChange={handlePriceChange}
-                        />
-                        <button
-                            className={styles.searchButton}
-                            onClick={handleSubmitFilterPrice}
-                            type="submit"
-                        >
-                          B
-                        </button>
-                      </div> } */}
                     </Accordion.Body>
                   </Accordion.Item>
               </Accordion>
