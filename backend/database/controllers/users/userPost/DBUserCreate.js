@@ -2,7 +2,8 @@ const User = require("../../../models/user")
 
 const createUser = async (user) => {
     try {
-        const newUser = new User({ ...user, verified: false })
+        const codeverified = Math.floor(Math.random() * 900000) + 100000;
+        const newUser = new User({ ...user, verified: false, codeverified })
         const response = newUser.save()
         return response
     } catch (error) {
