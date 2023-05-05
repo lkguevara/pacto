@@ -5,7 +5,7 @@ const DBProductGetCategory = require("./controllers/products/productGet/handlers
 const { userTest, productTest } = require("./mockData/testData");
 const User = require("./models/user");
 const Product = require("./models/product");
-const DBUserValidate = require("./controllers/users/userPost/DBUserValidate");
+const DBUserVerified = require("./controllers/users/userPost/DBUserVerified");
 
 const uri = "mongodb://127.0.0.1:27017/marketplace";
 
@@ -28,7 +28,7 @@ const load = async () => {
   await productTest();
 };
 
-DBUserValidate("Gaby_98@hotmail.com.ar")
+DBUserVerified("Gaby_98@hotmail.com.ar")
 //load();
 
 module.exports = mongoose.connection;
