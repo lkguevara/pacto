@@ -5,16 +5,20 @@ const setVerified = async (req, res) => {
 
     try {
 
+     
+
+        if ( await DBUserVerified(email, code)) {
 
 
-        if (await DBUserVerified(email, code)) {
-
-
-            // ACA SE LLAMARÁ AL LOGIN
-            return res.status(200).json({ verified: true });
+            /* OPCION 1: UNA VEZ VERIFICADO SE LOGGEA ACA AUTOMATICAMENTE
+                OPCION 2: CUANDO EL FRONT RECIBE verified true, REDIRECCIONA AL USER A LA VENTANA DE LOGIN
+            */
+            return res.status(200).json({msg: "Usuario verificado exitosamente!",
+                                        verified: true});
         }
 
-        return res.status(400).json({ msg: "El codigo de verificación ingresado no es valido!" });
+        return res.status(400).json({ msg: "El codigo de verificación ingresado no es valido!",
+                                    verified: false });
 
     } catch (err) {
         return res.status(500).json({

@@ -44,8 +44,13 @@ export default function sellProduct(){
         form.append("name", product.name);
         form.append("description", product.description);
         form.append("category", product.category);
+
+        //Al hacer submit del input agarra el valor "value1", "value2" etc, se debe modificar.
         form.append("state", product.state);
         form.append("price", product.price);
+
+        if (product.subCategory) form.append("subCategory", product.subCategory);
+        if (product.stock) form.append("stock", product.stock);
         product.image.forEach((image) => {
             form.append('images', image);
           });
