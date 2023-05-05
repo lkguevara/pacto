@@ -4,7 +4,7 @@ import Link from "next/link";
 
 
 const ProductoCard = ({ producto }) => {
-    
+    console.log(producto)
     return (
         <div className={styles.container}>
             <div className={styles.imgContainer}>

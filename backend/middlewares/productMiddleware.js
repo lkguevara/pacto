@@ -24,7 +24,7 @@ const middlewarePostNewProduct = async (req, res, next) => {
     newProduct[fieldname] = value
         
     
-   
+    console.log(fieldname, value)
      })
     .on('file', async (fieldname, file, filename, encoding, mimetype) => {
      
@@ -66,7 +66,7 @@ const middlewarePostNewProduct = async (req, res, next) => {
 
         // Agregar el objeto de producto completo a la solicitud
         req.newProduct = newProduct;
-
+    
         next();
       } catch (error) {
         console.error(error);

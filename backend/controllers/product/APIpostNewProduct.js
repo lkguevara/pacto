@@ -4,20 +4,20 @@ const checkProductExists = require('../../database/helper/DBCheckProductExists')
 const postNewProduct = async (req, res) => {
 
     try{
-        //En el req.body debo recibir un json con las propiedades iduser y product
-        const {idUser, product} = req.body;
+
 
         //producto con todos los datos
         const { newProduct } = req;
-        //Solo para probar si se agrega el producto al tolkit
-        res.status(200).json(newProduct)
 
-        if (idUser && product){
-            const newProd = await productSave(product, idUser);
+        const idUser = "644cae9eb78d5d91dd17f723";
+  
+
+        if (idUser && newProduct){
+            const postedProd = await productSave(newProduct, idUser);
   
             //Checkeo que el producto fue creado en la db
-            if (checkProductExists(newProd._id.toString())){
-                return res.status(200).json(newProd);
+            if (checkProductExists(postedProd._id.toString())){
+                return res.status(200).json(postedProd);
             }
 
             return res.status(404).json({msg: "No se pudo cargar el nuevo producto, intentelo de nuevo"});
