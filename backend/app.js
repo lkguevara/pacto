@@ -6,7 +6,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const send = require('./controllers/utils/emailService/singnUp')
 
-send()
 
 
 //RUTAS!!!
