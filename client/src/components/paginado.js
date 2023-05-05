@@ -13,9 +13,12 @@ const Paginado = () => {
     const { cantidad } = useSelector(state => state.products?.productList);
     //pagina para color 
     const { page } = useSelector(state => state.products);
+
+    const { amountXPage } = useSelector(state => state.products?.productList ) ;
+   
     const dispatch = useDispatch();
     const [paginate,setPaginate] = useState(1)
-    const numOfPages = Math.ceil( cantidad / 5);
+    const numOfPages = Math.ceil( cantidad / amountXPage);
 
     const array = Array.from({ length: numOfPages }, (_, index) => index + 1);
     useEffect(()=>{

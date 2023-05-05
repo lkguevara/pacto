@@ -2,7 +2,7 @@ import styles from '../styles/ProductList.module.css'
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { setFilters, setOrderBy, setPage, fetchProductsAsync } from '../redux/features/products/productsSlice';
+import { setFilters, setOrderBy, setPage, setAmountXPage, fetchProductsAsync } from '../redux/features/products/productsSlice';
 import ProductoCard from './productoCard';
 import NotFound from './notFound';
 
@@ -30,8 +30,8 @@ export default function ProductList() {
         const name  = values[3];
 
         if(keysCategoria.length === 0 && keysEstado.length === 0 && keysPrecio[0] === 0 && !name && newOrderBy === 'default' ){
-            router.push(`/productos?all`, undefined, { shallow: true });
-            return `products?all=all`
+            router.push(`/productos?all&page=${newPage}`, undefined, { shallow: true });
+            return `products?all=all&page=${newPage}`
         }
 
 

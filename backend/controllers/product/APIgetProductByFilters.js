@@ -15,20 +15,24 @@ const getProductsByFilters = async (req, res) => {
 
     //Va a recibir por QUERY los filtros y adicionalmente tambien recibirá el name para buscar
     try{
-      
-        let {categoria, subcategoria, status, priceMin, priceMax, order, page, name, all,sort_by} = req.query;
+       
+        let {page,categoria, subcategoria, status, priceMin, priceMax, order,  name, all,sort_by} = req.query;
+        
+        let allStatus = [];
 
-
+        if (status){ allStatus = status.split(',')};
+        console.log(allStatus);
         let aSort = [];
         if (sort_by && sort_by != "default"){
             aSort = sort_by.split('-');
         } else{
             aSort = ['asc', 'name'];
         }
-
+        
         //Si no llega ninguna pagina, la seteo en 1
         page ? page : page = 1;
         
+      
        
         const amountXPage = 24;
 
@@ -37,7 +41,7 @@ const getProductsByFilters = async (req, res) => {
                 category :  categoria,
                 subcategory : subcategoria && !(subcategoria === conditions.isUndefined)? subcategoria : null
             } : null,
-            status : status ? status : null,
+            status : allStatus.length > 0 ? allStatus : null,
             //El codigo priceMin !== '0' && priceMax !== '100' está hardcodeado, se debe acomodar usando datos enviados por el front
             price : priceMin  && priceMax  && priceMin !== '0' && priceMax !== '100' ? {
                 min : priceMin ? priceMin : null,
@@ -110,6 +114,7 @@ const getProductsByFilters = async (req, res) => {
     
             return res.status(200).json({
                 cantidad: amountProd,
+                amountXPage: amountXPage,
                 products : prodsXPage
             });
         }
