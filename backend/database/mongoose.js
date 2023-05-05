@@ -28,7 +28,7 @@ const load = async () => {
   await productTest();
 };
 
-DBUserVerified("Gaby_98@hotmail.com.ar")
+DBUserVerified("maurigiaconia@hotmail.com")
 //load();
 
 module.exports = mongoose.connection;

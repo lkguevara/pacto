@@ -1,4 +1,5 @@
 const checkUserExists = require('../../database/helper/DBcheckUserExists');
+const bcrypt = require('bcrypt');
 
 const login = async (req, res) =>{
 
@@ -7,7 +8,15 @@ const login = async (req, res) =>{
         const {user} = req.body;
 
         if (user){
-            
+            const userToCompare = checkUserExists(user.email);
+
+            if (userToCompare){
+
+                if (bcrypt.compare(user.password, userToCompare.password)){
+                    //Falta terminar
+                    return "LOGEADO"
+                }
+            }
         }
 
     }catch(err){
