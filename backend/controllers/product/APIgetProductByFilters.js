@@ -17,8 +17,11 @@ const getProductsByFilters = async (req, res) => {
     try{
        
         let {page,categoria, subcategoria, status, priceMin, priceMax, order,  name, all,sort_by} = req.query;
+        
+        let allStatus = [];
 
-
+        if (status){ allStatus = status.split(',')};
+        console.log(allStatus);
         let aSort = [];
         if (sort_by && sort_by != "default"){
             aSort = sort_by.split('-');
@@ -38,7 +41,7 @@ const getProductsByFilters = async (req, res) => {
                 category :  categoria,
                 subcategory : subcategoria && !(subcategoria === conditions.isUndefined)? subcategoria : null
             } : null,
-            status : status ? status : null,
+            status : allStatus.length > 0 ? allStatus : null,
             //El codigo priceMin !== '0' && priceMax !== '100' está hardcodeado, se debe acomodar usando datos enviados por el front
             price : priceMin  && priceMax  && priceMin !== '0' && priceMax !== '100' ? {
                 min : priceMin ? priceMin : null,
