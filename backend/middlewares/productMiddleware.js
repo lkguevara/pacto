@@ -1,5 +1,10 @@
+require('dotenv').config();
 const busboy = require('busboy');
 const cloudinary = require('cloudinary').v2;
+
+const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME
+const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY
+const CLOUDINARY_API_SECRECT = process.env.CLOUDINARY_API_SECRECT
 
 const filePromises = [];
 
@@ -7,14 +12,11 @@ const middlewarePostNewProduct = async (req, res, next) => {
   const newProduct = {
     images:[]
   };
-  let numFiles = 0;
 
-  // Configurar Cloudinary
-  //Falta config el .env
   cloudinary.config({
-    cloud_name: 'dkexrztsg',
-    api_key: '238974953837468',
-    api_secret: 'EU5e0RMGceRidtaDnCMVLVyTsn4',
+    cloud_name: CLOUDINARY_CLOUD_NAME,
+    api_key: CLOUDINARY_API_KEY,
+    api_secret: CLOUDINARY_API_SECRECT,
   });
 
   req.pipe(busboy({ headers: req.headers }))
@@ -25,9 +27,7 @@ const middlewarePostNewProduct = async (req, res, next) => {
    
      })
     .on('file', async (fieldname, file, filename, encoding, mimetype) => {
-      // Manejar el archivo aquí
-      // ...
-
+     
       const chunks = [];
       file.on('data', (data) => {
         chunks.push(data);

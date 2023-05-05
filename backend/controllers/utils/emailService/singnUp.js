@@ -1,22 +1,30 @@
+require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
-const SENDGRID_API_KEY = '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'
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+const SENDGRID_TEMPLATE_ID = process.env.SENDGRID_TEMPLATE_ID;
+
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 
-function sendWelcomeEmail(email) {
+function sendWelcomeEmail(email,code) {
+
   const msg = {
-    to: 'edwardraga@icloud.com',
+    to: "edwardraga@icloud.com",
     from: 'pactopf@gmail.com',
-    templateId: 'd-5f799592b02c46a185266acad27eb024',
+    templateId: SENDGRID_TEMPLATE_ID,
     dynamic_template_data: {
-      name: "Nombre del usuario registrado",
+      code: code,
       product_name: 'Nombre del producto que se está promocionando',
       product_description: 'Descripción del producto que se está promocionando',
       // más datos dinámicos aquí...
     },
+    
   };
+
+  console.log(msg);
   sgMail.send(msg);
 }
 
-sendWelcomeEmail()
+
+module.exports = sendWelcomeEmail
