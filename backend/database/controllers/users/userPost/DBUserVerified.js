@@ -1,10 +1,12 @@
 const User = require("../../../models/user");
 
-const DBUserValidate = async (email, query) => {
+module.exports = async (email, query) => {
     const user = await User.findOne({ email })
-    if (user.verified === false) {
+    query = 402575
+
+    if (user && user.verified === false) {
         if (query === null) {
-            codeverified = Math.floor(Math.random() * 900000) + 100000;
+            const codeverified = Math.floor(Math.random() * 900000) + 100000;
             const usercodevalidate = await User.findByIdAndUpdate(user._id, { codeverified })
             // aca iria el codigo para enviar el mail
             return null
@@ -12,7 +14,7 @@ const DBUserValidate = async (email, query) => {
         else {
             if (user.codeverified === query) {
                 const verifiedUpdate = await User.findByIdAndUpdate(user._id, { verified: true })
-                return true
+                return verifiedUpdate
             }
             else {
                 return false
@@ -20,9 +22,7 @@ const DBUserValidate = async (email, query) => {
         }
     }
     else {
-        //codigo de verificacion para loggin
-
+        return user
     }
 }
 
-module.exports = DBUserValidate
