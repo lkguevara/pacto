@@ -1,100 +1,179 @@
-.container{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--blanco);
 }
 
-.logo{
-    display: flex;
-    margin: 0 auto;
-    margin-top: 20px;
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
 }
 
-.titleProdut h1{
-    font-size: 20px;
-    text-align: center;
+.logo {
+  display: flex;
+  margin: 0;
 }
 
-.titleProdut p{
-    font-size: 12px;
-    text-align: center;
-    font-weight: 400;
-    margin-top: 10px;
+.titleProdut {
+  padding: 1.5rem 1rem 0.5rem 1rem;
 }
 
-.titleProdut span{
-    color: var(--rosa);
-    align-items: center;
-    margin-left: 10px;
+.titleProdut h1 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.titleProdut p {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.titleProdut span {
+  color: var(--rosa);
+  align-items: center;
+  margin-left: 10px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 2px 0px rgba(92, 91, 91, 0.25);
+  margin-bottom: 2rem;
 }
 
 .formProduct {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 5px;
-    margin: 20px 30px
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: 3rem;
 }
 
-.formProduct input{
-    padding: 10px;
-    border: 1px solid var(--verde);
-    border-radius: 5px;
-    outline: none;
-    margin-bottom: 10px;
+.formProduct .formSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 2.5rem;
 }
 
-.formProduct textarea{
-    padding: 10px;
-    border: 1px solid var(--verde);
-    border-radius: 5px;
-    outline: none;
-    margin-bottom: 10px;
+.formProduct .formSection h3 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
 }
 
-.formProduct select{
-    padding: 10px;
-    border: 1px solid var(--verde);
-    border-radius: 5px;
-    outline: none;
+.formProduct .formSection hr {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0;
+  color: var(--gris);
 }
 
-.formProduct input:focus{
-    border: 1px solid var(--gris);
+.formProduct .formSection input {
+  padding: 1rem;
+  border: 1px solid var(--verde);
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
-.statusProduct{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 5px;
-
+.formProduct .formSection textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--verde);
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 1rem;
 }
 
-.buttons{
-    display: flex;
-    justify-content: center;
+.formProduct .formSection select {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--verde);
+  border-radius: 5px;
+  outline: none;
 }
 
-.buttonCancel, .buttonSubmit{
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: var(--verde);
-    color: var(--blanco);
-    font-weight: 600;
-    cursor: pointer;
-    outline: none;
-    margin: 0 10px;
+.formProduct .formSection input:focus {
+  border: 1px solid var(--gris);
 }
 
-.photo{
-    padding: 10px;
-    border: 1px solid var(--verde);
-    border-radius: 5px;
-    outline: none;
-    margin-bottom: 10px;
+.basicInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.basicInfo .infoItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 1rem 1rem 0;
+}
+
+.basicInfo .infoItem select {
+  width: 100%;
+}
+
+.formProduct .buttons {
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonCancel,
+.buttonSubmit {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background: var(--verde);
+  color: var(--blanco);
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  margin: 0 0.5rem;
+}
+
+.buttonCancel {
+  background: var(--rosa);
+}
+
+.photo {
+  padding: 10px;
+  border: 1px solid var(--verde);
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 10px;
 }
 
 /* media queries */
-
+/* 
 @media (min-width: 768px) { 
     .formProduct{
         width: 70%;
@@ -123,5 +202,4 @@
     .formProduct{
         width: 50%;
     }
-}
-
+} */
