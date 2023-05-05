@@ -13,7 +13,7 @@ const checkUserExists = async (idUser, email = false) => {
 
     if (isUser != null) {
 
-        return true
+        return isUser
     }
 
     return false
