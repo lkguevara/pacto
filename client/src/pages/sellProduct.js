@@ -72,60 +72,103 @@ export default function sellProduct(){
                 <link rel="icon" href="/pacto-logo.png" />
             </Head>
 
-            <Link href="/">
-                <Image className= {style.logo} priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
-            </Link>
+            <div className={style.main}>
+                <Link href="/">
+                    <Image className= {style.logo} priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                </Link>
 
-            <div className={style.titleProdut}>
-                <h1>Publica tu producto</h1>
-                <p>Todos los productos / <span>Agregar un producto</span></p>
-            </div>
+                <div className={style.titleProdut}>
+                    <h1>Publica tu producto</h1>
+                    <p>
+                        <Link href="/productos" title="Volver a la lista de productos">
+                        Todos los productos 
+                        </Link> / 
+                        <span>Agregar un producto</span>
+                    </p>
+                </div>
 
-            <div className="formContainer">
-                <form className={style.formProduct} onSubmit={handleSubmit}>
-                    <h3>Nombre & descripción</h3>
-                   
-                    <label htmlFor="name">Nombre del producto</label>
-                    <input onChange={handleChange} type="text" id="name" name="name" placeholder="Ej: iPhone 12 Pro Max"/>
+                <div className={style.formContainer}>
+                    <form className={style.formProduct} onSubmit={handleSubmit}>
+                        <div className={style.formSection}>
+                            <h3>Nombre & descripción</h3>
+                            <hr />
 
-                    <label htmlFor="description">Descripción</label>
-                    <textarea onChange={handleChange} id="description" name="description" placeholder="Ingresar la descripción del producto"></textarea>
+                            <label htmlFor="name">Nombre del producto</label>
+                            <input onChange={handleChange} type="text" id="name" name="name" placeholder="Ej: iPhone 12 Pro Max"/>
 
-                    <div className={style.statusProduct}>
-                        <label htmlFor="category">Categoría</label>
-                        <select id="category" name="category"  value={product.category} onChange={handleChange}>
-                            <option value="select">selecciona una opción</option>
-                            <option value="celulares">Celulares</option>
-                            <option value="computadoras" selected>Computadoras</option>
-                            <option value="accesorios">Accesorios</option>
-                            <option value="otros">Otros</option>
-                        </select>
+                            <label htmlFor="description">Descripción</label>
+                            <textarea onChange={handleChange} id="description" name="description" placeholder="Ingresar la descripción del producto"></textarea>
+                        </div>
 
-                        <label htmlFor="status">Estado del producto</label>
-                        <select id="status" name="state" value={product.status} onChange={handleChange}>
-                            <option value="select">selecciona una opción</option>
-                            <option value="value1">Nuevo</option>
-                            <option value="nuevo" selected>Como nuevo</option>
-                            <option value="muy bueno" selected>Muy bueno</option>
-                            <option value="bueno" selected>Bueno</option>
-                            <option value="regular" selected>Regular</option>
-                            <option value="malo" selected>Malo</option>
-                            <option value="para piezas" selected>Para piezas</option>
-                        </select>
+                        <div className={style.formSection}>
+                            <h3>Información básica</h3>
+                            <hr />
+                            
+                            <div className={style.basicInfo}>
+                                <div className={style.infoItem}>
+                                    <label htmlFor="category">Categoría</label>
+                                    <select id="category" name="category"  value={product.category} onChange={handleChange}>
+                                        <option value="select">selecciona una opción</option>
+                                        <option value="celulares">Celulares</option>
+                                        <option value="computadoras" selected>Computadoras</option>
+                                        <option value="accesorios">Accesorios</option>
+                                        <option value="otros">Otros</option>
+                                    </select>
+                                </div>
 
-                        <label htmlFor="price">Precio</label>
-                        <input type="number" id="price" name="price" placeholder="Ej: 100000" value={product.price} onChange={handleChange}/>
-                    </div>
+                                <div className={style.infoItem}>
+                                    <label htmlFor="subCategory">Sub-categoría</label>
+                                    <select id="subCategory" name="subCategory"  value={product.subCategory} onChange={handleChange}>
+                                        <option value="select">selecciona una opción</option>
+                                        <option value="celulares">Celulares</option>
+                                        <option value="computadoras" selected>Computadoras</option>
+                                        <option value="accesorios">Accesorios</option>
+                                        <option value="otros">Otros</option>
+                                    </select>
+                                </div>
 
-                    <h3>Cargar Fotos</h3>
-                    <label htmlFor="image">Selecciona los archivos necesarios</label>
-                    <input className={style.photo} type="file" id="image" name="image" placeholder="Ej: 10" accept="image/*" onChange={handleChange} multiple />
+                                <div className={style.infoItem}>
+                                <label htmlFor="status">Estado del producto</label>
+                                    <select id="status" name="state" value={product.status} onChange={handleChange}>
+                                        <option value="select">selecciona una opción</option>
+                                        <option value="value1">Nuevo</option>
+                                        <option value="nuevo" selected>Como nuevo</option>
+                                        <option value="muy bueno" selected>Muy bueno</option>
+                                        <option value="bueno" selected>Bueno</option>
+                                        <option value="regular" selected>Regular</option>
+                                        <option value="malo" selected>Malo</option>
+                                        <option value="para piezas" selected>Para piezas</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div className={style.basicInfo}>
+                                <div className={style.infoItem}>
+                                    <label htmlFor="stock">Stock</label>
+                                    <input type="number" id="stock" name="stock" placeholder="Ej: 1" value={product.stock} onChange={handleChange}/>
+                                </div>
 
-                    <div className={style.buttons}>
-                        <button className={style.buttonSubmit} type="submit">Publicar</button>
-                        <button className={style.buttonCancel} type="reset">Cancelar</button>
-                    </div>
-                </form>
+                                <div className={style.infoItem}>
+                                    <label htmlFor="price">Precio</label>
+                                    <input type="number" id="price" name="price" placeholder="Ej: 100000" value={product.price} onChange={handleChange}/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={style.formSection}>
+                            <h3>Cargar Fotos</h3>
+                            <hr />
+                            <label htmlFor="image">Selecciona los archivos necesarios</label>
+                            <input className={style.photo} type="file" id="image" name="image" placeholder="Ej: 10" accept="image/*" onChange={handleChange} multiple />
+                        </div>
+
+
+                        <div className={style.buttons}>
+                            <button className={style.buttonSubmit} type="submit">Publicar</button>
+                            <button className={style.buttonCancel} type="reset">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </div>
