@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost', "picsum.photos", "raw.githubusercontent.com"],
+    domains: ['localhost', "picsum.photos", "raw.githubusercontent.com", "res.cloudinary.com"],
     remotePatterns: [
       {
         protocol: 'https',
@@ -15,6 +15,12 @@ const nextConfig = {
         hostname: 'picsum.photos',
         port: '',
         pathname: '/id/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '3000',
+        pathname: '/pactopf/image/upload/**',
       },
       {
         protocol: 'https',
