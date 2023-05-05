@@ -19,6 +19,10 @@ const DBUserValidate = async (email, query) => {
             }
         }
     }
+    else {
+        //codigo de verificacion para loggin
+
+    }
 }
 
 module.exports = DBUserValidate

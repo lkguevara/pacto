@@ -9,15 +9,15 @@ const postNewUser = async (req, res) => {
     const userData = req.body;
 
 
-         /*  Con la función hashSyn de bcrypt me aseguro de encriptar la contraseña hasheandola 
-            Esta funcion toma dos parametros, el string a hashear/encriptar y el numero de rondas (iteraciones) que hará para encriptar ese string enviado.
-            Cuantas mas iteraciones se hagan, mas segura sera la contraseña (mas dificil de desencriptar) pero a su vez se sacrifica rendimiento.
-            Un total de 10 iteraciones son las recomendadas para hashear una password
-        */
+    /*  Con la función hashSyn de bcrypt me aseguro de encriptar la contraseña hasheandola 
+       Esta funcion toma dos parametros, el string a hashear/encriptar y el numero de rondas (iteraciones) que hará para encriptar ese string enviado.
+       Cuantas mas iteraciones se hagan, mas segura sera la contraseña (mas dificil de desencriptar) pero a su vez se sacrifica rendimiento.
+       Un total de 10 iteraciones son las recomendadas para hashear una password
+   */
 
-        userData.password = bcrypt.hashSync(userData.password, 10);
-        userData.calification = 0;
-
+    userData.password = bcrypt.hashSync(userData.password, 10);
+    userData.calification = 0;
+    try {
         const newUser = await createUser(userData);
 
         if (await checkUserExists(newUser._id)) {
