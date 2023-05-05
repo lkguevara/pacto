@@ -14,12 +14,20 @@ const initialState = {
   orderBy: "default",
   page: 1,
   productList: { cantidad: 0, products: [] },
+  productDetail: {},
   status: "idle",
   error: null,
 };
 
 export const fetchProductsAsync = createAsyncThunk("products/fetchProducts",async (path) => {
   const response = await axios.get(`${API_URL}${path}`);
+  const data = await response.data;
+  return data;
+  }
+);
+
+export const fetchProductDetailAsync = createAsyncThunk("products/fetchProductDetail",async (id) => {
+  const response = await axios.get(`${API_URL}product?id=${id}`);
   const data = await response.data;
   return data;
   }
@@ -71,6 +79,19 @@ const productsSlice = createSlice({
           state.productList =action.payload;
         })
         .addCase(fetchProductsAsync.rejected, (state, action) => {
+          state.status = "failed";
+          state.error = action.error.message;
+        })
+
+        // **** GET PRODUCT DETAIL ****
+        .addCase(fetchProductDetailAsync.pending, (state) => {
+          state.status = "loading";
+        })
+        .addCase(fetchProductDetailAsync.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          state.productDetail = action.payload;
+        })
+        .addCase(fetchProductDetailAsync.rejected, (state, action) => {
           state.status = "failed";
           state.error = action.error.message;
         })
