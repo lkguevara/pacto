@@ -1,0 +1,152 @@
+.containerProfile{
+    margin: 30px
+}
+
+.profileTitle{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin: 30px 20px;
+    color: var(--verde);
+}
+
+.profileDataTitle{
+    font-size: 16px;
+    font-weight: medium;
+    text-align: left;
+    margin: 30px 20px;
+    color: var(--verde);
+}
+
+.form__profile{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    margin: 30px 20px;
+}
+
+.form__profile input{
+    padding: 10px;
+    border: 1px solid var(--verde);
+    border-radius: 5px;
+    outline: none;
+    margin: 10px 10px 10px 0;
+    width: 100%;
+}
+
+.form__profile button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--verde);
+    color: var(--blanco);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+.containerInfo{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+}
+
+.form__profile button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--verde);
+    color: var(--blanco);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.containerPuntuacion{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 30%;
+    align-items: center;
+    justify-items: start;
+    margin: 30px 20px;
+}
+
+.puntuacionContainer{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.titlePuntuacion{
+    font-size: 32px;
+    font-weight: medium;
+    text-align: left;
+    margin: 30px 20px;
+    color: var(--gris);
+}
+
+.color{
+    width: 150px;           
+    height: 10px;          
+    background: var(--amarillo);        
+    border-radius: 5px;
+}
+
+@media (min-width: 400px) { 
+    .container{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: 5fr 1fr;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .form__profile input{
+        width: 400px;
+    }
+}
+
+@media (min-width: 550px) { 
+    .form__profile input{
+        width: 450px;
+    }
+}
+
+@media (min-width: 600px) { 
+    .form__profile input{
+        width: 500px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form__profile{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    .container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form__profile input{
+        width: 130%;
+    }
+
+
+}
