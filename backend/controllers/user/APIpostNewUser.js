@@ -17,8 +17,9 @@ const postNewUser = async (req, res) => {
 
     userData.password = bcrypt.hashSync(userData.password, 10);
     userData.calification = 0;
+
     try {
-        const newUser = await createUser(userData);
+        const newUser = await createUser(userData);git 
 
         if (await checkUserExists(newUser._id)) {
 
