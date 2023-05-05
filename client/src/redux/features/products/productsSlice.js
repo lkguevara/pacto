@@ -13,6 +13,7 @@ const initialState = {
   },
   orderBy: "default",
   page: 1,
+  amountXPage : 0,
   productList: { cantidad: 0, products: [] },
   productDetail: {},
   status: "idle",
@@ -51,6 +52,9 @@ const productsSlice = createSlice({
     },
     setPage: (state, action) => {
       state.page = action.payload;
+    },
+    setAmountXPage: (state, action) => {
+      state.amountXPage = action.payload;
     },
     resetState:(state,action)=>{
       state.filters =  {
@@ -114,6 +118,6 @@ const productsSlice = createSlice({
 
 //hola soy edward
 
-export const { setFilters, setOrderBy, setPage, resetState } = productsSlice.actions;
+export const { setFilters, setOrderBy, setPage, setAmountXPage, resetState } = productsSlice.actions;
 
 export default productsSlice.reducer;

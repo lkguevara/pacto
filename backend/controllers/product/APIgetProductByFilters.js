@@ -15,8 +15,8 @@ const getProductsByFilters = async (req, res) => {
 
     //Va a recibir por QUERY los filtros y adicionalmente tambien recibirá el name para buscar
     try{
-      
-        let {categoria, subcategoria, status, priceMin, priceMax, order, page, name, all,sort_by} = req.query;
+       
+        let {page,categoria, subcategoria, status, priceMin, priceMax, order,  name, all,sort_by} = req.query;
 
 
         let aSort = [];
@@ -25,10 +25,11 @@ const getProductsByFilters = async (req, res) => {
         } else{
             aSort = ['asc', 'name'];
         }
-
+        
         //Si no llega ninguna pagina, la seteo en 1
         page ? page : page = 1;
         
+      
        
         const amountXPage = 24;
 
@@ -110,6 +111,7 @@ const getProductsByFilters = async (req, res) => {
     
             return res.status(200).json({
                 cantidad: amountProd,
+                amountXPage: amountXPage,
                 products : prodsXPage
             });
         }
