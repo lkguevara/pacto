@@ -2,9 +2,9 @@ const User = require("../../../models/user");
 
 module.exports = async (email, query) => {
     const user = await User.findOne({ email })
-    query = 402575
 
-    if (user && user.verified === false) {
+    if (user?.verified === false) {
+
         if (query === null) {
             const codeverified = Math.floor(Math.random() * 900000) + 100000;
             const usercodevalidate = await User.findByIdAndUpdate(user._id, { codeverified })
