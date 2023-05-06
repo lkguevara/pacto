@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import EnConstruccion from "@/components/enConstruccion";
-import { useRouter } from "next/router";
-import Layout from "@/components/layout";
-import NotFound from "@/components/notFound";
 import style from "@/styles/productDetail.module.css";
 import Image from "next/image";
+import { Carousel, CarouselItem } from "react-bootstrap";
+import Layout from "@/components/layout";
+import NotFound from "@/components/notFound";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import { fetchProductDetailAsync } from "@/redux/features/products/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -29,7 +29,15 @@ function producto() {
               
               <div className={style.informationProduct}>
                 <div className={style.imagesContainer}>
-                  <Image className= {style.imageProduct} priority src={productDetail.images[0]} alt={productDetail.name} width="500" height="500"/>
+                  <Carousel className={style.carousel}>
+                    {
+                      productDetail.images.map((image, index) => (
+                        <CarouselItem key={index}>
+                          <Image className= {style.imageProduct} priority src={image} alt={productDetail.name} width="500" height="500"/>
+                        </CarouselItem>
+                      ))
+                    }
+                  </Carousel>
                 </div>
                 <div className={style.infoProduct}>
                     <h3 className={style.productTitle}>{productDetail.name}</h3>
