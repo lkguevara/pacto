@@ -38,3 +38,5 @@ const login = async (req, res) =>{
                                     msg: 'Error 500! Problemas internos con la conexión del servidor.'})
     }
 }
+
+module.exports = {login}
