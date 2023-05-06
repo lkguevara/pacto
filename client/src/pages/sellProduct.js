@@ -23,7 +23,7 @@ export default function sellProduct(){
 
 
     const handleChange = (event)=>{
-        const {name, value,files} = event.target;
+        const {name, value, files} = event.target;
         setProduct({
             ...product,
             [name]:value,
@@ -33,7 +33,7 @@ export default function sellProduct(){
             console.log(1);
             setProduct({
                 ...product,
-                [name]:[...product.image,files[0]]
+                [name]:[...product.image, ...files]
             })
         }
     }
@@ -53,19 +53,14 @@ export default function sellProduct(){
         if (product.stock) form.append("stock", product.stock);
         product.image.forEach((image) => {
             form.append('images', image);
-          });
+        });
 
+        const entries = form.entries();
+        for(let pair of entries) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
 
-        //   const entries = form.entries();
-        //   for(let pair of entries) {
-        //       console.log(pair[0]+ ', ' + pair[1]); 
-        //   }
-
-
-          dispatch(fetchAddProductsAsync(form))
-
-          
-    
+        dispatch(fetchAddProductsAsync(form));
     }
 
     return (
@@ -163,8 +158,15 @@ export default function sellProduct(){
                         <div className={style.formSection}>
                             <h3>Cargar Fotos</h3>
                             <hr />
-                            <label htmlFor="image">Selecciona los archivos necesarios</label>
-                            <input className={style.photo} type="file" id="image" name="image" placeholder="Ej: 10" accept="image/*" onChange={handleChange} multiple />
+                            <label htmlFor="image">Selecciona hasta 4 archivos .jpg o .png</label>
+                            <input className={style.photo} 
+                            type="file" 
+                            id="image" 
+                            name="image" 
+                            accept=".jpg, .jpeg, .png" 
+                            onChange={handleChange} 
+                            multiple 
+                            />
                         </div>
 
 
