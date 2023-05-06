@@ -38,7 +38,6 @@ const Destacados = () => {
     // Por ahora hardcodeado para que tome los 4 primeros productos de la lista
     const { productList } = useSelector(state => state.products);
     const destacados = productList.products.slice(0,4);
-    console.log(destacados);
 
 
     // RENDERIZACIÓN DEL COMPONENTE
