@@ -29,6 +29,6 @@ const load = async () => {
 };
 
 DBUserVerified("maurigiaconia@hotmail.com")
-//load();
+load();
 
 module.exports = mongoose.connection;
