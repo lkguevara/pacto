@@ -7,7 +7,7 @@ const SENDGRID_TEMPLATE_ID_SIGNUP = process.env.SENDGRID_TEMPLATE_ID_SIGNUP;
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 
-function sendWelcomeEmail(email,code) {
+async function sendWelcomeEmail(email,code) {
 
   const msg = {
     to: email,
@@ -20,7 +20,7 @@ function sendWelcomeEmail(email,code) {
     
   };
 
-  sgMail.send(msg);
+  await sgMail.send(msg);
 }
 
 
