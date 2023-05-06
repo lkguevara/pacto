@@ -10,11 +10,11 @@ sgMail.setApiKey(SENDGRID_API_KEY);
 function sendWelcomeEmail(email,code) {
 
   const msg = {
-    to: "edwardraga@icloud.com",
+    to: email,
     from: 'pactopf2023@gmail.com',
     templateId: SENDGRID_TEMPLATE_ID_SIGNUP,
     dynamic_template_data: {
-      code: 564545,
+      code: code,
       // más datos dinámicos aquí...
     },
     
