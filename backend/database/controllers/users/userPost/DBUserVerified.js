@@ -1,4 +1,5 @@
 const User = require("../../../models/user");
+const sendWelcomeEmail = require('../../../../controllers/utils/emailService/singnUp')
 
 const DBUserValidate = async (email, query) => {
     const user = await User.findOne({ email })
@@ -7,6 +8,7 @@ const DBUserValidate = async (email, query) => {
             const codeverified = Math.floor(Math.random() * 900000) + 100000;
             const usercodevalidate = await User.findByIdAndUpdate(user._id, { codeverified })
             // aca iria el codigo para enviar el mail
+            sendWelcomeEmail(email,codeverified)
             return null
         }
         else {
