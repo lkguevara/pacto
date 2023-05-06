@@ -1,15 +1,15 @@
-import Head from "next/head"
-import Link from "next/link"
-import Image from "next/image"
-import style from "../styles/sellProduct.module.css"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { fetchAddProductsAsync } from "@/redux/features/products/productsSlice"
+import Head from "next/head";
+import Link from "next/link";
+import Router from 'next/router';
+import Image from "next/image";
+import style from "../styles/sellProduct.module.css";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAddProductsAsync } from "@/redux/features/products/productsSlice";
 
 
 export default function sellProduct(){
-    const dispatch = useDispatch()
-
+    const dispatch = useDispatch();
 
     const [product,setProduct] = useState({
         name:"",
@@ -18,24 +18,28 @@ export default function sellProduct(){
         state:"",
         price:"",
         image:[]
+    });
 
-    })
-
+    const [previews, setPreviews] = useState([]);    
 
     const handleChange = (event)=>{
         const {name, value, files} = event.target;
         setProduct({
             ...product,
             [name]:value,
-        })
+        });
 
         if(name === 'image'){
-            console.log(1);
             setProduct({
                 ...product,
                 [name]:[...product.image, ...files]
-            })
-        }
+            });
+
+            // Pasos para poder previsualizar las imagenes antes de publicar el producto
+            const filesArray = Array.from(files);
+            const filesURL = filesArray.map(file => URL.createObjectURL(file));
+            setPreviews([...previews, ...filesURL]);
+        };
     }
 
     const handleSubmit = (event)=>{
@@ -58,9 +62,32 @@ export default function sellProduct(){
         const entries = form.entries();
         for(let pair of entries) {
             console.log(pair[0]+ ', ' + pair[1]); 
-        }
+        };
 
+        // Enviar el formulario al servidor
         dispatch(fetchAddProductsAsync(form));
+
+        // Limpiar el formulario
+        setProduct({
+            name:"",
+            description:"",
+            category:"",
+            state:"",
+            price:"",
+            image:[]
+        });
+        // Liberar los objetos URL creados para previsualizar las imagenes
+        previews.forEach(preview => URL.revokeObjectURL(preview));
+        // Limpiar el array de previsualizaciones
+        setPreviews([]);
+
+        // PROVISORIAMENTE:
+        // Redirigir a la página de productos
+        Router.push('/productos');
+
+        // PRÓXIMAMENTE:
+        // Redirigir a la página de detalle del producto publicado
+
     }
 
     return (
@@ -158,8 +185,8 @@ export default function sellProduct(){
                         <div className={style.formSection}>
                             <h3>Cargar Fotos</h3>
                             <hr />
-                            <label htmlFor="image">Selecciona hasta 4 archivos .jpg o .png</label>
-                            <input className={style.photo} 
+                            <label htmlFor="image">{"Selecciona hasta 4 fotos"}</label>
+                            <input className={style.photoSelector} 
                             type="file" 
                             id="image" 
                             name="image" 
@@ -167,6 +194,19 @@ export default function sellProduct(){
                             onChange={handleChange} 
                             multiple 
                             />
+                            <p className={style.infoSmall}>Formatos admitidos: .jpg o.png</p>
+
+                            {/* Sección para previsualizar las imágenes seleccionadas */}
+                            {/* Por restricciones de tiempo aún sin implementar funcionalidad de eliminar imagen seleccionada */}
+                            <div className={style.previewsContainer}>
+                                {
+                                    previews.map((preview, index) => (
+                                        <div key={index} className={style.previewItem}>
+                                            <Image className= {style.previewImage} priority src={preview} alt="preview" width="100" height="100"/>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
 
 
