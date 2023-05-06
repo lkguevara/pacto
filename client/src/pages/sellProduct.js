@@ -90,6 +90,25 @@ export default function sellProduct(){
 
     }
 
+    const handleCancel = (event)=>{
+        event.preventDefault();
+        // Limpiar el formulario
+        setProduct({
+            name:"",
+            description:"",
+            category:"",
+            state:"",
+            price:"",
+            image:[]
+        });
+        // Liberar los objetos URL creados para previsualizar las imagenes
+        previews.forEach(preview => URL.revokeObjectURL(preview));
+        // Limpiar el array de previsualizaciones
+        setPreviews([]);
+        // Redirigir a la página de productos
+        Router.push('/productos');
+    }
+
     return (
         <div className= {style.container}>
             <Head>
@@ -212,7 +231,7 @@ export default function sellProduct(){
 
                         <div className={style.buttons}>
                             <button className={style.buttonSubmit} type="submit">Publicar</button>
-                            <button className={style.buttonCancel} type="reset">Cancelar</button>
+                            <button className={style.buttonCancel} type="reset" onClick={handleCancel}>Cancelar</button>
                         </div>
                     </form>
                 </div>
