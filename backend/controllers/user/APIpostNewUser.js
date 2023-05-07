@@ -23,7 +23,7 @@ const postNewUser = async (req, res) => {
   userData.calification = 0;
 
   try {
-    console.log(userData);
+
     //verificiar si el usuario existe
     const verify = await checkUserExists(null, userData.email);
     if (!verify) {
