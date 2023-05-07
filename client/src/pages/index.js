@@ -19,8 +19,8 @@ export default function Home() {
       <Layout title="Home">
         <Slider />
         <Destacados />
-        <Boletin />
         <Reviews/>
+        <Boletin />
       </Layout>
     </>
   )
