@@ -189,7 +189,7 @@ export default function sellProduct(){
                                         {
                                             categories && categories.length > 0 &&
                                             categories.map((category) => (
-                                                <option key={category._id} value={category._id}>
+                                                <option key={category._id} value={category.name}>
                                                   {category.name}
                                                 </option>
                                             ))
@@ -211,9 +211,9 @@ export default function sellProduct(){
                                         <option disabled value="">Selecciona una subcategoría</option>
                                         {
                                         selectedCategory &&
-                                        categories.find((category) => category._id === selectedCategory)
+                                        categories.find((category) => category.name === selectedCategory)
                                         .subCategories.map((subcategory) => (
-                                            <option key={subcategory._id} value={subcategory._id}>
+                                            <option key={subcategory._id} value={subcategory.name}>
                                             {subcategory.name}
                                             </option>
                                         ))}
