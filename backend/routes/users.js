@@ -30,7 +30,7 @@ router.post('/user', checkRegister, (req, res) => {postNewUser(req, res)});
 router.get('/verify', verifyToken , (req, res) => {setVerified(req, res)})
 
 //LOGIN ROUTE
-router.get('/login', autoLogin,(req, res) => {login(req, res)});
+router.get('/login', /*autoLogin,*/ (req, res) => {login(req, res)});
 
 
 
