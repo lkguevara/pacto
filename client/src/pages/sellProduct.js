@@ -3,13 +3,19 @@ import Link from "next/link";
 import Router from 'next/router';
 import Image from "next/image";
 import style from "../styles/sellProduct.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from '@/redux/features/categories/categoriesSlice';
 import { fetchAddProductsAsync } from "@/redux/features/products/productsSlice";
 
 
 export default function sellProduct(){
     const dispatch = useDispatch();
+    const categories = useSelector((state) => state.categories.categories);
+    
+    const categoriesStatus = useSelector((state) => state.categories.status);
+    // TO-DO: gestionar el error
+    const categoriesError = useSelector((state) => state.categories.error);
 
     const [product,setProduct] = useState({
         name:"",
@@ -20,7 +26,17 @@ export default function sellProduct(){
         image:[]
     });
 
-    const [previews, setPreviews] = useState([]);    
+    const [selectedCategory, setSelectedCategory] = useState(null);   
+    const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+    const [selectedStatus, setSelectedStatus] = useState("");
+    const [previews, setPreviews] = useState([]);   
+    
+    useEffect(() => {
+        if (categoriesStatus === 'idle') {
+          dispatch(fetchCategories());
+        }
+    }, [categoriesStatus, dispatch]);
+
 
     const handleChange = (event)=>{
         const {name, value, files} = event.target;
@@ -42,18 +58,23 @@ export default function sellProduct(){
         };
     }
 
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+        setSelectedSubcategory(null);
+    }
+
     const handleSubmit = (event)=>{
         event.preventDefault();
         const form = new FormData();
         form.append("name", product.name);
         form.append("description", product.description);
-        form.append("category", product.category);
+        form.append("category", selectedCategory);
 
         //Al hacer submit del input agarra el valor "value1", "value2" etc, se debe modificar.
-        form.append("state", product.state);
+        form.append("state", selectedStatus);
         form.append("price", product.price);
 
-        if (product.subCategory) form.append("subCategory", product.subCategory);
+        if (selectedSubcategory) form.append("subCategory", selectedSubcategory);
         if (product.stock) form.append("stock", product.stock);
         product.image.forEach((image) => {
             form.append('images', image);
@@ -135,6 +156,8 @@ export default function sellProduct(){
 
                 <div className={style.formContainer}>
                     <form className={style.formProduct} onSubmit={handleSubmit}>
+
+                        {/* Sección para el nombre y la descripción del producto */}
                         <div className={style.formSection}>
                             <h3>Nombre & descripción</h3>
                             <hr />
@@ -146,61 +169,109 @@ export default function sellProduct(){
                             <textarea onChange={handleChange} id="description" name="description" placeholder="Ingresar la descripción del producto"></textarea>
                         </div>
 
+                        {/* Sección para la info básica del producto */}
                         <div className={style.formSection}>
                             <h3>Información básica</h3>
                             <hr />
                             
                             <div className={style.basicInfo}>
+
+                                {/* Select de CATEGORÍAS */}
                                 <div className={style.infoItem}>
                                     <label htmlFor="category">Categoría</label>
-                                    <select id="category" name="category"  value={product.category} onChange={handleChange}>
-                                        <option value="select">selecciona una opción</option>
-                                        <option value="celulares">Celulares</option>
-                                        <option value="computadoras" selected>Computadoras</option>
-                                        <option value="accesorios">Accesorios</option>
-                                        <option value="otros">Otros</option>
+                                    <select 
+                                    name="category" 
+                                    value={selectedCategory || ""}
+                                    onChange={handleCategoryChange} 
+                                    required
+                                    >   
+                                        <option disabled value="" >Selecciona una categoría</option>
+                                        {
+                                            categories && categories.length > 0 &&
+                                            categories.map((category) => (
+                                                <option key={category._id} value={category._id}>
+                                                  {category.name}
+                                                </option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
 
+                                {/* Select de SUBCATEGORÍAS */}
                                 <div className={style.infoItem}>
                                     <label htmlFor="subCategory">Sub-categoría</label>
-                                    <select id="subCategory" name="subCategory"  value={product.subCategory} onChange={handleChange}>
-                                        <option value="select">selecciona una opción</option>
-                                        <option value="celulares">Celulares</option>
-                                        <option value="computadoras" selected>Computadoras</option>
-                                        <option value="accesorios">Accesorios</option>
-                                        <option value="otros">Otros</option>
+                                    <select 
+                                    id="subCategory" 
+                                    name="subCategory"  
+                                    value={selectedSubcategory || ""}
+                                    onChange={(e) => setSelectedSubcategory(e.target.value)}
+                                    disabled={!selectedCategory}
+                                    required
+                                    >
+                                        <option disabled value="">Selecciona una subcategoría</option>
+                                        {
+                                        selectedCategory &&
+                                        categories.find((category) => category._id === selectedCategory)
+                                        .subCategories.map((subcategory) => (
+                                            <option key={subcategory._id} value={subcategory._id}>
+                                            {subcategory.name}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
 
+                                {/* Select de ESTADO DEL PRODUCTO */}
                                 <div className={style.infoItem}>
                                 <label htmlFor="status">Estado del producto</label>
-                                    <select id="status" name="state" value={product.status} onChange={handleChange}>
-                                        <option value="select">selecciona una opción</option>
-                                        <option value="value1">Nuevo</option>
-                                        <option value="nuevo" selected>Como nuevo</option>
-                                        <option value="muy bueno" selected>Muy bueno</option>
-                                        <option value="bueno" selected>Bueno</option>
-                                        <option value="regular" selected>Regular</option>
-                                        <option value="malo" selected>Malo</option>
-                                        <option value="para piezas" selected>Para piezas</option>
+                                    <select  
+                                    id="status" 
+                                    name="state" 
+                                    value={selectedStatus || ""} 
+                                    onChange={(e) => setSelectedStatus(e.target.value)}
+                                    required
+                                    >
+                                        <option disabled value="">Selecciona una opción</option>
+                                        <option value="Nuevo">Nuevo</option>
+                                        <option value="Usado">Usado</option>
+                                        <option value="Reacondicionado">Reacondicionado</option>
                                     </select>
                                 </div>
                             </div>
                             
                             <div className={style.basicInfo}>
+
+                                {/* Input de STOCK */}
                                 <div className={style.infoItem}>
                                     <label htmlFor="stock">Stock</label>
-                                    <input type="number" id="stock" name="stock" placeholder="Ej: 1" value={product.stock} onChange={handleChange}/>
+                                    <input 
+                                    type="number" 
+                                    id="stock" 
+                                    name="stock" 
+                                    placeholder="Ej: 1" 
+                                    value={product.stock} 
+                                    onChange={handleChange}
+                                    min="1"
+                                    max="100"
+                                    required
+                                    />
                                 </div>
 
+                                {/* Input de PRECIO */}
                                 <div className={style.infoItem}>
                                     <label htmlFor="price">Precio</label>
-                                    <input type="number" id="price" name="price" placeholder="Ej: 100000" value={product.price} onChange={handleChange}/>
+                                    <input 
+                                    type="number" 
+                                    id="price" 
+                                    name="price" 
+                                    placeholder="Ej: 100000" 
+                                    value={product.price} 
+                                    onChange={handleChange}/>
                                 </div>
                             </div>
                         </div>
 
+
+                        {/* Sección para cargar las fotos del producto */}
                         <div className={style.formSection}>
                             <h3>Cargar Fotos</h3>
                             <hr />
@@ -228,7 +299,7 @@ export default function sellProduct(){
                             </div>
                         </div>
 
-
+                        {/* Sección para los botones de submit y cancelar */}
                         <div className={style.buttons}>
                             <button className={style.buttonSubmit} type="submit">Publicar</button>
                             <button className={style.buttonCancel} type="reset" onClick={handleCancel}>Cancelar</button>
