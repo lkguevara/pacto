@@ -68,22 +68,22 @@ export default function sellProduct(){
         const form = new FormData();
         form.append("name", product.name);
         form.append("description", product.description);
-        form.append("category", product.category);
+        form.append("category", selectedCategory);
 
         //Al hacer submit del input agarra el valor "value1", "value2" etc, se debe modificar.
-        form.append("state", product.state);
+        form.append("state", selectedStatus);
         form.append("price", product.price);
 
-        if (product.subCategory) form.append("subCategory", product.subCategory);
+        if (selectedSubcategory) form.append("subCategory", selectedSubcategory);
         if (product.stock) form.append("stock", product.stock);
         product.image.forEach((image) => {
             form.append('images', image);
         });
 
-        // const entries = form.entries();
-        // for(let pair of entries) {
-        //     console.log(pair[0]+ ', ' + pair[1]); 
-        // };
+        const entries = form.entries();
+        for(let pair of entries) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        };
 
         // Enviar el formulario al servidor
         dispatch(fetchAddProductsAsync(form));
@@ -156,6 +156,8 @@ export default function sellProduct(){
 
                 <div className={style.formContainer}>
                     <form className={style.formProduct} onSubmit={handleSubmit}>
+
+                        {/* Sección para el nombre y la descripción del producto */}
                         <div className={style.formSection}>
                             <h3>Nombre & descripción</h3>
                             <hr />
@@ -167,11 +169,14 @@ export default function sellProduct(){
                             <textarea onChange={handleChange} id="description" name="description" placeholder="Ingresar la descripción del producto"></textarea>
                         </div>
 
+                        {/* Sección para la info básica del producto */}
                         <div className={style.formSection}>
                             <h3>Información básica</h3>
                             <hr />
                             
                             <div className={style.basicInfo}>
+
+                                {/* Select de CATEGORÍAS */}
                                 <div className={style.infoItem}>
                                     <label htmlFor="category">Categoría</label>
                                     <select 
@@ -180,7 +185,6 @@ export default function sellProduct(){
                                     onChange={handleCategoryChange} 
                                     required
                                     >   
-                                        {/* La primera opción es un placeholder que no puede ser seleccionado */}
                                         <option disabled value="" >Selecciona una categoría</option>
                                         {
                                             categories && categories.length > 0 &&
@@ -193,6 +197,7 @@ export default function sellProduct(){
                                     </select>
                                 </div>
 
+                                {/* Select de SUBCATEGORÍAS */}
                                 <div className={style.infoItem}>
                                     <label htmlFor="subCategory">Sub-categoría</label>
                                     <select 
@@ -215,6 +220,7 @@ export default function sellProduct(){
                                     </select>
                                 </div>
 
+                                {/* Select de ESTADO DEL PRODUCTO */}
                                 <div className={style.infoItem}>
                                 <label htmlFor="status">Estado del producto</label>
                                     <select  
@@ -233,18 +239,39 @@ export default function sellProduct(){
                             </div>
                             
                             <div className={style.basicInfo}>
+
+                                {/* Input de STOCK */}
                                 <div className={style.infoItem}>
                                     <label htmlFor="stock">Stock</label>
-                                    <input type="number" id="stock" name="stock" placeholder="Ej: 1" value={product.stock} onChange={handleChange}/>
+                                    <input 
+                                    type="number" 
+                                    id="stock" 
+                                    name="stock" 
+                                    placeholder="Ej: 1" 
+                                    value={product.stock} 
+                                    onChange={handleChange}
+                                    min="1"
+                                    max="100"
+                                    required
+                                    />
                                 </div>
 
+                                {/* Input de PRECIO */}
                                 <div className={style.infoItem}>
                                     <label htmlFor="price">Precio</label>
-                                    <input type="number" id="price" name="price" placeholder="Ej: 100000" value={product.price} onChange={handleChange}/>
+                                    <input 
+                                    type="number" 
+                                    id="price" 
+                                    name="price" 
+                                    placeholder="Ej: 100000" 
+                                    value={product.price} 
+                                    onChange={handleChange}/>
                                 </div>
                             </div>
                         </div>
 
+
+                        {/* Sección para cargar las fotos del producto */}
                         <div className={style.formSection}>
                             <h3>Cargar Fotos</h3>
                             <hr />
@@ -272,7 +299,7 @@ export default function sellProduct(){
                             </div>
                         </div>
 
-
+                        {/* Sección para los botones de submit y cancelar */}
                         <div className={style.buttons}>
                             <button className={style.buttonSubmit} type="submit">Publicar</button>
                             <button className={style.buttonCancel} type="reset" onClick={handleCancel}>Cancelar</button>
