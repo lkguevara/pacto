@@ -22,7 +22,7 @@ router.get('/product', (req, res, next) => getProductById(req, res));
 router.delete('/product', autoLogin,(req, res, next) => deleteProductById(req, res))
 
 // POST new user
-router.post('/product', autoLogin, middlewarePostNewProduct, (req, res) => postNewProduct(req, res))
+router.post('/product', /*autoLogin,*/ middlewarePostNewProduct, (req, res) => postNewProduct(req, res))
 
 //GET Product by name
 router.get('/productsname', (req, res, next) => getProductByName(req, res));
