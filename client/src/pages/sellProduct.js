@@ -28,6 +28,7 @@ export default function sellProduct(){
 
     const [selectedCategory, setSelectedCategory] = useState(null);   
     const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+    const [selectedStatus, setSelectedStatus] = useState("");
     const [previews, setPreviews] = useState([]);   
     
     useEffect(() => {
@@ -216,15 +217,17 @@ export default function sellProduct(){
 
                                 <div className={style.infoItem}>
                                 <label htmlFor="status">Estado del producto</label>
-                                    <select defaultValue="select" id="status" name="state" value={product.status} onChange={handleChange}>
-                                        <option value="select">selecciona una opción</option>
-                                        <option value="value1">Nuevo</option>
-                                        <option value="nuevo">Como nuevo</option>
-                                        <option value="muy bueno">Muy bueno</option>
-                                        <option value="bueno">Bueno</option>
-                                        <option value="regular">Regular</option>
-                                        <option value="malo">Malo</option>
-                                        <option value="para piezas">Para piezas</option>
+                                    <select  
+                                    id="status" 
+                                    name="state" 
+                                    value={selectedStatus || ""} 
+                                    onChange={(e) => setSelectedStatus(e.target.value)}
+                                    required
+                                    >
+                                        <option disabled value="">Selecciona una opción</option>
+                                        <option value="Nuevo">Nuevo</option>
+                                        <option value="Usado">Usado</option>
+                                        <option value="Reacondicionado">Reacondicionado</option>
                                     </select>
                                 </div>
                             </div>
