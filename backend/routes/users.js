@@ -25,8 +25,10 @@ router.get('/users', (req, res) => {getAllUsers(req, res)});
 // POST new user
 router.post('/user', checkRegister, (req, res) => {postNewUser(req, res)});
 
+// LOGIN user
 router.get('/login', (req, res) => {login(req, res)});
 
+// VERIFY user by code
 router.get('/verify', (req, res) => {setVerified(req, res)});
 
 
