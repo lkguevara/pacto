@@ -3,13 +3,19 @@ import Link from "next/link";
 import Router from 'next/router';
 import Image from "next/image";
 import style from "../styles/sellProduct.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from '@/redux/features/categories/categoriesSlice';
 import { fetchAddProductsAsync } from "@/redux/features/products/productsSlice";
 
 
 export default function sellProduct(){
     const dispatch = useDispatch();
+    const categories = useSelector((state) => state.categories.categories);
+    
+    const categoriesStatus = useSelector((state) => state.categories.status);
+    // TO-DO: gestionar el error
+    const categoriesError = useSelector((state) => state.categories.error);
 
     const [product,setProduct] = useState({
         name:"",
@@ -20,7 +26,16 @@ export default function sellProduct(){
         image:[]
     });
 
-    const [previews, setPreviews] = useState([]);    
+    const [selectedCategory, setSelectedCategory] = useState(null);   
+    const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+    const [previews, setPreviews] = useState([]);   
+    
+    useEffect(() => {
+        if (categoriesStatus === 'idle') {
+          dispatch(fetchCategories());
+        }
+    }, [categoriesStatus, dispatch]);
+
 
     const handleChange = (event)=>{
         const {name, value, files} = event.target;
@@ -42,6 +57,11 @@ export default function sellProduct(){
         };
     }
 
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+        setSelectedSubcategory(null);
+    }
+
     const handleSubmit = (event)=>{
         event.preventDefault();
         const form = new FormData();
@@ -59,10 +79,10 @@ export default function sellProduct(){
             form.append('images', image);
         });
 
-        const entries = form.entries();
-        for(let pair of entries) {
-            console.log(pair[0]+ ', ' + pair[1]); 
-        };
+        // const entries = form.entries();
+        // for(let pair of entries) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // };
 
         // Enviar el formulario al servidor
         dispatch(fetchAddProductsAsync(form));
@@ -153,37 +173,58 @@ export default function sellProduct(){
                             <div className={style.basicInfo}>
                                 <div className={style.infoItem}>
                                     <label htmlFor="category">Categoría</label>
-                                    <select id="category" name="category"  value={product.category} onChange={handleChange}>
-                                        <option value="select">selecciona una opción</option>
-                                        <option value="celulares">Celulares</option>
-                                        <option value="computadoras" selected>Computadoras</option>
-                                        <option value="accesorios">Accesorios</option>
-                                        <option value="otros">Otros</option>
+                                    <select 
+                                    name="category" 
+                                    value={selectedCategory || ""}
+                                    onChange={handleCategoryChange} 
+                                    required
+                                    >   
+                                        {/* La primera opción es un placeholder que no puede ser seleccionado */}
+                                        <option disabled value="" >Selecciona una categoría</option>
+                                        {
+                                            categories && categories.length > 0 &&
+                                            categories.map((category) => (
+                                                <option key={category._id} value={category._id}>
+                                                  {category.name}
+                                                </option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
 
                                 <div className={style.infoItem}>
                                     <label htmlFor="subCategory">Sub-categoría</label>
-                                    <select id="subCategory" name="subCategory"  value={product.subCategory} onChange={handleChange}>
-                                        <option value="select">selecciona una opción</option>
-                                        <option value="celulares">Celulares</option>
-                                        <option value="computadoras" selected>Computadoras</option>
-                                        <option value="accesorios">Accesorios</option>
-                                        <option value="otros">Otros</option>
+                                    <select 
+                                    id="subCategory" 
+                                    name="subCategory"  
+                                    value={selectedSubcategory || ""}
+                                    onChange={(e) => setSelectedSubcategory(e.target.value)}
+                                    disabled={!selectedCategory}
+                                    required
+                                    >
+                                        <option disabled value="">Selecciona una subcategoría</option>
+                                        {
+                                        selectedCategory &&
+                                        categories.find((category) => category._id === selectedCategory)
+                                        .subCategories.map((subcategory) => (
+                                            <option key={subcategory._id} value={subcategory._id}>
+                                            {subcategory.name}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
 
                                 <div className={style.infoItem}>
                                 <label htmlFor="status">Estado del producto</label>
-                                    <select id="status" name="state" value={product.status} onChange={handleChange}>
+                                    <select defaultValue="select" id="status" name="state" value={product.status} onChange={handleChange}>
                                         <option value="select">selecciona una opción</option>
                                         <option value="value1">Nuevo</option>
-                                        <option value="nuevo" selected>Como nuevo</option>
-                                        <option value="muy bueno" selected>Muy bueno</option>
-                                        <option value="bueno" selected>Bueno</option>
-                                        <option value="regular" selected>Regular</option>
-                                        <option value="malo" selected>Malo</option>
-                                        <option value="para piezas" selected>Para piezas</option>
+                                        <option value="nuevo">Como nuevo</option>
+                                        <option value="muy bueno">Muy bueno</option>
+                                        <option value="bueno">Bueno</option>
+                                        <option value="regular">Regular</option>
+                                        <option value="malo">Malo</option>
+                                        <option value="para piezas">Para piezas</option>
                                     </select>
                                 </div>
                             </div>
