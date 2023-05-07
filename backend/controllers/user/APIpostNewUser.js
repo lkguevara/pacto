@@ -23,6 +23,7 @@ const postNewUser = async (req, res) => {
   userData.calification = 0;
 
   try {
+    console.log(userData);
     //verificiar si el usuario existe
     const verify = await checkUserExists(null, userData.email);
     if (!verify) {
@@ -34,9 +35,10 @@ const postNewUser = async (req, res) => {
 
         //buscar el id del usuario
         const userId = await checkUserExists(newUser._id);
+        const tokenPayload = { userId: userId._id };
 
         //generar token para el registro
-        const token = jwt.sign(userId, JWT_PRIVATE_KEY);
+        const token = jwt.sign(tokenPayload, JWT_PRIVATE_KEY);
 
         //enviar el front
         return res.status(200).json({codeSend:codeSend,token:token})

@@ -5,6 +5,7 @@ const {postNewUser} = require('../controllers/user/APIpostNewUser');
 const {setVerified} = require('../controllers/user/APISetIsVerified');
 const {login} = require('../controllers/user/APILoginUser');
 const checkUserExists = require('../database/helper/DBcheckUserExists');
+const { verifyToken }  = require('../controllers/token/verifyToken');
 
 const checkRegister = async (req, res, next) =>{
 
@@ -25,10 +26,11 @@ router.get('/users', (req, res) => {getAllUsers(req, res)});
 // POST new user
 router.post('/user', checkRegister, (req, res) => {postNewUser(req, res)});
 
-router.get('/login', (req, res) => {login(req, res)});
+router.get('/verify',verifyToken , (req, res) => {setVerified(req, res)})
 
-router.get('/verify', (req, res) => {setVerified(req, res)});
+router.get('/login', (req, res) => {login(req, res)});
 
 
 
 module.exports = router;
+
