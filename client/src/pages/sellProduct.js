@@ -21,7 +21,9 @@ export default function sellProduct(){
         name:"",
         description:"",
         category:"",
+        subcategory:"",
         state:"",
+        stock:"",
         price:"",
         image:[]
     });
@@ -66,19 +68,19 @@ export default function sellProduct(){
     const handleSubmit = (event)=>{
         event.preventDefault();
         const form = new FormData();
-        form.append("name", product.name);
-        form.append("description", product.description);
-        form.append("category", selectedCategory);
-
+        if (product.name) form.append("name", product.name);
+        if (product.description) form.append("description", product.description);
+        if (selectedCategory) form.append("category", selectedCategory);
+        if (selectedSubcategory) form.append("subcategory", selectedSubcategory);
         //Al hacer submit del input agarra el valor "value1", "value2" etc, se debe modificar.
         form.append("state", selectedStatus);
-        form.append("price", product.price);
-
-        if (selectedSubcategory) form.append("subCategory", selectedSubcategory);
         if (product.stock) form.append("stock", product.stock);
-        product.image.forEach((image) => {
-            form.append('images', image);
-        });
+        if (product.price) form.append("price", product.price);
+        if (product.image.length > 0) {
+            product.image.forEach((image) => {
+                form.append('images', image);
+            });
+        }
 
         const entries = form.entries();
         for(let pair of entries) {
@@ -93,7 +95,9 @@ export default function sellProduct(){
             name:"",
             description:"",
             category:"",
+            subcategory:"",
             state:"",
+            stock:"",
             price:"",
             image:[]
         });
@@ -118,7 +122,9 @@ export default function sellProduct(){
             name:"",
             description:"",
             category:"",
+            subcategory:"",
             state:"",
+            stock:"",
             price:"",
             image:[]
         });
