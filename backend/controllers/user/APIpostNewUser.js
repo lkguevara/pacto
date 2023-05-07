@@ -19,7 +19,7 @@ const postNewUser = async (req, res) => {
     userData.calification = 0;
 
     try {
-        const newUser = await createUser(userData);git 
+        const newUser = await createUser(userData);
 
         if (await checkUserExists(newUser._id)) {
 
