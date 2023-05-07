@@ -6,13 +6,14 @@ const { userTest, productTest } = require("./mockData/testData");
 const User = require("./models/user");
 const Product = require("./models/product");
 const DBUserVerified = require("./controllers/users/userPost/DBUserVerified");
+require("dotenv").config()
 
-const uri = "mongodb://127.0.0.1:27017/marketplace";
-
-mongoose.connect(uri);
+// REVISAR ARCHIVO ENV EN DRIVE PARA TENER CREDENCIALES DE ACCESO 
+const { MONGO_DB_URI } = process.env
+mongoose.connect(MONGO_DB_URI);
 
 mongoose.connection.on("open", (_) => {
-  console.log("Database is connected to => ", uri);
+  console.log("Database is connected to Atlas");
 });
 
 mongoose.connection.on("error", (error) => {
@@ -28,7 +29,6 @@ const load = async () => {
   await productTest();
 };
 
-DBUserVerified("maurigiaconia@hotmail.com")
 load();
 
 module.exports = mongoose.connection;
