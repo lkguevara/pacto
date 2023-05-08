@@ -4,14 +4,14 @@ import SearchBar from './searchbar';
 import Link from 'next/link';
 import { useSelector ,useDispatch } from 'react-redux';
 import { openMenu } from '@/redux/features/menu/menuSlice';
+import { useEffect } from 'react';
 
 
 export default function NavBar(){
 
     const { isOpen } = useSelector(state => state.menu);
+    const  userState  = useSelector(state => state.user);
     const dispatch = useDispatch();
-
-    
 
     const handlerOpenMenu = () => {
         dispatch(openMenu()); 
@@ -53,11 +53,13 @@ export default function NavBar(){
             </div>
 
             <div className={style.user}>
-                <button className={style.red}>
-                    <Link href="/login">
-                        <Image priority src="/image/user.svg" alt="user" width="35" height="35"/>
-                    </Link>
-                </button>
+                { !userState.user ? 
+                    <button className={style.red}>
+                        <Link href="/login">
+                            <Image priority src="/image/user.svg" alt="user" width="35" height="35"/>
+                        </Link>
+                    </button> : <p>{userState.user.email}</p>
+                }
                 <button>
                     <Link href="/cart">
                         <Image priority src="/image/cart.svg" alt="cart" width="35" height="35"/>

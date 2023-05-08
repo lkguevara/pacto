@@ -8,7 +8,7 @@ const User = require("../../../models/user")
 const productSave = async (product, idUser) => {
     try {
         const newProduct = new Product(product)
-        uploadproduct = await User.findOneAndUpdate(idUser, { $push: { products: newProduct._id } })
+        const uploadproduct = await User.findOneAndUpdate(idUser, { $push: { products: newProduct._id } })
         const subcategories = await Category.findOneAndUpdate(
             { name: product.category, "subCategories.name": product.subcategory },
             { $push: { "subCategories.$.products": newProduct._id } },
