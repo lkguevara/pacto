@@ -9,8 +9,10 @@ function verifyToken(req, res, next) {
     const decoded = jwt.verify(token, JWT_PRIVATE_KEY);
     console.log(decoded);
     req.userId = decoded.userId;
-    next();
-  }
+    return next();
+  } 
+
+  return next();
 }
 
 module.exports = { verifyToken };

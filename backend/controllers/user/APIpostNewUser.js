@@ -23,7 +23,7 @@ const postNewUser = async (req, res) => {
   userData.calification = 0;
 
   try {
-
+    console.log(userData);
     //verificiar si el usuario existe
     const verify = await checkUserExists(null, userData.email);
     if (!verify) {
@@ -56,7 +56,7 @@ const postNewUser = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       error: err.message,
-      msg: "Error con la conexón a la base de datos",
+      msg: "Error con la conexón a la base de datos " + err.message
     });
   }
 };

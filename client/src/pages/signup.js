@@ -12,14 +12,20 @@ export default function login() {
   const dispatch = useDispatch();
 
   const userState = useSelector((state) => state.user)
-
+  const navigate = useRouter();
   
   
   useEffect(()=>{
     
-     dispatch(verifyCode({token:localStorage.getItem("token")}))
+    dispatch(verifyCode({token:localStorage.getItem("token")}))
 
-  },[])
+  },[]);
+
+  useEffect(() => {
+    if (userState.verify){
+      navigate.push('/');
+    }
+  }, [userState.verify])
 
   //User State
   const [user, setUser] = useState({
@@ -60,13 +66,14 @@ export default function login() {
     //   // confirmarPass: "",
     // });
     dispatch(registerUser(user));
+
   };
 
   const handleSubmitCode = (event) => {
     event.preventDefault();
 
-    console.log(user.code);
-     dispatch(verifyCode({email:user.email,code:user.code, token:localStorage.getItem("token")}));
+  
+    dispatch(verifyCode({email:user.email,code:user.code, token:localStorage.getItem("token")}));
   };
 
 
@@ -159,7 +166,7 @@ export default function login() {
                 value={user.phone}
                 name={"phone"}
                 type="number"
-                placeholder="Ingresa tu contraseña"
+                placeholder="Ingresa tu teléfono"
                 onChange={(e) => handleChange(e)}
               />
               <label>Contraseña:</label>
