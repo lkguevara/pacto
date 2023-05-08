@@ -3,11 +3,13 @@ import Link from "next/link";
 import Router from 'next/router';
 import Image from "next/image";
 import style from "../styles/sellProduct.module.css";
+import { Spinner } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from '@/redux/features/categories/categoriesSlice';
-import { fetchAddProductsAsync } from "@/redux/features/products/productsSlice";
+import { addProduct } from "../api/productsApi"
 
+// Objeto para validar los campos del formulario
 const validation = {
     name: {
       minLength: 5,
@@ -45,13 +47,15 @@ const validation = {
 
 
 export default function sellProduct(){
+    // LÓGICA DEL COMPONENTE
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.categories.categories);
     
     const categoriesStatus = useSelector((state) => state.categories.status);
-    // TO-DO: gestionar el error
+    // TO-DO: gestionar el posible error
     const categoriesError = useSelector((state) => state.categories.error);
 
+    // Estado para el formulario
     const [product,setProduct] = useState({
         name:"",
         description:"",
@@ -63,10 +67,16 @@ export default function sellProduct(){
         images:[]
     });
 
+    // Estados para la categoría y subcategoría seleccionadas
     const [selectedCategory, setSelectedCategory] = useState(null);   
     const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+    // Estado para el estado del producto seleccionado
     const [selectedStatus, setSelectedStatus] = useState("");
+    // Estado para previsualizar las imagenes seleccionadas
     const [previews, setPreviews] = useState([]);  
+    // Estado para el spinner de carga
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    // Estado para los errores del formulario
     const [formErrors, setFormErrors] = useState({
         name: "",
         description: "",
@@ -77,12 +87,13 @@ export default function sellProduct(){
     
     
     useEffect(() => {
+        // Si las categorías no están cargadas en el estado global, las solicita al servidor
         if (categoriesStatus === 'idle') {
           dispatch(fetchCategories());
         }
     }, [categoriesStatus, dispatch]);
 
-
+    // Función para validar si todos los campos del formulario tienen datos
     const isFormComplete = () => {
         return (
           product.name &&
@@ -93,9 +104,11 @@ export default function sellProduct(){
         );
     };
 
+    // Función para gestionar los cambios en los inputs del formulario
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
-      
+        
+        // Validar el campo que cambió
         let errorMessage = "";
         switch (name) {
           case "name":
@@ -116,12 +129,14 @@ export default function sellProduct(){
           default:
             break;
         }
-      
+        
+        // Actualizar el estado de los errores del formulario
         setFormErrors((prevErrors) => ({
           ...prevErrors,
           [name]: errorMessage,
         }));
       
+        // Actualizar el estado del producto con las imágenes seleccionadas
         if (type === "file") {
             setProduct((prevData) => ({
                 ...prevData,
@@ -140,7 +155,7 @@ export default function sellProduct(){
         }
     };
 
-
+    //********************************************************************* */
     // TO-DO: terminar de implementar la funcionalidad de eliminar la imagen
     // const removeImage = (index) => {
     //     setProduct((prevState) => {
@@ -150,21 +165,27 @@ export default function sellProduct(){
       
     //     setPreviews((prevState) => prevState.filter((_, i) => i !== index));
     // };
+    //********************************************************************** */
 
+    // Función para gestionar el cambio de categoría
     const handleCategoryChange = (e) => {
         setSelectedCategory(e.target.value);
         setSelectedSubcategory(null);
     }
 
-    const handleSubmit = (event)=>{
+    // Función para gestionar el submit del formulario
+    const handleSubmit = async (event)=>{
         event.preventDefault();
+        // Setear el estado de carga para mostrar el spinner
+        setIsSubmitting(true);
+
+        // Crear el objeto FormData para enviar los datos del formulario
         const form = new FormData();
         if (product.name) form.append("name", product.name);
         if (product.description) form.append("description", product.description);
         if (selectedCategory) form.append("category", selectedCategory);
         if (selectedSubcategory) form.append("subcategory", selectedSubcategory);
-        //Al hacer submit del input agarra el valor "value1", "value2" etc, se debe modificar.
-        form.append("state", selectedStatus);
+        if (selectedStatus) form.append("state", selectedStatus);
         if (product.stock) form.append("stock", product.stock);
         if (product.price) form.append("price", product.price);
         if (product.images.length > 0) {
@@ -173,39 +194,41 @@ export default function sellProduct(){
             });
         }
 
-        // const entries = form.entries();
-        // for(let pair of entries) {
-        //     console.log(pair[0]+ ', ' + pair[1]); 
-        // };
+        try {
+            // Realiza la petición al backend para crear el producto
+            const newProduct = await addProduct(form);
 
-        // Enviar el formulario al servidor
-        dispatch(fetchAddProductsAsync(form));
+            // Limpiar el formulario
+            setProduct({
+                name:"",
+                description:"",
+                category:"",
+                subcategory:"",
+                state:"",
+                stock:"",
+                price:"",
+                images:[]
+            });
+            // Liberar los objetos URL creados para previsualizar las imagenes
+            previews.forEach(preview => URL.revokeObjectURL(preview));
+            // Limpiar el array de previsualizaciones
+            setPreviews([]);
 
-        // Limpiar el formulario
-        setProduct({
-            name:"",
-            description:"",
-            category:"",
-            subcategory:"",
-            state:"",
-            stock:"",
-            price:"",
-            images:[]
-        });
-        // Liberar los objetos URL creados para previsualizar las imagenes
-        previews.forEach(preview => URL.revokeObjectURL(preview));
-        // Limpiar el array de previsualizaciones
-        setPreviews([]);
+            // Redirigir a la página de detalle del producto publicado
+            Router.push(`/productos/${newProduct._id}`);
 
-        // PROVISORIAMENTE:
-        // Redirigir a la página de productos
-        Router.push('/productos');
-
-        // PRÓXIMAMENTE:
-        // Redirigir a la página de detalle del producto publicado
-
+        } catch (error) {
+            console.log(error);
+            // Mostrar un mensaje de error
+            alert("Error al publicar el producto");
+        }
+        finally {
+            // Setear el estado de carga para ocultar el spinner
+            setIsSubmitting(false);
+        }
     }
 
+    // Función para gestionar el cancelar el formulario
     const handleCancel = (event)=>{
         event.preventDefault();
         // Limpiar el formulario
@@ -319,7 +342,7 @@ export default function sellProduct(){
 
 
 
-
+    // RENDERIZADO DEL COMPONENTE
     return (
         <div className= {style.container}>
             <Head>
@@ -516,9 +539,14 @@ export default function sellProduct(){
                             <button 
                             className={style.buttonSubmit} 
                             type="submit"
-                            disabled={!isFormComplete() || Object.values(formErrors).some((error) => error)}
+                            disabled={!isFormComplete() || Object.values(formErrors).some((error) => error) || isSubmitting}
                             title="Todos los datos deben estar completos y correctos para poder publicar el producto"
-                            >Publicar
+                            >
+                                {isSubmitting ? (
+                                    <Spinner animation="border" size="sm" />
+                                ) : (
+                                    "Publicar"
+                                )}
                             </button>
 
                             <button className={style.buttonCancel} type="reset" onClick={handleCancel}>Cancelar</button>
@@ -526,7 +554,6 @@ export default function sellProduct(){
                     </form>
                 </div>
             </div>
-
         </div>
     )
 }
