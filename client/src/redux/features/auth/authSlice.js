@@ -68,7 +68,7 @@ export const verifyCode = createAsyncThunk(
           console.log(action);
           state.loading = false;
           state.error = action.payload;
-          state.sendCode = true
+          state.sendCode = false
         })
     },
   });

@@ -29,6 +29,6 @@ const load = async () => {
   await productTest();
 };
 
-load();
+//load();
 
 module.exports = mongoose.connection;
