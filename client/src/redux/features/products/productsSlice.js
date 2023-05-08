@@ -34,12 +34,6 @@ export const fetchProductDetailAsync = createAsyncThunk("products/fetchProductDe
   }
 );
 
-export const fetchAddProductsAsync = createAsyncThunk("products/addProducts",async (product)=> {
-  const response = await axios.post('http://localhost:3001/product',product);
- const data = await response.data;
- return data;
-})
-
 const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -100,23 +94,8 @@ const productsSlice = createSlice({
           state.error = action.error.message;
         })
 
-        // **** ADD PRODUCST ****
-        .addCase(fetchAddProductsAsync.pending, (state) => {
-          state.status = "loading";
-        })
-        .addCase(fetchAddProductsAsync.fulfilled, (state, action) => {
-          state.status = "succeeded";
-          state.productList.products.push(action.payload);
-          state.productList.cantidad++
-        })
-        .addCase(fetchAddProductsAsync.rejected, (state, action) => {
-          state.status = "failed";
-          state.error = action.error.message;
-        })
     },
 });
-
-//hola soy edward
 
 export const { setFilters, setOrderBy, setPage, setAmountXPage, resetState } = productsSlice.actions;
 
