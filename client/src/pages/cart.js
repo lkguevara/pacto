@@ -1,14 +1,15 @@
-import styles from '@/styles/Home.module.css';
+import styles from '@/styles/Cart.module.css';
 import Layout from '@/components/layout';
 import Link from 'next/link';
-import EnConstruccion from '@/components/enConstruccion';
+import Carrito from '@/components/carrito';
 
 export default function Cart() {
   return (
     <>
       <Layout title="Cart">
-        <h1 className={styles.title}>Carrito de Compras</h1>
-        <EnConstruccion />
+        <div className={styles.container}>
+          <Carrito />
+        </div>
       </Layout>
 
     </>
