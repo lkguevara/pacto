@@ -91,11 +91,7 @@ export default function sellProduct(){
         if (categoriesStatus === 'idle') {
           dispatch(fetchCategories());
         }
-
-        const filesURL = product.images?.map(file => URL.createObjectURL(file));
-        setPreviews([...filesURL])
-
-    }, [categoriesStatus, dispatch,product.images]);
+    }, [categoriesStatus, dispatch]);
 
     // Función para validar si todos los campos del formulario tienen datos
     const isFormComplete = () => {
@@ -148,9 +144,9 @@ export default function sellProduct(){
             }));
 
             //Pasos para poder previsualizar las imagenes antes de publicar el producto
-            // const filesArray = Array.from();
-            // const filesURL = product.images?.map(file => URL.createObjectURL(file));
-            // setPreviews([...previews, ...filesURL]);
+            const filesArray = Array.from(files);
+            const filesURL = filesArray.map(file => URL.createObjectURL(file));
+            setPreviews([...previews, ...filesURL]);
         } else {
             setProduct((prevData) => ({
                 ...prevData,
@@ -254,14 +250,6 @@ export default function sellProduct(){
         Router.push('/productos');
     }
 
-    const removeImage = (index) => {
-      console.log(product.images);
-      const nuevasImagenes = product.images.filter((_, i) => i !== index);
-      setProduct({
-        ...product,
-        images: nuevasImagenes
-      });
-    };
 
     // FUNCIONES DE VALIDACIÓN
     const validateName = (value) => {
@@ -536,7 +524,7 @@ export default function sellProduct(){
                                                 type="button"
                                                 className={style.removeImageButton}
                                                 // TO-DO: terminar de implementar la funcionalidad de eliminar la imagen
-                                                onClick={() => removeImage(index)}
+                                                // onClick={() => removeImage(index)}
                                             >
                                             X
                                             </button>

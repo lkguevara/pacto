@@ -17,6 +17,19 @@ import { useDispatch } from 'react-redux';
 
 export default function Home() {
 
+  const dispatch = useDispatch();
+
+  useEffect(() =>{
+
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("token");
+ 
+      if (token){
+        dispatch(autoLoginUser(token))
+      }
+    }
+  }, []);
+
   return (
     <>
       <Layout title="Home">

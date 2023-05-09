@@ -1,10 +1,10 @@
 import axios from 'axios';
-// const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:3001';
 
 export const addProduct = async (product) => {
     try {
 
-      const response = await axios.post(`/product`, product);
+      const response = await axios.post(`${API_URL}/product`, product);
       const newProduct = response.data;
       return newProduct;
     } catch (error) {

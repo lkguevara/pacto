@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUpUser } from "@/redux/features/auth/authSlice";
 import { useRouter } from "next/router";
 import { registerUser, verifyCode } from "@/redux/features/auth/authSlice";
-import { sendCode } from "@/redux/features/auth/authSlice";
 
 export default function login() {
   const dispatch = useDispatch();
@@ -15,16 +14,17 @@ export default function login() {
   const userState = useSelector((state) => state.user)
   const navigate = useRouter();
   
+  
+  useEffect(()=>{
+    
+    dispatch(verifyCode({token:localStorage.getItem("token")}))
+
+  },[]);
 
   useEffect(() => {
     if (userState.verify){
       navigate.push('/');
     }
-    if(typeof window !== 'undefined' && localStorage.getItem("user_unverified")){
-
-      dispatch(sendCode())
-    }
-    
   }, [userState.verify])
 
   //User State
@@ -71,7 +71,9 @@ export default function login() {
 
   const handleSubmitCode = (event) => {
     event.preventDefault();
-    dispatch(verifyCode({email:user.email,code:user.code, token:localStorage.getItem("user_unverified")}));
+
+  
+    dispatch(verifyCode({email:user.email,code:user.code, token:localStorage.getItem("token")}));
   };
 
 
