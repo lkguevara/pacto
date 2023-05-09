@@ -2,12 +2,28 @@ import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
 import style from "../styles/Login.module.css"
-import { useDispatch } from "react-redux"
+
 import { useState } from "react"
+import { GoogleButton } from 'react-google-button';
+import { auth } from "./firebase";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import {useAuthState} from 'react-firebase-hooks/auth';
+import { useEffect } from "react"
 
 
 export default function login(){
-    const dispatch = useDispatch()
+
+    //google firebase:
+    const googleAuth = new GoogleAuthProvider();
+    const [user, setUser] = useAuthState(auth)
+
+    const loginGoogle = async () => {
+        const result = await signInWithPopup(auth, googleAuth);
+    };
+
+    useEffect(() => {
+        console.log(user)
+    },[user])
 
     const [signIn,setSignIn] = useState({
         email:'',
@@ -67,6 +83,10 @@ export default function login(){
                         <input onChange={(e)=> handleChange(e)} value={signIn.password} name={"password"} type="password" placeholder="Contraseña" />
 
                         <button type="submit">Iniciar Sesión</button>
+                        <div className={style.google}>
+                            <GoogleButton type="dark" onClick={loginGoogle}/>
+                            <button onClick={() => auth.signOut()}>LOGOUT</button>
+                        </div>
                     </form>
                     <Link href="/forgotpass">
                         <span className={style.forgetPass}>¿Olvidaste tu contraseña?</span>
@@ -77,3 +97,4 @@ export default function login(){
         </div>
     )
 }
+
