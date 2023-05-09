@@ -8,11 +8,27 @@ import Slider from '@/components/slider';
 import Destacados from "@/components/destacados";
 import Boletin from '@/components/boletin';
 import Reviews from '@/components/reviews';
+import { autoLoginUser } from "@/redux/features/auth/authSlice";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 
 
 
 export default function Home() {
 
+  const dispatch = useDispatch();
+
+  useEffect(() =>{
+
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("token");
+ 
+      if (token){
+        dispatch(autoLoginUser(token))
+      }
+    }
+  }, []);
 
   return (
     <>

@@ -20,11 +20,38 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+//Async thunk para autologear a un usuario si existe un token en el localstorage
+export const autoLoginUser = createAsyncThunk(
+    'auth/autoLogin',
+    async (token) => {
+     
+      if (token){
+      
+        try {
+
+        
+          const response = await axios.get('http://localhost:3001/autologin',  {
+                                                                      headers: { 
+                                                                      ' Authorization': `Bearer ${token}`,
+                                                              
+                                                                      }
+                                                                    });
+
+          return response.data;
+        } catch(err){
+          return err.message;
+        }
+      }
+
+      return null
+    }
+)
+
 // Async thunk para enviar el código de verificación al backend y recibir la respuesta con los datos del usuario
 export const verifyCode = createAsyncThunk(
     'auth/fetchUserData',
     async ({ email, code,token}) => {
-      console.log(token);
+   
       const response = await axios.get(`http://localhost:3001/verify?email=${email}&code=${Number(code)}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -51,6 +78,16 @@ export const verifyCode = createAsyncThunk(
         .addCase(registerUser.rejected, (state, action) => {
           state.loading = false;
           state.error = action.payload;
+        })
+        //Acciones para autoLogear a un usuario
+        .addCase(autoLoginUser.rejected, (state, action) => {
+          state.token = null;
+          state.user = null;
+          localStorage.removeItem('token')
+        })
+        .addCase(autoLoginUser.fulfilled, (state, action) => {
+          console.log("Hola")
+          state.user = action.payload.user;
         })
         // Acciones para enviar el código de verificación y recibir los datos del usuario
         .addCase(verifyCode.pending, (state) => {
