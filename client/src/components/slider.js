@@ -10,12 +10,12 @@ export default function Slider(){
                 <Carousel.Item className={style.sliderItem}>
                     <img
                     className="d-block w-100"
-                    src="/image/slider1.avif"
+                    src="/image/slider5.jpg"
                     alt=""
                     />
                     <Carousel.Caption className={style.sliderTitle}>
                     <h3>Encuentra</h3>
-                    <p>Ropa de segunda mano en buen estado!</p>
+                    <p>Las mejores marcas, al mejor precio!</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item className={style.sliderItem}>
