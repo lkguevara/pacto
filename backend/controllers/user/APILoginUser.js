@@ -6,12 +6,12 @@ const bcrypt = require('bcrypt');
 const login = async (req, res) =>{
 
     try{
-
+ 
         if (!req.user){
             const {email, password} = req.body;
 
             if (email && password){
-                const user = checkUserExists(email);
+                const user = await checkUserExists(email);
                 //Verifico que el usuario ingresado exista en la db
                 if (user){
                     //Checkeo si la contraseña ingresada coincide con la almacenada en la db
@@ -19,7 +19,7 @@ const login = async (req, res) =>{
                     
                         /*Genero el token asociado al id del usuario, dejo comentado el tiempo de expiracion del token 
                         (Por tema de seguridad deberia estar activado pero tenemos que determinar el tiempo que pondremos para que expire)*/
-                        const token = jwt.sign({ id: user._id }, process.env.JWT_PRIVATE_KEY /*, { expiresIn: '1h' }*/);
+                        const token = jwt.sign({ userId: user._id }, process.env.JWT_PRIVATE_KEY /*, { expiresIn: '1h' }*/);
 
                         user.token = token;
                         await user.save();
@@ -36,7 +36,6 @@ const login = async (req, res) =>{
 
         }
 
-        
         return res.status(200).json({msg: "Inicio de sesión exitoso",
                                     user: req.user});
 
