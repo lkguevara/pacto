@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-axios.defaults.baseURL = "http://pacto-production.up.railway.app/";
+const API_URL = "https://few-rule-production.up.railway.app/";
 
 const initialState = {
   user: null,
@@ -16,7 +16,7 @@ export const registerUser = createAsyncThunk(
   'auth/registerUser',
   async (userData) => {
     console.log(userData);
-    const response = await axios.post('/user', userData);
+    const response = await axios.post(`${API_URL}/user`, userData);
     return response.data;
   }
 );
@@ -26,7 +26,7 @@ export const verifyCode = createAsyncThunk(
     'auth/fetchUserData',
     async ({ email, code,token}) => {
       console.log(token);
-      const response = await axios.get(`/verify?email=${email}&code=${Number(code)}`, {
+      const response = await axios.get(`${API_URL}/verify?email=${email}&code=${Number(code)}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;

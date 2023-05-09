@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from '@/utils/api';
 // const API_URL = "http://localhost:3001/";
-const API_URL = "http://pacto-production.up.railway.app/";
+const API_URL = "https://few-rule-production.up.railway.app/";
 import axios from "axios";
 
 
