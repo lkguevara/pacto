@@ -22,19 +22,16 @@ export default function Menu(){
             <button className={style.close} onClick={handlerOpenMenu}>Close</button>
 
             <div className={style.links}>
-                    <Link href="/nosotros">
+                    <Link href="/nosotros" className={style.link}>
                         <button className={style.btn}>Nosotros {'>'}</button>
                     </Link>
-                    <Link href="/categorias">
-                        <button className={style.btn}>Categorias {'>'}</button>
+                    <Link href="/productos" className={style.link}>
+                        <button className={style.btn}>Categorías {'>'}</button>
                     </Link>
-                    <Link href="/ofertas">
-                        <button className={style.btn}>Ofertas {'>'}</button>
-                    </Link>
-                    <Link href="/sellProduct">
+                    <Link href="/sellProduct" className={style.link}>
                         <button className={style.btn}>Vender {'>'}</button>
                     </Link>
-                    <Link href="/faqs">
+                    <Link href="/faqs" className={style.link}>
                         <button className={style.btn}>¿Necesitas ayuda? {'>'}</button>
                     </Link>
             </div>
