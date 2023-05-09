@@ -22,18 +22,21 @@ const initialState = {
 };
 
 export const fetchProductsAsync = createAsyncThunk("products/fetchProducts",async (path) => {
-  const response = await axios.get(`${API_URL}${path}`);
+  const response = await axios.get(`${path}`);
   const data = await response.data;
   return data;
   }
 );
 
+//conetario
+
 export const fetchProductDetailAsync = createAsyncThunk("products/fetchProductDetail",async (id) => {
-  const response = await axios.get(`${API_URL}product?id=${id}`);
+  const response = await axios.get(`product?id=${id}`);
   const data = await response.data;
   return data;
   }
 );
+
 
 const productsSlice = createSlice({
   name: "products",
