@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from '@/utils/api';
-const API_URL = "http://localhost:3001/";
+const API_URL = "http://localhost:3000/";
 import axios from "axios";
 
 
