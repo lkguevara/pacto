@@ -27,12 +27,15 @@ export const fetchProductsAsync = createAsyncThunk("products/fetchProducts",asyn
   }
 );
 
+//conetario
+
 export const fetchProductDetailAsync = createAsyncThunk("products/fetchProductDetail",async (id) => {
   const response = await axios.get(`product?id=${id}`);
   const data = await response.data;
   return data;
   }
 );
+
 
 const productsSlice = createSlice({
   name: "products",
