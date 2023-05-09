@@ -86,7 +86,7 @@ export const verifyCode = createAsyncThunk(
           localStorage.removeItem('token')
         })
         .addCase(autoLoginUser.fulfilled, (state, action) => {
-          console.log("Hola")
+   
           state.user = action.payload.user;
         })
         // Acciones para enviar el código de verificación y recibir los datos del usuario

@@ -10,8 +10,7 @@ const autoLogin = async (req, res, next) => {
 
       // Verificar si hay un token válido almacenado en el localStorage del navegador
       const token = req.headers.authorization.split(' ')[1];
-      console.log(process.env.JWT_PRIVATE_KEY)
-      console.log(token)
+      
       if (!token) {
         
         return res.status(401).json({ msg: 'Debes iniciar sesión para acceder a esta página' });
