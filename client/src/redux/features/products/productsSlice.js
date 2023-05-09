@@ -34,6 +34,7 @@ export const fetchProductDetailAsync = createAsyncThunk("products/fetchProductDe
   }
 );
 
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
