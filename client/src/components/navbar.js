@@ -40,7 +40,7 @@ export default function NavBar(){
                             <button className={style.btn}>Nosotros</button>
                         </Link>
                         <Link href="/productos" className={style.link}>
-                            <button className={style.btn}>Categorías</button>
+                            <button className={style.btn}>Productos</button>
                         </Link>
                         <Link href="/sellProduct" className={style.link}>
                             <button className={style.btn}>Vender</button>
