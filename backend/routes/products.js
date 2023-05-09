@@ -19,10 +19,10 @@ router.get('/products', (req, res, next) => getProductsByFilters(req, res))
 router.get('/product', (req, res, next) => getProductById(req, res));
 
 //DELETE a product by id
-router.delete('/product', autoLogin,(req, res, next) => deleteProductById(req, res))
+router.delete('/product', (req, res, next) => deleteProductById(req, res))
 
 // POST new user
-router.post('/product', /*autoLogin,*/ middlewarePostNewProduct, (req, res) => postNewProduct(req, res))
+router.post('/product', middlewarePostNewProduct, (req, res) => postNewProduct(req, res))
 
 //GET Product by name
 router.get('/productsname', (req, res, next) => getProductByName(req, res));

@@ -21,7 +21,7 @@ const getProductsByFilters = async (req, res) => {
         let allStatus = [];
 
         if (status){ allStatus = status.split(',')};
-        console.log(allStatus);
+ 
         let aSort = [];
         if (sort_by && sort_by != "default"){
             aSort = sort_by.split('-');
