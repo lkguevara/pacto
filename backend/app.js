@@ -13,9 +13,12 @@ const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
 
+
 //CONEXION A LA DB!!!
 const mongoose = require('./database/mongoose');
 
+//CONEXION A FIREBASE ADMIN
+const firebaseAdmin = require('./firebase/firebaseAdmin');
 
 const app = express();
 
