@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
     },
     calification: {
         type: Number,
-        // cont: Number,
+        default: 0,
     },
     email:
     {
@@ -38,8 +38,8 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    //reviewReceived: { type: Schema.Types.ObjectId, ref: "Review" },
-    //reviewPost: { type: Schema.Types.ObjectId, ref: "Review" },
+    reviewReceived: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+    reviewPost: [{ type: Schema.Types.ObjectId, ref: "Review" }],
     //questions: { type: Schema.Types.ObjectId, ref: "Question" },
     products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
     //wallet: { type: Schema.Types.ObjectId, ref: "Wallet" }
