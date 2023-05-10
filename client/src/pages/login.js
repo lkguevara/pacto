@@ -17,7 +17,7 @@ export default function login(){
 
     const handleChange = (event)=>{
         const {name, value} = event.target;
-        console.log(name,value);
+   
         setSignIn({
             ...signIn,
             [name]:value
