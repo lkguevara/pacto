@@ -8,28 +8,12 @@ import { loginUser } from "../redux/features/auth/authSlice"
 import { useEffect } from "react"
 import { autoLoginUser } from "../redux/features/auth/authSlice"
 import { useRouter } from "next/router"
-import { GoogleButton } from 'react-google-button';
-import { auth } from "./firebase";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
-import {useAuthState} from 'react-firebase-hooks/auth';
 
 
 export default function login(){
     const dispatch = useDispatch()
     const navigate = useRouter()
     const user = useSelector((state)=> state.user)
-
-    //google firebase:
-    const googleAuth = new GoogleAuthProvider();
-    const [userGoogle, setUserGoogle] = useAuthState(auth)
-
-    const loginGoogle = async () => {
-        const result = await signInWithPopup(auth, googleAuth);
-    };
-
-    useEffect(() => {
-        console.log(userGoogle)
-    },[userGoogle])
 
     const [signIn,setSignIn] = useState({
         email:'',
