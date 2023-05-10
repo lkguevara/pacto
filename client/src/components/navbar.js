@@ -11,6 +11,8 @@ export default function NavBar(){
 
     const { isOpen } = useSelector(state => state.menu);
     const  userState  = useSelector(state => state.user);
+    const  shoppingCart  = useSelector(state => state.shoppingCart.products);
+
     const dispatch = useDispatch();
 
     const handlerOpenMenu = () => {
@@ -60,11 +62,15 @@ export default function NavBar(){
                         </Link>
                     </button> : <p>{userState.user.email}</p>
                 }
+
+                <div className={style.shoppingCart}>
                 <button>
                     <Link href="/cart">
                         <Image priority src="/image/cart.svg" alt="cart" width="35" height="35"/>
                     </Link>
                 </button>
+                <p>{shoppingCart && shoppingCart.length > 1 ? shoppingCart.length : null}</p>
+                </div>
             </div>
 
         </nav>
