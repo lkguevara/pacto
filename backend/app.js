@@ -12,6 +12,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
+const shoppingCart = require('./routes/shoppingCart')
 
 //CONEXION A LA DB!!!
 const mongoose = require('./database/mongoose');
@@ -45,6 +46,8 @@ app.use(productsRouter)
 //All routes of the categories!!
 app.use(categoriesRouter)
 
+//All routes of shoppingCart
+app.use(shoppingCart)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
