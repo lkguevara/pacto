@@ -28,8 +28,7 @@ const userSchema = mongoose.Schema({
     verified: Boolean,
     codeverified: Number,
     phone: {
-        type: Number,
-        required: true
+        type: String,
     },
     password: {
         type: String,
