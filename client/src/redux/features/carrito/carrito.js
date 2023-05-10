@@ -1,47 +1,64 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios"
 
 const carritoSlice = createSlice({
-  name: 'carrito',
+  name: "shoppingCart",
   initialState: {
-    products: []
+    products: [],
   },
   reducers: {
-    addProducto: (state, action) => {
-      state.products.push(action.payload);
-    }
-  }
+    addProduct: (state, action) => {
+      //obtener los productos
+      let shoppingCart = JSON.parse(localStorage.getItem("shopping_cart")) || [];
+      
+      //verificar si ya existe 
+      const productOnStore = shoppingCart.find(product => product.id === action.payload.id)
+      
+      //verificar si la cantidad del producto agregar es diferente al que ya esta agregado en el storage
+      if(productOnStore && productOnStore.amount != action.payload.amount){
+        productOnStore.amount = action.payload.amount
+        localStorage.setItem("shopping_cart", JSON.stringify(shoppingCart));
+        state.products = shoppingCart;
+      }
+      // no esta agregado en el local storage
+      if(!productOnStore){
+        shoppingCart.push(action.payload);
+        localStorage.setItem("shopping_cart", JSON.stringify(shoppingCart));
+        state.products.push(action.payload);
+      }
+    },
+
+    verifyLocalStorageProducts: (state, action) => {
+      let productsLocalStorage = JSON.parse(
+        localStorage.getItem("shopping_cart")
+      );
+      state.products = productsLocalStorage;
+    },
+  },
 });
 
+//enviar productos
 
-export const agregarProductoAsync = (producto) => (dispatch) => {
-  try {
-    // Guardar el producto en el almacenamiento local
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.push(producto);
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    // Despachar acción para actualizar el estado del carrito en Redux
-    dispatch(agregarProducto(producto));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const enviarProductos = () => async (dispatch, getState) => {
+export const sendProducts = createAsyncThunk('shoppingCart/sendProducts', async (_,{ getState }) => {
   try {
     // Obtener los productos del estado del carrito
-    const productos = getState().carrito.productos;
+    const products = getState().shoppingCart.products;
+
+    const tokenUser =  localStorage.getItem('user_verified')
+
+    console.log(1);
+  
 
     // Enviar solicitud al servidor para agregar los productos al carrito
-    const respuesta = await axios.post('/api/carrito', { productos });
+    const request = await axios.post('/shoppingcart', { products, token:tokenUser});
 
     // Limpiar el almacenamiento local y el estado del carrito
-    localStorage.removeItem('carrito');
-    dispatch({ type: 'RESET_CARRITO' });
+    // localStorage.removeItem('carrito');
+    return request.data;
   } catch (error) {
     console.error(error);
+    return Promise.reject(error.message);
   }
-};
-
-export const { agregarProducto } = carritoSlice.actions;
+});
+export const { addProduct, verifyLocalStorageProducts } = carritoSlice.actions;
 export default carritoSlice.reducer;

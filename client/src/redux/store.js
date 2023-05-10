@@ -3,11 +3,11 @@ import productsSlice from './features/products/productsSlice';
 import menuReducer from './features/menu/menuSlice';
 import authReducer from "./features/auth/authSlice";
 import categoriesReducer from "./features/categories/categoriesSlice";
-import carritoReducer from "./features/carrito/carrito"
+import shoppingCartReducer from "./features/carrito/carrito"
 
 const store = configureStore({
     reducer:{
-        carrito:carritoReducer,
+        shoppingCart: shoppingCartReducer,
         products: productsSlice,
         menu: menuReducer,
         user:authReducer,

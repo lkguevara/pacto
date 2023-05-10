@@ -5,8 +5,12 @@ import axios from "axios";
 import { useEffect } from 'react';
 import { autoLoginUser,verifyCode } from '@/redux/features/auth/authSlice';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { verifyLocalStorageProducts } from '@/redux/features/carrito/carrito';
 // axios.defaults.baseURL = 'https://few-rule-production.up.railway.app/';
 axios.defaults.baseURL = 'http://localhost:3001';
+
+
 export default function App({ Component, pageProps }) {
 
      const navigate = useRouter();
@@ -16,6 +20,7 @@ export default function App({ Component, pageProps }) {
         if (typeof window !== 'undefined') {
           const user_verified_token = localStorage.getItem("user_verified");
           const user_unverified_token = localStorage.getItem("user_unverified");
+          const shopping_cart = localStorage.getItem("shopping_cart");
      
           if (user_verified_token){
            await store.dispatch(autoLoginUser(user_verified_token))
@@ -27,6 +32,9 @@ export default function App({ Component, pageProps }) {
           
               navigate.push('/signup')
               
+          }
+          if(shopping_cart){
+           await store.dispatch(verifyLocalStorageProducts())
           }
         }
       }
