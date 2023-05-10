@@ -12,11 +12,13 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
-const shoppingCart = require('./routes/shoppingCart')
+
 
 //CONEXION A LA DB!!!
 const mongoose = require('./database/mongoose');
 
+//CONEXION A FIREBASE ADMIN
+const { firebaseAdmin, firebaseAdminRouter } = require('./firebase/firebaseAdmin');
 
 const app = express();
 
@@ -34,6 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
 app.use('/', indexRouter);
 
 //All routes of the users!!!
@@ -46,9 +49,9 @@ app.use(productsRouter)
 //All routes of the categories!!
 app.use(categoriesRouter)
 
-//All routes of shoppingCart
-app.use(shoppingCart)
+//All routes of the Firebase!!
 
+app.use(firebaseAdminRouter)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
