@@ -7,13 +7,15 @@ import React, { useEffect,useState } from "react";
 import { useRouter } from "next/router";
 import { fetchProductDetailAsync } from "@/redux/features/products/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { agregarProductoAsync, addProduct } from "@/redux/features/carrito/carrito";
+import { sendProducts, addProduct } from "@/redux/features/carrito/carrito";
 
 function producto() {
   const router = useRouter()
   const dispatch = useDispatch()
 
   const { productDetail } = useSelector(state => state.products);
+  const shoppingCart =  useSelector(state => state.shoppingCart.products);
+  console.log(shoppingCart);
 
   const { id } = router.query;
 
@@ -27,7 +29,8 @@ function producto() {
 
     useEffect(() => {
         dispatch(fetchProductDetailAsync(id));
-    }, [dispatch, id]);
+        dispatch(sendProducts())
+    }, [dispatch, id,shoppingCart]);
 
 
 

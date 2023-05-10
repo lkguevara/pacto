@@ -69,7 +69,8 @@ export default function NavBar(){
                         <Image priority src="/image/cart.svg" alt="cart" width="35" height="35"/>
                     </Link>
                 </button>
-                <p>{shoppingCart && shoppingCart.length > 1 ? shoppingCart.length : null}</p>
+                
+                {shoppingCart && shoppingCart.length > 0 ? <p>{shoppingCart.length}</p> : null}
                 </div>
             </div>
 
