@@ -6,13 +6,13 @@ import { useDispatch,useSelector } from "react-redux"
 import { useState } from "react"
 import { loginUser } from "../redux/features/auth/authSlice"
 import { useEffect } from "react"
-import { autoLoginUser } from "../redux/features/auth/authSlice"
+import { autoLoginUser, loginGoogle } from "../redux/features/auth/authSlice"
 import { useRouter } from "next/router"
 import { GoogleButton } from 'react-google-button';
 import { auth } from "./firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { loginGoogle } from "../redux/features/auth/authSlice"
+
 
 
 export default function login(){
@@ -24,12 +24,11 @@ export default function login(){
     const googleAuth = new GoogleAuthProvider();
     const [userGoogle, setUserGoogle] = useAuthState(auth);
 
-    const loginGoogle = async () => {
+    const authGoogle = async () => {
         const response = await signInWithPopup(auth, googleAuth);
-        if(response){
-            await loginGoogle(response.user.uid)
-        }
+        await dispatch(loginGoogle(response.user.uid))
     };
+
     /*----------------------------------------------------------------------*/
 
     useEffect(()=>{
@@ -95,8 +94,8 @@ export default function login(){
                             <span>Registrate</span>
                         </Link>
                     </div>
-                    <div className={style.google}>
-                        <GoogleButton type='light' onClick={loginGoogle}/>
+                    <div className={style.google} >
+                        <GoogleButton type='light' onClick={authGoogle}/>
                     </div>
                 </div>
 
