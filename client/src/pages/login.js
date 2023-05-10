@@ -2,28 +2,34 @@ import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
 import style from "../styles/Login.module.css"
-
+import { useDispatch,useSelector } from "react-redux"
 import { useState } from "react"
+import { loginUser } from "../redux/features/auth/authSlice"
+import { useEffect } from "react"
+import { autoLoginUser } from "../redux/features/auth/authSlice"
+import { useRouter } from "next/router"
 import { GoogleButton } from 'react-google-button';
 import { auth } from "./firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 import {useAuthState} from 'react-firebase-hooks/auth';
-import { useEffect } from "react"
 
 
 export default function login(){
+    const dispatch = useDispatch()
+    const navigate = useRouter()
+    const user = useSelector((state)=> state.user)
 
     //google firebase:
     const googleAuth = new GoogleAuthProvider();
-    const [user, setUser] = useAuthState(auth)
+    const [userGoogle, setUserGoogle] = useAuthState(auth)
 
     const loginGoogle = async () => {
         const result = await signInWithPopup(auth, googleAuth);
     };
 
     useEffect(() => {
-        console.log(user)
-    },[user])
+        console.log(userGoogle)
+    },[userGoogle])
 
     const [signIn,setSignIn] = useState({
         email:'',
