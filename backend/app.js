@@ -12,6 +12,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
+const shoppingCart = require('./routes/shoppingCart')
 
 
 //CONEXION A LA DB!!!
@@ -48,6 +49,9 @@ app.use(productsRouter)
 
 //All routes of the categories!!
 app.use(categoriesRouter)
+
+//Routes ShoppingCart
+app.use(shoppingCart)
 
 //All routes of the Firebase!!
 
