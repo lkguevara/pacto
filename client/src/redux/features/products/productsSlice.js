@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from '@/utils/api';
-
+const API_URL = "http://localhost:3001/";
 import axios from "axios";
 
 
@@ -21,21 +21,18 @@ const initialState = {
 };
 
 export const fetchProductsAsync = createAsyncThunk("products/fetchProducts",async (path) => {
-  const response = await axios.get(`${path}`);
+  const response = await axios.get(`/${path}`);
   const data = await response.data;
   return data;
   }
 );
-
-//conetario
 
 export const fetchProductDetailAsync = createAsyncThunk("products/fetchProductDetail",async (id) => {
-  const response = await axios.get(`product?id=${id}`);
+  const response = await axios.get(`/product?id=${id}`);
   const data = await response.data;
   return data;
   }
 );
-
 
 const productsSlice = createSlice({
   name: "products",

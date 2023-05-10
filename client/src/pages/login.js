@@ -2,14 +2,37 @@ import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
 import style from "../styles/Login.module.css"
-import { useDispatch } from "react-redux"
+import { useDispatch,useSelector } from "react-redux"
 import { useState } from "react"
+import { loginUser } from "../redux/features/auth/authSlice"
+import { useEffect } from "react"
+import { autoLoginUser } from "../redux/features/auth/authSlice"
+import { useRouter } from "next/router"
 
 
 export default function login(){
     const dispatch = useDispatch()
+    const navigate = useRouter()
+    const user = useSelector((state)=> state.user)
 
-    const [signIn,setSignIn] = useState({
+
+    useEffect(()=>{
+        async function fetchData() {
+            if (typeof window !== 'undefined') {
+              const user_verified_token = localStorage.getItem("user_verified");
+         
+              if (user_verified_token){
+               await dispatch(autoLoginUser(user_verified_token))
+               if(navigate.pathname === '/login') navigate.push('/')
+              }
+           
+            }
+          }
+        
+          fetchData();
+    },[user])
+
+    const [login,setLogin] = useState({
         email:'',
         password:'',
 
@@ -17,21 +40,27 @@ export default function login(){
 
     const handleChange = (event)=>{
         const {name, value} = event.target;
+<<<<<<< HEAD
    
         setSignIn({
             ...signIn,
+=======
+        console.log(name,value);
+        setLogin({
+            ...login,
+>>>>>>> 47889c08f9eb67ce1ffa1e079ee554352942131a
             [name]:value
         })
     }
 
     const handleSubmit = (event)=>{
         event.preventDefault();
-        setSignIn({
-            ...signIn,
+        setLogin({
+            ...login,
             email:'',
             password:'',
         })
-
+        dispatch(loginUser(login))
     }
 
 
@@ -61,10 +90,10 @@ export default function login(){
                 
                     <form className={style.form__Login} onSubmit={handleSubmit}>
                         <label>Email:</label>
-                        <input onChange={(e)=> handleChange(e)} value={signIn.email}  name={"email"} type="email" placeholder="Email" />
+                        <input onChange={(e)=> handleChange(e)} value={login.email}  name={"email"} type="email" placeholder="Email" />
 
                         <label>Contraseña:</label>
-                        <input onChange={(e)=> handleChange(e)} value={signIn.password} name={"password"} type="password" placeholder="Contraseña" />
+                        <input onChange={(e)=> handleChange(e)} value={login.password} name={"password"} type="password" placeholder="Contraseña" />
 
                         <button type="submit">Iniciar Sesión</button>
                     </form>
