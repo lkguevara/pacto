@@ -20,6 +20,17 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+// Async thunk para enviar logear al usuario
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async ({email,password}) => {
+    console.log(`/login?email=${email}&password=${password}`);
+
+    const response = await axios.get(`/login?email=${email}&password=${password}`);
+    return response.data;
+  }
+);
+
 //Async thunk para autologear a un usuario si existe un token en el localstorage
 export const autoLoginUser = createAsyncThunk(
   "auth/autoLogin",
@@ -103,11 +114,30 @@ const authSlice = createSlice({
         localStorage.setItem("user_verified", action.payload.token);
       })
       .addCase(verifyCode.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.sendCode = true;
+      })
+
+       // Acciones para login
+       .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.loading = false;
+        state.sendCode = false;
+        state.verify = true;
+        state.user = action.payload.user;
+        localStorage.setItem("user_verified", action.payload.token);
+      })
+      .addCase(loginUser.rejected, (state, action) => {
         console.log(action);
         state.loading = false;
         state.error = action.payload;
         state.sendCode = true;
-      });
+      })
+
   },
 });
 

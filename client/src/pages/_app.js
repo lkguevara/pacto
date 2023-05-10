@@ -10,7 +10,7 @@ axios.defaults.baseURL = 'http://localhost:3001';
 
 export default function App({ Component, pageProps }) {
 
-     const navegate = useRouter();
+     const navigate = useRouter();
 
      useEffect(() => {
       async function fetchData() {
@@ -20,13 +20,13 @@ export default function App({ Component, pageProps }) {
      
           if (user_verified_token){
            await store.dispatch(autoLoginUser(user_verified_token))
-
+           if(navigate.pathname === '/login') navigate.push('/')
           }
           
           if(user_unverified_token){
               await store.dispatch(verifyCode({token  :user_unverified_token}))
           
-              navegate.push('/signup')
+              navigate.push('/signup')
               
           }
         }
