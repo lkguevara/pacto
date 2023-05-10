@@ -22,21 +22,13 @@ const firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
 const firebaseAdminAuth = admin.auth()
-const aux = async () => {
-    const nombre = (await firebaseAdminAuth.getUser("ZqxDan1LsVQRupYxSXFRPwEDtWE3")).displayName
-    const partes = nombre.split(" ")
-    console.log(partes)
-    const firstname = partes.shift()
-    const lastname = partes.pop()
-    console.log(firstname, " + ", lastname)
-}
-aux()
+
 
 firebaseAdminRouter.get("/authgoogle", async (req, res) => {
     try {
         const { uid } = req.query
         const user = await firebaseAdminAuth.getUser(uid)
-        const userdb = checkUserExists(null, user.email)
+        const userdb = await checkUserExists(null, user.email)
         if (userdb === false) {
             const aux = user.displayName.split(" ")
             const phonenumber = user.phoneNumber ? null : user.phoneNumber
