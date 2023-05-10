@@ -54,7 +54,7 @@ const getProductsByFilters = async (req, res) => {
   
         if (products){
            
-            const amountProd = products.length;
+           
       
             const indexLastProd = page * amountXPage
             const indexFirstProd = indexLastProd - amountXPage
@@ -62,6 +62,8 @@ const getProductsByFilters = async (req, res) => {
             if (name){
                 products = products.filter(prod => prod.name.toLowerCase().includes(name.toLowerCase()));
             }
+
+            const amountProd = products.length;
 
             if (aSort){
                 products = products.sort((a, b) => {
