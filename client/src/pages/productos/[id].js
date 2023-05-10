@@ -3,14 +3,22 @@ import Image from "next/image";
 import { Carousel, CarouselItem } from "react-bootstrap";
 import Layout from "@/components/layout";
 import NotFound from "@/components/notFound";
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useRouter } from "next/router";
 import { fetchProductDetailAsync } from "@/redux/features/products/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { agregarProductoAsync } from "@/redux/features/carrito/carrito";
 
 function producto() {
     const router = useRouter()
     const { id } = router.query;
+
+    const [product,setProduct] = useState({
+      id:'',
+      name:'',
+      price:'',
+      amount: '1'
+    })
 
     const dispatch = useDispatch();
     const { productDetail } = useSelector(state => state.products);
@@ -18,14 +26,37 @@ function producto() {
     useEffect(() => {
         dispatch(fetchProductDetailAsync(id));
     }, [dispatch, id]);
-    
+
+
+
+    useEffect(() => {
+    if (productDetail && productDetail.name) {
+      setProduct({
+        ...product,
+        id:productDetail._id,
+        name:productDetail.name,
+        price:productDetail.price,
+      })
+   
+    }
+  }, [productDetail]);
+
+  const handleProductAmount = (event)=>{
+    const amountProduct = event.target.value
+    setProduct({
+      ...product,
+      amount:amountProduct
+    })
+  }
+
+
   return (
     <Layout>
       {
         productDetail && productDetail.name ? (
           <div className={style.containerDetail}>
             <div className={style.main}>
-              <h2 className={style.detailTitle}>{ productDetail.name }</h2>
+              <h2  className={style.detailTitle}>{ productDetail.name }</h2>
               
               <div className={style.informationProduct}>
                 <div className={style.imagesContainer}>
@@ -73,7 +104,7 @@ function producto() {
                       <p>Stock: <span>Disponible</span></p>
                       <div className={style.stock}>
                         <label>Cantidad</label>
-                        <input type="number" min="1" max="4" placeholder="1"/>
+                        <input type="number" min="1" max={productDetail.stock} placeholder="1" onChange={handleProductAmount}/>
                       </div>
                       <p>Unidades disponibles: <span>{productDetail.stock}</span></p>
                       <p>Información del vendedor ℹ️</p>
