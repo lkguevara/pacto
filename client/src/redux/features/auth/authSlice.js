@@ -66,6 +66,15 @@ export const verifyCode = createAsyncThunk(
   }
 );
 
+// Async thunk para enviar el UID al backend para el usuario de GOOGLE y recibir datos del user creado en la base de datos
+export const loginGoogle = createAsyncThunk(
+  "auth/loginGoogle",
+  async (uid) => {
+    const response = await axios.get(`/authgoogle?uid=${uid}`);
+    return response.data;
+  }
+)
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -138,6 +147,19 @@ const authSlice = createSlice({
         state.sendCode = true;
       })
 
+      /*---------------GoogleLogin------------------*/
+      .addCase(loginGoogle.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(loginGoogle.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+        state.verify = true;
+      })
+      .addCase(loginGoogle.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
   },
 });
 

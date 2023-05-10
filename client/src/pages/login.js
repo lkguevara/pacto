@@ -8,6 +8,11 @@ import { loginUser } from "../redux/features/auth/authSlice"
 import { useEffect } from "react"
 import { autoLoginUser } from "../redux/features/auth/authSlice"
 import { useRouter } from "next/router"
+import { GoogleButton } from 'react-google-button';
+import { auth } from "./firebase";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { loginGoogle } from "../redux/features/auth/authSlice"
 
 
 export default function login(){
@@ -15,6 +20,17 @@ export default function login(){
     const navigate = useRouter()
     const user = useSelector((state)=> state.user)
 
+    /*---------------------------GOOGLE FIREBASE---------------------------*/
+    const googleAuth = new GoogleAuthProvider();
+    const [userGoogle, setUserGoogle] = useAuthState(auth);
+
+    const loginGoogle = async () => {
+        const response = await signInWithPopup(auth, googleAuth);
+        if(response){
+            await loginGoogle(response.user.uid)
+        }
+    };
+    /*----------------------------------------------------------------------*/
 
     useEffect(()=>{
         async function fetchData() {
@@ -79,6 +95,9 @@ export default function login(){
                             <span>Registrate</span>
                         </Link>
                     </div>
+                    <div className={style.google}>
+                        <GoogleButton type='light' onClick={loginGoogle}/>
+                    </div>
                 </div>
 
                 
@@ -94,7 +113,8 @@ export default function login(){
                     <Link href="/forgotpass">
                         <span className={style.forgetPass}>¿Olvidaste tu contraseña?</span>
                     </Link>
-              
+                    <button onClick={() => auth.signOut()}>LOGOUT GOOGLE</button>
+                    
             </div>
 
         </div>
