@@ -21,12 +21,14 @@ const userSchema = mongoose.Schema({
         unique: true,
         required: true,
     },
-    state: Boolean,
+    state: {
+        type: Boolean,
+        default: true
+    },
     verified: Boolean,
     codeverified: Number,
     phone: {
-        type: Number,
-        required: true
+        type: String,
     },
     password: {
         type: String,

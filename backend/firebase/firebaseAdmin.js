@@ -4,6 +4,7 @@ const checkUserExists = require("../database/helper/DBcheckUserExists");
 const createUser = require("../database/controllers/users/userPost/DBUserCreate");
 const firebaseAdminRouter = express.Router();
 require("dotenv").config()
+const bcrypt = require("bcrypt")
 //const credentials = require("C:/Users/gaby_/Desktop/pacto/backend/firebase/firebase-admin-key.json")
 const serviceAccount = {
     type: process.env.FIREBASE_ADMIN_TYPE,
@@ -27,11 +28,13 @@ const firebaseAdminAuth = admin.auth()
 firebaseAdminRouter.get("/authgoogle", async (req, res) => {
     try {
         const { uid } = req.query
+
         const user = await firebaseAdminAuth.getUser(uid)
         const userdb = await checkUserExists(null, user.email)
         if (userdb === false) {
             const aux = user.displayName.split(" ")
-            const phonenumber = user.phoneNumber ? null : user.phoneNumber
+            const phonenumber = user.phoneNumber ? user.phoneNumber : null
+            const pass = bcrypt.hashSync(uid, 10)
             const newUser = {
                 firstname: aux.shift(),
                 lastname: aux.pop(),
@@ -40,11 +43,10 @@ firebaseAdminRouter.get("/authgoogle", async (req, res) => {
                 state: true,
                 verified: true,
                 phone: phonenumber,
-                password: null,
+                password: pass,
                 address: "None"
             }
             const response = await createUser(newUser, true)
-
             // ACA SE DEBERIA TRABAJAR CON EL TOKEN
             res.status(200).json(response)
         }
