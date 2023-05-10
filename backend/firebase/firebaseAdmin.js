@@ -2,7 +2,7 @@ const admin = require("firebase-admin");
 const express = require('express');
 const checkUserExists = require("../database/helper/DBcheckUserExists");
 const createUser = require("../database/controllers/users/userPost/DBUserCreate");
-const router = express.Router();
+const firebaseAdminRouter = express.Router();
 require("dotenv").config()
 //const credentials = require("C:/Users/gaby_/Desktop/pacto/backend/firebase/firebase-admin-key.json")
 const serviceAccount = {
@@ -32,7 +32,7 @@ const aux = async () => {
 }
 aux()
 
-router.get("/authgoogle", async (req, res) => {
+firebaseAdminRouter.get("/authgoogle", async (req, res) => {
     try {
         const { uid } = req.query
         const user = await firebaseAdminAuth.getUser(uid)
@@ -60,6 +60,6 @@ router.get("/authgoogle", async (req, res) => {
         res.status(400).json({ error: error.message })
     }
 })
-module.exports = firebaseAdmin
+module.exports = { firebaseAdmin, firebaseAdminRouter }
 
 
