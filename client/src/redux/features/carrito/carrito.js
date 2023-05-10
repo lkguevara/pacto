@@ -1,47 +1,47 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const carritoSlice = createSlice({
-  name: 'carrito',
+  name: "shoppingCart",
   initialState: {
-    products: []
+    products: [],
   },
   reducers: {
-    addProducto: (state, action) => {
+    addProduct: (state, action) => {
+      let shoppingCart =
+      JSON.parse(localStorage.getItem("shopping_cart")) || [];
+
+      shoppingCart.push(action.payload);
+
+      localStorage.setItem("shopping_cart", JSON.stringify(shoppingCart));
+
       state.products.push(action.payload);
-    }
-  }
+    },
+    verifyLocalStorageProducts: (state, action) => {
+      let productsLocalStorage = JSON.parse(
+        localStorage.getItem("shopping_cart")
+      );
+
+      state.products = productsLocalStorage;
+    },
+  },
 });
 
-
-export const agregarProductoAsync = (producto) => (dispatch) => {
-  try {
-    // Guardar el producto en el almacenamiento local
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.push(producto);
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    // Despachar acción para actualizar el estado del carrito en Redux
-    dispatch(agregarProducto(producto));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
+//enviar productos
 export const enviarProductos = () => async (dispatch, getState) => {
   try {
     // Obtener los productos del estado del carrito
     const productos = getState().carrito.productos;
 
     // Enviar solicitud al servidor para agregar los productos al carrito
-    const respuesta = await axios.post('/api/carrito', { productos });
+    const respuesta = await axios.post("/api/carrito", { productos });
 
     // Limpiar el almacenamiento local y el estado del carrito
-    localStorage.removeItem('carrito');
-    dispatch({ type: 'RESET_CARRITO' });
+    localStorage.removeItem("carrito");
+    dispatch({ type: "RESET_CARRITO" });
   } catch (error) {
     console.error(error);
   }
 };
 
-export const { agregarProducto } = carritoSlice.actions;
+export const { addProduct, verifyLocalStorageProducts } = carritoSlice.actions;
 export default carritoSlice.reducer;

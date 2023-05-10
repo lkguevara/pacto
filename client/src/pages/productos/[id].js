@@ -7,11 +7,15 @@ import React, { useEffect,useState } from "react";
 import { useRouter } from "next/router";
 import { fetchProductDetailAsync } from "@/redux/features/products/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { agregarProductoAsync } from "@/redux/features/carrito/carrito";
+import { agregarProductoAsync, addProduct } from "@/redux/features/carrito/carrito";
 
 function producto() {
-    const router = useRouter()
-    const { id } = router.query;
+  const router = useRouter()
+  const dispatch = useDispatch()
+
+  const { productDetail } = useSelector(state => state.products);
+
+  const { id } = router.query;
 
     const [product,setProduct] = useState({
       id:'',
@@ -20,8 +24,6 @@ function producto() {
       amount: '1'
     })
 
-    const dispatch = useDispatch();
-    const { productDetail } = useSelector(state => state.products);
 
     useEffect(() => {
         dispatch(fetchProductDetailAsync(id));
@@ -47,6 +49,11 @@ function producto() {
       ...product,
       amount:amountProduct
     })
+  }
+
+  const handleAddShoppingCart = (event)=>{
+    event.preventDefault()
+    dispatch(addProduct(product))
   }
 
 
@@ -111,7 +118,7 @@ function producto() {
                     </div>
 
                     <div className={style.buttons}>
-                      <button className={style.buttonAdd}>Agregar al carrito</button>
+                      <button className={style.buttonAdd} onClick={handleAddShoppingCart}>Agregar al carrito</button>
                       <button className={style.buttonSell}>Comprar ahora</button>
                     </div>
                 </div>
