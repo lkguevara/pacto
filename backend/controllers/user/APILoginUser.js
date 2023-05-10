@@ -1,5 +1,15 @@
 const checkUserExists = require("../../database/helper/DBcheckUserExists");
 //Requiero jwt ya que cuando un usuario vuelva a loggear de forma "manual", se le asignará un nuevo token por seguridad
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const DBUserVerified = require("../../database/controllers/users/userPost/DBUserVerified");
+
+function generateNewtoken(userId) {
+  return jwt.sign(
+    { userId: userId },
+    process.env.JWT_PRIVATE_KEY /*, { expiresIn: '1h' }*/
+  );
+}
 
 const login = async (req, res) => {
   try {
@@ -74,6 +84,7 @@ const login = async (req, res) => {
 
     console.log(req.query);
 
+
     return res
       .status(200)
       .json({
@@ -91,24 +102,4 @@ const login = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-=======
-    return res
-      .status(200)
-      .json({
-        msg: "Inicio de sesión exitoso",
-        verified: true,
-        user: req.user,
-      });
-  } catch (err) {
-    return res
-      .status(500)
-      .json({
-        error: err.message,
-        msg: "Error 500! Problemas internos con la conexión del servidor.",
-      });
-  }
-};
-
->>>>>>> 47889c08f9eb67ce1ffa1e079ee554352942131a
 module.exports = { login };
