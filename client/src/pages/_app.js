@@ -7,7 +7,6 @@ import { autoLoginUser,verifyCode } from '@/redux/features/auth/authSlice';
 import { useRouter } from 'next/router';
 // axios.defaults.baseURL = 'https://few-rule-production.up.railway.app/';
 axios.defaults.baseURL = 'http://localhost:3001';
-
 export default function App({ Component, pageProps }) {
 
      const navigate = useRouter();
