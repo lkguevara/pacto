@@ -73,10 +73,6 @@ export default function login(){
                         <input onChange={(e)=> handleChange(e)} value={signIn.password} name={"password"} type="password" placeholder="Contraseña" />
 
                         <button type="submit">Iniciar Sesión</button>
-                        <div className={style.google}>
-                            <GoogleButton type="dark" onClick={loginGoogle}/>
-                            <button onClick={() => auth.signOut()}>LOGOUT</button>
-                        </div>
                     </form>
                     <Link href="/forgotpass">
                         <span className={style.forgetPass}>¿Olvidaste tu contraseña?</span>
