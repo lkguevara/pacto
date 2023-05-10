@@ -1,6 +1,8 @@
 const admin = require("firebase-admin");
-const { response } = require("../app");
-
+const express = require('express');
+const checkUserExists = require("../database/helper/DBcheckUserExists");
+const createUser = require("../database/controllers/users/userPost/DBUserCreate");
+const router = express.Router();
 require("dotenv").config()
 //const credentials = require("C:/Users/gaby_/Desktop/pacto/backend/firebase/firebase-admin-key.json")
 const serviceAccount = {
@@ -19,9 +21,45 @@ const serviceAccount = {
 const firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
-const firebaseAdminAuth = admin.auth(firebaseAdmin)
-firebaseAdminAuth.listUsers().then(response => console.log(response))
+const firebaseAdminAuth = admin.auth()
+const aux = async () => {
+    const nombre = (await firebaseAdminAuth.getUser("ZqxDan1LsVQRupYxSXFRPwEDtWE3")).displayName
+    const partes = nombre.split(" ")
+    console.log(partes)
+    const firstname = partes.shift()
+    const lastname = partes.pop()
+    console.log(firstname, " + ", lastname)
+}
+aux()
 
+router.get("/authgoogle", async (req, res) => {
+    try {
+        const { uid } = req.query
+        const user = await firebaseAdminAuth.getUser(uid)
+        const userdb = checkUserExists(null, user.email)
+        if (userdb === false) {
+            const aux = user.displayName.split(" ")
+            const phonenumber = user.phoneNumber ? null : user.phoneNumber
+            const newUser = {
+                firstname: aux.shift(),
+                lastname: aux.pop(),
+                calification: 0,
+                email: user.email,
+                state: true,
+                verified: true,
+                phone: phonenumber,
+                password: null,
+                address: "None"
+            }
+            const response = await createUser(newUser, true)
+
+            // ACA SE DEBERIA TRABAJAR CON EL TOKEN
+            res.status(200).json(response)
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
 module.exports = firebaseAdmin
 
 
