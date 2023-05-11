@@ -3,27 +3,17 @@ require("dotenv").config();
 
 const sendRecoveryCode = async (req, res) => {
     try{
+        const {email} = req.query;
 
-        if (req.user){
-            const user = req.user;
-            const {email} = req.query;
+        if (email){
+           
             const sended = await DBUserRecovery(email);
 
-            const userData = {
-                id: user._id,
-                lastname: user.lastname,
-                firstname: user.firstname,
-                email: user.email,
-                adress: user.address,
-                products: user.products,
-                calification: user.calification,
-                phone: user.phone,
-              }
-
             if (sended){
+                //Sended será true o false, dependiendo de la respuesta el front va al formulario de nueva contraseña o no
                 return res.status(200).json({sended,
                     msg: "Codigo de recuperación enviado",
-                    userData});
+                    userEmail: email});
             }
 
             return res.status(500).json({msg: "No se pudo enviar el mail con el codigo de recuperación"});

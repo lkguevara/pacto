@@ -9,6 +9,7 @@ const { verifyToken }  = require('../controllers/token/verifyToken');
 const {autoLogin} = require('../middlewares/autoLoginMiddleware');
 const {checkUserEmail} = require('../middlewares/checkUserMiddleWare');
 const {sendRecoveryCode} = require('../controllers/user/APIRecoverySendCode');
+const {recoveryPassword} = require('../controllers/user/APIRecoveryPassword');
 
 const checkRegister = async (req, res, next) =>{
 
@@ -37,9 +38,17 @@ router.get('/login', (req, res) => {login(req, res)});
 router.get('/autologin', autoLogin, (req, res) => {login(req, res)});
 
 //Ruta para obtener el codigo de recuperacion de password
-router.get('/recoveryCode', checkUserEmail, (req, res) => {sendRecoveryCode(req, res)});
+router.post('/recoverycode', checkUserEmail, (req, res) => {sendRecoveryCode(req, res)});
 
-router.get('/recovery', (req, res) => {})
+router.put('/recovery', (req,res, next) => {
+  const {email, password, code} = req.body;
+
+  if (!email || !password || !code){
+    return res.status(401).json({msg: "Faltan datos para poder restablecer la contraseña!"});
+  }
+
+  next();
+},(req, res) => {recoveryPassword(req, res)})
 
 
 

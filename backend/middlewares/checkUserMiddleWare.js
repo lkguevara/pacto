@@ -28,7 +28,6 @@ const checkUserEmail = async (req, res, next) => {
       }
      
       //Si esta todo ok, le doy el paso al controller
-      req.user = user;
       next();
     } catch (error) {
       return res.status(500).json({ msg: 'Ocurrió un error al iniciar sesión automáticamente ' + error.message });
