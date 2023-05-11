@@ -7,6 +7,8 @@ const {login} = require('../controllers/user/APILoginUser');
 const checkUserExists = require('../database/helper/DBcheckUserExists');
 const { verifyToken }  = require('../controllers/token/verifyToken');
 const {autoLogin} = require('../middlewares/autoLoginMiddleware');
+const {checkUserEmail} = require('../middlewares/checkUserMiddleWare');
+const {sendRecoveryCode} = require('../controllers/user/APIRecoverySendCode');
 
 const checkRegister = async (req, res, next) =>{
 
@@ -33,6 +35,11 @@ router.get('/verify', verifyToken , (req, res) => {setVerified(req, res)})
 router.get('/login', (req, res) => {login(req, res)});
 
 router.get('/autologin', autoLogin, (req, res) => {login(req, res)});
+
+//Ruta para obtener el codigo de recuperacion de password
+router.get('/recoveryCode', checkUserEmail, (req, res) => {sendRecoveryCode(req, res)});
+
+router.get('/recovery', (req, res) => {})
 
 
 

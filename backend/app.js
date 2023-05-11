@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const send = require('./controllers/utils/emailService/singnUp')
+const send = require('./controllers/utils/emailService/emailSender')
 require('dotenv').config()
 
 //RUTAS!!!
