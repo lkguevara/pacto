@@ -30,6 +30,7 @@
   margin-top: 1.5rem;
   height: 60vh;
   justify-content: space-around;
+  align-items: center;
 }
 .links .link {
   text-decoration: none;

@@ -44,9 +44,16 @@ export default function NavBar(){
                         <Link href="/productos" className={style.link}>
                             <button className={style.btn}>Productos</button>
                         </Link>
-                        <Link href="/sellProduct" className={style.link}>
-                            <button className={style.btn}>Vender</button>
-                        </Link>
+                        {
+                            !userState.user ? 
+                            <Link href="/login" className={style.link}>
+                                <button className={style.btn}>Vender</button>
+                            </Link> 
+                            :
+                            <Link href="/sellProduct" className={style.link}>
+                                <button className={style.btn}>Vender</button>
+                            </Link>
+                        }
                         <Link href="/faqs" className={style.link}>
                             <button className={style.btn}>¿Necesitas ayuda?</button>
                         </Link>
@@ -55,18 +62,32 @@ export default function NavBar(){
             </div>
 
             <div className={style.user}>
-                { !userState.user ? 
-                    <button className={style.red}>
-                        <Link href="/login">
-                            <Image priority src="/image/user.svg" alt="user" width="35" height="35"/>
-                        </Link>
-                    </button> : <p>{userState.user.email}</p>
+                {
+                    !isOpen &&
+                    (
+                     !userState.user ? 
+                        <div className={style.userPerfil}>
+                            <button className={style.red}>
+                                <Link href="/login">
+                                    <Image priority src="/image/user.png" alt="user" width="35" height="35"/>
+                                </Link>
+                            </button> 
+                        </div>
+                            :
+                            <div className={style.userPerfil}>
+                                <button className={style.red}>
+                                <Link href="/profileUser">
+                                    <Image priority src="/image/user.png" alt="user" width="35" height="35"/>
+                                </Link>
+                                </button>
+                                <h6>Welcome {userState.user.firstname}!</h6> 
+                            </div>
+                    )
                 }
-
                 <div className={style.shoppingCart}>
                 <button>
                     <Link href="/cart">
-                        <Image priority src="/image/cart.svg" alt="cart" width="35" height="35"/>
+                        <Image priority src="/image/cart.png" alt="cart" width="35" height="35"/>
                     </Link>
                 </button>
                 

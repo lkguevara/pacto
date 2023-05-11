@@ -9,6 +9,7 @@ export default function Menu(){
 
     const { isOpen } = useSelector(state => state.menu);
     const dispatch = useDispatch();
+    const userState = useSelector(state => state.user);
 
     
 
@@ -28,15 +29,34 @@ export default function Menu(){
                     <Link href="/productos" className={style.link}>
                         <button className={style.btn}>Productos {'>'}</button>
                     </Link>
-                    <Link href="/sellProduct" className={style.link}>
-                        <button className={style.btn}>Vender {'>'}</button>
-                    </Link>
+                    {
+                        !userState.user ? 
+                        <Link href="/login" className={style.link}>
+                            <button className={style.btn}>Vender</button>
+                        </Link> 
+                        :
+                        <Link href="/sellProduct" className={style.link}>
+                            <button className={style.btn}>Vender</button>
+                        </Link>
+                    }
                     <Link href="/faqs" className={style.link}>
                         <button className={style.btn}>¿Necesitas ayuda? {'>'}</button>
                     </Link>
+                    {
+                        !userState.user ?
+                        <Link href="/login" className={style.link}>
+                            <button className={style.btn}>Login {'>'}</button>
+                        </Link>
+                        :
+                        <Link href="/profileUser" className={style.link}>
+                            <button className={style.btn}>Perfil {'>'}</button>
+                        </Link>
+                    }
             </div>
             <div className={style.logo}>
-                <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                <Link href={"/"}>
+                    <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                </Link>
             </div>
         </div>
     )
