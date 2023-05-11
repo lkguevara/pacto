@@ -39,6 +39,26 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    shoppingCart: [
+        {
+            id: {
+                type: String,
+                required: false
+            },
+            product: {
+                type: String,
+                required: false
+            },
+          
+            price: {
+                type: Number,
+                required: false
+            },
+            amount: {
+                type: String,
+                required: false
+            }
+        }],
     reviewReceived: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
     reviewPost: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
     //questions: { type: Schema.Types.ObjectId, ref: "Question" },
@@ -47,6 +67,9 @@ const userSchema = mongoose.Schema({
 
 })
 
+
+
+  
 
 module.exports = userSchema
 
