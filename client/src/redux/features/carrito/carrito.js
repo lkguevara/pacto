@@ -44,13 +44,18 @@ export const sendProducts = createAsyncThunk('shoppingCart/sendProducts', async 
     // Obtener los productos del estado del carrito
     const products = getState().shoppingCart.products;
 
-    const tokenUser =  localStorage.getItem('user_verified')
-
-    console.log(1);
-  
+    const token = localStorage.getItem('user_verified');
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    };
+    
+    
+    const response = await axios.post('/shoppingcart', products, config);
 
     // Enviar solicitud al servidor para agregar los productos al carrito
-    const request = await axios.post('/shoppingcart', { products, token:tokenUser});
+    // const request = await axios.post('/shoppingcart', { products, token:tokenUser});
 
     // Limpiar el almacenamiento local y el estado del carrito
     // localStorage.removeItem('carrito');
