@@ -3,6 +3,7 @@ const express = require('express');
 const checkUserExists = require("../database/helper/DBcheckUserExists");
 const createUser = require("../database/controllers/users/userPost/DBUserCreate");
 const firebaseAdminRouter = express.Router();
+const jwt = require('jsonwebtoken');
 require("dotenv").config()
 const bcrypt = require("bcrypt")
 //const credentials = require("C:/Users/gaby_/Desktop/pacto/backend/firebase/firebase-admin-key.json")
@@ -47,8 +48,16 @@ firebaseAdminRouter.get("/authgoogle", async (req, res) => {
                 address: "None"
             }
             const response = await createUser(newUser, true)
-            // ACA SE DEBERIA TRABAJAR CON EL TOKEN
-            res.status(200).json(response)
+            
+            const tokenPayload = { userId: response._id };
+            const token = jwt.sign(tokenPayload, process.env.JWT_PRIVATE_KEY);
+
+            res.status(200).json({user: response, token})
+        } else {
+            const tokenPayload = { userId: userdb._id };
+            const token = jwt.sign(tokenPayload, process.env.JWT_PRIVATE_KEY);
+
+            res.status(200).json({user: userdb, token})
         }
     } catch (error) {
         res.status(400).json({ error: error.message })

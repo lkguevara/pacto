@@ -153,8 +153,9 @@ const authSlice = createSlice({
       })
       .addCase(loginGoogle.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.verify = true;
+        localStorage.setItem("user_verified", action.payload.token);
       })
       .addCase(loginGoogle.rejected, (state, action) => {
         state.loading = false;
