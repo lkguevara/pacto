@@ -42,9 +42,15 @@ router.post('/recoverycode', checkUserEmail, (req, res) => {sendRecoveryCode(req
 
 router.put('/recovery', (req,res, next) => {
   const {email, password, code} = req.body;
+  const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   if (!email || !password || !code){
+    
     return res.status(401).json({msg: "Faltan datos para poder restablecer la contraseña!"});
+  }
+
+  if (!email.match(regex)){
+    return res.status(401).json({msg: "Debes ingresar un email valido para continuar! (ejemplo@ejemplo.com)"});
   }
 
   next();
