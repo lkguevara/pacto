@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+const { Schema } = require('mongoose')
 
-const userSchema = mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
+const userSchema = Schema({
+    id: Schema.Types.ObjectId,
     firstname:
     {
         type: String,
@@ -39,10 +39,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    reviewReceived: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
-    reviewPost: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+    reviewReceived: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+    reviewPost: [{ type: Schema.Types.ObjectId, ref: "Review" }],
     questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
-    products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+    products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     //wallet: { type: Schema.Types.ObjectId, ref: "Wallet" }
 
 })
