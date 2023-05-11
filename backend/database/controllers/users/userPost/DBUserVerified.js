@@ -1,5 +1,5 @@
 const User = require("../../../models/user");
-const sendWelcomeEmail = require('../../../../controllers/utils/emailService/singnUp')
+const {sendWelcomeEmail} = require('../../../../controllers/utils/emailService/emailSender.js')
 
 module.exports = async (email, query) => {
     const user = await User.findOne({ email })

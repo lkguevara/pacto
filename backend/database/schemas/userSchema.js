@@ -27,6 +27,7 @@ const userSchema = mongoose.Schema({
     },
     verified: Boolean,
     codeverified: Number,
+    recoverycode: String,
     phone: {
         type: String,
     },
