@@ -11,6 +11,7 @@ const answerSchema = new Schema({
         type: String,
         required: true,
     },
+    user: { type: Schema.Types.ObjectId, ref: "User" },
     date: Date
 })
 
@@ -27,7 +28,8 @@ const questionSchema = new Schema({
         default: "active"
     },
     answer: answerSchema,
-    product: { type: Schema.Types.ObjectId, ref: "Product" }
+    product: { type: Schema.Types.ObjectId, ref: "Product" },
+    user: { type: Schema.Types.ObjectId, ref: "User" }
 })
 
 module.exports = questionSchema

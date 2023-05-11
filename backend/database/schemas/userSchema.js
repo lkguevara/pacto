@@ -41,7 +41,7 @@ const userSchema = mongoose.Schema({
     },
     reviewReceived: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
     reviewPost: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
-    //questions: { type: Schema.Types.ObjectId, ref: "Question" },
+    questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
     products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
     //wallet: { type: Schema.Types.ObjectId, ref: "Wallet" }
 
