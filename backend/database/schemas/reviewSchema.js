@@ -7,7 +7,7 @@ const reviewSchema = new Schema({
     calification: {
         type: Number,
         required: true,
-        min: 0,
+        min: 1,
         max: 5
     },
     review: {
@@ -16,7 +16,8 @@ const reviewSchema = new Schema({
     },
     state: {
         type: String,
-        enum: ["Active", "desactived", "blocked"]
+        enum: ["Active", "desactived", "blocked"],
+        default: "Active"
     },
     client: { type: Schema.Types.ObjectId, ref: "User" },
     vendor: { type: Schema.Types.ObjectId, ref: "User" },

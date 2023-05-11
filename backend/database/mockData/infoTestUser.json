@@ -3,7 +3,6 @@
         {
             "firstname": "Fito",
             "lastname": "Paez",
-            "calification": 5,
             "email": "fitopaez@mail.com",
             "state": true,
             "phone": 112233,
@@ -13,7 +12,6 @@
         {
             "firstname": "Julian",
             "lastname": "Alvarez",
-            "calification": 5,
             "email": "laaraña@mail.com",
             "state": true,
             "phone": 91218,
@@ -23,7 +21,6 @@
         {
             "firstname": "Charly",
             "lastname": "Garcia",
-            "calification": 5,
             "email": "seminare@mail.com",
             "state": true,
             "phone": 101213,
@@ -33,7 +30,6 @@
         {
             "firstname": "Carlos",
             "lastname": "Gardel",
-            "calification": 5,
             "email": "mibuenosairesquerido@mail.com",
             "state": true,
             "phone": 445566,
@@ -43,7 +39,6 @@
         {
             "firstname": "Lionel",
             "lastname": "Messi",
-            "calification": 5,
             "email": "leomessi@mail.com",
             "state": true,
             "phone": 778899,
