@@ -9,6 +9,11 @@
 
 .logo {
   flex: 1;
+  display: flex;
+  align-items: center;
+  /* border: 2px solid red; */
+  height: 100px;
+  object-fit: cover;
 }
 
 .menu {

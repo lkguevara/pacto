@@ -55,7 +55,7 @@ export default function Menu(){
             </div>
             <div className={style.logo}>
                 <Link href={"/"}>
-                    <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                    <Image priority src="/pacto-logo.png" alt="logo" width="140" height="140"/>
                 </Link>
             </div>
         </div>

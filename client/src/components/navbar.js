@@ -23,7 +23,7 @@ export default function NavBar(){
         <nav className={style.container}>
             <div className={style.logo}>
                 <Link href={"/"}>
-                    <Image priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                    <Image priority src="/pacto-logo.png" alt="logo" width="140" height="140"/>
                 </Link>
             </div>
 
@@ -80,7 +80,7 @@ export default function NavBar(){
                                     <Image priority src="/image/user.png" alt="user" width="35" height="35"/>
                                 </Link>
                                 </button>
-                                <h6>Welcome {userState.user.firstname}!</h6> 
+                                <h6>Bienvenido {userState.user.firstname}!</h6> 
                             </div>
                     )
                 }

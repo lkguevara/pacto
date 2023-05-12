@@ -8,7 +8,7 @@ function profileUser() {
     
       <div className={style.containerProfile}>
       <Link href="/">
-        <Image className= {style.imageDetail} priority src="/pacto-logo.png" alt="logo" width="90" height="90"/>
+        <Image className= {style.imageDetail} priority src="/pacto-logo.png" alt="logo" width="140" height="140"/>
       </Link>
         <h2 className={style.profileTitle}>Mi Cuenta</h2>
         
