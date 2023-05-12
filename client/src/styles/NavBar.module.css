@@ -155,6 +155,15 @@
   .links {
     gap: 5rem;
   }
+  /* .user h6 {
+    font-size: 12px;
+  } */
+}
+
+@media (max-width: 1330px) {
+  .user h6 {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 1300px) {
@@ -176,6 +185,12 @@
   }
   .links{
     gap: 4rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .user h6{
+    font-size: 12px;
   }
 }
 
