@@ -18,7 +18,7 @@ export default function changepassword(){
             <div className= {style.containerLogin}>
                 <div>
                     <Link href="/">
-                        <Image className= {style.logo} priority src="/pacto-logo.png" alt="logo" width="85" height="88"/>
+                        <Image className= {style.logo} priority src="/pacto-logo.png" alt="logo" width="140" height="140"/>
                     </Link>
                     <h3>Cambiar tu contraseña</h3>
                     <div className={style.sign}>
