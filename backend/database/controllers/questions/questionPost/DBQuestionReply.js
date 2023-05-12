@@ -8,8 +8,7 @@ const DBQuestionReply = async (idUser, reply, idQuestion) => {
             {
                 answer:
                 {
-                    answer: reply,
-                    date: new Date(),
+                    ...reply,
                     user: idUser
                 }
             },
