@@ -1,33 +1,67 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios"
+import axios from "axios";
+
+// enviar productos
+export const sendProducts = createAsyncThunk(
+  "shoppingCart/sendProducts",
+  async (product, { getState }) => {
+    try {
+      const token = localStorage.getItem("user_verified");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const response = await axios.post("/shoppingcart", [product], config);
+
+      // Guardar los productos devueltos por la API en el localStorage
+      localStorage.setItem("shopping_cart", JSON.stringify(response.data.products));
+
+      return response.data.products;
+    } catch (error) {
+      console.error(error);
+     
+    }
+  }
+);
+
+
+//obtener productos
+
+// export const getProducts = createAsyncThunk(
+//   "shoppingCart/getProducts",
+//   async (_, { getState }) => {
+//     try {
+//       // Obtener productos del estado del carrito
+//       const products = getState().shoppingCart.products;
+
+//       // Realizar una solicitud para obtener información actualizada sobre los productos en el carrito
+//       const token = localStorage.getItem("user_verified");
+//       const config = {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       };
+//       const response = await axios.get("/shoppingcart", config);
+
+//     } catch (error) {
+//       console.error(error);
+//       return Promise.reject(error.message);
+//     }
+//   }
+// );
+
 
 const carritoSlice = createSlice({
   name: "shoppingCart",
   initialState: {
     products: [],
+    status: "idle",
+    error: null,
   },
   reducers: {
-    addProduct: (state, action) => {
-      //obtener los productos
-      let shoppingCart = JSON.parse(localStorage.getItem("shopping_cart")) || [];
-      
-      //verificar si ya existe 
-      const productOnStore = shoppingCart.find(product => product.id === action.payload.id)
-      
-      //verificar si la cantidad del producto agregar es diferente al que ya esta agregado en el storage
-      if(productOnStore && productOnStore.amount != action.payload.amount){
-        productOnStore.amount = action.payload.amount
-        localStorage.setItem("shopping_cart", JSON.stringify(shoppingCart));
-        state.products = shoppingCart;
-      }
-      // no esta agregado en el local storage
-      if(!productOnStore){
-        shoppingCart.push(action.payload);
-        localStorage.setItem("shopping_cart", JSON.stringify(shoppingCart));
-        state.products.push(action.payload);
-      }
-    },
-
+   
     verifyLocalStorageProducts: (state, action) => {
       let productsLocalStorage = JSON.parse(
         localStorage.getItem("shopping_cart")
@@ -35,35 +69,34 @@ const carritoSlice = createSlice({
       state.products = productsLocalStorage;
     },
   },
+  extraReducers: (builder) => {
+    builder
+    //------Send Products--------
+    .addCase(sendProducts.pending, (state) => {
+      state.status = "loading";
+      })
+    .addCase(sendProducts.fulfilled, (state,action) => {
+        state.status = "succeeded";
+        state.products = action.payload
+      })
+      .addCase(sendProducts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      //------Get Products--------
+      // .addCase(getProducts.pending, (state) => {
+      //   state.status = "loading";
+      // })
+      // .addCase(getProducts.fulfilled, (state, action) => {
+      //   state.status = "succeeded";
+      //   state.products = action.payload;
+      // })
+      // .addCase(getProducts.rejected, (state, action) => {
+      //   state.status = "failed";
+      //   state.error = action.error.message;
+      // });
+    },
 });
 
-//enviar productos
-
-export const sendProducts = createAsyncThunk('shoppingCart/sendProducts', async (_,{ getState }) => {
-  try {
-    // Obtener los productos del estado del carrito
-    const products = getState().shoppingCart.products;
-
-    const token = localStorage.getItem('user_verified');
-    const config = {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    };
-    
-    
-    const response = await axios.post('/shoppingcart', products, config);
-
-    // Enviar solicitud al servidor para agregar los productos al carrito
-    // const request = await axios.post('/shoppingcart', { products, token:tokenUser});
-
-    // Limpiar el almacenamiento local y el estado del carrito
-    // localStorage.removeItem('carrito');
-    return request.data;
-  } catch (error) {
-    console.error(error);
-    return Promise.reject(error.message);
-  }
-});
 export const { addProduct, verifyLocalStorageProducts } = carritoSlice.actions;
 export default carritoSlice.reducer;

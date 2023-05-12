@@ -18,10 +18,14 @@ export default function App({ Component, pageProps }) {
      useEffect(() => {
       async function fetchData() {
         if (typeof window !== 'undefined') {
+          //token usuario verificado
           const user_verified_token = localStorage.getItem("user_verified");
+          //token usuario no verificado
           const user_unverified_token = localStorage.getItem("user_unverified");
+          //data local del carrito del usuario
           const shopping_cart = localStorage.getItem("shopping_cart");
      
+      
           if (user_verified_token){
            await store.dispatch(autoLoginUser(user_verified_token))
            if(navigate.pathname === '/login') navigate.push('/')
@@ -29,12 +33,13 @@ export default function App({ Component, pageProps }) {
           
           if(user_unverified_token){
               await store.dispatch(verifyCode({token  :user_unverified_token}))
-          
+    
               navigate.push('/signup')
               
           }
+          
           if(shopping_cart){
-           await store.dispatch(verifyLocalStorageProducts())
+            store.dispatch(verifyLocalStorageProducts())
           }
         }
       }
