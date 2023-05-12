@@ -33,6 +33,7 @@ const editUser = async (req, res) => {
                 lastname: user.lastname,
                 firstname: user.firstname,
                 email: user.email,
+                //Aca el campo es "adress" (con una d) porque creo que en el front la usan asi
                 adress: user.address,
                 products: user.products,
                 calification: user.calification,
