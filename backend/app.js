@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const send = require('./controllers/utils/emailService/emailSender')
+const mercadopago = require("mercadopago");
 require('dotenv').config()
 
 //RUTAS!!!
@@ -13,6 +14,7 @@ const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
 const shoppingCart = require('./routes/shoppingCart')
+const paymentRouter = require('./routes/payment')
 
 
 //CONEXION A LA DB!!!
@@ -53,6 +55,9 @@ app.use(categoriesRouter)
 //Routes ShoppingCart
 app.use(shoppingCart)
 
+//Route Payment
+app.use(paymentRouter)
+
 //All routes of the Firebase!!
 
 app.use(firebaseAdminRouter)
@@ -71,6 +76,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 
 
