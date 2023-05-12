@@ -11,13 +11,13 @@ function TopCards() {
         </div>
         <div className='lg:col-span-2 col-span-1 bg-white flex justify-between w-full border p-4 rounded-lg '>
             <div className='flex flex-col w-full pb-4 '>
-                <p className='text-2xl font-bold text-verde '># 11702</p>
+                <p className='text-2xl font-bold text-verde '># 11.702</p>
                 <p className='text-gray-600 '>Productos Activos</p>
             </div>
         </div>
         <div className='bg-white flex justify-between w-full border p-4 rounded-lg '>
             <div className='flex flex-col w-full pb-4 '>
-                <p className='text-2xl font-bold text-verde '># 19598</p>
+                <p className='text-2xl font-bold text-verde '># 19.598</p>
                 <p className='text-gray-600 '>Usuarios Activos</p>
             </div>
         </div>
