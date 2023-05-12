@@ -65,7 +65,7 @@ export default function NavBar(){
 
                 <div className={style.shoppingCart}>
                 <button>
-                    <Link href="/cart">
+                    <Link href="/cart/cart">
                         <Image priority src="/image/cart.svg" alt="cart" width="35" height="35"/>
                     </Link>
                 </button>
