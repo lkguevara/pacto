@@ -10,6 +10,7 @@ const {autoLogin} = require('../middlewares/autoLoginMiddleware');
 const {checkUserEmail} = require('../middlewares/checkUserMiddleWare');
 const {sendRecoveryCode} = require('../controllers/user/APIRecoverySendCode');
 const {recoveryPassword} = require('../controllers/user/APIRecoveryPassword');
+const {editUser} = require('../controllers/user/APIEditUser');
 
 const checkRegister = async (req, res, next) =>{
 
@@ -54,7 +55,9 @@ router.put('/recovery', (req,res, next) => {
   }
 
   next();
-},(req, res) => {recoveryPassword(req, res)})
+},(req, res) => {recoveryPassword(req, res)});
+
+router.put('/edituser', (req, res) => {editUser(req, res)})
 
 
 
