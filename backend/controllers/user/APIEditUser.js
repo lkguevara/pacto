@@ -33,7 +33,7 @@ const editUser = async (req, res) => {
                 lastname: user.lastname,
                 firstname: user.firstname,
                 email: user.email,
-                address: user.address,
+                adress: user.address,
                 products: user.products,
                 calification: user.calification,
                 phone: user.phone,
