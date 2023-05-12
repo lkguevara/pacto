@@ -1,6 +1,8 @@
 const checkUserExists = require("../../database/helper/DBcheckUserExists");
 const checkProductExists = require("../../database/helper/DBCheckProductExists");
 const DBProductGetId = require("../../database/controllers/products/productGet/DBProductGetId")
+const DBShoppingCartAddProduct =  require("../../database/controllers/shoppingcart/DBShoppingCartAddProduct")
+const DBShoppingCartGet = require("../../database/controllers/shoppingcart/DBShoppingCartGet")
 
 const shoppingCart = async (req, res) => {
   try {
@@ -11,39 +13,47 @@ const shoppingCart = async (req, res) => {
     let dataUser = await checkUserExists(userId, null);
 
     if(dataUser){
-      //carrito basio
-      if (productsShoppingCart.length === 0) {
-        //Carrito vacio / boton eliminar del carrito
-         dataUser.shoppingCart = [];
-        
-      } else {
-        // Obtener el objeto de usuario actualizado de la base de datos antes de modificarlo
-        const products = await Promise.all(productsShoppingCart.map(async (product) => {
+      
+       // Obtener el objeto de usuario actualizado de la base de datos antes de modificarlo
+       const products = await Promise.all(productsShoppingCart.map(async (product) => {
 
-          const realProduct = await checkProductExists(product.id);
-          if (realProduct) {
-            // Verificar si el producto ya está en el carrito de compras del usuario
-            const alreadyInCart = dataUser.shoppingCart.find(item => item.id === product.id);
-            //costo del producto
-            const productPrice = await DBProductGetId(product.id)
+        const realProduct = await checkProductExists(product.id);
+        if (realProduct) {
   
+          const productsShopping =  await DBShoppingCartGet(userId)
 
-            if (!alreadyInCart) {
-              dataUser.shoppingCart.push({
-                id: product.id,
-                product: product.name,
-                price: productPrice.price,
-                amount: product.amount
-              });
+          //Si ya hay productos en el carrito
+          if(productsShopping.shoppingCart === undefined){
+            
+             await DBShoppingCartAddProduct(userId,product.id,product.amount);
+             
+          }else{
+
+          const alreadyInCart = productsShopping.shoppingCart.products.some(item => item.product._id.equals(product.id));
+          
+          const productAmount = productsShopping.shoppingCart.products.find(item => item.product._id.equals(product.id));
+
+            //el producto no esta en el carrito
+            if(!alreadyInCart){
+              await DBShoppingCartAddProduct(userId,product.id,product.amount);
             }
-            return realProduct;
+            //El producto esta en el carrito
+            
+            if(alreadyInCart && productAmount.stock != product.amount){
+              await DBShoppingCartAddProduct(userId,product.id,product.amount);
+            }
           }
-        }));
-      }
-  
-      await dataUser.save();
 
-    return res.status(200).json(dataUser.shoppingCart);
+          const user = await DBShoppingCartGet(userId);
+
+          return res.status(200).json({products:user.shoppingCart.products});
+        }
+
+        return res.status(500).json({error:'Non-existent product'});
+
+      }));
+
+      return res.status(200).json('products added at shopping cart');
 
     }
 
