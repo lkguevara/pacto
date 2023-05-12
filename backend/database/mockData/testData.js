@@ -15,7 +15,6 @@ const productTest = async () => {
     const productsData = fs.readFileSync(path.resolve(__dirname, 'infoTestProduct.json'), 'utf8');
     const data = JSON.parse(productsData);
     const userId = await User.findOne({ email: "laaraña@mail.com" })
-    console.log(userId._id)
     for (let element of data.products) {
         await productSave(element, userId._id)
 
