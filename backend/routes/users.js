@@ -38,7 +38,7 @@ router.get('/login', (req, res) => {login(req, res)});
 router.get('/autologin', autoLogin, (req, res) => {login(req, res)});
 
 //Ruta para obtener el codigo de recuperacion de password
-router.post('/recoverycode', checkUserEmail, (req, res) => {sendRecoveryCode(req, res)});
+router.get('/recoverycode', checkUserEmail, (req, res) => {sendRecoveryCode(req, res)});
 
 router.put('/recovery', (req,res, next) => {
   const {email, password, code} = req.body;
