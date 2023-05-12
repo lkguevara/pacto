@@ -29,11 +29,10 @@ function producto() {
 
     useEffect(() => {
         dispatch(fetchProductDetailAsync(id));
-        dispatch(sendProducts())
-    }, [dispatch, id,shoppingCart]);
+    }, [dispatch, id]);
 
 
-
+    // datos del producto
     useEffect(() => {
     if (productDetail && productDetail.name) {
       setProduct({
@@ -46,6 +45,7 @@ function producto() {
     }
   }, [productDetail]);
 
+  //catidad del producto
   const handleProductAmount = (event)=>{
     const amountProduct = event.target.value
     setProduct({
@@ -54,9 +54,10 @@ function producto() {
     })
   }
 
+  //agregar al carrito
   const handleAddShoppingCart = (event)=>{
     event.preventDefault()
-    dispatch(addProduct(product))
+    dispatch(sendProducts(product))
   }
 
 

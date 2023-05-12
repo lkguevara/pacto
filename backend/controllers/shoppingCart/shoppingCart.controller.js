@@ -44,24 +44,18 @@ const shoppingCart = async (req, res) => {
             }
           }
 
-          const user = await DBShoppingCartGet(userId);
-
-          return res.status(200).json({products:user.shoppingCart.products});
         }
-
-        return res.status(500).json({error:'Non-existent product'});
 
       }));
 
-      return res.status(200).json('products added at shopping cart');
+      const user = await DBShoppingCartGet(userId);
+      return res.status(200).json({products:user.shoppingCart.products});
 
     }
-
-    res.status(403).json({ error: 'Access Denied' });
     
   } catch (e) {
     console.error(e);
-    res.status(500).json({ error: 'Error adding products to shopping cart' });
+    return res.status(500).json({ error: 'Error adding products to shopping cart' });
   }
 };
 
