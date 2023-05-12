@@ -1,38 +1,32 @@
-
-import Layout from "../../components/layout";
-import Link from "next/link";
 import style from "../../styles/cart/car.module.css";
 import Image from "next/image";
-import ProductoCard from "../../components/cart/productCart";
 
-export default function car() {
-  return (
-    <>
-      <Layout>
-        <div className={style.container}>
-            <h4>Carrito de compras</h4><hr/>
+export default function productCart() {
+    return (
+        <>
+            <div className={style.products}>
+                <Image className={style.productImage} src="/image/products/p1_1.jpg" width={100} height={100} />
+                <div className={style.productInfo}>
+                    <div className={style.productDetail}>
+                        <p>Iphone 12</p>
+                        <p>$ 1000</p>
 
-            <ProductoCard />
+                    </div>
 
-            {/*  Costo envío*/}
-            <div className={style.shipping}>
-              <h5>Costo de envío</h5>
-              <p>$500</p>
-            </div>
-
-            {/*  total producto*/}
-            <div className={style.shipping}>
-              <h5>Total con envío</h5>
-              <p>$ 1500</p>
+                </div>
+                    <div>
+                        <div className={style.quantity}>
+                            <Image className={style.quantityImage} src="/image/menos.png" width={10} height={10} />
+                            <input type="text" className={style.inputQuantity} value="1" />
+                            <Image className={style.quantityImage} src="/image/mas.png" width={10} height={10} />
+                        </div>
+                        <p className={style.deleteProduct}>Eliminar</p>
+                    </div>
+                    <div className={style.totalProduct}> 
+                        <p>$ 1000</p>
+                    </div>
             </div>
             
-            {/* Sección para los botones de submit y cancelar */}
-            <div className={style.buttons}>
-                <button className={style.buttonCancel}>Cancelar</button>
-                <button className={style.buttonContinue}>Continuar</button>
-            </div>
-          </div>    
-     
-      </Layout>
-    </>
-)}
+        </>
+    )
+}
