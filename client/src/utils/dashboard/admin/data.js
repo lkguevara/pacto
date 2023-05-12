@@ -149,5 +149,6 @@ const recentOrders = [
 ];
 
 module.exports = {
-    barChartData
+    barChartData,
+    recentOrders,
 };
