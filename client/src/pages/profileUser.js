@@ -2,9 +2,21 @@ import React from "react";
 import style from "@/styles/profileUser.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
+import { useSelector } from "react-redux";
 
 function profileUser() {
+
+    const {user} = useSelector(state => state.user);
+    
   return (
+    <>
+    <Head>
+        <title>H2H | Perfil</title>
+        <meta name="description" content="H2H" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/pacto-logo.png" />
+    </Head>
     
       <div className={style.containerProfile}>
       <Link href="/">
@@ -13,42 +25,38 @@ function profileUser() {
         <h2 className={style.profileTitle}>Mi Cuenta</h2>
         
         <div className={style.containerProfileData}>
-            <div className={style.containerProfileData1}>
-                <h3 className={style.profileDataTitle}>Datos Personales</h3>
+                <div className={style.profileDataTitle}>
+                    <h3>Datos Personales</h3>
+                    <Image className={style.lapiz} src='/image/lapiz.png' alt='' width='22' height='22' />
+                </div>
                 
-                <form className={style.form__profile}>
-                    <div className={style.container}>
-                        <div className={style.containerInfo}>
-                            <label>Nombre completo:</label>
-                            <input name={"name"} type="text" placeholder="name user" />
-                        </div>
-                        <Image className= {style.imageProfile} priority src="/edit.svg" alt="logo" width="30" height="30"/>
-                    </div>
+                <form className={style.form__Login}>
+                    <label>Email:</label>
+                    <input value={user?.email || ""} name="email" type="email" readOnly />
 
-                    <div className={style.container}>
-                        <div className={style.containerInfo}>
-                            <label>Email:</label>
-                            <input name={"email"} type="text" placeholder="email user" />
-                        </div>
-                        <Image className= {style.imageProfile} priority src="/edit.svg" alt="logo" width="30" height="30"/>
-                    </div>
+                    <label>Nombre:</label>
+                    <input value={user?.firstname || ""} name="firstname" type="text" readOnly />
 
-                    <div className={style.container}>
-                        <div className={style.containerInfo}>
-                            <label>Dirección de facturación:</label>
-                            <input name={"direccion"} type="text" placeholder="Dirección de facturación" />
-                        </div>
-                        <Image className= {style.imageProfile} priority src="/edit.svg" alt="logo" width="30" height="30"/>
+                    <label>Apellido:</label>
+                    <input value={user?.lastname || ""} name="lastname" type="text" readOnly />
+
+                    <label>Dirección:</label>
+                    <input value={user?.address || ""} name="address" type="text" readOnly />
+        
+                    <label>Teléfono:</label>
+                    <input value={user?.phone || "None"} name="phone" type="text" readOnly />
+                    
+                    <div className={style.secciones}>
+                        <button >Ir a mis pedidos</button>
+                        <button >Ir a mis Productos</button>
+                        <button className={style.deslogueo}>Cerrar Sesion</button>
                     </div>
-                    <Link href="/misPedidos">
-                        <button type="submit">Ir a mis pedidos</button>
-                    </Link>
+                    
                 </form>
-            </div>
 
         </div>
-    </div>
-            
+      </div>
+    </>      
 
   )
 }
