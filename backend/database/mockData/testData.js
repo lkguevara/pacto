@@ -5,11 +5,55 @@ const createUser = require('../controllers/users/userPost/DBUserCreate');
 const User = require('../models/user');
 const Question = require('../models/question');
 const Product = require('../models/product');
+const Department = require('../models/department');
+const City = require('../models/city');
 const DBQuestionPost = require('../controllers/questions/questionPost/DBQuestionPost');
 const DBQuestionReply = require('../controllers/questions/questionPost/DBQuestionReply');
 
 
+const departmentsTest = async () => {
+    const departments = fs.readFileSync(path.resolve(__dirname, 'infoColombia.json'), 'utf8');
+    const data = JSON.parse(departments);
 
+    for (let department of data.colombia) {
+
+        let newDepartment = await Department.findOne({ codeDane: department.c_digo_dane_del_departamento });
+
+
+        // Si el departamento no existe, créalo
+        if (!newDepartment) {
+            newDepartment = new Department({
+                codeDane: department.c_digo_dane_del_departamento,
+                department: department.departamento,
+            });
+            newDepartment.save().then(() => {
+                console.log("Departamento generado exitosamente!")
+            })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+
+        let newCity = await City.findOne({codeDane : department.c_digo_dane_del_municipio});
+
+        // Crea la city
+        if (!newCity){
+            newCity = new City({
+                codeDane: department.c_digo_dane_del_municipio,
+                city: department.municipio,
+                department: newDepartment._id,
+            });
+            newCity.save().then(() => {
+                console.log("Ciudad generada exitosamente")
+            })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+       
+
+    }
+}
 
 const productTest = async () => {
     const productsData = fs.readFileSync(path.resolve(__dirname, 'infoTestProduct.json'), 'utf8');
@@ -50,4 +94,4 @@ const QuestionTest = async () => {
     }
 }
 
-module.exports = { productTest, userTest, QuestionTest }
+module.exports = { productTest, userTest, QuestionTest, departmentsTest }
