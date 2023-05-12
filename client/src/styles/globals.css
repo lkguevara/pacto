@@ -1,4 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --amarillo: #f6bd32;
@@ -8,7 +11,7 @@
   --gris-oscuro: #64748b;
   --negro: #000;
   --lila: #9661db;
-  --verde: #39b284;
+  --verde: #39b183;
   --rosa: #e55c51;
   --azul: #057be5;
 }
