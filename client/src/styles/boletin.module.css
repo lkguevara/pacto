@@ -48,6 +48,10 @@
   margin: 0 10px;
 }
 
+.img {
+  margin-left: .5rem;
+}
+
 /* media queries */
 
 @media (min-width: 768px) {

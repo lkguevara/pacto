@@ -8,7 +8,7 @@ export default function boletin(){
 
             <div className={style.titleBoletin}>
                 <h3>Suscribete a nuestro boletín de noticias</h3>
-                <Image src="/boletin.svg" alt="boletin" width={30} height={30} />
+                <Image className={style.img} src="/boletin.png" alt="boletin" width={30} height={30} />
             </div>
             <p>Suscribete a nuestro boletín si quieres saber sobre nuestros productos, promociones y mucho más.</p>
 
