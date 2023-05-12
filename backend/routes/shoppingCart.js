@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { verifyToken } = require('../controllers/token/verifyToken');
 const  shoppingCart  = require('../controllers/shoppingCart/shoppingCart.controller') 
 
 
 
-router.post('/shoppingcart', (req,res)=> shoppingCart(req,res))
+router.post('/shoppingcart',verifyToken, (req,res)=> shoppingCart(req,res))
 
 module.exports = router;

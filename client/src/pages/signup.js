@@ -112,8 +112,8 @@ export default function login() {
                   priority
                   src="/pacto-logo.png"
                   alt="logo"
-                  width="85"
-                  height="88"
+                  width="140"
+                  height="140"
                 />
               </Link>
               <h3>Crea tu cuenta</h3>

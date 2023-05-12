@@ -11,8 +11,8 @@ export default function Layout({ children, title}){
     return (
         <>
             <Head>
-                <title>PACTO {title? `| ${title}` : ""}</title>
-                <meta name="description" content="PACTO" />
+                <title>H2H {title? `| ${title}` : ""}</title>
+                <meta name="description" content="H2H" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/pacto-logo.png" />
             </Head>

@@ -144,7 +144,6 @@ const authSlice = createSlice({
         console.log(action);
         state.loading = false;
         state.error = action.payload;
-        state.sendCode = true;
       })
 
       /*---------------GoogleLogin------------------*/
