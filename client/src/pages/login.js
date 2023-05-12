@@ -55,7 +55,7 @@ export default function login(){
 
     const handleChange = (event)=>{
         const {name, value} = event.target;
-        console.log(name,value);
+        
         setLogin({
             ...login,
             [name]:value
@@ -112,8 +112,6 @@ export default function login(){
                     <Link href="/forgotpass">
                         <span className={style.forgetPass}>¿Olvidaste tu contraseña?</span>
                     </Link>
-                    <button onClick={() => auth.signOut()}>LOGOUT GOOGLE</button>
-                    
             </div>
 
         </div>
