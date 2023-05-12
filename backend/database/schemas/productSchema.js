@@ -21,7 +21,7 @@ const productSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: "User" },
     //send: { type: Schema.Types.ObjectId, ref: "Send" },
     //category: { type: Schema.Types.ObjectId, ref: "Category" },
-    //questions: { type: Schema.Types.ObjectId, ref: "Question" },
+    questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
     //reviews: { type: Schema.Types.ObjectId, ref: "Review" },
 
 })
