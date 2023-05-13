@@ -13,7 +13,7 @@ router.get('/departments', async (req, res) => {
     }
     );
 
-router.get('/deparmentcities', (req, res, next) => { 
+router.get('/departmentcities', (req, res, next) => { 
 
     const {id} = req.query;
     if (!id){
