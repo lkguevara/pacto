@@ -4,9 +4,22 @@ import Link from "next/link";
 import style from "../../styles/cart/envio.module.css";
 import { GrMapLocation } from 'react-icons/gr';
 import ProductoCard from "../../components/cart/productCart";
+import { payment } from "@/redux/features/carrito/carrito";
+import { useDispatch } from "react-redux";
 
 
 export default function car() {
+
+  const dispatch = useDispatch();
+
+  const handlePayment = ()=>{
+  
+    //enviar productos
+     dispatch(payment())
+  }
+
+
+
   return (
     <>
       <Layout>
@@ -28,7 +41,7 @@ export default function car() {
             </div>
 
             <Link href="">
-                    <button className={style.buttonContinue}>Continuar</button>
+                    <button className={style.buttonContinue} onClick={handlePayment}>Continuar</button>
             </Link>
      
       </Layout>
