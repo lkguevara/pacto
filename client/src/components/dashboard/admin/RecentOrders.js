@@ -9,7 +9,13 @@ function RecentOrders() {
       <h1>Ventas recientes</h1>
       <ul>
         {
-          orders?.map((order, index) => (
+          orders?.map((order, index) => {
+            // Convertir la fecha a hora local
+            const utc = new Date(order.date);
+            const offset = utc.getTimezoneOffset();
+            const local = new Date(utc.getTime() + (offset*60*1000));
+
+            return (
             <li key={index} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer '>
               <div className='bg-green-100 rounded-log p-3 '>
                 <FaShoppingBag className='text-verde-dark' />
@@ -19,10 +25,10 @@ function RecentOrders() {
                 <p className='text-gray-400 text-sm'>{order.name}</p>
               </div>
               <div>
-                <p className='lg:flex md:hidden absolute right-6 text-sm'>{ formatDistanceToNow(new Date(order.date)) }</p>
+                <p className='lg:flex md:hidden absolute right-6 text-sm px-2 '>{ formatDistanceToNow(local) }</p>
               </div>
             </li>
-          ))
+          )})
         }
       </ul>
     </div>
