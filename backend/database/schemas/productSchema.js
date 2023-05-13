@@ -11,16 +11,17 @@ const productSchema = new Schema({
     },
     price: Number,
     active: {
-        type: Boolean,
-        default: true
+        type: String,
+        enum: ["en venta", "agotado", "bloqueado", "desactivado"],
+        default: "en venta"
     },
     Brand: String,
     stock: Number,
     category: String,
     subcategory: String,
     user: { type: Schema.Types.ObjectId, ref: "User" },
+    purchasedBy: [{ user: { type: Schema.Types.ObjectId, ref: "User" }, ammount: Number }],
     //send: { type: Schema.Types.ObjectId, ref: "Send" },
-    //category: { type: Schema.Types.ObjectId, ref: "Category" },
     questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
     //reviews: { type: Schema.Types.ObjectId, ref: "Review" },
 
