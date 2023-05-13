@@ -2,7 +2,26 @@ const { Schema } = require("mongoose");
 
 const shoppingCartSchema = Schema({
   id: Schema.Types.ObjectId,
-  products: [{ product: { type: Schema.Types.ObjectId, ref: "Product" }, stock: Number }],
+  products: [{ product: { type: Schema.Types.ObjectId, ref: "Product" }, ammount: Number }],
+})
+
+const orderSchema = Schema({
+  product: { type: Schema.Types.ObjectId, ref: "Product" },
+  ammount: Number,
+  state: {
+    type: String,
+    enum: ["comprado", "entregado"],
+    default: "comprado"
+  }
+})
+const purchasedSchema = Schema({
+  id: Schema.Types.ObjectId,
+  products: [orderSchema],
+  state: {
+    type: String,
+    enum: ["en curso", "finalizada"],
+    default: "en curso"
+  }
 })
 
 const userSchema = Schema({
@@ -45,8 +64,10 @@ const userSchema = Schema({
   shoppingCart: shoppingCartSchema,
   reviewReceived: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   reviewPost: [{ type: Schema.Types.ObjectId, ref: "Review" }],
-  questions: { type: Schema.Types.ObjectId, ref: "Question" },
+  questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
+  purchased: [purchasedSchema],
+
   //wallet: { type: Schema.Types.ObjectId, ref: "Wallet" }
 });
 
