@@ -3,10 +3,6 @@ const mercadopago = require("mercadopago");
 const createPayment = async (req, res) => {
 
   const { emailUser, items } = req.body;
-
-  console.log(emailUser);
-  console.log(items);
-
   mercadopago.configure({
     access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
   });
