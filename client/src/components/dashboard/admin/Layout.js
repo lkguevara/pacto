@@ -18,7 +18,7 @@ export default function Layout({ children, title}){
             <main className="bg-gray-100 min-h-screen flex">
                 <Sidebar />
                 <div className={styles.container}>
-                    <Header />
+                    <Header title={title}/>
                     <div>{children}</div>   
                 </div>
             </main>
