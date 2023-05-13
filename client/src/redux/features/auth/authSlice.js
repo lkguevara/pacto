@@ -75,6 +75,15 @@ export const loginGoogle = createAsyncThunk(
   }
 )
 
+// Async thunk para editar datos de un usuario
+export const putEditUser = createAsyncThunk(
+  "auth/editUser",
+  async(user) => {
+    const response = await axios.put('/edituser', user);
+    return response.data;
+  }
+)
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -157,6 +166,19 @@ const authSlice = createSlice({
         localStorage.setItem("user_verified", action.payload.token);
       })
       .addCase(loginGoogle.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      /*---------------Edit User------------------*/
+      .addCase(putEditUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(putEditUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+      })
+      .addCase(putEditUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
