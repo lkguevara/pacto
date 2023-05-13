@@ -5,10 +5,11 @@ import Link from "next/link";
 import Head from "next/head";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { putEditUser } from "@/redux/features/auth/authSlice";
-
+import { putEditUser,logOut } from "@/redux/features/auth/authSlice";
+import { useRouter } from "next/router";
 function ProfileUser() {
   const { user } = useSelector((state) => state.user);
+  const navigate = useRouter()
   const dispatch = useDispatch();
 
   /*-------------Edit de datos---------------*/
@@ -51,6 +52,14 @@ function ProfileUser() {
     dispatch(putEditUser(userEdit))
   };
   /*-----------------------------------------*/
+  const handleLogOut = (event)=>{
+    event.preventDefault()
+    dispatch(logOut())
+    if(navigate.pathname === "/profileUser"){
+      navigate.push('/')
+    }
+
+  }
 
   return (
     <>
@@ -112,7 +121,7 @@ function ProfileUser() {
                 <div className={style.secciones}>
                   <button>Ir a mis pedidos</button>
                   <button>Ir a mis Productos</button>
-                  <button className={style.deslogueo}>Cerrar Sesion</button>
+                  <button className={style.deslogueo} onClick={handleLogOut}>Cerrar Sesion</button>
                 </div>
               </form>
             )}
