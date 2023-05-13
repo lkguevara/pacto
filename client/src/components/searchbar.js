@@ -1,10 +1,6 @@
 import style from "../styles/SearchBar.module.css";
 import { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { filterProducts } from "@/redux/features/products/productsSlice";
-import { filterName } from "./filters/filterName";
-import { filterCategory } from "./filters/filterCategory";
-import { useRouter } from "next/router";
 import debounce from "@/utils/debounce";
 import { setFilters } from "@/redux/features/products/productsSlice";
 

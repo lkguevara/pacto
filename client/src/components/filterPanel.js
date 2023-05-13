@@ -99,6 +99,9 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                 filters.categorias.categoria && <LabelFilter filter={filters.categorias} by='categorias'/>
               }
               {
+                filters.name && <LabelFilter filter={filters.name} by='name' />
+              }
+              {
                 filters.status.length !== 0 && <LabelFilter filter={filters.status} by='status'/>
               }
               {

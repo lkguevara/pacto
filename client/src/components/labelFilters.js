@@ -15,6 +15,13 @@ export default function LabelFilter({ filter , by }) {
         }))
     }
 
+    const handleSetName = () => {
+        dispatch(setFilters({
+            ...filters,
+            name: ""
+        }))
+    }
+
     const handlerSetStatus = (e) => {
         let newstatus = filters.status.filter(statu => statu !== e.target.value);
 
@@ -64,6 +71,15 @@ export default function LabelFilter({ filter , by }) {
             <div className={style.container}>
                 <button onClick={handlerSetPrice}>x</button>
                 <div>min: {filter.min}, max: {filter.max}</div>               
+            </div>
+        )
+    }
+
+    if(by === 'name'){
+        return (
+            <div className={style.container}>
+                <button onClick={handleSetName}>x</button>
+                <div>name: {filter}</div>
             </div>
         )
     }
