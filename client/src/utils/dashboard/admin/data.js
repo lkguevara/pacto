@@ -1,8 +1,41 @@
+// Sumas para las cards del dashboard (página inicio)
+const cardsData = {
+    sumSalesToday: 283547000,
+    sumActiveProducts: 11702,
+    sumActiveUsers: 19598,
+}
+
 // La suma de las ventas diarias de los últimos 7 días
-const barChartData = {
-    days: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom" ],
-    sumInMillions: [150, 89, 159, 175, 157, 172, 174]
-};
+const barChartData = [
+    {
+        day: "Lun",
+        sumInMillions: 150,
+    },
+    {
+        day: "Mar",
+        sumInMillions: 89,
+    },
+    {
+        day: "Mié",
+        sumInMillions: 159,
+    },
+    {
+        day: "Jue",
+        sumInMillions: 175,
+    },
+    {
+        day: "Vie",
+        sumInMillions: 157,
+    },
+    {
+        day: "Sáb",
+        sumInMillions: 172,
+    },
+    {
+        day: "Dom",
+        sumInMillions: 174,
+    },
+];
 
 // Lista con las ventas de las últimas 24 horas, ordenadas por fecha de compra, de las más recientes a las más antiguas
 const recentOrders = [
@@ -129,6 +162,7 @@ const recentOrders = [
 ];
 
 module.exports = {
+    cardsData,
     barChartData,
     recentOrders,
 };

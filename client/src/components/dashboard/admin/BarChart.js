@@ -10,8 +10,9 @@ import {
   Legend 
 } from "chart.js";
 
-// Datos de prueba
+// DATOS MOCKUP ///////////////////////////////////////////////////
 import { barChartData } from "../../../utils/dashboard/admin/data";
+
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -25,11 +26,11 @@ function BarChart() {
 
   useEffect(() => {
     setChartData({
-      labels: barChartData.days,
+      labels: barChartData.map((data) => data.day),
       datasets: [
         {
           label: "Ventas Diarias $ (Millones))",
-          data: barChartData.sumInMillions,
+          data: barChartData.map((data) => data.sumInMillions),
           borderColor: "rgb(57, 177, 131)",
           backgroundColor: "rgba(57, 177, 131, 0.4)",
         }
