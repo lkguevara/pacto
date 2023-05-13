@@ -20,10 +20,6 @@ const checkRegister = async (req, res, next) =>{
   return res.status(409).json({msg:"El usuario ingresado ya se encuentra en la base de datos"})
 }
 
-/* GET users listing. */
-router.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
 // GET all users
 router.get('/users', (req, res) => {getAllUsers(req, res)});
