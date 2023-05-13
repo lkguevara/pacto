@@ -1,9 +1,8 @@
 const checkProductsPayment = async(req,res,next) =>{
     const user = req.userId
-    console.log(user,10);
+    //vallidaciones antes de enviar a mercado pago
 
     next()
-
 
 }
 
