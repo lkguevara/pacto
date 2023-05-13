@@ -10,13 +10,15 @@ const DBPurchasedProducts = async (idUser) => {
             throw Error("No hay ningun producto en el carrito")
         }
         for (let element of shoppingCartProducts.shoppingCart.products) {
-            let product = await Product.findById(element.product).select("stock")
+            let product = await Product.findById(element.product).select(["stock", "purchasedBy"])
             if (product.stock < element.ammount) {
                 outStock.push(product)
             }
             else {
 
                 product.stock -= element.ammount
+                product.purchasedBy.push({ user: shoppingCartProducts._id, ammount: element.ammount })
+                console.log(product.purchasedBy)
                 if (product.stock === 0) {
                     product.active = "agotado"
                 }
