@@ -3,18 +3,18 @@ const checkUserExists = require('../../database/helper/DBcheckUserExists');
 
 const editUser = async (req, res) => {
     
-    const {id, firstName, lastName, address, email, phone, password} = req.body;
+    const {id, firstname, lastname, address, email, phone, password} = req.body;
 
     try{
-        console.log(lastName);
+       
         const user = await checkUserExists(id, false);
         // Regex para comprobar si un email es valido o no
         const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
         if (user){
 
-            if (firstName)  user.firstname = firstName;
-            if (lastName) user.lastname = lastName;
+            if (firstname)  user.firstname = firstname;
+            if (lastname) user.lastname = lastname;
             if (address) user.address = address;
             if (email && email.match(regex)) user.email = email;
             if (phone) user.phone = phone;
@@ -34,7 +34,8 @@ const editUser = async (req, res) => {
                 firstname: user.firstname,
                 email: user.email,
                 //Aca el campo es "adress" (con una d) porque creo que en el front la usan asi
-                adress: user.address,
+                // si era address xd
+                address: user.address,
                 products: user.products,
                 calification: user.calification,
                 phone: user.phone,
