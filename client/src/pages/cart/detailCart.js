@@ -28,8 +28,12 @@ export default function car() {
             
             {/* Sección para los botones de submit y cancelar */}
             <div className={style.buttons}>
-                <button className={style.buttonCancel}>Cancelar</button>
-                <button className={style.buttonContinue}>Continuar</button>
+                <Link href="/">
+                    <button className={style.buttonCancel}>Cancelar</button>
+                </Link>
+                <Link href="/cart/shipmentCart">
+                    <button className={style.buttonContinue}>Continuar</button>
+                </Link>
             </div>
           </div>    
      
