@@ -17,7 +17,7 @@ import { barChartData } from "../../../utils/dashboard/admin/data";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 
-function BarChart() {
+function BarChart({ colSpan="col-span-1" }) {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -54,7 +54,7 @@ function BarChart() {
 
   return (
     <>
-      <div className='w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white '>
+      <div className={`w-full ${colSpan} relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white `}>
         {
           chartData.datasets.length === 0  ? (
             <span>Cargando datos...</span>
