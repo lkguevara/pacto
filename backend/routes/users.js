@@ -11,6 +11,7 @@ const {checkUserEmail} = require('../middlewares/checkUserMiddleWare');
 const {sendRecoveryCode} = require('../controllers/user/APIRecoverySendCode');
 const {recoveryPassword} = require('../controllers/user/APIRecoveryPassword');
 const {editUser} = require('../controllers/user/APIEditUser');
+const {getUserById} = require('../controllers/user/APIgetUserById');
 
 const checkRegister = async (req, res, next) =>{
 
@@ -23,6 +24,9 @@ const checkRegister = async (req, res, next) =>{
 
 // GET all users
 router.get('/users', (req, res) => {getAllUsers(req, res)});
+
+//GET user by ID
+router.get('/user', (req, res) => {getUserById(req, res)})
 
 // POST new user
 router.post('/user', checkRegister, (req, res) => {postNewUser(req, res)});
