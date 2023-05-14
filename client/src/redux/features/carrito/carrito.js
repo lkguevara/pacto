@@ -25,34 +25,6 @@ export const sendProducts = createAsyncThunk(
     }
   }
 );
-export const payment = createAsyncThunk(
-  "payment",
-  async (_, { getState }) => {
-    try {
-      const token = localStorage.getItem("user_verified");
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-
-      let productsLocalStorage = JSON.parse(localStorage.getItem("shopping_cart"))
-      const response = await axios.post("/payment", productsLocalStorage, config);
-
-      // Guardar los productos devueltos por la API en el localStorage
-
-
-      return response.data.products;
-    } catch (error) {
-      console.error(error);
-     
-    }
-  }
-);
-
-
-
 
 //obtener productos
 
