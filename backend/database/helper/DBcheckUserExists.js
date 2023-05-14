@@ -22,9 +22,6 @@ const checkUserExists = async (idUser, email = false, lean = false) => {
         
     }
 
-
-
-
     if (isUser != null) {
 
         return isUser

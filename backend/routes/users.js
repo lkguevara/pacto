@@ -12,6 +12,8 @@ const {sendRecoveryCode} = require('../controllers/user/APIRecoverySendCode');
 const {recoveryPassword} = require('../controllers/user/APIRecoveryPassword');
 const {editUser} = require('../controllers/user/APIEditUser');
 const {getUserById} = require('../controllers/user/APIgetUserById');
+const {logicBanUser} = require('../controllers/user/APIlogicBanUser');
+const { RequestCookiesAdapter } = require('next/dist/server/web/spec-extension/adapters/request-cookies');
 
 const checkRegister = async (req, res, next) =>{
 
@@ -59,6 +61,7 @@ router.put('/recovery', (req,res, next) => {
 
 router.put('/edituser', (req, res) => {editUser(req, res)})
 
+router.put('/banuser', (req, res) => {logicBanUser(req, res)})
 
 
 
