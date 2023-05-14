@@ -21,7 +21,7 @@ const createPayment = async (req, res) => {
 
   try {
     const respuesta = await mercadopago.preferences.create(preference);
-    return res.status(200).json(respuesta);
+    return res.status(200).json(respuesta.body.init_point);
   } catch (err) {
     return res
       .status(500)
