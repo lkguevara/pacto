@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Image from 'next/image';
 import { getProductsByPage } from '../../../api/productsApi';
 import { BsPostcard } from 'react-icons/bs';
 
@@ -61,14 +62,14 @@ function ProductsList() {
                             
                             return (
                                 <li key={index} 
-                                className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-1 items-center justify-between cursor-pointer '
+                                className='bg-gray-100 hover:bg-gray-200 rounded-lg my-3 p-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-2 items-center justify-between cursor-pointer '
                                 onClick={() => handleDetails(product._id)}
                                 >
                                     
                                     {/* Nombre */}
-                                    <div className='flex items-center col-span-2'>
-                                        <div className='bg-green-100 p-3 rounded-lg '>
-                                            <BsPostcard className='text-verde-dark' />
+                                    <div className='flex flex-col sm:flex-row items-center col-span-2 p-2 text-center sm:text-left'>
+                                        <div className='flex justify-center content-stretch items-stretch w-28 h-28 sm:w-16 sm:h-16 overflow-hidden rounded-md drop-shadow-md mb-2'>
+                                            <Image src={product.images[0]} alt={product.name} width="50" height="50" className='w-full h-full object-cover flex-1'/>
                                         </div>
                                         <p className='font-medium pl-4'>{product.name}</p>
                                     </div>
@@ -83,7 +84,7 @@ function ProductsList() {
                                     <p className='text-gray-600 hidden xl:grid'>{product.subcategory}</p>
 
                                     {/* Precio */}
-                                    <p className='text-gray-600 hidden sm:grid'>{product.price}</p>
+                                    <p className='text-gray-600 hidden sm:grid'>{`$ ${product.price.toLocaleString()}`}</p>
                                 </li>
                             )
                         })
