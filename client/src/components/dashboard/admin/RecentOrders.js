@@ -21,8 +21,8 @@ function RecentOrders() {
                 <FaShoppingBag className='text-verde-dark' />
               </div>
               <div className='pl-4'>
-                <p className='text-gray-800 font-bold'>{`$ ${order.total}`}</p>
-                <p className='text-gray-400 text-sm'>{order.name}</p>
+                <p className='text-gray-800 font-bold'>{`$ ${order.totalAmount}`}</p>
+                <p className='text-gray-400 text-sm'>{order.userFirstname + " " + order.userLastname}</p>
               </div>
               <div>
                 <p className='lg:flex md:hidden absolute right-6 text-sm px-2 '>{ formatDistanceToNow(local) }</p>
