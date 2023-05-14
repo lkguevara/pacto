@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { HiOutlineShoppingBag, HiOutlineChatAlt2, HiOutlineUser, HiOutlineChartBar } from 'react-icons/hi';
 import { BsPostcard } from 'react-icons/bs';
+import { BiCategory } from 'react-icons/bi';
 import { MdOutlineRateReview } from 'react-icons/md';
 import { FiSettings } from 'react-icons/fi';
 
@@ -62,6 +63,13 @@ const Sidebar = () => {
           <Link href="/dashboard/admin/preguntas">
             <div className='bg-gray-100 text-verde-dark hover:bg-verde hover:text-white active:bg-verde active:text-white cursor-pointer p-3 mt-4 mb-2 rounded-lg inline-block ' title='Últimas preguntas/respuestas'>
               <HiOutlineChatAlt2 size={20} />
+            </div>
+          </Link>
+
+          {/* Botón Categorías */}
+          <Link href="/dashboard/admin/categorias">
+            <div className='bg-gray-100 text-verde-dark hover:bg-verde hover:text-white active:bg-verde active:text-white cursor-pointer p-3 mt-4 mb-2 rounded-lg inline-block ' title='Categorías y Subcategorías'>
+              <BiCategory size={20} />
             </div>
           </Link>
 
