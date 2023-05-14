@@ -8,13 +8,54 @@ import { signUpUser } from "@/redux/features/auth/authSlice";
 import { useRouter } from "next/router";
 import { registerUser, verifyCode } from "@/redux/features/auth/authSlice";
 import { sendCode } from "@/redux/features/auth/authSlice";
+import { getDepartments, getCities } from "@/redux/features/departments/departmentsSlice";
+import { MdDepartureBoard } from "react-icons/md";
 
 export default function login() {
   const dispatch = useDispatch();
 
   const userState = useSelector((state) => state.user)
   const navigate = useRouter();
-  
+
+  /*----------------------------------Departamento y ciudades-----------------------------------------*/
+  useEffect(() => {
+      dispatch(getDepartments())
+  }, [])
+
+  const { departments, cities } = useSelector(state => state.locations)
+
+  const [location, setLocation] = useState({
+    departamento: '',
+    ciudad: ''
+  })
+
+  const handleDepaSelect = (e) => {
+    const { id , value } = e.target;
+
+    // Busco el id del departamento seleccionado para buscar sus ciudades
+    const { _id } = departments.find(depa => depa.department === value);
+    dispatch(getCities(_id));
+
+    setLocation({
+      ...location,
+      [id]: value
+    })
+  }
+
+  const handleCitySelect = (e) => {
+    const { id , value } = e.target;
+
+    setLocation({
+      ...location,
+      [id]: value
+    })
+  }
+
+  useEffect(() => {
+    console.log(location)
+  }, [location])
+
+  /*---------------------------------------------------------------------------------------------------*/
 
   useEffect(() => {
     if (userState.verify){
@@ -150,6 +191,29 @@ export default function login() {
                 placeholder="Apellido"
                 onChange={(e) => handleChange(e)}
               />
+              
+
+              <label>Departamento:</label>
+                <select name="departamento" id="departamento" onChange={handleDepaSelect} defaultValue="default">
+                  <option disabled value="default">Selecciona un departamento</option>
+                  {departments &&
+                    departments.map((depa) => (
+                      <option key={depa._id} value={depa.department} data-categoria="departamento">
+                        {depa.department}
+                      </option>
+                    ))}
+                </select>
+
+              <label>Ciudad:</label>
+              <select name="ciudad" id="ciudad" onChange={handleCitySelect} defaultValue="default">
+                  <option disabled value="default">Selecciona una ciudad</option>
+                  {
+                    cities && cities.map(obj => (
+                      <option key={obj._id} value={obj.city} data-categoria="ciudad">{obj.city}</option>
+                    ))
+                  }
+              </select>
+            
               <label>Dirección:</label>
               <input
                 value={user.address}

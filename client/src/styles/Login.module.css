@@ -60,6 +60,14 @@
     margin-bottom: 10px;
 }
 
+.form__Login select{
+    padding: 10px;
+    border: 1px solid var(--verde);
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
 .form__Login input:focus{
     border: 1px solid var(--gris);
 }
@@ -91,7 +99,31 @@
     margin-bottom: 2rem;
 }
 
+/* .depas{
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.depas label {
+    border: 2px solid green;
+    
+}
+
+.depas select{
+    border: 2px solid blue;
+    
+} */
+
 /* media queries */
+
+@media (max-width: 550px){
+    .form__Login select{
+        width: 100%;
+    }
+}
+
 @media (min-width: 768px) {
 
     .containerLogin{

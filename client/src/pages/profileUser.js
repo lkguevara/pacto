@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { putEditUser,logOut } from "@/redux/features/auth/authSlice";
 import { useRouter } from "next/router";
+
 function ProfileUser() {
   const { user } = useSelector((state) => state.user);
   const navigate = useRouter()
