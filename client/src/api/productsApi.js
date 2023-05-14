@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const addProduct = async (product) => {
     try {
-
       const response = await axios.post(`/product`, product);
       const newProduct = response.data;
       return newProduct;
@@ -11,4 +10,14 @@ export const addProduct = async (product) => {
       console.error('Error al crear el producto', error);
       throw error;
     }
+};
+
+export const getProductsByPage = async (page) => {
+  try {
+    const response = await axios.get(`/products?page=${page}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener productos:', error);
+    throw error;
+  }
 };
