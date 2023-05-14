@@ -44,7 +44,7 @@ const recentOrders = [
         userFirstname: "Juan",
         userLastname: "Perez",
         totalAmount: 789500,
-        orderStatus: "Comprado",
+        orderStatus: "en curso",
         date: "2023-05-13T14:52:54.000Z",
     },
     {
@@ -52,7 +52,7 @@ const recentOrders = [
         userFirstname: "María",
         userLastname: "López",
         totalAmount: 7525840,
-        orderStatus: "Comprado",
+        orderStatus: "en curso",
         date: "2023-05-13T13:08:54.000Z",
     },
     {
@@ -60,7 +60,7 @@ const recentOrders = [
         userFirstname: "Ángela",
         userLastname: "Rodríguez",
         totalAmount: 5320500,
-        orderStatus: "Comprado",
+        orderStatus: "en curso",
         date: "2023-05-13T12:52:54.000Z",
     },
     {
@@ -68,7 +68,7 @@ const recentOrders = [
         userFirstname: "Carlos",
         userLastname: "Gómez",
         totalAmount: 10547000,
-        orderStatus: "Comprado",
+        orderStatus: "en curso",
         date: "2023-05-13T10:08:54.000Z",
     },
     {
@@ -76,7 +76,7 @@ const recentOrders = [
         userFirstname: "Diego",
         userLastname: "Soria",
         totalAmount: 985500,
-        orderStatus: "Comprado",
+        orderStatus: "en curso",
         date: "2023-05-13T08:17:54.000Z",
     },
     {
@@ -84,7 +84,7 @@ const recentOrders = [
         userFirstname: "Soledad",
         userLastname: "Ramírez",	
         totalAmount: 2684840,
-        orderStatus: "Comprado",
+        orderStatus: "en curso",
         date: "2023-05-13T07:24:54.000Z",
     },
     {
@@ -92,7 +92,7 @@ const recentOrders = [
         userFirstname: "Rodrigo",
         userLastname: "Pérez",
         totalAmount: 4630500,
-        orderStatus: "Comprado",
+        orderStatus: "en curso",
         date: "2023-05-13T06:33:54.000Z",
     },
     {
@@ -100,7 +100,7 @@ const recentOrders = [
         userFirstname: "Romina",
         userLastname: "Alvarado",
         totalAmount: 985000,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-13T04:45:54.000Z",
     },
     {
@@ -108,7 +108,7 @@ const recentOrders = [
         userFirstname: "Agustina",
         userLastname: "Alvez",
         totalAmount: 850600,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-13T02:19:54.000Z",
     },
     {
@@ -116,7 +116,7 @@ const recentOrders = [
         userFirstname: "Lorenzo",
         userLastname: "Benítez",
         totalAmount: 1780500,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-13T01:24:54.000Z",
     },
     {
@@ -124,7 +124,7 @@ const recentOrders = [
         userFirstname: "María",
         userLastname: "López",
         totalAmount: 7525840,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-13T00:47:54.000Z",
     },
     {
@@ -132,7 +132,7 @@ const recentOrders = [
         userFirstname: "Ariel",
         userLastname: "Fernández",
         totalAmount: 5320500,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T23:30:54.000Z",
     },
     {
@@ -140,7 +140,7 @@ const recentOrders = [
         userFirstname: "Gianina",
         userLastname: "Torres",
         totalAmount: 10547000,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T23:08:54.000Z",
     },
     {
@@ -148,7 +148,7 @@ const recentOrders = [
         userFirstname: "Ezequiel",
         userLastname: "González",
         totalAmount: 985500,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T22:11:54.000Z",
     },
     {   
@@ -156,7 +156,7 @@ const recentOrders = [
         userFirstname: "Walter",
         userLastname: "Ramírez",
         totalAmount: 2684840,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T20:58:54.000Z",
     },  
     {
@@ -164,7 +164,7 @@ const recentOrders = [
         userFirstname: "Olivia",
         userLastname: "Quinteros",
         totalAmount: 4630500,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T20:33:54.000Z",
     },
     {
@@ -172,7 +172,7 @@ const recentOrders = [
         userFirstname: "Romina",
         userLastname: "Salazar",
         totalAmount: 985000,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T20:32:54.000Z",
     },
     {
@@ -180,7 +180,7 @@ const recentOrders = [
         userFirstname: "Agustina",
         userLastname: "Burgos",
         totalAmount: 850600,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T19:54:54.000Z",
     },
     {
@@ -188,7 +188,7 @@ const recentOrders = [
         userFirstname: "Fito",
         userLastname: "Páez",
         totalAmount: 1780500,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T19:34:54.000Z",
     },
     {
@@ -196,7 +196,7 @@ const recentOrders = [
         userFirstname: "Rosa",
         userLastname: "López",
         totalAmount: 7525840,
-        orderStatus: "Entregado",
+        orderStatus: "finalizada",
         date: "2023-05-12T19:20:54.000Z",
     }
 ];

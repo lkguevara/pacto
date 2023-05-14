@@ -21,7 +21,7 @@ function RecentOrders() {
                 className={
                     `p-3 rounded-lg 
                     ${
-                        order.orderStatus === 'Entregado' 
+                        order.orderStatus === "finalizada" 
                         ? 'bg-green-100' 
                         : 'bg-orange-100'
                     }
@@ -31,7 +31,7 @@ function RecentOrders() {
                 <FaShoppingBag 
                     className={
                         `${
-                            order.orderStatus === 'Entregado' 
+                            order.orderStatus === "finalizada" 
                             ? 'text-verde' 
                             : 'text-orange-400'
                         }`

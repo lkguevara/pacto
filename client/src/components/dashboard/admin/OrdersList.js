@@ -1,7 +1,9 @@
 import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { FaShoppingBag } from 'react-icons/fa';
-import { recentOrders } from '@/utils/dashboard/admin/data';
+import { recentOrders, cardsData } from '@/utils/dashboard/admin/data';
+import CardBasic from '@/components/dashboard/admin/CardBasic';
+import BarChart from '@/components/dashboard/admin/BarChart';
 
 
 function OrdersList() {
@@ -14,13 +16,25 @@ function OrdersList() {
 
     // RENDERIZADO DEL COMPONENTE
     return (
-        <div className='p-4'>
-            <div className='w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto'>
+        <div className='grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-5 gap-4 p-4 '>
+            {/* Tarjetas y gráfica */}
+            <div className='col-span-1 2xl:col-span-2 grid grid-cols-1 2xl:grid-cols-2 gap-4 h-fit'>
+                <CardBasic data={`$ ${cardsData.sumSalesToday.toLocaleString()}`} title="Ventas de Hoy" dataColor='text-verde' />
+                <CardBasic data={`$ ${(2548500).toLocaleString()}`} title='Próximamente...' />
+                <CardBasic data={`$ ${(37849).toLocaleString()}`} title='Próximamente...' />
+                <CardBasic data={`# ${(48577).toLocaleString()}`} title='Próximamente...' />
+                <CardBasic data={`# ${(35820).toLocaleString()}`} title='Próximamente...' />
+                <CardBasic data={`# ${(15470).toLocaleString()}`} title='Próximamente...' />
 
+                <BarChart colSpan='col-span-1 2xl:col-span-2' />
+            </div>
+
+            {/* Lista de ventas */}
+            <div className='w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto col-span-1 xl:col-span-2 2xl:col-span-3'>
                 {/* Encabezados */}
                 <div className='my-3 p-2 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 items-center justify-between '>
                     <span className='font-semibold'>Venta</span>
-                    <span className='font-semibold hidden sm:grid'>Status</span>
+                    <span className='font-semibold hidden sm:grid'>Estado</span>
                     <span className='font-semibold hidden md:grid'>Hora</span>
                 </div>
 
@@ -45,7 +59,7 @@ function OrdersList() {
                                             className={
                                                 `p-3 rounded-lg 
                                                 ${
-                                                    order.orderStatus === 'Entregado' 
+                                                    order.orderStatus === "finalizada" 
                                                     ? 'bg-green-100' 
                                                     : 'bg-orange-100'
                                                 }
@@ -55,7 +69,7 @@ function OrdersList() {
                                             <FaShoppingBag 
                                                 className={
                                                     `${
-                                                        order.orderStatus === 'Entregado' 
+                                                        order.orderStatus === "finalizada" 
                                                         ? 'text-verde' 
                                                         : 'text-orange-400'
                                                     }`
@@ -73,9 +87,9 @@ function OrdersList() {
                                     <p className='text-gray-600 sm:text-left text-right hidden sm:grid'>
                                         <span
                                             className={
-                                                `w-min
+                                                `w-fit
                                                 ${
-                                                    order.orderStatus === 'Entregado' 
+                                                    order.orderStatus === "finalizada" 
                                                     ? 'bg-green-100 p-2 rounded-lg' 
                                                     : 'bg-orange-100 p-2 rounded-lg'
                                                 }
