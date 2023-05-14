@@ -42,17 +42,46 @@ function UsersList() {
                                     
                                     {/* Nombre */}
                                     <div className='flex items-center col-span-1 sm:col-span-2 md:col-span-3 xl:col-span-2'>
-                                        <div className='bg-green-100 p-3 rounded-lg '>
-                                            <BsPersonFill className='text-verde' />
+                                        <div 
+                                        className={
+                                            `p-3 rounded-lg
+                                            ${
+                                                user.state ? 'bg-green-100' 
+                                                : 'bg-red-100'
+                                            }`
+                                        }
+                                        >
+                                            <BsPersonFill 
+                                            className={
+                                                user.state ? 'text-verde' 
+                                                : 'text-red-400'
+                                            } 
+                                            />
                                         </div>
                                         <p className='font-medium pl-4'>{user.firstname + " " + user.lastname}</p>
                                     </div>
 
                                     {/* Verificado */}
-                                    <p className='text-gray-600 hidden sm:grid col-span-1'>{user.verified ? 'Verificado' : 'Sin Verificar'}</p>
+                                    <p 
+                                    className={`text-gray-600 hidden sm:grid col-span-1 w-fit p-2 rounded-lg
+                                    ${
+                                        user.verified ? 'bg-green-100' 
+                                        : 'bg-orange-100'
+                                    }
+                                    `}>
+                                        {user.verified ? 'Verificado' : 'Sin Verificar'}
+                                    </p>
 
                                     {/* Estado */}
-                                    <p className='text-gray-600 hidden md:grid cols-span-1'>{user.state ? "Activo" : "Bloqueado"}</p>
+                                    <p 
+                                    className={`text-gray-600 hidden md:grid cols-span-1 w-fit p-2 rounded-lg
+                                    ${
+                                        user.state ? 'bg-green-100' 
+                                        : 'bg-red-100'
+                                    }
+                                    `}>
+                                        {user.state ? "Activo" : "Bloqueado"}
+                                    </p>
 
                                     {/* Email */}
                                     <p className='text-gray-600 hidden xl:grid col-span-2'>{user.email}</p>
