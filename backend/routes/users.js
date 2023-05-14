@@ -59,9 +59,9 @@ router.put('/recovery', (req,res, next) => {
   next();
 },(req, res) => {recoveryPassword(req, res)});
 
-router.put('/edituser', (req, res) => {editUser(req, res)})
+router.put('/edituser', (req, res) => {editUser(req, res)});
 
-router.put('/banuser', (req, res) => {logicBanUser(req, res)})
+router.put('/banuser', (req, res) => {logicBanUser(req, res)});
 
 
 
