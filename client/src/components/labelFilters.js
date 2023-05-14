@@ -35,8 +35,8 @@ export default function LabelFilter({ filter , by }) {
         dispatch(setFilters({
             ...filters,
             price:{
-                min: 0,
-                max: 100
+                min: 100,
+                max: 10000000
             }
         }))
     }

@@ -8,7 +8,7 @@ const initialState = {
   filters: {
     categorias: {},
     status: [],
-    price: { min: 0, max: 100 },
+    price: { min: 100, max: 10000000 },
     name:"",
   },
   orderBy: "default",
@@ -54,7 +54,7 @@ const productsSlice = createSlice({
       state.filters =  {
         categorias: {},
         status: [],
-        price: { min: 0, max: 100 },
+        price: { min: 100, max: 10000000 },
         name:"",
       },
       state.orderBy = "default",
