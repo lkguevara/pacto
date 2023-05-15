@@ -52,7 +52,7 @@
     margin-bottom: 20px;
 }
 
-.form__Login input{
+.selects{
     padding: 10px;
     border: 1px solid var(--verde);
     border-radius: 5px;
@@ -60,7 +60,15 @@
     margin-bottom: 10px;
 }
 
-.form__Login select{
+.selectsError{
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.inputs{
     padding: 10px;
     border: 1px solid var(--verde);
     border-radius: 5px;
@@ -68,7 +76,24 @@
     margin-bottom: 10px;
 }
 
-.form__Login input:focus{
+.inputsError{
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 2px;
+}
+
+.error{
+    color: red;
+}
+
+.disabled{
+    background-color: var(--gris) !important;
+    color: var(--negro) !important;
+}
+
+.inputs:focus{
     border: 1px solid var(--gris);
 }
 
@@ -99,27 +124,11 @@
     margin-bottom: 2rem;
 }
 
-/* .depas{
-    border: 2px solid red;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-}
-
-.depas label {
-    border: 2px solid green;
-    
-}
-
-.depas select{
-    border: 2px solid blue;
-    
-} */
 
 /* media queries */
 
 @media (max-width: 550px){
-    .form__Login select{
+    .selects{
         width: 100%;
     }
 }

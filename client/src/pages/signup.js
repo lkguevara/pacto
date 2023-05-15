@@ -9,53 +9,14 @@ import { useRouter } from "next/router";
 import { registerUser, verifyCode } from "@/redux/features/auth/authSlice";
 import { sendCode } from "@/redux/features/auth/authSlice";
 import { getDepartments, getCities } from "@/redux/features/departments/departmentsSlice";
-import { MdDepartureBoard } from "react-icons/md";
+import validate from "@/utils/validation/validationUser";
+import { MdDepartureBoard, MdElectricalServices } from "react-icons/md";
 
 export default function login() {
   const dispatch = useDispatch();
 
   const userState = useSelector((state) => state.user)
   const navigate = useRouter();
-
-  /*----------------------------------Departamento y ciudades-----------------------------------------*/
-  useEffect(() => {
-      dispatch(getDepartments())
-  }, [])
-
-  const { departments, cities } = useSelector(state => state.locations)
-
-  const [location, setLocation] = useState({
-    departamento: '',
-    ciudad: ''
-  })
-
-  const handleDepaSelect = (e) => {
-    const { id , value } = e.target;
-
-    // Busco el id del departamento seleccionado para buscar sus ciudades
-    const { _id } = departments.find(depa => depa.department === value);
-    dispatch(getCities(_id));
-
-    setLocation({
-      ...location,
-      [id]: value
-    })
-  }
-
-  const handleCitySelect = (e) => {
-    const { id , value } = e.target;
-
-    setLocation({
-      ...location,
-      [id]: value
-    })
-  }
-
-  useEffect(() => {
-    console.log(location)
-  }, [location])
-
-  /*---------------------------------------------------------------------------------------------------*/
 
   useEffect(() => {
     if (userState.verify){
@@ -76,38 +37,82 @@ export default function login() {
     lastname:"",
     address:"",
     phone:"",
-    code:"",
-    // confirmarPass: "",
+    code: "",
+    department:"",
+    city:""
   });
+
+  // Errors State
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    firstname:"",
+    lastname:"",
+    address:"",
+    phone:"",
+    department:"",
+    city:""
+  })
+
+  const [activeInput, setActiveInput] = useState('');
+
+  const handleInputFocus = (e) => {
+      setActiveInput(e.target.name)
+  };
 
   //Code State
  
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUser({
       ...user,
       [name]: value,
     });
-
+    setErrors({
+      ...errors,
+      [name]: validate({ [name]: value })
+    });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // setSignup({
-    //   ...user,
-    //   email: "",
-    //   password: "",
-    //   email: "",
-    //   password: "",
-    //   firstname:"",
-    //   lastname:"",
-    //   address:"",
-    //   phone:"",
-    //   // confirmarPass: "",
-    // });
-    dispatch(registerUser(user));
+  /*----------------------------------Departamento y ciudades-----------------------------------------*/
+      useEffect(() => {
+        dispatch(getDepartments())
+    }, [])
 
+    const { departments, cities } = useSelector(state => state.locations)
+
+    const handleDepaSelect = (e) => {
+      const { id , value } = e.target;
+
+      // Busco el id del departamento seleccionado para buscar sus ciudades
+      const { _id } = departments.find(depa => depa.department === value);
+      dispatch(getCities(_id));
+
+      setUser({
+        ...user,
+        [id]: value
+      })
+    }
+
+    const handleCitySelect = (e) => {
+      const { id , value } = e.target;
+
+      setUser({
+        ...user,
+        [id]: value
+      })
+    }
+
+    // useEffect(() => {
+    //   console.log(user)
+    // }, [user])
+
+    /*---------------------------------------------------------------------------------------------------*/
+
+  const handleSubmit = (event) => {
+      event.preventDefault();
+
+      dispatch(registerUser(user));
   };
 
   const handleSubmitCode = (event) => {
@@ -122,8 +127,8 @@ export default function login() {
   return (
     <div>
       <Head>
-        <title>PACTO | Registro</title>
-        <meta name="description" content="PACTO" />
+        <title>H2H | Registro</title>
+        <meta name="description" content="H2H" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/pacto-logo.png" />
       </Head>
@@ -134,6 +139,7 @@ export default function login() {
             <form className={style.form__Login} onSubmit={handleSubmit}>
               <label>Código:</label>
               <input
+                className={style.inputs}
                 value={user.code}
                 name={"code"}
                 type="text"
@@ -166,35 +172,21 @@ export default function login() {
               </div>
             </div>
   
-            <form className={style.form__Login} onSubmit={handleSubmit}>
+            <form className={style.form__Login} onSubmit={handleSubmit} >
               <label>Email:</label>
-              <input
-                value={user.email}
-                name={"email"}
-                type="email"
-                placeholder="Email"
-                onChange={(e) => handleChange(e)}
-              />
+              <input className={errors.email ? style.inputsError : style.inputs} value={user.email} name={"email"} type="email" placeholder="Email" onChange={(e) => handleChange(e)} onFocus={handleInputFocus} />
+              { activeInput === 'email' && errors[activeInput] && <p className={style.error}>{errors.email}</p> }
+
               <label>Nombre:</label>
-              <input
-                value={user.firstname}
-                name={"firstname"}
-                type="text"
-                placeholder="Nombre"
-                onChange={(e) => handleChange(e)}
-              />
+              <input className={errors.firstname ? style.inputsError : style.inputs} value={user.firstname} name={"firstname"} type="text" placeholder="Nombre" onChange={(e) => handleChange(e)} onFocus={handleInputFocus} />
+              { activeInput === 'firstname' && errors[activeInput] && <p className={style.error}>{errors.firstname}</p> }
+
               <label>Apellido:</label>
-              <input
-                value={user.lastname}
-                name={"lastname"}
-                type="text"
-                placeholder="Apellido"
-                onChange={(e) => handleChange(e)}
-              />
-              
+              <input className={errors.lastname ? style.inputsError : style.inputs} value={user.lastname} name={"lastname"} type="text" placeholder="Apellido" onChange={(e) => handleChange(e)} onFocus={handleInputFocus} />
+              { activeInput === 'lastname' && errors[activeInput] && <p className={style.error}>{errors.lastname}</p> }
 
               <label>Departamento:</label>
-                <select name="departamento" id="departamento" onChange={handleDepaSelect} defaultValue="default">
+                <select className={!user.department ? style.selectsError : style.selects} name="department" id="department" onChange={handleDepaSelect} defaultValue="default">
                   <option disabled value="default">Selecciona un departamento</option>
                   {departments &&
                     departments.map((depa) => (
@@ -205,7 +197,7 @@ export default function login() {
                 </select>
 
               <label>Ciudad:</label>
-              <select name="ciudad" id="ciudad" onChange={handleCitySelect} defaultValue="default">
+              <select className={!user.city ? style.selectsError : style.selects} name="city" id="city" onChange={handleCitySelect} defaultValue="default">
                   <option disabled value="default">Selecciona una ciudad</option>
                   {
                     cities && cities.map(obj => (
@@ -215,32 +207,31 @@ export default function login() {
               </select>
             
               <label>Dirección:</label>
-              <input
-                value={user.address}
-                name={"address"}
-                type="text"
-                placeholder="Dirección"
-                onChange={(e) => handleChange(e)}
-              />
+              <input className={errors.address ? style.inputsError : style.inputs} value={user.address} name={"address"} type="text" placeholder="Dirección" onChange={(e) => handleChange(e)} onFocus={handleInputFocus} />
+              { activeInput === 'address' && errors[activeInput] && <p className={style.error}>{errors.address}</p> }
+
   
               <label>Teléfono:</label>
-              <input
-                value={user.phone}
-                name={"phone"}
-                type="number"
-                placeholder="Ingresa tu teléfono"
-                onChange={(e) => handleChange(e)}
-              />
+              <input className={errors.phone ? style.inputsError : style.inputs} value={user.phone} name={"phone"} type="number" placeholder="Ingresa tu teléfono" onChange={(e) => handleChange(e)} onFocus={handleInputFocus} />
+              { activeInput === 'phone' && errors[activeInput] && <p className={style.error}>{errors.phone}</p> }
+
+
               <label>Contraseña:</label>
-              <input
-                value={user.password}
-                name={"password"}
-                type="password"
-                placeholder="Ingresa tu contraseña"
-                onChange={(e) => handleChange(e)}
-              />
-  
-              <button type="submit">Registrate</button>
+              <input className={errors.password ? style.inputsError : style.inputs} value={user.password} name={"password"} type="password" placeholder="Ingresa tu contraseña" onChange={(e) => handleChange(e)} onFocus={handleInputFocus}/>
+              { activeInput === 'password' && errors[activeInput] && <p className={style.error}>{errors.password}</p> }
+              
+              {
+                errors.email || errors.firstname || errors.lastname || errors.address || errors.phone || errors.password || 
+                !user.department || !user.city || !user.email || !user.firstname || !user.lastname || !user.address || !user.phone || !user.password 
+                ?
+                <>
+                  <button className={style.disabled} disabled >Registrate</button>
+                  <p className={style.error}>Todos los datos deben estar completos y correctos para poder registrarse</p>
+                </>
+                :
+                <button  type="submit" >Registrate</button>
+              }
+              
             </form>
           </div>
         )}
