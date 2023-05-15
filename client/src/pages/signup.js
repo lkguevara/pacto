@@ -201,7 +201,7 @@ export default function login() {
                   <option disabled value="default">Selecciona una ciudad</option>
                   {
                     cities && cities.map(obj => (
-                      <option key={obj._id} value={obj.city} data-categoria="ciudad">{obj.city}</option>
+                      <option key={obj._id} value={obj._id} data-categoria="ciudad">{obj.city}</option>
                     ))
                   }
               </select>

@@ -50,6 +50,7 @@ export default function sellProduct(){
     // LÓGICA DEL COMPONENTE
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.categories.categories);
+    const { user } = useSelector(state => state.user)
     
     const categoriesStatus = useSelector((state) => state.categories.status);
     // TO-DO: gestionar el posible error
@@ -64,7 +65,8 @@ export default function sellProduct(){
         state:"",
         stock:"",
         price:"",
-        images:[]
+        images:[],
+        user: user?._id
     });
 
     // Estados para la categoría y subcategoría seleccionadas
@@ -190,6 +192,7 @@ export default function sellProduct(){
         if (selectedStatus) form.append("state", selectedStatus);
         if (product.stock) form.append("stock", product.stock);
         if (product.price) form.append("price", product.price);
+        if (product.user) form.append("user", product.user);
         if (product.images.length > 0) {
             product.images.forEach((image) => {
                 form.append('images', image);
