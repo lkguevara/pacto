@@ -3,6 +3,7 @@ const checkProductExists = require("../../database/helper/DBCheckProductExists")
 const DBProductGetId = require("../../database/controllers/products/productGet/DBProductGetId")
 const DBShoppingCartAddProduct = require("../../database/controllers/transactions/shoppingcart/DBShoppingCartAddProduct")
 const DBShoppingCartGet = require("../../database/controllers/transactions/shoppingcart/DBShoppingCartGet")
+const DBUpdateProductInShoppingCart = require("../../database/controllers/transactions/shoppingcart/DBUpdateProductInShoppingCart");
 
 const shoppingCart = async (req, res) => {
   try {
@@ -33,14 +34,19 @@ const shoppingCart = async (req, res) => {
 
             const productAmount = productsShopping.shoppingCart.products.find(item => item.product._id.equals(product.id));
 
+          
+
             //el producto no esta en el carrito
             if (!alreadyInCart) {
               await DBShoppingCartAddProduct(userId, product.id, product.amount);
             }
             //El producto esta en el carrito
-
-            if (alreadyInCart && productAmount.stock != product.amount) {
-              await DBShoppingCartAddProduct(userId, product.id, product.amount);
+            
+            if (alreadyInCart && productAmount.ammount != product.amount) {
+              
+              const newValues = { ammount: product.amount };
+              await DBUpdateProductInShoppingCart(userId, product.id,product.amount)
+              // await DBShoppingCartAddProduct(userId, product.id, product.amount,newValues);
             }
           }
 
