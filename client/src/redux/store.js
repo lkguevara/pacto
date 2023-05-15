@@ -14,6 +14,7 @@ const store = configureStore({
         menu: menuReducer,
         user:authReducer,
         categories: categoriesReducer,
+        locations: departmentsSlice
     }
 })
 
