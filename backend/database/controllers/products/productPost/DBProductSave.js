@@ -11,7 +11,7 @@ const productSave = async (product, idUser) => {
             { $push: { "subCategories.$.products": newProduct._id } },
             { new: true }
         );
-        newProduct.user = idUser
+    
         await newProduct.save()
         return newProduct
 

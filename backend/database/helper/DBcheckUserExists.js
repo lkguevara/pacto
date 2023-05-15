@@ -7,23 +7,23 @@ const checkUserExists = async (idUser, email = false, lean = false) => {
     let isUser = null;
     if (email){
         if (lean){
-            isUser = await User.findOne({email: email}).lean();
+            isUser = await User.findOne({email: email}).populate('role', 'role').lean();
         }else{
-            isUser = await User.findOne({email: email});
+            isUser = await User.findOne({email: email}).populate('role', 'role');
         }
         
     } else{
         if (lean){
-            isUser = await User.findById(idUser).lean();
+            isUser = await User.findById(idUser).populate('role', 'role').lean();
         }else{
-            isUser = await User.findById(idUser)
+            isUser = await User.findById(idUser).populate('role', 'role')
         }
 
         
     }
 
     if (isUser != null) {
-
+    
         return isUser
     }
 
