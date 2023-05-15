@@ -7,13 +7,13 @@ const postNewProduct = async (req, res) => {
 
 
         //producto con todos los datos
-        const { newProduct } = req;
+        const { newProduct } = req.body;
 
-        
+   
   
 
         if (idUser && newProduct){
-            const postedProd = await productSave(newProduct, idUser);
+            const postedProd = await productSave(newProduct, newProduct.idUser);
   
             //Checkeo que el producto fue creado en la db
             if (checkProductExists(postedProd._id.toString())){
