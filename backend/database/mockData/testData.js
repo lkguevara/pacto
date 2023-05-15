@@ -7,8 +7,10 @@ const Question = require('../models/question');
 const Product = require('../models/product');
 const Department = require('../models/department');
 const City = require('../models/city');
+const Role = require('../models/role');
 const DBQuestionPost = require('../controllers/questions/questionPost/DBQuestionPost');
 const DBQuestionReply = require('../controllers/questions/questionPost/DBQuestionReply');
+const users = require('./infoTestUser');
 
 
 const departmentsTest = async () => {
@@ -58,24 +60,43 @@ const departmentsTest = async () => {
 const productTest = async () => {
     const productsData = fs.readFileSync(path.resolve(__dirname, 'infoTestProduct.json'), 'utf8');
     const data = JSON.parse(productsData);
-    const userId = await User.findOne({ email: "laaraña@mail.com" })
+    const userId = await User.findOne({ email: "laarania@mail.com" })
     for (let element of data.products) {
         await productSave(element, userId._id)
 
     }
 }
 
+const rolesTest = async () => {
+    const roles = ["user", "admin", "moderator"];
+
+    for (const rol of roles){
+        let newRole = new Role ({role: rol});
+        await newRole.save();
+    }
+}
 
 const userTest = async () => {
-    const usersData = fs.readFileSync(path.resolve(__dirname, 'infoTestUser.json'), 'utf8');
-    const data = JSON.parse(usersData);
-    for (let element of data.users) {
-        await createUser(element)
+   
+    const data = users;
+    const userRole = await Role.findOne().where({role: "user"});
+    const adminRole = await Role.findOne().where({role: "admin"});
+
+    for (let element of data) {
+        let user = await createUser(element);
+        user.verified = true;
+        if (user.firstname.toLowerCase() === "admin"){
+            user.role = adminRole._id;
+        } else{
+            user.role = userRole._id;
+        }
+        
+        user.save();
     }
 }
 
 const QuestionTest = async () => {
-    const vendorId = await User.findOne({ email: "laaraña@mail.com" })
+    const vendorId = await User.findOne({ email: "laarania@mail.com" })
     const userId = await User.findOne({ email: "fitopaez@mail.com" })
     const productId = await Product.findOne()
 
@@ -94,4 +115,4 @@ const QuestionTest = async () => {
     }
 }
 
-module.exports = { productTest, userTest, QuestionTest, departmentsTest }
+module.exports = { productTest, userTest, QuestionTest, departmentsTest, rolesTest }

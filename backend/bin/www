@@ -10,13 +10,13 @@ const http = require('http');
 const ngrok = require('ngrok');
 
 
-(async function() {
+/*(async function() {
   const url = await ngrok.connect({
     addr: 3001, // el puerto donde corre tu aplicación de Express
     authtoken: '2PmzLj8fLAip7T0RRoPVMUPkdx1_77BNuzUqGctyEew2Bj7PQ', // opcional: token de autenticación para tu cuenta de ngrok
   });
   console.log(`Server running, tunnel available at ${url}`);
-})();
+})();*/
 
 /**
  * Get port from environment and store in Express.
