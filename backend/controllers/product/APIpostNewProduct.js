@@ -9,7 +9,7 @@ const postNewProduct = async (req, res) => {
         //producto con todos los datos
         const { newProduct } = req;
 
-        const idUser = newProduct.user;
+        
   
 
         if (idUser && newProduct){
