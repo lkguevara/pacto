@@ -8,6 +8,7 @@ const checkUserExists = require('../database/helper/DBcheckUserExists');
 const { verifyToken }  = require('../controllers/token/verifyToken');
 const {autoLogin} = require('../middlewares/autoLoginMiddleware');
 const {checkUserEmail} = require('../middlewares/checkUserMiddleWare');
+const {checkIsAdmin} = require('../middlewares/checkAdminMiddleware');
 const {sendRecoveryCode} = require('../controllers/user/APIRecoverySendCode');
 const {recoveryPassword} = require('../controllers/user/APIRecoveryPassword');
 const {editUser} = require('../controllers/user/APIEditUser');
@@ -25,7 +26,7 @@ const checkRegister = async (req, res, next) =>{
 
 
 // GET all users
-router.get('/users', (req, res) => {getAllUsers(req, res)});
+router.get('/users', checkIsAdmin,(req, res) => {getAllUsers(req, res)});
 
 //GET user by ID
 router.get('/user', (req, res) => {getUserById(req, res)})
@@ -61,7 +62,7 @@ router.put('/recovery', (req,res, next) => {
 
 router.put('/edituser', (req, res) => {editUser(req, res)});
 
-router.put('/banuser', (req, res) => {logicBanUser(req, res)});
+router.put('/banuser', checkIsAdmin, (req, res) => {logicBanUser(req, res)});
 
 
 
