@@ -47,6 +47,9 @@ const productsSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
+    setDetail: (state) => {
+      state.productDetail = {};
+    },
     setAmountXPage: (state, action) => {
       state.amountXPage = action.payload;
     },
@@ -97,6 +100,6 @@ const productsSlice = createSlice({
     },
 });
 
-export const { setFilters, setOrderBy, setPage, setAmountXPage, resetState } = productsSlice.actions;
+export const { setFilters, setOrderBy, setPage, setAmountXPage, resetState, setDetail } = productsSlice.actions;
 
 export default productsSlice.reducer;
