@@ -6,9 +6,11 @@ import categoriesReducer from "./features/categories/categoriesSlice";
 import shoppingCartReducer from "./features/carrito/carrito";
 import paymentReducer from "./features/payment/payment";
 import departmentsSlice from "./features/departments/departmentsSlice";
+
 const store = configureStore({
     reducer:{
         shoppingCart: shoppingCartReducer,
+        payment: paymentReducer,
         products: productsSlice,
         menu: menuReducer,
         user:authReducer,
