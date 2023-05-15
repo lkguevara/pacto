@@ -76,7 +76,7 @@ const login = async (req, res) => {
               });
           }
 
-          return res.status(200).json({msg: "Su usuario se encuentra bloqueado"});
+          return res.status(403).json({msg: "Su usuario se encuentra bloqueado"});
       }
 
         return res.status(401).json({ msg: "El usuario ingresado no existe!" });
@@ -87,7 +87,7 @@ const login = async (req, res) => {
       }
     }
 
-    console.log(req.query);
+   
 
 
     return res
@@ -97,6 +97,9 @@ const login = async (req, res) => {
         verified: true,
         user: req.user,
       });
+  
+
+
   } catch (err) {
     return res
       .status(500)

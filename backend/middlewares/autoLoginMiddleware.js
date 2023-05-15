@@ -32,6 +32,10 @@ const autoLogin = async (req, res, next) => {
         
         return res.status(401).json({ msg: 'Debes iniciar sesión para acceder a esta página' });
       }
+
+      if (!user.state){
+        return res.status(403).json({msg: "Su usuario se encuentra bloqueado"});
+      }
      
       // Autenticar al usuario en la aplicación
       req.user = user;
