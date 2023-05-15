@@ -52,6 +52,7 @@ export default function sellProduct(){
     const categories = useSelector((state) => state.categories.categories);
     const { user } = useSelector(state => state.user)
     
+    
     const categoriesStatus = useSelector((state) => state.categories.status);
     // TO-DO: gestionar el posible error
     const categoriesError = useSelector((state) => state.categories.error);
@@ -68,6 +69,11 @@ export default function sellProduct(){
         images:[],
         user: user?._id
     });
+
+    // useEffect(() => {
+    //     console.log(product)
+    // },[product])
+
 
     // Estados para la categoría y subcategoría seleccionadas
     const [selectedCategory, setSelectedCategory] = useState(null);   
