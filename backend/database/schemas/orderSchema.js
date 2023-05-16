@@ -13,11 +13,13 @@ const orderSchema = Schema({
     id: Schema.Types.ObjectId,
     user: { type: Schema.Types.ObjectId, ref: "User" },
     products: [boughtProductSchema],
+    creationdate: Date,
     state: {
         type: String,
         enum: ["en curso", "finalizada"],
         default: "en curso"
-    }
-})
+    },
+    totalprice: Number
+}, { versionKey: false })
 
 module.exports = orderSchema

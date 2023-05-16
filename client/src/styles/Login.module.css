@@ -124,12 +124,35 @@
     margin-bottom: 2rem;
 }
 
+.terminos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+   
+    padding: 10px;
+    justify-self: center;
+}
+
+
+.terminos div{
+    margin-left: 1rem;
+    font-weight: 500;
+/* border: 2px solid blue; */
+}
 
 /* media queries */
 
 @media (max-width: 550px){
     .selects{
         width: 100%;
+    }
+    .terminos{
+        width: 100%;
+    }
+    .containerLogin{
+        width: 90%;
+        margin: 0 auto;
     }
 }
 

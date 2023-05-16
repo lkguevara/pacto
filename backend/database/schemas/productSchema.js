@@ -23,9 +23,9 @@ const productSchema = new Schema({
     purchasedBy: [{ user: { type: Schema.Types.ObjectId, ref: "User" }, ammount: Number }],
     //send: { type: Schema.Types.ObjectId, ref: "Send" },
     questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
-    //reviews: { type: Schema.Types.ObjectId, ref: "Review" },
+    publicationdate: Date
 
-})
+}, { versionKey: false })
 
 
 

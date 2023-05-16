@@ -5,9 +5,10 @@ import Layout from "@/components/layout";
 import NotFound from "@/components/notFound";
 import React, { useEffect,useState } from "react";
 import { useRouter } from "next/router";
-import { fetchProductDetailAsync } from "@/redux/features/products/productsSlice";
+import { fetchProductDetailAsync, fetchProductSellerAsync ,setDetail } from "@/redux/features/products/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { sendProducts, addProduct } from "@/redux/features/carrito/carrito";
+import Link from "next/link";
 
 function producto() {
   const router = useRouter()
@@ -15,7 +16,7 @@ function producto() {
 
   const { productDetail } = useSelector(state => state.products);
   const shoppingCart =  useSelector(state => state.shoppingCart.products);
-  console.log(shoppingCart);
+  
 
   const { id } = router.query;
 
@@ -29,8 +30,19 @@ function producto() {
 
     useEffect(() => {
         dispatch(fetchProductDetailAsync(id));
+
+        return () => {
+          dispatch(setDetail())
+        }
     }, [dispatch, id]);
 
+    /*------------Traer informacion del vendedor del producto------------*/
+    useEffect(() => {
+      dispatch(fetchProductSellerAsync(id));
+    },[])
+
+
+    /*-------------------------------------------------------------------*/
 
     // datos del producto
     useEffect(() => {
@@ -118,12 +130,11 @@ function producto() {
                         <input type="number" min="1" max={productDetail.stock} placeholder="1" onChange={handleProductAmount}/>
                       </div>
                       <p>Unidades disponibles: <span>{productDetail.stock}</span></p>
-                      <p>Información del vendedor ℹ️</p>
+                      <p>Información del vendedor  <button><Link className={style.infoSeller} href='/profileSeller'>ℹ️</Link></button></p>
                     </div>
 
                     <div className={style.buttons}>
                       <button className={style.buttonAdd} onClick={handleAddShoppingCart}>Agregar al carrito</button>
-                      <button className={style.buttonSell}>Comprar ahora</button>
                     </div>
                 </div>
               </div>

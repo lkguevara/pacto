@@ -357,6 +357,10 @@
   color: var(--gris);
 }
 
+.infoSeller{
+  text-decoration: none;
+}
+
 @media (min-width: 1024px) {
   /* .informationProduct {
     width: 80%;

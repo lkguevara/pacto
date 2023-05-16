@@ -60,6 +60,15 @@ export default function login() {
       setActiveInput(e.target.name)
   };
 
+  //terminos acept
+  const [terminos, setTerminos] = useState(false);
+
+  const handleTerminos = (e) => {
+    const { checked } =  e.target
+    setTerminos(checked)
+  };
+
+
   //Code State
  
   const handleChange = (event) => {
@@ -219,17 +228,22 @@ export default function login() {
               <label>Contraseña:</label>
               <input className={errors.password ? style.inputsError : style.inputs} value={user.password} name={"password"} type="password" placeholder="Ingresa tu contraseña" onChange={(e) => handleChange(e)} onFocus={handleInputFocus}/>
               { activeInput === 'password' && errors[activeInput] && <p className={style.error}>{errors.password}</p> }
+
+              <div className={style.terminos}>
+                <input type="checkbox"  value={terminos} onClick={handleTerminos} /><div>Aceptar <Link href='/nosotros/terminos'>Términos y condiciones</Link></div>
+              </div>
+              
               
               {
                 errors.email || errors.firstname || errors.lastname || errors.address || errors.phone || errors.password || 
-                !user.department || !user.city || !user.email || !user.firstname || !user.lastname || !user.address || !user.phone || !user.password 
+                !user.department || !user.city || !user.email || !user.firstname || !user.lastname || !user.address || !user.phone || !user.password || !terminos
                 ?
                 <>
                   <button className={style.disabled} disabled >Registrate</button>
                   <p className={style.error}>Todos los datos deben estar completos y correctos para poder registrarse</p>
                 </>
                 :
-                <button  type="submit" >Registrate</button>
+                <button  type="submit">Registrate</button>
               }
               
             </form>

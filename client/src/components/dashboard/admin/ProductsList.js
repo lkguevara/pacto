@@ -1,42 +1,72 @@
 import React, {useState, useEffect} from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { getProductsByPage } from '../../../api/productsApi';
-import { BsPostcard } from 'react-icons/bs';
+import { banProduct } from '../../../api/productsApi';
+import Pagination from './Pagination';
+import Modal from './Modal';
 
 
 function ProductsList() {
     // LÓGICA DEL COMPONENTE
+    const router = useRouter();
+
+    // Productos de la página actual de la lista
     const [products, setProducts] = useState([]);
-    const [amountXPage, setAmountXPage] = useState(24); // Cantidad de productos por página (default: 24)
+    // Cantidad total de productos en la base de datos
     const [totalProducts, setTotalProducts] = useState(0);
-    const [totalPages, setTotalPages] = useState(1);
-    const [page, setPage] = useState(1);
+    const [amountXPage, setAmountXPage] = useState(24); // Cantidad de productos por página (default: 24)
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(totalProducts / amountXPage);
+
+    // Estado del modal
+    const [modalOpen, setModalOpen] = useState(false);
+    // Producto seleccionado para bloquear/desbloquear
+    const [selectedProd, setSelectedProd] = useState(null);
+
 
     useEffect(() => {
         const fetchProducts = async () => {
             // Obtener los productos de la página actual
-            const { totalProducts, amountXPage, products} = await getProductsByPage(page);
-            setTotalProducts(totalProducts);
-            setAmountXPage(amountXPage);
-            setProducts(products);
-
-            // Cálculo de la cantidad de páginas
-            const pages = Math.ceil(totalProducts / amountXPage);
-            setTotalPages(pages);
-
-            // Si la página actual es mayor a la cantidad de páginas, se setea la última página
-            if (page > pages) {
-                setPage(pages);
-            }
+            const { totalProducts, amountXPage, products} = await getProductsByPage(currentPage);
+            setAmountXPage(amountXPage || 24);
+            setProducts(products || []);
+            setTotalProducts(totalProducts || 0);
         };
 
         fetchProducts();
-    }, [page]);
+    }, [currentPage]);
 
 
+    // Función para gestionar el cambio de página
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    }
+
+    // Función para ver los detalles de un producto
     const handleDetails = (id) => {
-        // TO-DO: Mostrar detalles del usuario
-        console.log(id);
+        router.push(`/dashboard/admin/productos/${id}`);
+    }
+
+    // Función para abrir el modal y pedir confirmaciòn para bloquear/desbloquear producto
+    const handleBlock = async (product) => {
+        setSelectedProd(product);
+        setModalOpen(true);
+    }
+
+    // Función para bloquear/desbloquear producto
+
+    const handleConfirmBlock = async () => {
+        try {
+            // TODAVÍA NO ESTÁ IMPLEMENTADO (hay que crear el endpoint en el backend)
+            const response = await banProduct(selectedProd);
+            router.reload();
+        } catch (error) {
+            console.error('Error al bloquear producto:', error);
+            alert('Error al bloquear producto');
+        }
+
+        setModalOpen(false);
     }
 
 
@@ -47,12 +77,13 @@ function ProductsList() {
             <div className='w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto'>
 
                 {/* Encabezados */}
-                <div className='my-3 p-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-1 items-center justify-between '>
-                    <span className='font-semibold col-span-2'>Nombre</span>
+                <div className='my-3 p-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-x-1 items-center justify-between '>
+                    <span className='font-semibold hidden sm:grid sm:col-span-2 pl-24'>Nombre</span>
                     <span className='font-semibold hidden md:grid'>Estado</span>
                     <span className='font-semibold hidden lg:grid'>Categoría</span>
                     <span className='font-semibold hidden xl:grid'>SubCategoría</span>
                     <span className='font-semibold hidden sm:grid'>Precio</span>
+                    <span className='font-semibold hidden md:grid col-span-1'>Acciones</span>
                 </div>
 
                 {/* Registros */}
@@ -62,8 +93,7 @@ function ProductsList() {
                             
                             return (
                                 <li key={index} 
-                                className='bg-gray-100 hover:bg-gray-200 rounded-lg my-3 p-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-2 items-center justify-between cursor-pointer '
-                                onClick={() => handleDetails(product._id)}
+                                className='bg-gray-100 hover:bg-gray-200 rounded-lg my-3 px-2 py-4 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-x-2 items-center justify-between '
                                 >
                                     
                                     {/* Nombre */}
@@ -71,7 +101,7 @@ function ProductsList() {
                                         <div className='flex justify-center content-stretch items-stretch w-28 h-28 sm:w-16 sm:h-16 overflow-hidden rounded-md drop-shadow-md mb-2'>
                                             <Image src={product.images[0]} alt={product.name} width="50" height="50" className='w-full h-full object-cover flex-1'/>
                                         </div>
-                                        <p className='font-medium pl-4'>{product.name}</p>
+                                        <p className='font-medium pl-0 sm:pl-4 text-center'>{product.name}</p>
                                     </div>
 
                                     {/* Estado */}
@@ -85,6 +115,38 @@ function ProductsList() {
 
                                     {/* Precio */}
                                     <p className='text-gray-600 hidden sm:grid'>{`$ ${product.price.toLocaleString()}`}</p>
+
+                                    {/* Acciones */}
+                                    <div className='flex items-center md:items-start justify-center col-span-1 sm:col-span-4 md:col-span-1 mt-2'>
+                                        <button 
+                                        className='
+                                            bg-verde hover:bg-verde-light text-white font-semibold text-sm
+                                            py-1 px-2 mx-1 w-24 sm:max-w-md
+                                            rounded-md cursor-pointer'
+                                        onClick={() => handleDetails(product._id)}
+                                        >
+                                            Detalle
+                                        </button>
+                                        <button 
+                                        className='bg-rose-500 hover:bg-rose-400 text-white font-semibold 
+                                        py-1 px-2 w-24 rounded-md cursor-pointer mx-1 text-sm'
+                                        onClick={() => handleBlock(product)}
+                                        >
+                                            {product.active === "bloqueado" ? "Desbloquear" : "Bloquear"}
+                                        </button>
+                                    </div>
+                                    {
+                                        modalOpen && (
+                                            <Modal
+                                            // PROVISORIAMENTE DESHABILITADO,hasta terminar de desarrollar el endpoint en el backend
+                                            // onConfirm={handleConfirmBlock}
+                                            onConfirm={() => setModalOpen(false)}
+                                            onClose={() => setModalOpen(false)}
+                                            message={`¿Estás seguro de que quieres ${selectedProd.active === "bloqueado" ? "DESBLOQUEAR" : "BLOQUEAR"} el producto ${selectedProd.name}?`}
+                                            />
+                                        )
+                                    }
+
                                 </li>
                             )
                         })

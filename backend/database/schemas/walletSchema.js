@@ -13,6 +13,6 @@ const walletSchema = Schema({
         default: 0
     }
 
-})
+}, { versionKey: false })
 
 module.exports = walletSchema

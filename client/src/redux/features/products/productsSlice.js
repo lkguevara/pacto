@@ -16,6 +16,7 @@ const initialState = {
   amountXPage : 0,
   productList: { cantidad: 0, products: [] },
   productDetail: {},
+  productSeller: null,
   status: "idle",
   error: null,
 };
@@ -34,6 +35,13 @@ export const fetchProductDetailAsync = createAsyncThunk("products/fetchProductDe
   }
 );
 
+export const fetchProductSellerAsync = createAsyncThunk("products/fetchProductSeller", async (id) => {
+  const response = await axios.get(`/seller?id=${id}`);
+  const data = await response.data;
+  return data;
+  }
+);
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -46,6 +54,12 @@ const productsSlice = createSlice({
     },
     setPage: (state, action) => {
       state.page = action.payload;
+    },
+    setDetail: (state) => {
+      state.productDetail = {};
+    },
+    setSeller: (state) => {
+      state.productSeller = {};
     },
     setAmountXPage: (state, action) => {
       state.amountXPage = action.payload;
@@ -94,9 +108,21 @@ const productsSlice = createSlice({
           state.error = action.error.message;
         })
 
+        // **** GET PRODUCT SELLER ****
+        .addCase(fetchProductSellerAsync.pending, (state) => {
+          state.status = "loading";
+        })
+        .addCase(fetchProductSellerAsync.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          state.productSeller = action.payload;
+        })
+        .addCase(fetchProductSellerAsync.rejected, (state, action) => {
+          state.status = "failed";
+          state.error = action.error.message;
+        })
     },
 });
 
-export const { setFilters, setOrderBy, setPage, setAmountXPage, resetState } = productsSlice.actions;
+export const { setFilters, setOrderBy, setPage, setAmountXPage, resetState, setDetail } = productsSlice.actions;
 
 export default productsSlice.reducer;

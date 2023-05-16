@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { FaShoppingBag } from 'react-icons/fa';
 import { recentOrders, cardsData } from '@/utils/dashboard/admin/data';
@@ -8,9 +9,10 @@ import BarChart from '@/components/dashboard/admin/BarChart';
 
 function OrdersList() {
     // LÓGICA DEL COMPONENTE
+    const router = useRouter();
+
     const handleDetails = (id) => {
-        // TO-DO: Mostrar detalles de la venta
-        console.log(id);
+        router.push(`/dashboard/admin/ventas/${id}`);
     }
 
 

@@ -1,9 +1,19 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { FaShoppingBag } from 'react-icons/fa';
 import { recentOrders as orders } from "../../../utils/dashboard/admin/data";
 
 function RecentOrders() {
+  // LÓGICA DEL COMPONENTE
+  const router = useRouter();
+
+  const handleDetails = (id) => {
+    router.push(`/dashboard/admin/ventas/${id}`);
+  }
+
+
+  // RENDERIZADO DEL COMPONENTE
   return (
     <div className='w-full col-span-1 relative h-[50vh] lg:h-[70vh] m-auto p-4 border rounded-lg bg-white overflow-scroll '>
       <h1>Ventas recientes</h1>
@@ -16,7 +26,7 @@ function RecentOrders() {
             const local = new Date(utc.getTime() + (offset*60*1000));
 
             return (
-            <li key={index} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer '>
+            <li key={index} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer' onClick={() => handleDetails(order._id)}>
               <div 
                 className={
                     `p-3 rounded-lg 

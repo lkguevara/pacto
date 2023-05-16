@@ -9,12 +9,19 @@ const Question = require("./models/question");
 const Department = require("./models/department");
 const City = require("./models/city");
 const Role = require("./models/role");
+const Wallet = require("./models/wallet");
 require("dotenv").config()
+const cron = require('node-cron');
+const logAdminPostDay = require("./controllers/admin/logAdminPostDay");
+const LogAdmin = require("./models/logadmin");
+const logBalanceToday = require("./controllers/admin/handlers/logBalanceToday");
+const DBShoppingCartAddProduct = require("./controllers/transactions/shoppingcart/DBShoppingCartAddProduct");
+const DBPurchasedProducts = require("./controllers/transactions/DBPurchasedProducts");
 
 // REVISAR ARCHIVO ENV EN DRIVE PARA TENER CREDENCIALES DE ACCESO 
 const { MONGO_DB_URI } = process.env
-mongoose.connect(MONGO_DB_URI);
-//mongoose.connect("mongodb://127.0.0.1:27017/marketplace")
+//mongoose.connect(MONGO_DB_URI);
+mongoose.connect("mongodb://127.0.0.1:27017/marketplace")
 
 mongoose.connection.on("open", (_) => {
   console.log("Database is connected to Atlas");
@@ -23,7 +30,9 @@ mongoose.connection.on("open", (_) => {
 mongoose.connection.on("error", (error) => {
   console.log('Error connection: ', error);
 });
-
+cron.schedule('0 0 * * *', () => {
+  logAdminPostDay()
+});
 
 
 
@@ -34,6 +43,8 @@ const load = async () => {
   await Review.deleteMany();
   await Question.deleteMany();
   await Role.deleteMany();
+  await Wallet.deleteMany()
+  //await LogAdmin.deleteMany()
   //await City.deleteMany();
   //await Department.deleteMany();
 
@@ -45,7 +56,13 @@ const load = async () => {
   await QuestionTest()
 
 };
-
+//const Data = new LogAdmin()
+//Data.save()
 //load();
+//logBalanceToday()
 
+const user = "6463aad67414c82d6e56b92d"
+const product = "6463aad67414c82d6e56ba13"
+//DBShoppingCartAddProduct(user, product, 1)
+//DBPurchasedProducts(user)
 module.exports = mongoose.connection;

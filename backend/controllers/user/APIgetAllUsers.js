@@ -2,7 +2,7 @@ const getAllUsersDB = require('../../database/controllers/users/userGet/DBAllUse
 
 //Array que contendrá las keys que se permitiran en el json de user
 //registerDate está comentado ya que todavía no existe en el schema de usuarios
-const allowedKeys  = ["_id", "firstname", "lastname", "verified", "role", "state" /*, registerDate*/ ];
+const allowedKeys  = ["_id", "firstname", "lastname", "verified", "role", "state", "email" /*, registerDate*/ ];
 
 const getAllUsers = async (req, res) => {
     try{
@@ -25,12 +25,13 @@ const getAllUsers = async (req, res) => {
              
             }
 
+            const totalUsers = users.length;
             const indexLastProd = page * amountXPage;
             const indexFirstProd = indexLastProd - amountXPage;
 
             users.slice(indexFirstProd, indexLastProd);
 
-            return res.status(200).json({msg: 'Usuarios traidos con exito', users});
+            return res.status(200).json({totalUsers, users});
         }
 
         return res.status(404).json({msg: 'Error 404, not found '});

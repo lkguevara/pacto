@@ -13,7 +13,7 @@ const answerSchema = new Schema({
     },
     user: { type: Schema.Types.ObjectId, ref: "User" },
     date: Date
-})
+}, { versionKey: false })
 
 const questionSchema = new Schema({
     id: Schema.Types.ObjectId,
@@ -30,6 +30,6 @@ const questionSchema = new Schema({
     answer: answerSchema,
     product: { type: Schema.Types.ObjectId, ref: "Product" },
     user: { type: Schema.Types.ObjectId, ref: "User" }
-})
+}, { versionKey: false })
 
 module.exports = questionSchema

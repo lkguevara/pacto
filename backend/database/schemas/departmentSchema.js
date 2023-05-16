@@ -4,6 +4,6 @@ const { Schema } = require("mongoose")
 const departmentSchema = new Schema({
     codeDane: String,
     department: String
-});
+}, { versionKey: false });
 
 module.exports = departmentSchema;
