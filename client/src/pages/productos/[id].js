@@ -5,7 +5,7 @@ import Layout from "@/components/layout";
 import NotFound from "@/components/notFound";
 import React, { useEffect,useState } from "react";
 import { useRouter } from "next/router";
-import { fetchProductDetailAsync } from "@/redux/features/products/productsSlice";
+import { fetchProductDetailAsync, setDetail } from "@/redux/features/products/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { sendProducts, addProduct } from "@/redux/features/carrito/carrito";
 
@@ -29,6 +29,10 @@ function producto() {
 
     useEffect(() => {
         dispatch(fetchProductDetailAsync(id));
+
+        return () => {
+          dispatch(setDetail())
+        }
     }, [dispatch, id]);
 
 

@@ -64,18 +64,20 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
   // POR EL MOMENTO NO USAMOS EL DEBOUNCED
   // const debouncedhandlerFilterStatus = debounce(handlerFilterStatus, 800);
     
-    const handlePriceChange = (newValue) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        dispatch(setFilters({
-          ...filters,
-          price: {
-            min: newValue[0],
-            max: newValue[1]
-          }
-        }))
-      }, 1000); 
-    }
+  const handlePriceChange = (newValue) => {
+
+    console.log(newValue)
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      dispatch(setFilters({
+        ...filters,
+        price: {
+          min: newValue[0],
+          max: newValue[1]
+        }
+      }))
+    }, 1000); 
+  }
 
   //filters.categorias = { categoria, subcategoria}  {}
   //filters.status= [0, 1, 2]  []
@@ -99,10 +101,13 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                 filters.categorias.categoria && <LabelFilter filter={filters.categorias} by='categorias'/>
               }
               {
+                filters.name && <LabelFilter filter={filters.name} by='name' />
+              }
+              {
                 filters.status.length !== 0 && <LabelFilter filter={filters.status} by='status'/>
               }
               {
-                (filters.price.min !== 0 || filters.price.max !== 100) && <LabelFilter filter={filters.price} by='price'/>
+                (filters.price.min !== 100 || filters.price.max !== 10000000) && <LabelFilter filter={filters.price} by='price'/>
               }
             </div>
             {/* Contenedor para los criterios de filtrado */}
@@ -306,10 +311,12 @@ const FilterPanel = ({ isVisible, setVisibility }) => {
                         className={styles.priceSlider}
                         thumbClassName={styles.thumb}
                         defaultValue={[filters.price.min, filters.price.max]}
+                        step={100}
+                        max={filters.price.max}
+                        min={filters.price.min}
                         renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
                         pearling
-                        minDistance={10}
-                        
+                        minDistance={10000}
                         value={[filters.price.min, filters.price.max]}
                         onChange={(newValue) => {handlePriceChange(newValue)}}
                       />

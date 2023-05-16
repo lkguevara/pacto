@@ -8,7 +8,7 @@ const initialState = {
   filters: {
     categorias: {},
     status: [],
-    price: { min: 0, max: 100 },
+    price: { min: 100, max: 10000000 },
     name:"",
   },
   orderBy: "default",
@@ -47,6 +47,9 @@ const productsSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
+    setDetail: (state) => {
+      state.productDetail = {};
+    },
     setAmountXPage: (state, action) => {
       state.amountXPage = action.payload;
     },
@@ -54,7 +57,7 @@ const productsSlice = createSlice({
       state.filters =  {
         categorias: {},
         status: [],
-        price: { min: 0, max: 100 },
+        price: { min: 100, max: 10000000 },
         name:"",
       },
       state.orderBy = "default",
@@ -97,6 +100,6 @@ const productsSlice = createSlice({
     },
 });
 
-export const { setFilters, setOrderBy, setPage, setAmountXPage, resetState } = productsSlice.actions;
+export const { setFilters, setOrderBy, setPage, setAmountXPage, resetState, setDetail } = productsSlice.actions;
 
 export default productsSlice.reducer;

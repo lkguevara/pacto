@@ -5,11 +5,11 @@ const DBProductGetId = async (id) => {
         const { user, ...info } = await Product.findById(id)
             .populate(["user", "questions"])
             .lean()
-        const userinfo =
-        {
-            firstname: user.firstname,
-            lastname: user.lastname,
-        }
+        // const userinfo =
+        // {
+        //     firstname: user.firstname,
+        //     lastname: user.lastname,
+        // }
         return info
     } catch (error) {
         throw Error(error.message)

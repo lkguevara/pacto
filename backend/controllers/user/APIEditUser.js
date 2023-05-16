@@ -3,7 +3,7 @@ const checkUserExists = require('../../database/helper/DBcheckUserExists');
 
 const editUser = async (req, res) => {
     
-    const {id, firstname, lastname, address, email, phone, password} = req.body;
+    const {id, firstname, lastname, city, address, email, phone, password} = req.body;
 
     try{
        
@@ -17,6 +17,7 @@ const editUser = async (req, res) => {
             if (lastname) user.lastname = lastname;
             if (address) user.address = address;
             if (email && email.match(regex)) user.email = email;
+            if (city) user.city = city;
             if (phone) user.phone = phone;
 
             if (password){

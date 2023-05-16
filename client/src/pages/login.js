@@ -102,10 +102,10 @@ export default function login(){
                 
                     <form className={style.form__Login} onSubmit={handleSubmit}>
                         <label>Email:</label>
-                        <input onChange={(e)=> handleChange(e)} value={login.email}  name={"email"} type="email" placeholder="Email" />
+                        <input className={style.inputs} onChange={(e)=> handleChange(e)} value={login.email}  name={"email"} type="email" placeholder="Email" />
 
                         <label>Contraseña:</label>
-                        <input onChange={(e)=> handleChange(e)} value={login.password} name={"password"} type="password" placeholder="Contraseña" />
+                        <input className={style.inputs} onChange={(e)=> handleChange(e)} value={login.password} name={"password"} type="password" placeholder="Contraseña" />
 
                         <button type="submit">Iniciar Sesión</button>
                     </form>

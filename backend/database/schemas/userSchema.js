@@ -43,6 +43,7 @@ const userSchema = Schema({
     required: true,
   },
   city: { type: Schema.Types.ObjectId, ref: "City"},
+  role: { type: Schema.Types.ObjectId, ref: "Role" },
   shoppingCart: shoppingCartSchema,
   reviewReceived: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   reviewPost: [{ type: Schema.Types.ObjectId, ref: "Review" }],
