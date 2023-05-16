@@ -11,13 +11,13 @@ export const banUser = async (id) => {
     }
 };
 
-// Función para obtener todos los usuarios
-export const getAllUsers = async () => {
+// Función para obtener todos los usuarios de la página actual
+export const getAllUsers = async (page) => {
     try {
-        const response = await axios.get(`/users`);
+        const response = await axios.get(`/users?page=${page}`);
         return response.data;
     } catch (error) {
         console.error('Error al obtener usuarios:', error);
-        alert('Error al obtener usuarios');
+        return [];
     }
 };

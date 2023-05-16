@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { BsPersonFill } from 'react-icons/bs';
 import { users } from "../../../utils/dashboard/admin/data";
-import { banUser } from "../../../api/usersApi";
+import { banUser, getAllUsers } from "../../../api/usersApi";
+import Pagination from './Pagination';
 
 
 function UsersList() {
     // LÓGICA DEL COMPONENTE
+    // const [users, setUsers] = useState([]);
+    // const [page, setPage] = useState(1);
+
+    // useEffect(() => {
+    //     const fetchUsers = async () => {
+    //         // Obtener los usuarios de la página actual
+    //         const { users } = await getAllUsers(page);
+
+    //         setUsers(users);
+    //     };
+
+    //     fetchUsers();
+    // }, [page]);
+
 
     // Función para ver detalles del usuario
     const handleDetails = (id) => {
@@ -26,6 +41,9 @@ function UsersList() {
         // }
         console.log(id);
     }
+
+   
+
 
     // RENDERIZADO DEL COMPONENTE
     return (
@@ -142,6 +160,11 @@ function UsersList() {
                         })
                     }
                 </ul>
+
+                {/* Paginación */}
+                <div className='flex w-full items-center justify-center p-4'>
+                    <Pagination currentPage={1} totalPages={5} handlePageChange={() => {}} />
+                </div>
             </div>
         </div>
     )
