@@ -1,26 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { BsPersonFill } from 'react-icons/bs';
-import { users } from "../../../utils/dashboard/admin/data";
+// import { users } from "../../../utils/dashboard/admin/data";
 import { banUser, getAllUsers } from "../../../api/usersApi";
 import Pagination from './Pagination';
 
 
 function UsersList() {
     // LÓGICA DEL COMPONENTE
-    // const [users, setUsers] = useState([]);
-    // const [page, setPage] = useState(1);
+    const router = useRouter();
 
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         // Obtener los usuarios de la página actual
-    //         const { users } = await getAllUsers(page);
+    const [users, setUsers] = useState([]);
+    const [totalUsers, setTotalUsers] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const amountXPage = 20; // Cantidad de usuarios por página (default: 20)
+    const totalPages = Math.ceil(totalUsers / amountXPage);
 
-    //         setUsers(users);
-    //     };
+    useEffect(() => {
+        const fetchUsers = async () => {
+            // Obtener los usuarios de la página actual
+            console.log("currentPage: " + currentPage);
+            const { totalUsers, users } = await getAllUsers(currentPage);
+            console.log(totalUsers);
+            setTotalUsers(totalUsers || 0);
+            setUsers(users || []);
+        };
 
-    //     fetchUsers();
-    // }, [page]);
+        fetchUsers();
+    }, [currentPage]);
+
+
+    // Función para gestionar el cambio de página
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    }
 
 
     // Función para ver detalles del usuario
@@ -31,15 +45,14 @@ function UsersList() {
 
     // Función para bloquear/desbloquear usuario
     const handleBlock = async (id) => {
-        // try {
-        //     const response = await banUser(id);
-        //     console.log(response);
-        // } catch (error) {
-        //     console.error('Error al bloquear usuario:', error);
-        //     alert('Error al bloquear usuario');
-        //     throw error;
-        // }
-        console.log(id);
+        try {
+            const response = await banUser(id);
+            router.reload();
+            console.log(response);
+        } catch (error) {
+            console.error('Error al bloquear usuario:', error);
+            alert('Error al bloquear usuario');
+        }
     }
 
    
@@ -140,7 +153,7 @@ function UsersList() {
                                         <button 
                                         className='
                                             bg-verde hover:bg-verde-light text-white font-semibold text-sm
-                                            py-1 mx-1 w-20 sm:max-w-md
+                                            py-1 px-2 mx-1 w-24 sm:max-w-md
                                             rounded-md cursor-pointer'
                                         onClick={() => handleDetails(user._id)}
                                         >
@@ -148,10 +161,10 @@ function UsersList() {
                                         </button>
                                         <button 
                                         className='bg-rose-500 hover:bg-rose-400 text-white font-semibold 
-                                        py-1 w-20 rounded-md cursor-pointer mx-1 text-sm'
+                                        py-1 px-2 w-24 rounded-md cursor-pointer mx-1 text-sm'
                                         onClick={() => handleBlock(user._id)}
                                         >
-                                            Bloquear
+                                            {user.state ? "Bloquear" : "Desbloquear"}
                                         </button>
                                     </div>
 
@@ -163,7 +176,7 @@ function UsersList() {
 
                 {/* Paginación */}
                 <div className='flex w-full items-center justify-center p-4'>
-                    <Pagination currentPage={1} totalPages={5} handlePageChange={() => {}} />
+                    <Pagination currentPage={users.length !== 0 ? currentPage : 0} totalPages={totalPages} handlePageChange={handlePageChange} />
                 </div>
             </div>
         </div>
