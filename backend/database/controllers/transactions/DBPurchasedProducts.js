@@ -1,6 +1,7 @@
 const Order = require("../../models/order");
 const Product = require("../../models/product");
 const User = require("../../models/user");
+const LogAdminController = require("../admin/LogAdminController");
 const DBSetBalance = require("./DBSetBalance");
 
 const DBPurchasedProducts = async (idUser) => {
@@ -39,8 +40,11 @@ const DBPurchasedProducts = async (idUser) => {
             element.save()
         }
         newOrder.products = shoppingCartProducts.shoppingCart.products
+        newOrder.totalprice = shoppingCartProducts.shoppingCart.totalprice
         shoppingCartProducts.purchased.push(newOrder._id)
+        LogAdminController(newOrder._id, shoppingCartProducts.shoppingCart.totalprice, "balance")
         shoppingCartProducts.shoppingCart = {}
+
         const response = await newOrder.save()
         shoppingCartProducts.save()
         return response

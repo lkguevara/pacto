@@ -4,6 +4,7 @@ const Wallet = require("../../models/wallet");
 
 const DBSetBalance = async (idUser, price, set) => {
     try {
+
         const walletUser = await Wallet.findOne({ user: idUser })
         if (set === "pending") {
             walletUser.pendingBalance += price
