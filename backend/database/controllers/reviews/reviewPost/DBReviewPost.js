@@ -2,6 +2,7 @@ const { Schema } = require("mongoose");
 const Review = require("../../../models/review");
 const User = require("../../../models/user");
 const CheckAverageCalification = require("../../../helper/DBCheckAverageCalification");
+const LogAdminController = require("../../admin/LogAdminController");
 
 
 const DBReviewPost = async (idUser, review, idVendor) => {
@@ -10,6 +11,7 @@ const DBReviewPost = async (idUser, review, idVendor) => {
         const updateUser = await User.findByIdAndUpdate(idUser, { $push: { reviewPost: newReview._id } }, { returnDocument: "after" })
         newReview.client = idUser
         newReview.vendor = idVendor
+        LogAdminController(newReview._id, null, "reviews")
         const response = await newReview.save()
         const updateVendor = await User.findByIdAndUpdate(idVendor, { $push: { reviewReceived: newReview._id } }, { returnDocument: "after" })
             .select(["calification", "reviewReceived"])

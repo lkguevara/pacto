@@ -3,6 +3,7 @@ const { Schema } = require("mongoose");
 const shoppingCartSchema = Schema({
   id: Schema.Types.ObjectId,
   products: [{ product: { type: Schema.Types.ObjectId, ref: "Product" }, ammount: Number }],
+  totalprice: { type: Number, default: 0 }
 })
 
 const userSchema = Schema({
@@ -25,8 +26,9 @@ const userSchema = Schema({
     required: true,
   },
   state: {
-    type: Boolean,
-    default: true,
+    type: String,
+    enum: ["activo", "bloqueado", "desactivado"],
+    default: "activo",
   },
   verified: Boolean,
   codeverified: Number,
@@ -42,7 +44,8 @@ const userSchema = Schema({
     type: String,
     required: true,
   },
-  city: { type: Schema.Types.ObjectId, ref: "City"},
+  registrationdate: Date,
+  city: { type: Schema.Types.ObjectId, ref: "City" },
   role: { type: Schema.Types.ObjectId, ref: "Role" },
   shoppingCart: shoppingCartSchema,
   reviewReceived: [{ type: Schema.Types.ObjectId, ref: "Review" }],
