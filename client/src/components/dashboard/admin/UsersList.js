@@ -1,48 +1,73 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { BsPersonFill } from 'react-icons/bs';
-import { users } from "../../../utils/dashboard/admin/data";
+// Mock data
+// import { users } from "../../../utils/dashboard/admin/data";
 import { banUser, getAllUsers } from "../../../api/usersApi";
 import Pagination from './Pagination';
+import Modal from './Modal';
 
 
 function UsersList() {
     // LÓGICA DEL COMPONENTE
-    // const [users, setUsers] = useState([]);
-    // const [page, setPage] = useState(1);
+    const router = useRouter();
 
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         // Obtener los usuarios de la página actual
-    //         const { users } = await getAllUsers(page);
+    // Usuarios de la página actual de la lista
+    const [users, setUsers] = useState([]);
+    // Cantidad total de usuarios en la base de datos
+    const [totalUsers, setTotalUsers] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const amountXPage = 20; // Cantidad de usuarios por página (default: 20)
+    const totalPages = Math.ceil(totalUsers / amountXPage);
 
-    //         setUsers(users);
-    //     };
+    // Estado del modal
+    const [modalOpen, setModalOpen] = useState(false);
+    // Usuario seleccionado para bloquear/desbloquear
+    const [selectedUser, setSelectedUser] = useState(null);
+    
 
-    //     fetchUsers();
-    // }, [page]);
+    useEffect(() => {
+        const fetchUsers = async () => {
+            // Obtener los usuarios de la página actual
+            const { totalUsers, users } = await getAllUsers(currentPage);
+            setTotalUsers(totalUsers || 0);
+            setUsers(users || []);
+        };
 
+        fetchUsers();
+    }, [currentPage]);
+
+
+    // Función para gestionar el cambio de página
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    }
 
     // Función para ver detalles del usuario
     const handleDetails = (id) => {
-        // TO-DO: Mostrar detalles del usuario
-        console.log(id);
+        router.push(`/dashboard/admin/usuarios/${id}`);
+    }
+
+    // Función para abrir el modal y pedir confirmaciòn para bloquear/desbloquear usuario
+    const handleBlock = async (user) => {
+        setSelectedUser(user);
+        setModalOpen(true);
     }
 
     // Función para bloquear/desbloquear usuario
-    const handleBlock = async (id) => {
-        // try {
-        //     const response = await banUser(id);
-        //     console.log(response);
-        // } catch (error) {
-        //     console.error('Error al bloquear usuario:', error);
-        //     alert('Error al bloquear usuario');
-        //     throw error;
-        // }
-        console.log(id);
+    const handleConfirmBlock = async () => {
+        try {
+            const response = await banUser(selectedUser);
+            router.reload();
+        } catch (error) {
+            console.error('Error al bloquear usuario:', error);
+            alert('Error al bloquear usuario');
+        }
+
+        setModalOpen(false);
     }
 
-   
 
 
     // RENDERIZADO DEL COMPONENTE
@@ -140,7 +165,7 @@ function UsersList() {
                                         <button 
                                         className='
                                             bg-verde hover:bg-verde-light text-white font-semibold text-sm
-                                            py-1 mx-1 w-20 sm:max-w-md
+                                            py-1 px-2 mx-1 w-24 sm:max-w-md
                                             rounded-md cursor-pointer'
                                         onClick={() => handleDetails(user._id)}
                                         >
@@ -148,12 +173,21 @@ function UsersList() {
                                         </button>
                                         <button 
                                         className='bg-rose-500 hover:bg-rose-400 text-white font-semibold 
-                                        py-1 w-20 rounded-md cursor-pointer mx-1 text-sm'
-                                        onClick={() => handleBlock(user._id)}
+                                        py-1 px-2 w-24 rounded-md cursor-pointer mx-1 text-sm'
+                                        onClick={() => handleBlock(user)}
                                         >
-                                            Bloquear
+                                            {user.state ? "Bloquear" : "Desbloquear"}
                                         </button>
                                     </div>
+                                    {
+                                        modalOpen && (
+                                            <Modal
+                                            onConfirm={handleConfirmBlock}
+                                            onClose={() => setModalOpen(false)}
+                                            message={`¿Estás seguro de que quieres ${selectedUser.state ? 'BLOQUEAR' : 'ACTIVAR'} al usuario ${selectedUser.firstname} ${selectedUser.lastname}?`}
+                                            />
+                                        )
+                                    }
 
                                 </li>
                             )
@@ -162,8 +196,9 @@ function UsersList() {
                 </ul>
 
                 {/* Paginación */}
+                {/* TO-DO: testear cuando haya más de 20 usuarios en la base */}
                 <div className='flex w-full items-center justify-center p-4'>
-                    <Pagination currentPage={1} totalPages={5} handlePageChange={() => {}} />
+                    <Pagination currentPage={users.length !== 0 ? currentPage : 0} totalPages={totalPages} handlePageChange={handlePageChange} />
                 </div>
             </div>
         </div>
