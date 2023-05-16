@@ -1,4 +1,6 @@
 const checkUserExists = require('../database/helper/DBcheckUserExists');
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 const checkIsAdmin = async (req, res, next) => {
 
