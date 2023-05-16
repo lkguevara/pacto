@@ -17,6 +17,7 @@ const shoppingCart = require('./routes/shoppingCart');
 const paymentRouter = require('./routes/payment');
 const departmentsRouter = require('./routes/departments');
 const salesRouter = require('./routes/sales');
+const questionsRouter = require('./routes/questions');
 
 
 //CONEXION A LA DB!!!
@@ -65,6 +66,9 @@ app.use(departmentsRouter);
 
 //Routes of sales
 app.use(salesRouter);
+
+//Routes of questions
+app.use(questionsRouter);
 
 //All routes of the Firebase!!
 
