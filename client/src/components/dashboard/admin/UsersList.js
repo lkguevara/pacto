@@ -182,9 +182,9 @@ function UsersList() {
                                     {
                                         modalOpen && (
                                             <Modal
-                                            user={selectedUser}
                                             onConfirm={handleConfirmBlock}
                                             onClose={() => setModalOpen(false)}
+                                            message={`¿Estás seguro de que quieres ${selectedUser.state ? 'BLOQUEAR' : 'ACTIVAR'} al usuario ${selectedUser.firstname} ${selectedUser.lastname}?`}
                                             />
                                         )
                                     }

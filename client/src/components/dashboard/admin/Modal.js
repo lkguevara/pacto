@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ user, onConfirm, onClose }) => (
+const Modal = ({ message, onConfirm, onClose }) => (
   <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div className="flex items-end sm:items-center justify-center min-h-screen pt-4 px-4 pb-8 sm:pb-0 text-center">
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
@@ -8,9 +8,7 @@ const Modal = ({ user, onConfirm, onClose }) => (
         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div className="sm:flex sm:items-start">
             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                ¿Estás seguro de que quieres {user.state ? 'BLOQUEAR' : 'ACTIVAR'} al usuario {`${user.firstname} ${user.lastname}`}?
-              </h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">{message}</h3>
             </div>
           </div>
         </div>
