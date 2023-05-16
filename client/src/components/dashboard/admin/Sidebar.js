@@ -97,17 +97,6 @@ const Sidebar = () => {
             </div>
           </Link>
 
-          {/* Botón Categorías */}
-          <Link href="/dashboard/admin/categorias">
-            <div 
-              className={`bg-gray-100 text-verde-dark hover:bg-verde hover:text-white active:bg-verde active:text-white cursor-pointer p-3 mt-4 mb-2 rounded-lg inline-block 
-              ${router.pathname === "/dashboard/admin/categorias" ? "bg-verde text-white" : "bg-gray-100 text-verde-dark"}
-              `}
-              title='Categorías y Subcategorías'>
-                <BiCategory size={20} />
-            </div>
-          </Link>
-
           {/* Botón Configuración */}
           <Link href="/dashboard/admin/configuracion">
             <div 
