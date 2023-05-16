@@ -118,6 +118,15 @@
     width:100%;
 }
 
+.form__Login_Edit select{
+    padding: 10px;
+    border: 1px solid var(--azul);
+    font-weight: 600;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    width:100%;
+}
 
 .secciones button{
     padding: 10px;

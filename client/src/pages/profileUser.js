@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { putEditUser,logOut } from "@/redux/features/auth/authSlice";
 import { useRouter } from "next/router";
+import { getDepartments, getCities } from "@/redux/features/departments/departmentsSlice";
 
 function ProfileUser() {
   const { user } = useSelector((state) => state.user);
@@ -16,26 +17,35 @@ function ProfileUser() {
   /*-------------Edit de datos---------------*/
   const [edit, setEdit] = useState(false);
   const [userEdit, setUserEdit] = useState({
-    id: user?._id,
+    id: "",
     email: "",
     firstname: "",
     lastname: "",
     address: "",
     phone: "",
+    department: "",
+    city: ""
   });
 
   useEffect(() => {
     if (user) {
       setUserEdit((prevUserEdit) => ({
         ...prevUserEdit,
+        id: user._id || "",
         email: user.email || "",
         firstname: user.firstname || "",
         lastname: user.lastname || "",
         address: user.address || "",
         phone: user.phone || "",
+        department: user.city.department.department || "",
+        city: user.city.city || ""
       }));
     }
   }, [user]);
+
+  // useEffect(() => {
+  //   console.log(userEdit)
+  // },[userEdit])
 
   const handleOpenEdit = () => {
     setEdit((prevEdit) => !prevEdit);
@@ -52,6 +62,36 @@ function ProfileUser() {
   const handleSubmit = () => {
     dispatch(putEditUser(userEdit))
   };
+  /*-----------------------------------------*/
+
+  /*-----------Departments and citys---------*/
+  useEffect(() => {
+    dispatch(getDepartments())
+  }, [])
+
+  const { departments, cities } = useSelector(state => state.locations)
+
+  const handleDepaSelect = (e) => {
+    const { id , value } = e.target;
+
+    // Busco el id del departamento seleccionado para buscar sus ciudades
+    const { _id } = departments.find(depa => depa.department === value);
+    dispatch(getCities(_id));
+
+    setUserEdit({
+      ...userEdit,
+      [id]: value
+    })
+  }
+
+  const handleCitySelect = (e) => {
+    const { id , value } = e.target;
+
+    setUserEdit({
+      ...userEdit,
+      [id]: value
+    })
+  }
   /*-----------------------------------------*/
   const handleLogOut = (event)=>{
     event.preventDefault()
@@ -93,6 +133,27 @@ function ProfileUser() {
                 <label>Apellido:</label>
                 <input placeholder={user?.lastname || ""} name="lastname" type="text" value={userEdit.lastname} onChange={handleEditUser} />
 
+                <label>Departamento:</label>
+                <select  name="department" id="department" onChange={handleDepaSelect}defaultValue="default">
+                  <option disabled value="default">{user.city.department.department}</option>
+                  {departments &&
+                    departments.map((depa) => (
+                      <option key={depa._id} value={depa.department} data-categoria="departamento">
+                        {depa.department}
+                      </option>
+                    ))}
+                </select>
+
+                <label>Ciudad:</label>
+                <select name="city" id="city" onChange={handleCitySelect} defaultValue="default">
+                    <option disabled value="default">{user.city.city}</option>
+                    {
+                      cities && cities.map(obj => (
+                        <option key={obj._id} value={obj._id} data-categoria="ciudad">{obj.city}</option>
+                      ))
+                    }
+                </select>
+
                 <label>Dirección:</label>
                 <input placeholder={user?.address || ""} name="address" type="text" value={userEdit.address} onChange={handleEditUser} />
 
@@ -113,6 +174,12 @@ function ProfileUser() {
 
                 <label>Apellido:</label>
                 <input value={user?.lastname || ""} name="lastname" type="text" readOnly />
+
+                <label>Departamento:</label>
+                <input value={user?.city.department.department || ""} name="department" type="text" readOnly />
+
+                <label>Ciudad:</label>
+                <input value={user?.city.city || ""} name="city" type="text" readOnly />
 
                 <label>Dirección:</label>
                 <input value={user?.address || ""} name="address" type="text" readOnly />
