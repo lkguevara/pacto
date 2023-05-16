@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const {getAllProducts} = require('../controllers/product/APIgetAllProducts')
 const {getProductById} = require('../controllers/product/APIgetProductById');
-const {deleteProductById} = require('../controllers/product/APIdeleteProduct');
+const {banProductById} = require('../controllers/product/APIBanProduct');
 const {postNewProduct} = require('../controllers/product/APIpostNewProduct');
 const {getProductsByFilters} = require('../controllers/product/APIgetProductByFilters');
 const getProductByName = require('../controllers/product/APIgetProductByName');
-const middlewarePostNewProduct = require('../middlewares/productMiddleware')
+const middlewarePostNewProduct = require('../middlewares/productMiddleware');
 const {autoLogin} = require('../middlewares/autoLoginMiddleware');
 
 // GET all products
@@ -19,9 +19,9 @@ router.get('/products', (req, res, next) => getProductsByFilters(req, res))
 router.get('/product', (req, res, next) => getProductById(req, res));
 
 //DELETE a product by id
-router.delete('/product', (req, res, next) => deleteProductById(req, res))
+router.put('/product', (req, res, next) => banProductById(req, res))
 
-// POST new user
+// POST new product
 router.post('/product', middlewarePostNewProduct, (req, res) => postNewProduct(req, res))
 
 //GET Product by name
