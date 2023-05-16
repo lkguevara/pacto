@@ -1,6 +1,7 @@
 import React from 'react'
 import { BsPersonFill } from 'react-icons/bs';
 
+// AÚN EN DESARROLLO...
 function BasicData({ name, lastname, status, verified, colSpan="col-span-1"}) {
   return (
     <div className={`${colSpan} bg-white flex justify-between w-full h-fit border p-4 rounded-lg`} >

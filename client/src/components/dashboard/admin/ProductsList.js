@@ -48,7 +48,7 @@ function ProductsList() {
 
                 {/* Encabezados */}
                 <div className='my-3 p-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-1 items-center justify-between '>
-                    <span className='font-semibold col-span-2'>Nombre</span>
+                    <span className='font-semibold col-span-2 pl-24'>Nombre</span>
                     <span className='font-semibold hidden md:grid'>Estado</span>
                     <span className='font-semibold hidden lg:grid'>Categoría</span>
                     <span className='font-semibold hidden xl:grid'>SubCategoría</span>
