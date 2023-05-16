@@ -37,7 +37,7 @@ const checkProductsPayment = async(req,res,next) =>{
                         id: item.product._id,
                         title: item.product.name,
                         currency_id: "COP",
-                        description: item.product.description.slice(0,255),
+                        description: user.email,
                         picture_url: item.product.images[0],
                         category_id: item.product.category,
                         quantity: item.ammount,

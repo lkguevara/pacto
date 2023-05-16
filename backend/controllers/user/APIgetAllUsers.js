@@ -25,12 +25,13 @@ const getAllUsers = async (req, res) => {
              
             }
 
+            const totalUsers = users.length;
             const indexLastProd = page * amountXPage;
             const indexFirstProd = indexLastProd - amountXPage;
 
             users.slice(indexFirstProd, indexLastProd);
 
-            return res.status(200).json({msg: 'Usuarios traidos con exito', users});
+            return res.status(200).json({totalUsers, users});
         }
 
         return res.status(404).json({msg: 'Error 404, not found '});

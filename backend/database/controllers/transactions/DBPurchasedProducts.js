@@ -12,6 +12,7 @@ const DBPurchasedProducts = async (idUser) => {
         const newOrder = new Order({ user: shoppingCartProducts._id })
         if (shoppingCartProducts.shoppingCart.products.length === 0) {
             throw Error("No hay ningun producto en el carrito")
+
         }
         for (let element of shoppingCartProducts.shoppingCart.products) {
             let product = await Product.findById(element.product).select(["stock", "purchasedBy", "price", "user"])
@@ -25,7 +26,10 @@ const DBPurchasedProducts = async (idUser) => {
                 if (product.stock === 0) {
                     product.active = "agotado"
                 }
-                await DBSetBalance(product.user, product.price, "pending")
+                //total: cantidad de productos multiplicada por el 
+                //precio ya que los productos dentro del shooping no se repiten
+                const total = product.price * element.ammount;
+                await DBSetBalance(product.user, total, "pending")
                 stockProducts.push(product)
             }
         }
