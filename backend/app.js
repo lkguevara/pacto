@@ -17,6 +17,7 @@ const shoppingCart = require('./routes/shoppingCart');
 const paymentRouter = require('./routes/payment');
 const departmentsRouter = require('./routes/departments');
 const salesRouter = require('./routes/sales');
+const transactionsRouter = require('./routes/transactions')
 const questionsRouter = require('./routes/questions');
 
 
@@ -69,6 +70,9 @@ app.use(salesRouter);
 
 //Routes of questions
 app.use(questionsRouter);
+
+//Routes of transactions
+app.use(transactionsRouter);
 
 //All routes of the Firebase!!
 

@@ -1,0 +1,40 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 0px 2px 0px rgba(92, 91, 91, 0.25);
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.confirmBtn {
+    background-color: #037BE4;
+    border-radius: 100px;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+.info_products{
+    width: 100%;
+   
+   
+}
+.info_products span{
+ padding: 10px;
+ margin: 10px;
+}
+
+
+  
