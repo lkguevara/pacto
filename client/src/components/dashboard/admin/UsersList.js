@@ -19,6 +19,8 @@ function UsersList() {
     const totalPages = Math.ceil(totalUsers / amountXPage);
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
+    
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -42,21 +44,29 @@ function UsersList() {
 
     // Función para ver detalles del usuario
     const handleDetails = (id) => {
-        // TO-DO: Mostrar detalles del usuario
-        console.log(id);
+        router.push(`/dashboard/admin/usuarios/${id}`);
+    }
+
+    // Función para abrir el modal y pedir confirmaciòn para bloquear/desbloquear usuario
+    const handleBlock = async (user) => {
+        setSelectedUser(user);
+        setModalOpen(true);
     }
 
     // Función para bloquear/desbloquear usuario
-    const handleBlock = async (id) => {
+    const handleConfirmBlock = async () => {
         try {
-            const response = await banUser(id);
+            const response = await banUser(selectedUser);
             router.reload();
             console.log(response);
         } catch (error) {
             console.error('Error al bloquear usuario:', error);
             alert('Error al bloquear usuario');
         }
+
+        setModalOpen(false);
     }
+
 
    
 
@@ -165,11 +175,20 @@ function UsersList() {
                                         <button 
                                         className='bg-rose-500 hover:bg-rose-400 text-white font-semibold 
                                         py-1 px-2 w-24 rounded-md cursor-pointer mx-1 text-sm'
-                                        onClick={() => handleBlock(user._id)}
+                                        onClick={() => handleBlock(user)}
                                         >
                                             {user.state ? "Bloquear" : "Desbloquear"}
                                         </button>
                                     </div>
+                                    {
+                                        modalOpen && (
+                                            <Modal
+                                            user={selectedUser}
+                                            onConfirm={handleConfirmBlock}
+                                            onClose={() => setModalOpen(false)}
+                                            />
+                                        )
+                                    }
 
                                 </li>
                             )
