@@ -11,7 +11,7 @@ export default function NavBar(){
 
     const { isOpen } = useSelector(state => state.menu);
     const  userState  = useSelector(state => state.user);
-    const  shoppingCart  = useSelector(state => state.shoppingCart.products);
+    const  shoppingCart  = useSelector(state => state.user.user?.shoppingCart?.products);
 
     const dispatch = useDispatch();
 
