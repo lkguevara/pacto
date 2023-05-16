@@ -18,7 +18,7 @@ module.exports = {
         "azul": "#057be5",
         "azul-dark": "#046ecc",
         "azul-light": "#0a88fa",
-      },
+      }
     },
   },
   plugins: [],
