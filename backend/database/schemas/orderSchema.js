@@ -20,6 +20,6 @@ const orderSchema = Schema({
         default: "en curso"
     },
     totalprice: Number
-})
+}, { versionKey: false })
 
 module.exports = orderSchema
