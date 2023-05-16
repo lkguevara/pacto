@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { autoLoginUser } from "../auth/authSlice";
 import axios from "axios";
 
 // enviar productos
 export const sendProducts = createAsyncThunk(
   "shoppingCart/sendProducts",
-  async (product, { getState }) => {
+  async (product, { getState,dispatch }) => {
     try {
       const token = localStorage.getItem("user_verified");
       const config = {
@@ -17,6 +18,7 @@ export const sendProducts = createAsyncThunk(
 
       // Guardar los productos devueltos por la API en el localStorage
       localStorage.setItem("shopping_cart", JSON.stringify(response.data.products));
+      dispatch(autoLoginUser(token))
 
       return response.data.products;
     } catch (error) {
