@@ -66,8 +66,7 @@ export default function sellProduct(){
         state:"",
         stock:"",
         price:"",
-        images:[],
-        user: user?._id
+        images:[]
     });
 
     // useEffect(() => {
@@ -198,7 +197,7 @@ export default function sellProduct(){
         if (selectedStatus) form.append("state", selectedStatus);
         if (product.stock) form.append("stock", product.stock);
         if (product.price) form.append("price", product.price);
-        if (product.user) form.append("user", product.user);
+        if (user._id) form.append("user", user._id);
         if (product.images.length > 0) {
             product.images.forEach((image) => {
                 form.append('images', image);
