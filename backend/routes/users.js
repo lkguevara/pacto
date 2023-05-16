@@ -14,6 +14,7 @@ const {recoveryPassword} = require('../controllers/user/APIRecoveryPassword');
 const {editUser} = require('../controllers/user/APIEditUser');
 const {getUserById} = require('../controllers/user/APIgetUserById');
 const {logicBanUser} = require('../controllers/user/APIlogicBanUser');
+const { getUserByProdId } = require('../controllers/user/APIgetSellerById');
 // const { RequestCookiesAdapter } = require('next/dist/server/web/spec-extension/adapters/request-cookies');
 
 const checkRegister = async (req, res, next) =>{
@@ -29,12 +30,15 @@ const checkRegister = async (req, res, next) =>{
 router.get('/users', checkIsAdmin,(req, res) => {getAllUsers(req, res)});
 
 //GET user by ID
-router.get('/user', (req, res) => {getUserById(req, res)})
+router.get('/user', (req, res) => {getUserById(req, res)});
+
+//GET seller data by product ID
+router.get('/seller', (req, res) => {getUserByProdId(req, res)});
 
 // POST new user
 router.post('/user', checkRegister, (req, res) => {postNewUser(req, res)});
 
-router.get('/verify', verifyToken , (req, res) => {setVerified(req, res)})
+router.get('/verify', verifyToken , (req, res) => {setVerified(req, res)});
 
 //LOGIN ROUTE
 router.get('/login', (req, res) => {login(req, res)});
