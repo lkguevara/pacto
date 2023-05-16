@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { BsPersonFill } from 'react-icons/bs';
+// Mock data
 // import { users } from "../../../utils/dashboard/admin/data";
 import { banUser, getAllUsers } from "../../../api/usersApi";
 import Pagination from './Pagination';
@@ -12,22 +13,24 @@ function UsersList() {
     // LÓGICA DEL COMPONENTE
     const router = useRouter();
 
+    // Usuarios de la página actual de la lista
     const [users, setUsers] = useState([]);
+    // Cantidad total de usuarios en la base de datos
     const [totalUsers, setTotalUsers] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const amountXPage = 20; // Cantidad de usuarios por página (default: 20)
     const totalPages = Math.ceil(totalUsers / amountXPage);
 
+    // Estado del modal
     const [modalOpen, setModalOpen] = useState(false);
+    // Usuario seleccionado para bloquear/desbloquear
     const [selectedUser, setSelectedUser] = useState(null);
     
 
     useEffect(() => {
         const fetchUsers = async () => {
             // Obtener los usuarios de la página actual
-            console.log("currentPage: " + currentPage);
             const { totalUsers, users } = await getAllUsers(currentPage);
-            console.log(totalUsers);
             setTotalUsers(totalUsers || 0);
             setUsers(users || []);
         };
@@ -40,7 +43,6 @@ function UsersList() {
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
     }
-
 
     // Función para ver detalles del usuario
     const handleDetails = (id) => {
@@ -58,7 +60,6 @@ function UsersList() {
         try {
             const response = await banUser(selectedUser);
             router.reload();
-            console.log(response);
         } catch (error) {
             console.error('Error al bloquear usuario:', error);
             alert('Error al bloquear usuario');
@@ -67,8 +68,6 @@ function UsersList() {
         setModalOpen(false);
     }
 
-
-   
 
 
     // RENDERIZADO DEL COMPONENTE
@@ -197,6 +196,7 @@ function UsersList() {
                 </ul>
 
                 {/* Paginación */}
+                {/* TO-DO: testear cuando haya más de 20 usuarios en la base */}
                 <div className='flex w-full items-center justify-center p-4'>
                     <Pagination currentPage={users.length !== 0 ? currentPage : 0} totalPages={totalPages} handlePageChange={handlePageChange} />
                 </div>
