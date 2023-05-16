@@ -1,5 +1,14 @@
 const { Schema } = require("mongoose")
 
+const replyreviewSchema = new Schema({
+    reply: {
+        type: String,
+        required: true
+    },
+    date: Date,
+
+
+})
 const reviewSchema = new Schema({
     id: {
         type: Schema.Types.ObjectId
@@ -8,7 +17,7 @@ const reviewSchema = new Schema({
         type: Number,
         required: true,
         min: 1,
-        max: 5
+        max: 3
     },
     review: {
         type: String,
@@ -21,7 +30,7 @@ const reviewSchema = new Schema({
     },
     client: { type: Schema.Types.ObjectId, ref: "User" },
     vendor: { type: Schema.Types.ObjectId, ref: "User" },
-
-}, { versionKey: false })
+    reply: replyreviewSchema
+})
 
 module.exports = reviewSchema
