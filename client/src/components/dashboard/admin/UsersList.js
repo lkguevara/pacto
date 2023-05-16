@@ -5,6 +5,7 @@ import { BsPersonFill } from 'react-icons/bs';
 // import { users } from "../../../utils/dashboard/admin/data";
 import { banUser, getAllUsers } from "../../../api/usersApi";
 import Pagination from './Pagination';
+import Modal from './Modal';
 
 
 function UsersList() {
@@ -16,6 +17,8 @@ function UsersList() {
     const [currentPage, setCurrentPage] = useState(1);
     const amountXPage = 20; // Cantidad de usuarios por página (default: 20)
     const totalPages = Math.ceil(totalUsers / amountXPage);
+
+    const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchUsers = async () => {
