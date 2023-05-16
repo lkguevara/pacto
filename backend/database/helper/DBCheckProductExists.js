@@ -6,7 +6,7 @@ const checkProductExists = async (idProd) => {
 
     const isProd = await Product.findById(idProd)
     if (isProd !== null) {
-        return true
+        return isProd
     }
 
     return false
