@@ -6,7 +6,6 @@ const DBSetBalance = async (idUser, price, set) => {
     try {
 
         const walletUser = await Wallet.findOne({ user: idUser })
-        console.log(walletUser)
         if (set === "pending") {
             walletUser.pendingBalance += price
         }

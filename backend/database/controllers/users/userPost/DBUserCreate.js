@@ -25,6 +25,7 @@ const createUser = async (user, provider = null) => {
         const walletUser = await newWallet.save();
         newUser.wallet = walletUser._id;
         newUser.role = userRole._id;
+        newUser.registrationdate = new Date()
         LogAdminController("users", newUser._id, "actives")
         const response = await newUser.save();
         return response

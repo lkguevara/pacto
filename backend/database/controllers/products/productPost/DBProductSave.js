@@ -12,7 +12,8 @@ const productSave = async (product, idUser) => {
             { $push: { "subCategories.$.products": newProduct._id } },
             { new: true }
         );
-
+        newProduct.user = idUser
+        newProduct.publicationdate = new Date()
         await newProduct.save()
         LogAdminController("products", newProduct._id, "actives")
         return newProduct

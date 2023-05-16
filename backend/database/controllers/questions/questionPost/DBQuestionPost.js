@@ -10,6 +10,7 @@ const DBQuestionPost = async (idUser, question, idProduct) => {
         const updateProduct = await Product.findByIdAndUpdate(idProduct, { $push: { questions: newQuestion._id } }, { returnDocument: "after" })
         newQuestion.user = idUser
         newQuestion.product = idProduct
+        newQuestion.date = new Date()
         const response = await newQuestion.save()
         LogAdminController(newQuestion._id, null, "questions")
         return response
