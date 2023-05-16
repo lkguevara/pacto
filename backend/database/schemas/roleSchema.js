@@ -7,9 +7,9 @@ const roleSchema = new Schema({
     role: {
         type: String,
         required: true
-     
+
     }
 
-})
+}, { versionKey: false })
 
 module.exports = roleSchema

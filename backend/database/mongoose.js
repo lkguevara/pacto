@@ -64,5 +64,5 @@ const load = async () => {
 const user = "6463aad67414c82d6e56b92d"
 const product = "6463aad67414c82d6e56ba13"
 //DBShoppingCartAddProduct(user, product, 1)
-DBPurchasedProducts(user)
+//DBPurchasedProducts(user)
 module.exports = mongoose.connection;

@@ -54,6 +54,6 @@ const userSchema = Schema({
   products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   purchased: [{ type: Schema.Types.ObjectId, ref: "Order" }],
   wallet: { type: Schema.Types.ObjectId, ref: "Wallet" }
-});
+}, { versionKey: false });
 
 module.exports = userSchema;

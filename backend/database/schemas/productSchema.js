@@ -25,7 +25,7 @@ const productSchema = new Schema({
     questions: [{ type: Schema.Types.ObjectId, ref: "Question" }],
     publicationdate: Date
 
-})
+}, { versionKey: false })
 
 
 

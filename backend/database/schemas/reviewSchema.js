@@ -22,6 +22,6 @@ const reviewSchema = new Schema({
     client: { type: Schema.Types.ObjectId, ref: "User" },
     vendor: { type: Schema.Types.ObjectId, ref: "User" },
 
-})
+}, { versionKey: false })
 
 module.exports = reviewSchema

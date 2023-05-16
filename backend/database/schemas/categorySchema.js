@@ -44,7 +44,7 @@ const subCategorySchema = new Schema({
     },
     id: Schema.Types.ObjectId,
     products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
-})
+}, { versionKey: false })
 
 const mainCategorySchema = new Schema({
     name: {
@@ -54,6 +54,6 @@ const mainCategorySchema = new Schema({
     },
     id: Schema.Types.ObjectId,
     subCategories: [subCategorySchema]
-})
+}, { versionKey: false })
 
 module.exports = mainCategorySchema

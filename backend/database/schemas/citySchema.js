@@ -7,6 +7,6 @@ const citySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Department'
     }
-});
+}, { versionKey: false });
 
 module.exports = citySchema;
