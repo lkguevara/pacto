@@ -1,42 +1,50 @@
-import styles from "../../styles/purchased.module.css";
+import style from "../../styles/Orders.module.css"
 import Layout from "@/components/layout";
 import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Purchased from "../../components/transactions/Purchased"
+import Purchased from "@/components/transactions/Purchased";
+import { getDetailOrder } from "@/redux/features/transactions/transactionsSlice";
+import { useRouter } from "next/router";
 
-function Index() {
-  // const idProducts = useSelector((state)=> state.user.user.purchased)
+function DetailOrder() {
+  const productsOrder = useSelector((state)=> state.orders.detailOrder)
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { id } = router.query
+
+
 
   useEffect(() => {
-    //enviar productos al back
+
+    id ? dispatch(getDetailOrder(id)): null;
+
   }, []);
 
-  const products = [
-    {
-      name: "Product 1",
-      // image: "product1.jpg",
-    },
-    {
-      name: "Product 2",
-      // image: "product2.jpg",
-    },
-    {
-      name: "Product 3",
-      image: "product3.jpg",
-    },
-  ];
 
 
 
   return (
     <Layout>
-      {products.map((product) => (
-          <Purchased name={product.name}/>
-      ))}
-    </Layout>
+    {productsOrder?.length ? productsOrder.map((order) => (
+      <React.Fragment key={order.id}>
+          {order.products.map((product) => (
+          <Purchased
+            name={product.product.name}
+            state={product.state}
+            key={product._id}
+            id={product.product._id}
+            total={product.product.price * product.ammount}
+            amount={product.ammount}
+            order={order._id}
+            user={order.user}
+          />
+        ))}
+      </React.Fragment>
+    )) : null}
+  </Layout>
   );
 }
 
 
-export default Index;
+export default DetailOrder;

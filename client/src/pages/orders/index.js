@@ -1,4 +1,4 @@
-import styles from "../../styles/purchased.module.css";
+import styles from "../../styles/Orders.module.css";
 import Layout from "@/components/layout";
 import React from "react";
 import { useEffect } from "react";
@@ -8,14 +8,18 @@ import Orders from "@/components/transactions/Orders";
 import { getOrders } from "@/redux/features/transactions/transactionsSlice";
 
 function Index() {
-  // const idProducts = useSelector((state)=> state.user.user.purchased)
   const dispatch = useDispatch()
+  
+  const id = useSelector((state)=> state.user?.user?._id);
+  const orders = useSelector((state)=> state.orders.orders);
+  console.log(orders);
 
   useEffect(() => {
     //enviar productos al back
-    console.log('useEfect');
-    dispatch(getOrders())
-  }, []);
+    // console.log(purchased)
+    id ? dispatch(getOrders(id)): null;
+    
+  }, [id]);
 
   const products = [
     {
@@ -43,11 +47,11 @@ function Index() {
 
   return (
     <Layout>
-      {products.map((order) => (
+      {orders ? orders.map((order,index) => (
         <Link href={`/orders/${order._id}`} key={order._id}>
-          <Orders key={order._id} user={order.user} state={order.state} time={order.time} total={order.total}/>
+          <Orders key={order._id} user={order.user} state={order.state} time={'2023-5-16'} numero ={index}/>
         </Link>
-      ))}
+      )): "hola"}
     </Layout>
   );
 }
