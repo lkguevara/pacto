@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from 'react';
+import { addReview } from '../api/reviewsApi';
 import { BsEmojiFrown, BsEmojiNeutral, BsEmojiSmile } from 'react-icons/bs';
 
 const ModalReview = ({vendedor, cliente, onClose}) => {
@@ -39,8 +40,24 @@ const ModalReview = ({vendedor, cliente, onClose}) => {
     };
 
     // Función para enviar la review
-    const sendReview = () => {
-      console.log(resenia);
+    const sendReview = async () => {
+      // COMENTADO HASTA QUE ESTÉ LA RUTA DEL BACK
+      // try {
+      //     // Realiza la petición al backend para crear la review
+      //     const newReviewId = await addReview(resenia);
+
+      //     // Si se creó correctamente, mostrar un mensaje de éxito
+      //     if (newReviewId) {
+      //         alert("Tu calificación ha sido registrada exitosamente");
+      //     }
+
+      // } catch (error) {
+      //     console.log(error);
+      //     // Mostrar un mensaje de error
+      //     alert("Error al publicar la calificación, por favor intenta más tarde");
+      // }
+      // COMENTADO HASTA QUE ESTÉ LA RUTA DEL BACK
+      alert("Tu calificación ha sido registrada exitosamente");
       onClose();
     };
 
