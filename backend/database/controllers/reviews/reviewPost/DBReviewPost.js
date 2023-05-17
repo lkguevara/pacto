@@ -12,6 +12,7 @@ const DBReviewPost = async (idUser, review, idVendor) => {
         newReview.client = idUser
         newReview.vendor = idVendor
         LogAdminController(newReview._id, null, "reviews")
+        newReview.postdate = new Date()
         const response = await newReview.save()
         const updateVendor = await User.findByIdAndUpdate(idVendor, { $push: { reviewReceived: newReview._id } }, { returnDocument: "after" })
         if (newReview.calification === 1) {

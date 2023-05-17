@@ -13,16 +13,14 @@ const reviewSchema = new Schema({
     id: {
         type: Schema.Types.ObjectId
     },
+    postdate: Date,
     calification: {
         type: Number,
         required: true,
         min: 1,
         max: 3
     },
-    review: {
-        type: String,
-        required: true,
-    },
+    review: String,
     state: {
         type: String,
         enum: ["Active", "desactived", "blocked"],
