@@ -20,7 +20,6 @@ const reviewSchema = new Schema({
         max: 3
     },
     review: String,
-
     state: {
         type: String,
         enum: ["Active", "desactived", "blocked"],
