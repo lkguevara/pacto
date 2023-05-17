@@ -1,9 +1,8 @@
-// index.js
 import React from "react";
 import ReactDOM from "react-dom";
-import styles from "../styles/purchased.module.css";
+import styles from "../../styles/purchased.module.css";
 
-const CardProduct = (props) => {
+const Purchased = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.products}>
@@ -20,4 +19,4 @@ const CardProduct = (props) => {
 };
 
 
-export default CardProduct;
+export default Purchased;

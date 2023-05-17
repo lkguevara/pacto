@@ -6,6 +6,7 @@ const DBStateGetOrder = async (idUser) => {
         const userOrder = await Order.findOne({ user: idUser })
             .populate("products.product", ["name", "price"])
             .lean()
+
         if (userOrder === null) {
             return false
         }

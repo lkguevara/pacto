@@ -1,10 +1,9 @@
+import styles from "../../styles/purchased.module.css";
 import Layout from "@/components/layout";
 import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import CardProduct from "@/components/purchased";
-import styles from "../../styles/purchased.module.css";
-
+import Purchased from "../../components/transactions/Purchased"
 
 function Index() {
   // const idProducts = useSelector((state)=> state.user.user.purchased)
@@ -27,14 +26,13 @@ function Index() {
       image: "product3.jpg",
     },
   ];
-  console.log(1)
 
 
 
   return (
     <Layout>
       {products.map((product) => (
-          <CardProduct name={product.name}/>
+          <Purchased name={product.name}/>
       ))}
     </Layout>
   );
