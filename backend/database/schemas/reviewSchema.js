@@ -10,10 +10,8 @@ const reviewSchema = new Schema({
         min: 1,
         max: 5
     },
-    review: {
-        type: String,
-        required: true,
-    },
+    review: String,
+
     state: {
         type: String,
         enum: ["Active", "desactived", "blocked"],
