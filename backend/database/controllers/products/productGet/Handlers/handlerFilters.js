@@ -1,7 +1,7 @@
 const Product = require("../../../../models/product");
 
 const handlerFilters = async (filters) => {
-    searchproduct = Product.find()
+    searchproduct = Product.find({ active: "en venta" })
     searchproduct.setOptions({ lean: true })
     searchproduct.collection(Product.collection)
     if (filters.categories !== null) {
