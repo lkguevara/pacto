@@ -5,13 +5,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import Orders from "@/components/transactions/Orders";
-
+import { getOrders } from "@/redux/features/transactions/transactionsSlice";
 
 function Index() {
   // const idProducts = useSelector((state)=> state.user.user.purchased)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     //enviar productos al back
+    console.log('useEfect');
+    dispatch(getOrders())
   }, []);
 
   const products = [

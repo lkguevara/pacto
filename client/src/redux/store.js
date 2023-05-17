@@ -6,6 +6,7 @@ import categoriesReducer from "./features/categories/categoriesSlice";
 import shoppingCartReducer from "./features/carrito/carrito";
 import paymentReducer from "./features/payment/payment";
 import departmentsSlice from "./features/departments/departmentsSlice";
+import ordersReducer from './features/transactions/transactionsSlice'
 
 const store = configureStore({
     reducer:{
@@ -14,6 +15,7 @@ const store = configureStore({
         products: productsSlice,
         menu: menuReducer,
         user:authReducer,
+        orders:ordersReducer,
         categories: categoriesReducer,
         locations: departmentsSlice
     }
