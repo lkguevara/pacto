@@ -16,7 +16,15 @@ const userSchema = Schema({
     type: String,
     required: true,
   },
-  calification: {
+  goodcalification: {
+    type: Number,
+    default: 0,
+  },
+  neutralcalification: {
+    type: Number,
+    default: 0,
+  },
+  badcalification: {
     type: Number,
     default: 0,
   },

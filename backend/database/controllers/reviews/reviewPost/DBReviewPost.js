@@ -14,9 +14,15 @@ const DBReviewPost = async (idUser, review, idVendor) => {
         LogAdminController(newReview._id, null, "reviews")
         const response = await newReview.save()
         const updateVendor = await User.findByIdAndUpdate(idVendor, { $push: { reviewReceived: newReview._id } }, { returnDocument: "after" })
-            .select(["calification", "reviewReceived"])
-            .populate("reviewReceived")
-        updateVendor.calification = CheckAverageCalification(updateVendor.reviewReceived)
+        if (newReview.calification === 1) {
+            updateVendor.poorcalification += 1
+        }
+        else if (newReview.calification === 2) {
+            updateVendor.neutralcalification += 1
+        }
+        else if (newReview.calification === 3) {
+            updateVendor.goodcalification += 1
+        }
         await updateVendor.save()
         return response
     } catch (error) {
