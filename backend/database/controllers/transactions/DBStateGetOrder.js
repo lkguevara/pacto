@@ -3,8 +3,9 @@ const User = require("../../models/user");
 
 const DBStateGetOrder = async (idUser) => {
     try {
-        const userOrder = await Order.findOne({ user: idUser })
-            .populate("products.product", ["name", "price"])
+        const userOrder = await User.findById(idUser)
+            .select("purchased")
+            .populate("purchased")
             .lean()
 
         if (userOrder === null) {
