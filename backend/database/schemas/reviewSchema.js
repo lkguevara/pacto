@@ -13,6 +13,7 @@ const reviewSchema = new Schema({
     id: {
         type: Schema.Types.ObjectId
     },
+    postdate: Date,
     calification: {
         type: Number,
         required: true,
